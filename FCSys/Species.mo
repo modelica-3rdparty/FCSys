@@ -28,11 +28,11 @@ package Species "Dynamic models of chemical species"
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="'C+'",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
     <li>The thermal independity and thermal resistivity are fixed (e.g., independent of thermodynamic state).</li>
     <li>The specific heat capacity is independent of temperature.</li>
     <li>Mobility is zero.</li>
-    </ol></p>
+    </ol>
 
    <p>The default isobaric specific heat capacity (via <i>b<sub>c</sub></i> = <code>[935*U.J*Data.m/(U.kg*U.K)]</code>)
    and thermal
@@ -108,10 +108,10 @@ package Species "Dynamic models of chemical species"
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="'SO3-'",
-          Documentation(info="<html><p>Assumptions:
+          Documentation(info="<html><p>Assumptions:</p>
     <ol>
     <li>The thermal independity and thermal resistivity are fixed (e.g., independent of thermodynamic state).</li>
-    </ol></p>
+    </ol>
 
     <p>The default thermal resistivity (&theta; = <code>U.m*U.K/(0.16*U.W)</code>) is of dry
   Nafion 115 [<a href=\"modelica://FCSys.UsersGuide.References.Kandlikar2009\">Kandlikar2009</a>, p. 1277].</p>
@@ -170,7 +170,7 @@ package Species "Dynamic models of chemical species"
           defaultComponentName="'e-'",
           Documentation(info="<html>
 
-    <p>Assumptions:<ol>
+    <p>Assumptions:</p><ol>
           <li>The fluidity is infinite.  All friction is by translational exchange with the
           the substrate
           (<a href=\"modelica://FCSys.Species.'C+'.Graphite\">C+</a>).</li>
@@ -181,7 +181,7 @@ package Species "Dynamic models of chemical species"
           
           <li>The conductivity is mapped to the mobility of the electrons by assuming that
           the mobility of the substrate (<a href=\"modelica://FCSys.Species.'C+'.Graphite\">C+</a>) is zero.</li>
-    </ol></p>
+    </ol>
 
 <p>If <code>consTransX</code>, <code>consTransY</code>, or <code>consTransZ</code> is <code>ConsTrans.dynamic</code>
 (the default is <code>ConsTrans.steady</code> instead),
@@ -238,13 +238,13 @@ then internal inductance is included according to the relative permeability (&mu
           defaultComponentName="'H+'",
           Documentation(info="<html>
 
-<p>Assumptions:<ol>
+<p>Assumptions:</p><ol>
     <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>The electrochemical reaction rate is governed by the electrons.  Therefore, the specific exchange current is zero (&tau;&prime; = 0) for protons.</li>
               <li>The conductivity is mapped to the mobility of the protons by assuming that
           the mobility of the substrate (e.g.,
           <a href=\"modelica://FCSys.Species.'SO3-'.Ionomer\">C19HF37O5S-</a>) is zero.</li>
-    </ol></p>
+    </ol>
 
 <p>The default electrical conductivity (&sigma; = <code>8.3*U.S/U.m</code>)
   is for DuPont<sup>TM</sup> Nafion&reg; N-112 [<a href=\"modelica://FCSys.Regions.PEMs.DuPontN112\">DuPontN112</a>].  
@@ -311,7 +311,7 @@ then internal inductance is included according to the relative permeability (&mu
 <tr><td>4800</td><td>1/52.3e-6</td><td>1/1.6204</td></tr>
 <tr><td>4900</td><td>1/53.2e-6</td><td>1/1.6477</td></tr>
 <tr><td>5000</td><td>1/54.1e-6</td><td>1/1.6750</td></tr>
-  </table></p>
+  </table>
 
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"));
 
@@ -344,11 +344,11 @@ then internal inductance is included according to the relative permeability (&mu
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="H2",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>Ideal gas</li>
 
-    </ol></p>
+    </ol>
 
 <p>The default resistivities (&eta; = <code>1/(89.6e-7*U.Pa*U.s)</code>
 and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</sub> gas at 1&nbsp;atm and
@@ -388,7 +388,6 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
 <tr><td>1800</td><td>16.96e3</td><td>1/296.1e-7</td><td>1/786e-3</td></tr>
 <tr><td>1900</td><td>17.49e3</td><td>1/307.2e-7</td><td>1/835e-3</td></tr>
 <tr><td>2000</td><td>18.25e3</td><td>1/318.2e-7</td><td>1/878e-3</td></tr>
-    </tr>
   </table>
   
   <p>
@@ -443,13 +442,13 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="H2O",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>Ideal gas</li>
         
                 <li>The specific exchange currents (&tau;&prime;) are zero.  The rate of phase change is governed by the
         other configurations (liquid and ionomer).</li>
-    </ol></p>
+    </ol>
 
 <p>The default resistivities (&eta; = <code>1/(9.09e-6*U.Pa*U.s)</code>
 and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at saturation pressure and
@@ -542,7 +541,7 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
 <tr><td>750</td><td>2.119e3</td><td>1/260.4e-7</td><td>1/54.9e-3</td></tr>
 <tr><td>800</td><td>2.152e3</td><td>1/278.6e-7</td><td>1/59.2e-3</td></tr>
 <tr><td>850</td><td>2.186e3</td><td>1/296.9e-7</td><td>1/63.7e-3</td></tr>
-  </table></ul></p>
+  </table></p>
 
 
 <p>
@@ -596,13 +595,14 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="H2O",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
-    </ol></p></p>
+    </ol>
 
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Ionomer;
@@ -641,9 +641,9 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="H2O",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
-    </ol></p>
+    </ol>
 
 <p>The default resistivities (&eta; = <code>1/(855e-6*U.Pa*U.s)</code>
 and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at saturation pressure and
@@ -763,12 +763,12 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="N2",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>Ideal gas</li>
    <li>Fixed specific heat capacity (independent of temperature)</li>
  
-    </ol></p>
+    </ol>
 
 <p>The default specific heat capacity (via <i>b<sub>c</sub></i> = <code>[1.041e3*U.J*Data.m/(U.kg*U.K)]</code>) and resistivities
 (&eta; = <code>1/(17.82e-6*U.Pa*U.s)</code> and &theta; = <code>U.m*U.K/(25.9e-3*U.W))</code>) are based on data of gas at 1&nbsp;atm and
@@ -856,11 +856,11 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
         annotation (
           defaultComponentPrefixes="replaceable",
           defaultComponentName="O2",
-          Documentation(info="<html><p>Assumptions:<ol>
+          Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
   <li>Ideal gas</li>
   
-    </ol></p>
+    </ol>
 
   <p>The default resistivities (&eta; = <code>1/(207.2e-7*U.Pa*U.s)</code> and &theta; = <code>U.m*U.K/(26.8e-3*U.W)</code>) are based on data of gas at 1&nbsp;atm and
   300&nbsp;K from Incropera and DeWitt [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, pp. 920&ndash;921].
@@ -893,7 +893,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <tr><td>1100</td><td>1.103e3</td><td>1/505.5e-7</td><td>1/75.8e-3</td></tr>
 <tr><td>1200</td><td>1.115e3</td><td>1/532.5e-7</td><td>1/81.9e-3</td></tr>
 <tr><td>1300</td><td>1.125e3</td><td>1/588.4e-7</td><td>1/87.1e-3</td></tr>
-  </table></p>
+  </table>
 
 <p>
   The specific heat capacity is not fixed because it would
@@ -903,6 +903,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Gas;
@@ -950,10 +951,10 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
     parameter Init initEnergy=Init.temperature
       "Method of initializing the thermal state"
       annotation (Evaluate=true, Dialog(tab="Initialization"));
-    extends Species(N(stateSelect=if consMaterial == ConsThermo.dynamic then
-            StateSelect.always else StateSelect.prefer),T(final fixed=false));
     // Note:  The extension is after these parameters so that they appear first
     // in the parameter dialog.
+    extends Species(N(stateSelect=if consMaterial == ConsThermo.dynamic then
+            StateSelect.always else StateSelect.prefer),T(final fixed=false));
     // Note:  StateSelect.always isn't ideal, but it's necessary to avoid
     // dynamic state selection in Dymola 2014.  In some cases it isn't
     // appropriate (e.g., an incompressible liquid that fills the entire
@@ -1393,7 +1394,7 @@ Choose any condition besides none.");
           "Current vs. velocity at the boundaries";
       end for;
     end for;
-    minusDeltaf = I .* phi*Data.m + zeta*Sigma(boundaries.Ndot);
+    minusDeltaf = Data.m*phi .* I + zeta*Sigma(boundaries.Ndot);
 
     // Assumptions
     2*I = -Delta(boundaries.Ndot) "Linear current profile (assumption #1)";
@@ -1417,7 +1418,7 @@ Choose any condition besides none.");
         // Material
         (if consTrans[i] == ConsTrans.dynamic then kL[i]*Data.m*der(boundaries[
           i, side].Ndot)/U.s else 0) = (Aprime[i]*(boundaries[i, side].p - p)
-           + inSign(side)*phi_boundaries[i, side]*boundaries[i, side].Ndot*Data.m
+           + inSign(side)*Data.m*phi_boundaries[i, side]*boundaries[i, side].Ndot
            - minusDeltaf[i])*(if upstream[i] then 1 + exp(-zeta*Data.beta(T, p)
           *boundaries[i, side].Ndot/(2*Aprime[i])) else 2) + inSign(side)*f[i];
 
@@ -1518,7 +1519,7 @@ Choose any condition besides none.");
        then 0 else boundaries[i, :].phi[cartWrap(cartTrans[j] - cartTrans[i])]*
       boundaries[i, :].Ndot*Data.m + sum(boundaries[i, :].mPhidot[cartWrap(
       cartTrans[j] - cartTrans[i])])) for i in 1:n_trans) for j in 1:n_trans};
-    // Note:  The storage is split between the boundaries via mPhidot, so a
+    // Note:  The storage is split between the boundaries via f, so a
     // derivative doesn't appear here (see material transport above).
     // Note:  The explicit expansions (intra[:] and inter[:]) are necessary in
     // Dymola 2014.
@@ -1573,7 +1574,7 @@ Choose any condition besides none.");
     annotation (
       defaultComponentPrefixes="replaceable",
       Documentation(info="<html>
-    <p>Fixed assumptions:<ol>
+    <p>Fixed assumptions:</p><ol>
     <li>The gradient of material current is uniform in the direction of the current.</li>
     <li>The normal translational force on pairs of boundaries is split equally between the boundaries.  This includes
     the body, shear (transverse translational transport), and exchange forces due to intermolecular drag and transfer during
@@ -1592,9 +1593,9 @@ Choose any condition besides none.");
 
     The rate of advection of energy is the product of this
     specific enthalpy and the material current.
-    </ol></p>
+    </ol>
 
-    <p>Notes regarding the parameters:
+    <p>Notes regarding the parameters:</p>
     <ol>
 
     <li>If <code>approxVelocity</code> is <code>true</code>,
@@ -1644,7 +1645,7 @@ Choose any condition besides none.");
 
     if the heat flux is uniform [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>].</li>
 
-    </ol></p>
+    </ol>
 
     <p>Translational momentum and thermal energy are advected as material is exchanged
     due to phase change and reactions.  This occurs at the velocity (&phi;) and the specific entropy-temperature
@@ -1749,17 +1750,18 @@ Choose any condition besides none.");
 
     annotation (
       defaultComponentPrefixes="replaceable",
-      Documentation(info="<html><p>Assumptions:<ol>
+      Documentation(info="<html><p>Assumptions:</p><ol>
   <li>There is no material transport.</li>
   <li>Velocity is zero.</li>
   <li>There are no chemical reactions or phase change.</li>
   <li>The volume is constant&mdash;determined by &epsilon; and the total volume of the subregion.</li>
-  </ol></p>
+  </ol>
 
   <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
+
   end Solid;
 
 protected
@@ -2171,16 +2173,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-              extent={{-100,100},{100,-100}},
-              lineColor={127,127,127},
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0},
-              origin={-40,40},
-              rotation=45)}));
+            extent={{-100,100},{100,-100}},
+            lineColor={127,127,127},
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-100,-20},{100,20}},
+            textString="%name",
+            lineColor={0,0,0},
+            origin={-40,40},
+            rotation=45)}));
   end Species;
 
 public

@@ -391,14 +391,14 @@ package Conditions "Models to specify and measure operating conditions"
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
                 100,100}}), graphics={Line(
-                  points={{-30,0},{30,0}},
-                  color={47,107,251},
-                  smooth=Smooth.None),Polygon(
-                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                  lineColor={47,107,251},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}));
+              points={{-30,0},{30,0}},
+              color={47,107,251},
+              smooth=Smooth.None), Polygon(
+              points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+              lineColor={47,107,251},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}));
     end AmagatDalton;
 
     model ChemicalReaction
@@ -459,18 +459,21 @@ package Conditions "Models to specify and measure operating conditions"
     <a href=\"modelica://FCSys.Connectors\">Connectors</a> package.</p></html>"),
 
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{-30,0},{30,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Text(
-                  extent={{-100,20},{100,60}},
-                  lineColor={0,0,0},
-                  textString="%n %name"),Polygon(
-                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                  lineColor={255,195,38},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}),
+                100,100}}), graphics={
+            Line(
+              points={{-30,0},{30,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Text(
+              extent={{-100,20},{100,60}},
+              lineColor={0,0,0},
+              textString="%n %name"),
+            Polygon(
+              points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+              lineColor={255,195,38},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
     end ChemicalReaction;
@@ -567,61 +570,72 @@ package Conditions "Models to specify and measure operating conditions"
             smooth=Smooth.None));
 
         annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-                  -100},{100,100}}), graphics={Line(
-                      points={{-40,0},{-20,0}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{0,60},{40,60}},
-                      color={0,127,255},
-                      smooth=Smooth.None),Line(
-                      points={{-20,60},{-20,-60}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{0,-20},{40,-20}},
-                      color={140,0,0},
-                      smooth=Smooth.None),Polygon(
-                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                      lineColor={140,0,0},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Polygon(
-                      points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
-                      lineColor={0,127,255},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{0,-60},{40,-60}},
-                      color={0,127,255},
-                      smooth=Smooth.None),Polygon(
-                      points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
-                      lineColor={0,127,255},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{10,20},{40,20}},
-                      color={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None),Polygon(
-                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                      lineColor={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Text(
-                      extent={{-20,-48},{20,-72}},
-                      lineColor={127,127,127},
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid,
-                      textString="l"),Text(
-                      extent={{-20,72},{20,48}},
-                      lineColor={127,127,127},
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid,
-                      textString="g")}), Diagram(coordinateSystem(
-                preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-              graphics));
+                  -100},{100,100}}), graphics={
+              Line(
+                points={{-40,0},{-20,0}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{0,60},{40,60}},
+                color={0,127,255},
+                smooth=Smooth.None),
+              Line(
+                points={{-20,60},{-20,-60}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{0,-20},{40,-20}},
+                color={140,0,0},
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                lineColor={140,0,0},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Polygon(
+                points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
+                lineColor={0,127,255},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{0,-60},{40,-60}},
+                color={0,127,255},
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
+                lineColor={0,127,255},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{10,20},{40,20}},
+                color={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                lineColor={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Text(
+                extent={{-20,-48},{20,-72}},
+                lineColor={127,127,127},
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid,
+                textString="l"),
+              Text(
+                extent={{-20,72},{20,48}},
+                lineColor={127,127,127},
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid,
+                textString="g")}), Diagram(coordinateSystem(preserveAspectRatio
+                =false, extent={{-100,-100},{100,100}}), graphics));
       end Anode;
 
       model Cathode
@@ -711,61 +725,72 @@ package Conditions "Models to specify and measure operating conditions"
             color={191,0,0},
             smooth=Smooth.None));
 
-        annotation (Icon(graphics={Line(
-                      points={{-40,0},{-20,0}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{0,60},{40,60}},
-                      color={0,127,255},
-                      smooth=Smooth.None),Line(
-                      points={{-20,60},{-20,-60}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{0,-20},{40,-20}},
-                      color={140,0,0},
-                      smooth=Smooth.None),Polygon(
-                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                      lineColor={140,0,0},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Polygon(
-                      points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
-                      lineColor={0,127,255},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{0,-60},{40,-60}},
-                      color={0,127,255},
-                      smooth=Smooth.None),Polygon(
-                      points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
-                      lineColor={0,127,255},
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{10,20},{40,20}},
-                      color={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None),Polygon(
-                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                      lineColor={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Text(
-                      extent={{-20,-48},{20,-72}},
-                      lineColor={127,127,127},
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid,
-                      textString="l"),Text(
-                      extent={{-20,72},{20,48}},
-                      lineColor={127,127,127},
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid,
-                      textString="g")}), Diagram(coordinateSystem(
-                preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-              graphics));
+        annotation (Icon(graphics={
+              Line(
+                points={{-40,0},{-20,0}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{0,60},{40,60}},
+                color={0,127,255},
+                smooth=Smooth.None),
+              Line(
+                points={{-20,60},{-20,-60}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{0,-20},{40,-20}},
+                color={140,0,0},
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                lineColor={140,0,0},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Polygon(
+                points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
+                lineColor={0,127,255},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{0,-60},{40,-60}},
+                color={0,127,255},
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
+                lineColor={0,127,255},
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{10,20},{40,20}},
+                color={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                lineColor={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Text(
+                extent={{-20,-48},{20,-72}},
+                lineColor={127,127,127},
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid,
+                textString="l"),
+              Text(
+                extent={{-20,72},{20,48}},
+                lineColor={127,127,127},
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid,
+                textString="g")}), Diagram(coordinateSystem(preserveAspectRatio
+                =false, extent={{-100,-100},{100,100}}), graphics));
       end Cathode;
 
       model Conductor
@@ -817,71 +842,85 @@ package Conditions "Models to specify and measure operating conditions"
             points={{4,-2},{20,-2},{20,-20},{40,-20}},
             color={191,0,0},
             smooth=Smooth.None));
-        annotation (Icon(graphics={Line(
-                      points={{0,20},{30,20}},
-                      color={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None),Line(
-                      points={{-20,20},{-20,0}},
-                      color={127,127,127},
-                      visible='incle-',
-                      smooth=Smooth.None),Line(
-                      points={{-20,0},{-20,-20}},
-                      color={127,127,127},
-                      visible='inclC+',
-                      smooth=Smooth.None),Line(
-                      points={{0,-20},{30,-20}},
-                      color={140,0,0},
-                      visible='inclC+',
-                      smooth=Smooth.None),Polygon(
-                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                      lineColor={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Polygon(
-                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                      lineColor={140,0,0},
-                      visible='inclC+',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{-30,0},{-20,0}},
-                      color={127,127,127},
-                      visible='incle-' or 'inclC+',
-                      smooth=Smooth.None),Line(
-                      points={{0,-20},{40,-20}},
-                      color={140,0,0},
-                      visible='inclC+',
-                      smooth=Smooth.None),Line(
-                      points={{10,20},{40,20}},
-                      color={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None),Polygon(
-                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                      lineColor={140,0,0},
-                      visible='inclC+',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Polygon(
-                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                      lineColor={0,0,255},
-                      visible='incle-',
-                      smooth=Smooth.None,
-                      fillColor={255,255,255},
-                      fillPattern=FillPattern.Solid),Line(
-                      points={{-20,0},{-20,20}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{-20,-20},{-20,0}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5),Line(
-                      points={{-40,0},{-20,0}},
-                      color={127,127,127},
-                      smooth=Smooth.None,
-                      thickness=0.5)}));
+        annotation (Icon(graphics={
+              Line(
+                points={{0,20},{30,20}},
+                color={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None),
+              Line(
+                points={{-20,20},{-20,0}},
+                color={127,127,127},
+                visible='incle-',
+                smooth=Smooth.None),
+              Line(
+                points={{-20,0},{-20,-20}},
+                color={127,127,127},
+                visible='inclC+',
+                smooth=Smooth.None),
+              Line(
+                points={{0,-20},{30,-20}},
+                color={140,0,0},
+                visible='inclC+',
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                lineColor={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Polygon(
+                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                lineColor={140,0,0},
+                visible='inclC+',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{-30,0},{-20,0}},
+                color={127,127,127},
+                visible='incle-' or 'inclC+',
+                smooth=Smooth.None),
+              Line(
+                points={{0,-20},{40,-20}},
+                color={140,0,0},
+                visible='inclC+',
+                smooth=Smooth.None),
+              Line(
+                points={{10,20},{40,20}},
+                color={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None),
+              Polygon(
+                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                lineColor={140,0,0},
+                visible='inclC+',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Polygon(
+                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                lineColor={0,0,255},
+                visible='incle-',
+                smooth=Smooth.None,
+                fillColor={255,255,255},
+                fillPattern=FillPattern.Solid),
+              Line(
+                points={{-20,0},{-20,20}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{-20,-20},{-20,0}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5),
+              Line(
+                points={{-40,0},{-20,0}},
+                color={127,127,127},
+                smooth=Smooth.None,
+                thickness=0.5)}));
       end Conductor;
 
       model Electronic
@@ -1475,24 +1514,27 @@ package Conditions "Models to specify and measure operating conditions"
           0 = boundary.Ndot + pin.i*U.A/Data.z
             "Conservation of material (also charge), without storage";
           annotation (
-            Documentation(info="<html><p>Assumptions:<ol>
+            Documentation(info="<html><p>Assumptions:</p><ol>
   <li>There is no shear force  across the interface.</li>
    <li>There is no thermal conduction across the interface.</li>
   </ol>
-  Note that the same assumptions are applied in <a href=\"modelica://FCSys.Species.'e-'.Graphite.Fixed\">Species.'e-'.Graphite.Fixed</a>.
+  <p>Note that the same assumptions are applied in <a href=\"modelica://FCSys.Species.'e-'.Graphite.Fixed\">Species.'e-'.Graphite.Fixed</a>.
   </p></html>"),
-            Icon(graphics={Line(
-                          points={{10,0},{40,0}},
-                          color={0,0,255},
-                          smooth=Smooth.None),Line(
-                          points={{-40,0},{0,0}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Polygon(
-                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                          lineColor={0,0,255},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid)}),
+            Icon(graphics={
+                Line(
+                  points={{10,0},{40,0}},
+                  color={0,0,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{-40,0},{0,0}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={0,0,255},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}),
             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics));
         end Electrical;
@@ -1517,20 +1559,23 @@ package Conditions "Models to specify and measure operating conditions"
             "Conservation of energy, without storage";
 
           annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={
-                    {-100,-100},{100,100}}), graphics={Line(
-                          points={{-40,0},{-10,0}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Line(
-                          points={{10,0},{40,0}},
-                          color={140,0,0},
-                          smooth=Smooth.None),Polygon(
-                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                          lineColor={140,0,0},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid)}), Diagram(
-                coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                    {100,100}}), graphics));
+                    {-100,-100},{100,100}}), graphics={
+                Line(
+                  points={{-40,0},{-10,0}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Line(
+                  points={{10,0},{40,0}},
+                  color={140,0,0},
+                  smooth=Smooth.None),
+                Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={140,0,0},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
+                  preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+                graphics));
         end Thermal;
 
         model Fluid
@@ -1586,48 +1631,58 @@ package Conditions "Models to specify and measure operating conditions"
           // Note:  All of the advective terms (for all the balance equations)
           // cancel across the interface.
           annotation (
-            Documentation(info="<html><p>Assumptions:<ol>
+            Documentation(info="<html><p>Assumptions:</p><ol>
   <li>There is no shear force across the interface.</li>
-  </ol></p></html>"),
-            Icon(graphics={Line(
-                          points={{0,40},{40,40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{-20,40},{-20,-80}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Line(
-                          points={{0,0},{40,0}},
-                          color={0,127,0},
-                          smooth=Smooth.None),Line(
-                          points={{0,-80},{40,-80}},
-                          color={0,0,255},
-                          smooth=Smooth.None),Line(
-                          points={{0,-40},{40,-40}},
-                          color={140,0,0},
-                          smooth=Smooth.None),Line(
-                          points={{-40,0},{0,0}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Polygon(
-                          points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
-                          lineColor={140,0,0},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid),Polygon(
-                          points={{0,-60},{-20,-80},{0,-100},{20,-80},{0,-60}},
-                          lineColor={0,0,255},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid),Polygon(
-                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                          lineColor={0,127,0},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid),Polygon(
-                          points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
-                          lineColor={0,127,255},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid)}),
+  </ol></html>"),
+            Icon(graphics={
+                Line(
+                  points={{0,40},{40,40}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{-20,40},{-20,-80}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,0},{40,0}},
+                  color={0,127,0},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,-80},{40,-80}},
+                  color={0,0,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,-40},{40,-40}},
+                  color={140,0,0},
+                  smooth=Smooth.None),
+                Line(
+                  points={{-40,0},{0,0}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Polygon(
+                  points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
+                  lineColor={140,0,0},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Polygon(
+                  points={{0,-60},{-20,-80},{0,-100},{20,-80},{0,-60}},
+                  lineColor={0,0,255},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={0,127,0},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Polygon(
+                  points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
+                  lineColor={0,127,255},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}),
             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics));
         end Fluid;
@@ -1683,37 +1738,45 @@ package Conditions "Models to specify and measure operating conditions"
           0 = boundary.Qdot + heatPort.Q_flow*U.W "Energy";
           // Note:  All of the advective terms (for all the balance equations)
           // cancel across the interface.
-          annotation (Icon(graphics={Line(
-                          points={{0,40},{40,40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{0,0},{40,0}},
-                          color={0,127,0},
-                          smooth=Smooth.None),Line(
-                          points={{0,-40},{40,-40}},
-                          color={140,0,0},
-                          smooth=Smooth.None),Line(
-                          points={{-20,40},{-20,-40}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Line(
-                          points={{-40,0},{0,0}},
-                          color={127,127,127},
-                          smooth=Smooth.None),Polygon(
-                          points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
-                          lineColor={140,0,0},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid),Polygon(
-                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                          lineColor={0,127,0},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid),Polygon(
-                          points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
-                          lineColor={0,127,255},
-                          smooth=Smooth.None,
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid)}));
+          annotation (Icon(graphics={
+                Line(
+                  points={{0,40},{40,40}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,0},{40,0}},
+                  color={0,127,0},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,-40},{40,-40}},
+                  color={140,0,0},
+                  smooth=Smooth.None),
+                Line(
+                  points={{-20,40},{-20,-40}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Line(
+                  points={{-40,0},{0,0}},
+                  color={127,127,127},
+                  smooth=Smooth.None),
+                Polygon(
+                  points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
+                  lineColor={140,0,0},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={0,127,0},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),
+                Polygon(
+                  points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
+                  lineColor={0,127,255},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}));
         end FluidNeutral;
 
       end Domains;
@@ -1803,7 +1866,7 @@ but that of the second pure substance (Medium2) is \"" + Medium2.extraProperties
           0 = X[2]*mixturePort.m_flow + purePort2.m_flow "Substance 2";
           annotation (
             defaultComponentName="junction",
-            Documentation(info="<html><p>Assumptions:
+            Documentation(info="<html><p>Assumptions:</p>
   <ol>
   <li>The mixing is ideal.  If the pure substances are being combined,
   then the massic enthalpy of the mixture is the mass-weighted sum of the pure substances.
@@ -1813,15 +1876,15 @@ but that of the second pure substance (Medium2) is \"" + Medium2.extraProperties
   <li>The mixture observes Dalton's law.  The pressure of the mixture is the sum
   of the pressures of the pure substances.
   </li>
-  </ol></p></html>"),
+  </ol></html>"),
             Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics={Line(
-                          points={{0,-40},{40,-40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{0,40},{40,40}},
-                          color={0,127,255},
-                          smooth=Smooth.None)}));
+                  points={{0,-40},{40,-40}},
+                  color={0,127,255},
+                  smooth=Smooth.None), Line(
+                  points={{0,40},{40,40}},
+                  color={0,127,255},
+                  smooth=Smooth.None)}));
         end Junction2;
 
         model Junction3
@@ -1930,7 +1993,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           0 = X[3]*mixturePort.m_flow + purePort3.m_flow "Substance 3";
           annotation (
             defaultComponentName="junction",
-            Documentation(info="<html><p>Assumptions:
+            Documentation(info="<html><p>Assumptions:</p>
   <ol>
   <li>The mixing is ideal.  If the pure substances are being combined,
   then the massic enthalpy of the mixture is the mass-weighted sum of the pure substances.
@@ -1940,17 +2003,20 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
   <li>The mixture observes Dalton's law.  The pressure of the mixture is the sum
   of the pressures of the pure substances.
   </li>
-  </ol></p></html>"),
-            Icon(graphics={Line(
-                          points={{0,-40},{40,-40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{0,40},{40,40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{6,0},{40,0}},
-                          color={0,127,255},
-                          smooth=Smooth.None)}));
+  </ol></html>"),
+            Icon(graphics={
+                Line(
+                  points={{0,-40},{40,-40}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,40},{40,40}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{6,0},{40,0}},
+                  color={0,127,255},
+                  smooth=Smooth.None)}));
         end Junction3;
 
       protected
@@ -1982,17 +2048,20 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     1,
                     mixturePort.Xi_outflow,
                     1 - sum(X[1:MixtureMedium.nXi])) else mixturePort.Xi_outflow;
-          annotation (defaultComponentName="junction", Icon(graphics={Line(
-                          points={{-40,0},{0,0}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Line(
-                          points={{0,-40},{0,40}},
-                          color={0,127,255},
-                          smooth=Smooth.None),Ellipse(
-                          extent={{-6,6},{6,-6}},
-                          lineColor={0,127,255},
-                          fillColor={255,255,255},
-                          fillPattern=FillPattern.Solid)}));
+          annotation (defaultComponentName="junction", Icon(graphics={
+                Line(
+                  points={{-40,0},{0,0}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Line(
+                  points={{0,-40},{0,40}},
+                  color={0,127,255},
+                  smooth=Smooth.None),
+                Ellipse(
+                  extent={{-6,6},{6,-6}},
+                  lineColor={0,127,255},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}));
         end PartialJunction;
 
       end Junctions;

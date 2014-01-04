@@ -914,7 +914,7 @@ recognized by Dymola.</p>
         final k_J=483597.870e9*sqrt(S*s/1e4)/m);
       // Note:  k_J = 483597.870e9*sqrt(S*s/x)/m sets kg = x.
       annotation (Documentation(info="<html><p>The values of this record result in the following values for the base SI units
-  (besides cd = 1, which is the default):
+  (besides cd = 1, which is the default):</p>
        <ul>
        <li>A &asymp; 1e-5 (&rArr; 1e3 C &asymp; 1)
        <li>K &asymp; 8.617</li>
@@ -926,7 +926,7 @@ recognized by Dymola.</p>
    PEMFC.  Also, with these settings:
        <ul>
        <li>10 m/s &asymp; 1</li>
-       <li>9.872e-5 atm &asymp; 1</li></ul></p>
+       <li>9.872e-5 atm &asymp; 1</li></ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -937,12 +937,12 @@ recognized by Dymola.</p>
     record Gaussian
       "<html>Base constants and units for Gaussian units (<i>k</i><sub>A</sub> = <i>k</i><sub>e</sub> = 1)</html>"
       extends Base(final c=1,final R_K=25812.8074434/(299792458*1e-7));
-      annotation (Documentation(info="<html><p>Gaussian systems of units impose:
+      annotation (Documentation(info="<html><p>Gaussian systems of units impose:</p>
   <ul>
   <li><i>k</i><sub>A</sub> = 1 &rArr; <i>R</i><sub>K</sub>/<i>c</i> = 2&pi;/&alpha;</li>
   <li><i>k</i><sub>e</sub> = 1 &rArr; <i>R</i><sub>K</sub>*<i>c</i> = 2&pi;/&alpha;</li>
   </ul>
-  Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 2&pi;/&alpha;</p>
+  <p>Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 2&pi;/&alpha;</p>
 
 <p>The Gaussian conditions are not sufficient
 to fully establish the values of the base constants and units of the
@@ -973,12 +973,12 @@ encompass other systems of units.</p>
     record LH
       "<html>Base constants and units for Lorentz-Heaviside units (&mu;<sub>0</sub> = &epsilon;<sub>0</sub> = 1)</html>"
       extends Base(final c=1,final R_K=25812.8074434/(4*pi*299792458*1e-7));
-      annotation (Documentation(info="<html><p>Lorentz-Heaviside systems of units impose:
+      annotation (Documentation(info="<html><p>Lorentz-Heaviside systems of units impose:</p>
   <ul>
   <li>&mu;<sub>0</sub> = 1 &rArr; <i>R</i><sub>K</sub>/<i>c</i> = 1/(2&alpha;)</li>
   <li>&epsilon;<sub>0</sub> = 1 &rArr; <i>R</i><sub>K</sub>&nbsp;<i>c</i> = 1/(2&alpha;)</li>
   </ul>
-  Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 1/(2&alpha;)</p>
+  <p>Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 1/(2&alpha;)</p>
 
 <p>The Lorentz-Heaviside conditions are not sufficient
 to fully establish the values of the base constants and units of the
@@ -1014,11 +1014,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 1.03643e-5</li>
   <li>K &asymp; 8.31446</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1036,11 +1036,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 1.03643e-5</li>
   <li>m &asymp; 0.346803</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1057,11 +1057,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 3.59436e-6</li>
   <li>s &asymp; 2.88348</li>
-  </ul></p>
+  </ul>
 
   <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1078,11 +1078,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>K &asymp; 8.61733e-5</li>
   <li>mol &asymp; 96485.3</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1099,11 +1099,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>K &asymp; 7.74028e10</li>
   <li>s &asymp; 1.03643e-5</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1120,11 +1120,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>m &asymp; 107.724</li>
   <li>mol &asymp; 96485.3</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1141,11 +1141,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>m &asymp; 3.59436e-6</li>
   <li>s &asymp; 1.03643e-5</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1162,11 +1162,11 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):
+  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>mol &asymp; 4261.73</li>
   <li>s &asymp; 0.0441697</li>
-  </ul></p>
+  </ul>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
@@ -1637,13 +1637,13 @@ encompass other systems of units.</p>
 
 <p>Models of physical systems involve variables that represent physical quantities.
 As stated by the Bureau International des Poids et Mesures (BIPM)
-[<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>, p. 103]:
+[<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>, p. 103]:</p>
 <blockquote>
   \"The value of a quantity is generally expressed as the product of a number and a unit.  The
   unit is simply a particular example of the quantity concerned which is used as a reference, and
   the number is the ratio of the value of the quantity to the unit.\"
 </blockquote>
-In general, a unit may be the product of powers of other units, whether they are base units or
+<p>In general, a unit may be the product of powers of other units, whether they are base units or
 units derived from the base units in the same manner.</p>
 
 <p>In Modelica, a physical quantity is generally expressed as an instance of the <code>Real</code>

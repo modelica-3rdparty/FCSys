@@ -666,9 +666,9 @@ An unrelated species may be included.");
     assert(condition, "\n" + message + "\n");
     annotation (Documentation(info="<html><p>When an assert statement is
   false in the initial equation section of a model, Dymola 2014 gives
-  the following error during translation:
+  the following error during translation:</p>
   <pre>\"Error: The conditions of the following assert statements are always false:\"</pre>
-  without parsing the message given to the assert function.  This pass-through function causes the
+  <p>without parsing the message given to the assert function.  This pass-through function causes the
   statement to be evaluated during initialization, at
   which point the message is evaluated.</p></html>"));
   end assertEval;

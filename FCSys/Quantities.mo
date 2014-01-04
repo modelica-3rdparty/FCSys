@@ -254,11 +254,9 @@ For more information, please see the
   documentation of the <a href=\"modelica://FCSys.Units\">Units</a> package.
 
     <hr>
-
-    <small>
-    <p id=\"fn1\">1. This misnomer is necessary because <code>Real</code> variables do not have a <code>dimension</code>
-    attribute.<a href=\"#ref1\" title=\"Jump back to footnote 1 in the text.\">&#8629;</a></p>
-    </small>
+    
+    <p id=\"fn1\"><small>1. This misnomer is necessary because <code>Real</code> variables do not have a <code>dimension</code>
+    attribute.<a href=\"#ref1\" title=\"Jump back to footnote 1 in the text.\">&#8629;</a></small></p>    
 
   <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
 Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>

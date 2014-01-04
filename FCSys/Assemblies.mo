@@ -18,7 +18,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         // Anode
         Connectors.RealInputInternal I_an(unit="N/T") = U.A
           "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label=
-                "<html><i>I</i><sub>an</sub></html>"),Placement(transformation(
+                "<html><i>I</i><sub>an</sub></html>"), Placement(transformation(
                 extent={{-70,30},{-50,50}}), iconTransformation(extent={{0,0},{
                   0,0}})));
         parameter Q.NumberAbsolute anRH(
@@ -121,7 +121,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
             color={0,0,127},
             smooth=Smooth.None));
         annotation (
-          Documentation(info="<html><p>Some conditions are taken from the outer <a href=\"modelica://FCSys.Conditions.Environment\">environment</a> model.  In particular,<ol>
+          Documentation(info="<html><p>Some conditions are taken from the outer <a href=\"modelica://FCSys.Conditions.Environment\">environment</a> model.  In particular,</p>
+    <ol>
 
     <li><code>environment.T</code> is used as the initial temperature throughout the cell, the temperature at each inlet, and the exterior temperature of each end plate in the yz plane.</li>
 
@@ -131,18 +132,18 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
     <li><code>environment.psi_O2_dry</code> is used as the dry-gas concentration of O<sub>2</sub> at the cathode inlet.</li>
 
- </ol></p>
+ </ol>
  </html>"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics={Text(
-                      extent={{-20,70},{20,60}},
-                      lineColor={127,127,127},
-                      textStyle={TextStyle.UnderLine},
-                      textString="Anode"),Text(
-                      extent={{-20,10},{20,0}},
-                      lineColor={127,127,127},
-                      textStyle={TextStyle.UnderLine},
-                      textString="Cathode")}),
+                extent={{-20,70},{20,60}},
+                lineColor={127,127,127},
+                textStyle={TextStyle.UnderLine},
+                textString="Anode"), Text(
+                extent={{-20,10},{20,0}},
+                lineColor={127,127,127},
+                textStyle={TextStyle.UnderLine},
+                textString="Cathode")}),
           Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics));
       end TestConditions;
@@ -444,7 +445,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
     <p>To run the cell with pure O<sub>2</sub> in the cathode (no N<sub>2</sub>), set <code>environment.psi_O2_dry</code> to 100%.</p>
 
-    <p>Assumptions:
+    <p>Assumptions:</p>
     <ol>
     <li>The outer surface of each end plate has uniform temperature in the yz plane.</li>
     <li>No heat is conducted from the rest of the cell hardware.</li>
@@ -457,7 +458,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
     <li>The outlet pressure is applied to the gas mixture by Dalton's law (additivity of pressure).</li>
     <li>At the outlet, the liquid has the same pressure as the gas (Amagat's law).</li>
     <li>There is no thermal conduction across either outlet.</li>
-    </ol></p>
+    </ol>
     </html>"),
           Commands(file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand.mos"

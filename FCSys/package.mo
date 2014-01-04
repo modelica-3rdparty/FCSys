@@ -33,7 +33,7 @@ package UsersGuide "User's Guide"
     <table border=1 cellspacing=0 cellpadding=4 bordercolor=#86989b >
       <tr bgcolor=#afc1c4>
         <td style=\"border: 1px solid #000000;\">
-        <b><font color=#ffffff>Note</font></b>
+        <font color=#ffffff><b>Note</b></font>
         </td>
       </tr>
       <tr bgcolor=#f7f7f7>
@@ -47,13 +47,13 @@ package UsersGuide "User's Guide"
           <li>MWorks: Not supported as of version 2.6.10</li>
           <li>OpenModelica: Not supported as of version 1.8.1</li>
           <li>SystemModeler: Not supported as of version 3.0</li>
-          <!---<li>JModelica: 9/17/12: Not able to get version 1.8 running on Windows or Linux </li>--->
+          <!--<li>JModelica: 9/17/12: Not able to get version 1.8 running on Windows or Linux </li>-->
         </ul>
         </td>
       </tr>
     </table>
 
-    <p>These are the suggested steps to begin using FCSys:
+    <p>These are the suggested steps to begin using FCSys:</p>
     <ol>
         <li>Read the overview in the <a href=\"modelica://FCSys\">top-level documentation of FCSys</a>.</li>
         <li>Browse the subpackages of FCSys.  In general, the subpackages are
@@ -113,7 +113,7 @@ package UsersGuide "User's Guide"
         can be improved and others may benefit.  The best way is to create a fork from the
         development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
         Please also use the <a href=\"modelica://FCSys.UsersGuide.Contact\">contact information</a>.</li>
-    </ol></p>
+    </ol>
     </html>"));
 
     end GettingStarted;
@@ -145,24 +145,24 @@ package UsersGuide "User's Guide"
 <br>Figure 1: Pressure oscillations and steady-steady pressure differences in a vertical column of gas initially at uniform temperature and density
     (<a href=\"modelica://FCSys.Subregions.Examples.AirColumn\">FCSys.Subregions.Examples.AirColumn</a>).</p>
 
-    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Subregions.Examples.Echo\">
+    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Subregions.Examples.Echo\">
     <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/Echo.png\"></a>
 <br>Figure 2: Pressure waves reflecting across two 1 cm<sup>3</sup> regions with an initial pressure difference
     (<a href=\"modelica://FCSys.Subregions.Examples.Echo\">FCSys.Subregions.Examples.Echo</a>).</p>
 
-    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Subregions.Examples.InternalFlow\">
+    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Subregions.Examples.InternalFlow\">
     <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/InternalFlow.png\"></a>
 <br>Figure 3: Temperature variation due to viscous dissipation under varying flow rate
     (<a href=\"modelica://FCSys.Subregions.Examples.InternalFlow\">FCSys.Subregions.Examples.InternalFlow</a>).</p>
 
-    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConduction\">
+    <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConduction\">
     <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/ThermalConduction.png\"></a>
-<br>Figure 6: Thermal conduction through a graphite bar divided into segments, where the first segment is initially hotter
+<br>Figure 4: Thermal conduction through a graphite bar divided into segments, where the first segment is initially hotter
     (<a href=\"modelica://FCSys.Subregions.Examples.ThermalConduction\">FCSys.Subregions.Examples.ThermalConduction</a>).</p>
 
-    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConductionConvection\">
+    <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConductionConvection\">
     <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/ThermalConductionConvection.png\"></a>
-<br>Figure 7: Velocity induced in gas in contact with graphite undergoing transient thermal conduction
+<br>Figure 5: Velocity induced in gas in contact with graphite undergoing transient thermal conduction
     (<a href=\"modelica://FCSys.Subregions.Examples.ThermalConductionConvection\">FCSys.Subregions.Examples.ThermalConductionConvection</a>).</p>
 
     <p>The models were simulated using Dymola 2014.  The plots were
@@ -629,19 +629,19 @@ package UsersGuide "User's Guide"
     <p>This library is described in the following dissertation
     (<a href=\"http://kdavies4.github.io/Dissertation/Davies - Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells.pdf\">PDF</a> and
 
-    <a href=\"https://github.com/kdavies4/Dissertation\">source</a>):
+    <a href=\"https://github.com/kdavies4/Dissertation\">source</a>):</p>
     <ol>
-    <li>K. L. Davies, \"Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells,\" Ph.D. dissertation, Georgia Institute of Technology, Aug. 2013.</li>
-    </ol></p>
+    <li>K. L. Davies, \"Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells,\" Ph.D. dissertation, Georgia Institute of Technology, Jan. 2014.</li>
+    </ol>
 
-    <p>These papers describe work leading up to it (most recent at the top):
+    <p>These papers describe work leading up to it (most recent first):</p>
     <ol>
     <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=010\">Library for First-Principle Models of Proton Exchange Membrane Fuel Cells in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012.</li>
     <li>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural Unit Representation in Modelica (poster).pdf\">poster</a>).</li>
     <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0106/0106.pdf\">Modeling Reaction and Diffusion Processes of Fuel Cells within Modelica</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
     <li>K. L. Davies, R. M. Moore, and G. Bender, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0107/0107.pdf\">Model Library of Polymer Electrolyte Membrane Fuel Cells for System Hardware and Control Design</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
     <li>K. L. Davies and R. M. Moore, \"<a href=\"http://link.aip.org/link/abstract/ECSTF8/v11/i1/p797/s1\">Object-Oriented Fuel Cell Model Library</a>,\" <i>Electrochem. Soc. T.</i>, vol. 11, no. 1, pp. 797&ndash;808, 2007.</li>
-    </ol></p>
+    </ol>
 
     <p>The external references, which are cited throughout <a href=\"modelica://FCSys\">FCSys</a>, are listed as entries in this package.</p>
     </html>"));
@@ -664,7 +664,7 @@ package UsersGuide "User's Guide"
     <dd><a href=\"http://www.gatech.edu\">Georgia Institute of Technology</a></dd>
     <dd><a href=\"mailto:kdavies4@gmail.com\">kdavies4@gmail.com</a></dd>
 
-    <p><b>Acknowledgments:</b><ul>
+    <p><b>Acknowledgments:</b></p><ul>
     <li>Guidance from Robert Moore, Comas Haynes, and Chris Paredis
     <li>Technical discussions and insight from Tom Fuller, Sheldon Jeter, Tequila Harris, Mike Angelo, Guido Bender, Severine Busquet,
     Chris Ford, Sebastian Herzig, Ben Lee, George Nelson, Mike Tiller, Hubertus Tummescheit, and Mebs Virji</li>
@@ -680,7 +680,7 @@ package UsersGuide "User's Guide"
     <li>Grant #N00014-04-0682 from the <a href=\"http://www.onr.navy.mil\">Office of Naval Research</a>
     to the <a href=\"http://www.hnei.hawaii.edu\">Hawaii Natural Energy Institute</a></li>
     </ul>
-    </ul></p>
+    </ul>
 </html>"));
 
     end Contact;
@@ -693,7 +693,7 @@ package UsersGuide "User's Guide"
 
 <a href=\"#ModelicaLicense2\">Modelica License 2</a>
 
-with the additional condition:<ul>
+with the additional condition:</p><ul>
   <li>This software is controlled under the jurisdiction of the United States
       Department of Commerce and subject to Export Administration Regulations.
       By downloading or using the Software, you are agreeing to comply with
@@ -710,7 +710,8 @@ with the additional condition:<ul>
       available to foreign nationals for visual inspection, when technology is
       exchanged orally or when technology is made available by practice or
       application under the guidance of persons with knowledge of the
-      technology.</li></ul></p>
+      technology.</li></ul>
+      
 <p><b>Copyright &copy; 2008&ndash;2013, Georgia Tech Research Corporation</b></p>
 
 <hr>
@@ -750,7 +751,7 @@ this Original Work:</p>
         Work which represents, as a whole, an original work of authorship.
         For the matter of clarity and as examples:
 
-        <ol  type=\"A\">
+        <ol type=\"A\">
                 <li>Derivative Work shall not include work that remains separable from
                 the Original Work, as well as merely extracting a part of the
                 Original Work without modifying it.</li>
@@ -891,7 +892,7 @@ License on an &quot;as is&quot; basis and without warranty, either
 express or implied, including, without limitation, the warranties of
 non-infringement, merchantability or fitness for a particular
 purpose. The entire risk as to the quality of the Original Work is
-with You.</b></u> This disclaimer of warranty constitutes an
+with You.</u></b> This disclaimer of warranty constitutes an
 essential part of this License. No license to the Original Work is
 granted by this License except under this disclaimer.</p>
 
@@ -962,7 +963,6 @@ action. This section shall survive the termination of this License.</p>
         this License or by law, and Licensor promises not to interfere with
         or be responsible for such uses by You.</li>
 </ol>
-</body>
 </html>"));
 
     end License;
@@ -971,6 +971,21 @@ action. This section shall survive the termination of this License.</p>
   end UsersGuide;
 
 // TODO:  Summarize features of model--sim time, no nonlinear equations, included phenomena, scalability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 annotation (
@@ -991,7 +1006,7 @@ annotation (
 
     <p>A fuel cell is similar to a battery except that the reactants
     are externally stored or drawn
-    from the environment.  The electrochemical reactions of a PEMFC are
+    from the environment.  The electrochemical reactions of a PEMFC are</p>
     <table border=0 cellspacing=0 cellpadding=2 align=center style=\"margin-left: auto;
 margin-right: auto;\" class=noBorder>
       <tr>
@@ -1041,7 +1056,7 @@ margin-right: auto;\" class=noBorder>
           (total)
         </td>
       </tr>
-    </table></p>
+    </table>
 
     <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC.
     Fluid enters and exits the cell through channels in the flow plates (FPs).  It spreads through

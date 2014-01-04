@@ -60,7 +60,7 @@ package Subregions
         annotation (
           Documentation(info="<html><p>The water vapor is held at saturation pressure at the environmental temperature
   Water is supplied as necessary to maintain this condition.  The ionomer begins with hydration of &lambda; = 8 and
-  comes to equilibrium at approximately &lambda; &asymp; 14 in about a half an hour.
+  comes to equilibrium at approximately &lambda; &asymp; 14 in about a half an hour.</p>
 
   <p>See also <a href=\"modelica://FCSys.Characteristics.Examples.HydrationLevel\">Characteristics.Examples.HydrationLevel</a>.</p>
 
@@ -347,16 +347,16 @@ package Subregions
       The oscillations are dampened considerably at <i>k</i> = 100.  However, with high values of the factor, the boundary pressures
       are decoupled from the pressures in the region because the nonequilibrium force is considerable.</p>
 
-      <p>
-      <p>Assumptions:
+      <p>Assumptions:</p>
       <ol>
-      <li>The central difference scheme is used (no upstream discretization).</ol></p></html>"),
+      <li>The central difference scheme is used (no upstream discretization).</ol></html>"),
 
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Subregions.Examples.AirColumn.mos"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end AirColumn;
 
     model BinaryDiffusion
@@ -1278,20 +1278,20 @@ package Subregions
     connect(graphite.'cheme-'[1], ORR.'cheme-');
     connect(ionomer.'chemH+'[1], HOR.'chemH+');
     connect(ionomer.'chemH+'[1], ORR.'chemH+');
-    annotation (Documentation(info="<html><p>Assumptions:<ol>
+    annotation (Documentation(info="<html><p>Assumptions:</p><ol>
 <li>The oxygen reduction reaction generates liquid water if it is included; otherwise,
 it generates H<sub>2</sub>O vapor.  Since phase change is a dynamic, nonequilibrium
-process, there is a difference.</li></ol></p>
+process, there is a difference.</li></ol>
 
    <p>Please see the documentation of the
    <a href=\"modelica://FCSys.Subregions.BaseClasses.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-80},{
               120,60}}), graphics={Text(
-              extent={{78,-44},{118,-50}},
-              lineColor={127,127,127},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              textString="(connections not shown
+            extent={{78,-44},{118,-50}},
+            lineColor={127,127,127},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            textString="(connections not shown
 on diagram)")}));
   end Subregion;
 
@@ -1706,79 +1706,95 @@ on diagram)")}));
 
   <p>This model should be extended to include the appropriate phases, reactions, etc.</p>
   </html>"),
-      Icon(graphics={Line(
-              points={{-100,0},{-40,0}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransX,
-              smooth=Smooth.None),Line(
-              points={{0,-40},{0,-100}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransY,
-              smooth=Smooth.None),Line(
-              points={{40,40},{50,50}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransZ,
-              smooth=Smooth.None),Polygon(
-              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-              16}},
-              lineColor={127,127,127},
-              smooth=Smooth.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(
-              points={{-40,-40},{-16,-16}},
-              color={127,127,127},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),Line(
-              points={{-16,40},{-16,-16},{40,-16}},
-              color={127,127,127},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),Line(
-              points={{-40,0},{28,0}},
-              color={210,210,210},
-              visible=inclTransX,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{0,28},{0,-40}},
-              color={210,210,210},
-              visible=inclTransY,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{28,0},{100,0}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransX,
-              smooth=Smooth.None),Line(
-              points={{0,100},{0,28}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransY,
-              smooth=Smooth.None),Line(
-              points={{-12,-12},{40,40}},
-              color={210,210,210},
-              visible=inclTransZ,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{-40,16},{16,16},{16,-40}},
-              color={127,127,127},
-              smooth=Smooth.None),Line(
-              points={{-50,-50},{-12,-12}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransZ,
-              smooth=Smooth.None),Polygon(
-              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-              16}},
-              lineColor={127,127,127},
-              smooth=Smooth.None),Line(
-              points={{40,40},{16,16}},
-              color={127,127,127},
-              smooth=Smooth.None),Text(
-              extent={{-100,56},{100,96}},
-              textString="%name",
-              lineColor={0,0,0})}),
+      Icon(graphics={
+          Line(
+            points={{-100,0},{-40,0}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransX,
+            smooth=Smooth.None),
+          Line(
+            points={{0,-40},{0,-100}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransY,
+            smooth=Smooth.None),
+          Line(
+            points={{40,40},{50,50}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransZ,
+            smooth=Smooth.None),
+          Polygon(
+            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+                16}},
+            lineColor={127,127,127},
+            smooth=Smooth.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Line(
+            points={{-40,-40},{-16,-16}},
+            color={127,127,127},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash),
+          Line(
+            points={{-16,40},{-16,-16},{40,-16}},
+            color={127,127,127},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash),
+          Line(
+            points={{-40,0},{28,0}},
+            color={210,210,210},
+            visible=inclTransX,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{0,28},{0,-40}},
+            color={210,210,210},
+            visible=inclTransY,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{28,0},{100,0}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransX,
+            smooth=Smooth.None),
+          Line(
+            points={{0,100},{0,28}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransY,
+            smooth=Smooth.None),
+          Line(
+            points={{-12,-12},{40,40}},
+            color={210,210,210},
+            visible=inclTransZ,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{-40,16},{16,16},{16,-40}},
+            color={127,127,127},
+            smooth=Smooth.None),
+          Line(
+            points={{-50,-50},{-12,-12}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransZ,
+            smooth=Smooth.None),
+          Polygon(
+            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+                16}},
+            lineColor={127,127,127},
+            smooth=Smooth.None),
+          Line(
+            points={{40,40},{16,16}},
+            color={127,127,127},
+            smooth=Smooth.None),
+          Text(
+            extent={{-100,56},{100,96}},
+            textString="%name",
+            lineColor={0,0,0})}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
 

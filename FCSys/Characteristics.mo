@@ -509,13 +509,13 @@ package Characteristics "Data and functions to correlate physical properties"
         d=340*U.pico*U.m/U.q);
       annotation (Documentation(info="<html>
 
-     <p>Assumptions:
+     <p>Assumptions:</p>
      <ol>
      <li>Constant specific volume (i.e., incompressible and without
           thermal expansion)</li>
-     </ol></p>
+     </ol>
 
-     <p>Additional notes:
+     <p>Additional notes:</p>
      <ul>
      <li>The data for this species is for C rather than C<sup>+</sup>, with the exception of specific mass.</li>
      <li>The radius is from <a href=\"http://en.wikipedia.org/wiki/Carbon\">http://en.wikipedia.org/wiki/Carbon</a>.  See also
@@ -526,8 +526,8 @@ package Characteristics "Data and functions to correlate physical properties"
   <ul>
        <li>Amorphous carbon:  <code>v = U.cc*m/(1.950*U.g)</code></li>
        <li>Diamond (type IIa):  <code>v = U.cc*m/(3.500*U.g)</code></li>
-       </li>
-     </ul></p>
+       </ul>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -557,11 +557,11 @@ package Characteristics "Data and functions to correlate physical properties"
         d=(294 + 2259.8)*U.pico*U.m/U.q);
 
       annotation (Documentation(info="<html>
-       <p>Assumptions:
+       <p>Assumptions:</p>
      <ol>
      <li>Constant specific volume (i.e., incompressible and without
           thermal expansion)</li>
-     </ol></p>
+     </ol>
 
     <p>The specific volume (<code>v = U.cc*m/(2.00*U.g)</code>) is based on
    [<a href=\"modelica://FCSys.UsersGuide.References.Lin2006\">Lin2006</a>, p. A1327].  Note that this is
@@ -574,7 +574,7 @@ package Characteristics "Data and functions to correlate physical properties"
   simplifies the model by requiring only C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S<sup>-</sup>
   (not C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S) for charge neutrality.</p>
 
-     <p>Additional notes:
+     <p>Additional notes:</p>
      <ul>
      <li>Most of the data for this species is for C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S rather than
      C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S<sup>-</sup> (with the exception of specific mass).</li>
@@ -594,7 +594,7 @@ package Characteristics "Data and functions to correlate physical properties"
    <a href=\"http://en.wikipedia.org/wiki/Nafion\">http://en.wikipedia.org/wiki/Nafion</a>,
        \"the molecular weight of Nafion is uncertain due to differences in
         processing and solution morphology.\"</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -623,7 +623,7 @@ package Characteristics "Data and functions to correlate physical properties"
         d=U.alpha^3/(2*U.pi*U.R_inf*U.q));
 
       annotation (Documentation(info="<html>
-     <p>Notes:
+     <p>Notes:</p>
      <ul>
      <li>The specific mass (<i>m</i>) is also
 
@@ -635,7 +635,6 @@ package Characteristics "Data and functions to correlate physical properties"
   <li>McBride and Gordon [<a href=\"modelica://FCSys.UsersGuide.References.McBride1996\">McBride1996</a>] provide correlations for the transport
   properties of e<sup>-</sup> gas.  However, they are not entered here, since they
   contain only one temperature range (2000 to 5000&nbsp;K) which is beyond the expected operating range of the model.</li>
-  <li>
      <li>The equation for the radius is the classical radius of an electron (see
   <a href=\"http://en.wikipedia.org/wiki/Classical_electron_radius\">http://en.wikipedia.org/wiki/Classical_electron_radius</a>).</li>
   <li>McBride and Gordon [<a href=\"modelica://FCSys.UsersGuide.References.McBride1996\">McBride1996</a>] provide correlations for the transport
@@ -649,7 +648,7 @@ package Characteristics "Data and functions to correlate physical properties"
    in the source data is 298.150&nbsp;K, but here it is expanded down to 200&nbsp;K.
    The constants are independent of temperature anyway.
   </li>
-</ul></p>
+</ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -658,10 +657,10 @@ package Characteristics "Data and functions to correlate physical properties"
 
     package Graphite "e- in graphite"
       extends Gas(n_v={0,0}, b_v='C+'.Graphite.b_v);
-      annotation (Documentation(info="<html><p>Assumptions:<ol>
+      annotation (Documentation(info="<html><p>Assumptions:</p><ol>
       <li>There is a 1:1 ratio of free (conductance band) electrons and carbon atoms.  The density of the carbon is set by
 
-      <a href=\"modelica://FCSys.Characteristics.'C+'.Graphite\">'C+'.Graphite</a>.</li></ol></p></html>"));
+      <a href=\"modelica://FCSys.Characteristics.'C+'.Graphite\">'C+'.Graphite</a>.</li></ol></html>"));
 
     end Graphite;
 
@@ -689,14 +688,14 @@ package Characteristics "Data and functions to correlate physical properties"
         d=240*U.pico*U.m/U.q);
 
       annotation (Documentation(info="<html>
-         <p>Assumptions:
+         <p>Assumptions:</p>
      <ol>
   <li>The radius (for the purpose of the rigid-sphere assumption of
   kinetic theory) is that of H
   (<a href=\"http://en.wikipedia.org/wiki/Hydrogen\">http://en.wikipedia.org/wiki/Hydrogen</a>).</li>
-     </ol></p>
+     </ol>
 
-     <p>Additional notes:
+     <p>Additional notes:</p>
      <ul>
      <li>The default reference enthalpy is zero at 25&nbsp;&deg;C.</li>
      <li>The source data [<a href=\"modelica://FCSys.UsersGuide.References.McBride2002\">McBride2002</a>] breaks the
@@ -717,7 +716,7 @@ package Characteristics "Data and functions to correlate physical properties"
    839826.0&nbsp;J/mol.  Based on
    [<a href=\"modelica://FCSys.UsersGuide.References.Tissandier1998\">Tissandier1998</a>], the
    enthalpy of formation of aqueous H<sup>+</sup> is 1150.1e3&nbsp;J/mol.</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -769,7 +768,7 @@ package Characteristics "Data and functions to correlate physical properties"
             -7.7771313e4,13.189369})});
 
       annotation (Documentation(info="<html>
-            <p>Notes:
+            <p>Notes:</p>
      <ul>
   <li>According to [<a href=\"modelica://FCSys.UsersGuide.References.Avogadro\">Avogadro</a>], the (center-to-center)
    bond length of H-H is 100.3 pm.  The radius of H is from
@@ -777,7 +776,7 @@ package Characteristics "Data and functions to correlate physical properties"
    <a href=\"http://en.wikipedia.org/wiki/Van_der_Waals_radius\">http://en.wikipedia.org/wiki/Van_der_Waals_radius</a>.</li>
   <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>, p. 41].  The
   temperature range of the coefficients is [60, 500] K, but this is not enforced in the functions.</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -817,7 +816,7 @@ package Characteristics "Data and functions to correlate physical properties"
             1.9179190e7,14.345613})});
 
       annotation (Documentation(info="<html>
-        <p>Notes:
+        <p>Notes:</p>
      <ul>
   <li>The radius of H<sub>2</sub>O is 282 pm
    (<a href=\"http://www.lsbu.ac.uk/water/molecule.html\">http://www.lsbu.ac.uk/water/molecule.html</a>).  Using the radius of H
@@ -826,7 +825,7 @@ package Characteristics "Data and functions to correlate physical properties"
    156.6 pm, the radius of H<sub>2</sub>O would be (120 + 156.6/2) pm = 198.3 pm.</li>
   <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References\">Dymond2002</a>, p. 4].  The
   temperature range of the coefficients is [350, 770] K, but this is not enforced in the functions.</li>
-     </ul></p>
+     </ul>
 
   <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -878,17 +877,17 @@ package Characteristics "Data and functions to correlate physical properties"
         B_c=[1.101760476e8*U.K, -9.779700970e5; 8.113176880e7*U.K, -5.134418080e5]
              - b_c[:, 2:3]*log(U.K),
         d=282*U.pico*U.m/U.q);
-      annotation (Documentation(info="<html>     <p>Assumptions:
+      annotation (Documentation(info="<html>     <p>Assumptions:</p>
      <ol>
      <li>Constant specific volume (i.e., incompressible and without
           thermal expansion)</li>
-     </ol></p>
+     </ol>
 
-<p>Additional notes:
+<p>Additional notes:</p>
      <ul>
      <li>See <a href=\"modelica://FCSys.Characteristics.H2O.Gas\">Characteristics.H2O.Gas</a> regarding the radius.</li>
      <li>The default specific volume (<i>b<sub>v</sub></i> = <code>[U.cc*m/(0.99656*U.g)]</code>) is at 300&nbsp;K based on [<a href=\"modelica://FCSys.UsersGuide.References.Takenaka1990\">Takenaka1990</a>].</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -922,7 +921,7 @@ package Characteristics "Data and functions to correlate physical properties"
       lambda := 0.043 + 17.81*RH - 39.85*RH^2 + 36*RH^3;
 
       annotation (Inline=true,Documentation(info="<html><p>This implements the correlation by Springer et al. [<a href=\"modelica://FCSys.UsersGuide.References.Springer1991\">Springer1991</a>]
-  for the ratio of H<sub>2</sup></sub>O molecules to SO<sub>3</sub><sup>-</sup> units of
+  for the ratio of H<sub>2</sub>O molecules to SO<sub>3</sub><sup>-</sup> units of
   Nafion&reg; EW 1100 series ionomer.</p></html>"));
     end lambda_eq;
 
@@ -960,7 +959,7 @@ package Characteristics "Data and functions to correlate physical properties"
             3.1055802e6,-14.517761})});
 
       annotation (Documentation(info="<html>
-                  <p>Notes:
+                  <p>Notes:</p>
      <ul>
   <li>According to [<a href=\"modelica://FCSys.UsersGuide.References.Avogadro\">Avogadro</a>], the (center-to-center)
    bond length of N-N is 145.2 pm.  The radius of N is from
@@ -969,7 +968,7 @@ package Characteristics "Data and functions to correlate physical properties"
   <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>, p. 69].  The
   temperature range of the coefficients is [75, 745] K, but this is not enforced in the functions.  More precise virial coefficients are available from
   <a href=\"http://www.tpub.com/content/nasa1996/NASA-96-cr4755/NASA-96-cr47550059.htm\">http://www.tpub.com/content/nasa1996/NASA-96-cr4755/NASA-96-cr47550059.htm</a>.</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -1009,14 +1008,14 @@ package Characteristics "Data and functions to correlate physical properties"
             0.064851631}),fromNASAThermalConductivity({-1.1218262,-1.9286378e4,
             2.3295011e7,20.342043})});
 
-      annotation (Documentation(info="<html><p>Notes:<ul>
+      annotation (Documentation(info="<html><p>Notes:</p><ul>
   <li>According to [<a href=\"modelica://FCSys.UsersGuide.References.Avogadro\">Avogadro</a>], the (center-to-center)
    bond length of O-O is 128.2 pm.  The radius of O is from
    <a href=\"http://en.wikipedia.org/wiki/Oxygen\">http://en.wikipedia.org/wiki/Oxygen</a>.  See also
    <a href=\"http://en.wikipedia.org/wiki/Van_der_Waals_radius\">http://en.wikipedia.org/wiki/Van_der_Waals_radius</a>.</li>
   <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>, p. 69].  The
   temperature range of the coefficients is [70, 495] K, but this is not enforced in the functions.</li>
-     </ul></p>
+     </ul>
 
 <p>For more information, please see the
   <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package.</p></html>"));
@@ -1640,7 +1639,7 @@ package Characteristics "Data and functions to correlate physical properties"
   [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>, p. 41].</p>
 
   <p>This function is based on the kinetic theory of gases under the following assumptions
-  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:
+  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
   <ol>
     <li>The particles are smooth and rigid but elastic spheres with identical radii.  This is the
     \"billiard-ball\"
@@ -1651,7 +1650,7 @@ package Characteristics "Data and functions to correlate physical properties"
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
     <li>The speeds of the particles follow the Maxwell-Boltzmann distribution.</li>
-  </ol></p>
+  </ol>
   </html>"));
       end eta;
 
@@ -1670,7 +1669,7 @@ package Characteristics "Data and functions to correlate physical properties"
         theta := alpha/(c_v(T, p_Tv(T, v))*omega(T));
         annotation (Inline=true,Documentation(info="<html>
   <p>This function is based on the kinetic theory of gases under the following assumptions
-  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:
+  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
   <ol>
     <li>The particles are smooth and rigid but elastic spheres with identical radii.  This is the
     \"billiard-ball\"
@@ -1681,7 +1680,7 @@ package Characteristics "Data and functions to correlate physical properties"
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
     <li>The speeds of the particles follow the Maxwell-Boltzmann distribution.</li>
-  </ol></p>
+  </ol>
 </html>"));
       end theta;
 
@@ -1700,7 +1699,7 @@ package Characteristics "Data and functions to correlate physical properties"
         tauprime := v/(alpha*omega(T));
         annotation (Inline=true,Documentation(info="<html>
   <p>This function is based on the kinetic theory of gases under the following assumptions
-  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:
+  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
   <ol>
     <li>The particles are smooth and rigid but elastic spheres with identical radii.  This is the
     \"billiard-ball\"
@@ -1712,7 +1711,7 @@ package Characteristics "Data and functions to correlate physical properties"
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
     <li>The speeds of the particles follow the Maxwell-Boltzmann distribution.</li>
   </ol>
-  Also, it is assumed that the Einstein relation applies.</p>
+  <p>Also, it is assumed that the Einstein relation applies.</p>
 
   <p>Please see [<a href=\"modelica://FCSys.UsersGuide.References\">Davies2013</a>, Ch. 3] for a derivation
   of the rate of phase change from kinetic theory.</p>
@@ -1737,7 +1736,7 @@ package Characteristics "Data and functions to correlate physical properties"
         mu := v/(m*alpha*omega(T));
         annotation (Inline=true,Documentation(info="<html>
   <p>This function is based on the kinetic theory of gases under the following assumptions
-  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:
+  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
   <ol>
     <li>The particles are smooth and rigid but elastic spheres with identical radii.  This is the
     \"billiard-ball\"
@@ -1749,7 +1748,7 @@ package Characteristics "Data and functions to correlate physical properties"
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
     <li>The speeds of the particles follow the Maxwell-Boltzmann distribution.</li>
   </ol>
-  Also, it is assumed that the Einstein relation applies.</p>
+  <p>Also, it is assumed that the Einstein relation applies.</p>
 </html>"));
       end mu;
 
@@ -1771,7 +1770,7 @@ package Characteristics "Data and functions to correlate physical properties"
 temperature difference.</p>
 
   <p>This function is based on the kinetic theory of gases under the following assumptions
-  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:
+  [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
   <ol>
     <li>The particles are smooth and rigid but elastic spheres with identical radii.  This is the
     \"billiard-ball\"
@@ -1783,7 +1782,7 @@ temperature difference.</p>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
     <li>The speeds of the particles follow the Maxwell-Boltzmann distribution.</li>
   </ol>
-  Also, it is assumed that the Einstein relation applies.</p>
+  <p>Also, it is assumed that the Einstein relation applies.</p>
 </html>"));
       end nu;
 
@@ -1792,7 +1791,7 @@ temperature difference.</p>
     [<a href=\"modelica://FCSys.UsersGuide.References.McBride2002\">McBride2002</a>] and the virial equation of state
     [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>].</p>
 
-<p>Notes regarding the constants:
+<p>Notes regarding the constants:</p>
     <ul>
     <li>Currently, <code>formula</code> may not contain parentheses or brackets.</li>
 
@@ -1836,7 +1835,7 @@ temperature difference.</p>
     (<a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.h\"><i>h</i></a>) will be ill-posed.
     Typically, the first virial coefficient is one (or equivalently <code>U.R</code>), which satisfies
     this requirement.</li>
-    </ul></p></html>"));
+    </ul></html>"));
 
     end Characteristic;
 
@@ -2031,7 +2030,7 @@ temperature difference.</p>
     the assumption of ideal gas or of constant specific volume, although it is more general than
     that.</p>
 
-<p>Notes regarding the constants:
+<p>Notes regarding the constants:</p>
     <ul>
     <li><i>b<sub>v</sub></i>: The powers of <i>p</i>/<i>T</i> increase by row.  The powers of
     <i>T</i> increase by column.  If <code>n_v[1] == -1</code>, then the rows
@@ -2047,7 +2046,7 @@ temperature difference.</p>
     If additional terms are required, review and modify the definition of <i>b<sub>p</sub></i>.</li>
 
     <li>The defaults for <i>b<sub>v</sub></i> and <i>n<sub>v</sub></i> represent ideal gas.</li>
-    </ul></p></html>"));
+    </ul></html>"));
 
     end CharacteristicEOS;
 
