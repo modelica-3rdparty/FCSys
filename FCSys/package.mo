@@ -30,7 +30,7 @@ package UsersGuide "User's Guide"
   class GettingStarted "Getting started"
     extends Modelica.Icons.Information;
     annotation (preferredView="info", Documentation(info="<html>
-    <table border=1 cellspacing=0 cellpadding=4 bordercolor=#86989b >
+    <table border=1 cellspacing=0 cellpadding=4>
       <tr bgcolor=#afc1c4>
         <td style=\"border: 1px solid #000000;\">
         <font color=#ffffff><b>Note</b></font>
@@ -971,21 +971,6 @@ action. This section shall survive the termination of this License.</p>
   end UsersGuide;
 
 // TODO:  Summarize features of model--sim time, no nonlinear equations, included phenomena, scalability
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 annotation (

@@ -100,8 +100,8 @@ package WorkInProgress "Incomplete classes under development"
     output Q.Number J_Apercm2=zI*U.cm^2/(anCL.A[Axis.x]*U.A)
       "Electrical current density, in A/cm2";
 
-    parameter Q.Length L_y[:]={8}*U.cm "**Lengths in the y direction";
-    parameter Q.Length L_z[:]={6.25}*U.cm "**Lengths in the z direction";
+    parameter Q.Length L_y[:]={8}*U.cm "Lengths in the y direction";
+    parameter Q.Length L_z[:]={6.25}*U.cm "Lengths in the z direction";
     Regions.AnCLs.AnCL anCL(
       final L_y=L_y,
       final L_z=L_z,
