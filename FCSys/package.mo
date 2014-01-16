@@ -56,38 +56,40 @@ package UsersGuide "User's Guide"
     <p>These are the suggested steps to begin using FCSys:</p>
     <ol>
         <li>Read the overview in the <a href=\"modelica://FCSys\">top-level documentation of FCSys</a>.</li>
+        
         <li>Browse the subpackages of FCSys.  In general, the subpackages are
-        ordered by the level of the model and the physical hierarchy (high-level at the top).
+        ordered by the level of the model and the physical hierarchy (high-level at the top).</li>
+        
         <li>Call <a href=\"modelica://FCSys.Units.setup\">FCSys.Units.setup</a>() to
         establish the display units.  This is automatic if FCSys
-        is loaded via the <a href=\"modelica://FCSys/../load.mos\">load.mos</a> script.
+        is loaded via the <a href=\"modelica://FCSys/../load.mos\">load.mos</a> script.</li>
+        
         <li>Simulate the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>
         model.
         There are scripts in <a href=\"modelica://FCSys/Resources/Scripts/Dymola/README.md\">Resources/Scripts/Dymola/</a> to
-
         create useful plots of that model and others.
         The scripts should be accessible from the \"Command\" menu of the Modelica environment.
         For more detailed
         analysis, including spatial property distributions and vector plots,
         a Python module called FCRes is available in
         <a href=\"modelica://FCSys/Resources/Source/Python/README.md\">Resources/Source/Python/</a>
-
-        (HTML and PDF documentation <a href=\"modelica://FCSys/Resources/Source/Python/doc/index.html\">here</a> and
-
+        (HTML and PDF documentation <a href=\"modelica://FCSys/Resources/Source/Python/doc/index.html\">here</a> an
         <a href=\"modelica://FCSys/Resources/Source/Python/doc/FCRes.pdf\">here</a>).</li>
+        
         <li>Read the documentation of the classes. In particular, these may be of interest:
         <ul>
             <li><a href=\"modelica://FCSys.Units\">FCSys.Units</a> package:
             Information about the system of units, which is different
             than <a href=\"modelica://Modelica.SIunits\">Modelica.SIunits</a></li>
+            
             <li><a href=\"modelica://FCSys.Connectors\">FCSys.Connectors</a> package:
             Overview of the connectors</li>
+            
             <li><a href=\"modelica://FCSys.Species.Species\">FCSys.Species.Species</a> model:
             Details about the exchange, transport, and storage of material, momentum, and
             energy</li>
-            <li><a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">FCSys.Regions.AnFPs.AnFP</a> or
-
-            <a href=\"modelica://FCSys.Regions.CaFPs.CaFP\">FCSys.Regions.CaFPs.CaFP</a>:
+            
+            <li><a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">FCSys.Regions.AnFPs.AnFP</a>:
             Information about the geometric orientation of the cell</li>
         </ul>
         In general, overviews are given in the documentation of containing packages and
@@ -95,8 +97,8 @@ package UsersGuide "User's Guide"
         have sufficient documentation, please look at its base model(s) and the package(s) that
         contain it.  Assumptions are only listed at the lowest level of inheritance at which they apply.  Therefore, the
         list of assumptions in a model should be considered in conjunction with the assumptions in all
-        the models it inherits from.
-        </li>
+        the models it inherits from.</li>
+        
         <li>Create and simulate examples of other usage scenarios.  Many of the
         nested models (regions, subregions, species) are replaceable.
         Their parameters are often not propagated to the cell level, but may
@@ -104,11 +106,13 @@ package UsersGuide "User's Guide"
         many models have auxiliary output variables for analysis and diagnostics.
         These may be included by setting <code>analysis=true</code> in the outer environment model (instance
         of <a href=\"modelica://FCSys.Conditions.Environment\">Environment</a>).</li>
+        
         <li>Develop your own classes.  It should be possible to model other electrochemical
         devices (solid oxide fuel cells, lithium ion batteries, flow batteries/regenerative fuel cells, etc.) by
         extending the existing classes and
         following the existing framework.  It will be necessary to add species models
         (Li<sup>+</sup>, O<sup>2-</sup>, etc.).</li>
+        
         <li>Please share your additions or modifications to the source code so that the library
         can be improved and others may benefit.  The best way is to create a fork from the
         development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
@@ -976,7 +980,20 @@ action. This section shall survive the termination of this License.</p>
 
   end UsersGuide;
 
-// TODO*:  Summarize features of model--sim time, no nonlinear equations, transient phase change, included phenomena, scalability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 annotation (
@@ -984,28 +1001,59 @@ annotation (
   uses(Modelica(version="3.2.1")),
   Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."),
   Documentation(info="<html>
-    <p><a href=\"modelica://FCSys\">FCSys</a> is an free, open-source library of
-    declarative, dynamic, and flexible models of proton exchange membrane
+    <p><a href=\"modelica://FCSys\">FCSys</a> is a free, open-source library of
+    equation-based, object-oriented (EOO) models of proton exchange membrane
     fuel cells (PEMFCs) in the <a href = \"http://www.modelica.org/\">Modelica</a>
-    language.  Chemical, electrical, fluid, and thermal
-    phenomena are included.  The implementation is highly modular and reconfigurable.
+    language.  The models are:</p>
 
-    There are options to adjust the assumptions, spatial discretization
-    and dimensionality (1D, 2D, or 3D), and the present chemical species and material
-    phases.  The framework is generic and can be extended to other electrochemical
-    devices like batteries.</p>
+    <ul>
+    <li><b>Dynamic</b></li>
+    
+    <li><b>Multi-domain</b>: 
+    Chemical, electrical, fluid, and thermal phenomena are included.</li>
+    
+    <li><b>Multi-phase</b>: 
+    Water is included and transported independently as vapor, liquid, and absorbed in the ionomer.  
+    Phase change is represented as a dynamic process.</li>
 
-    <p>A fuel cell is similar to a battery except that the reactants
-    are externally stored or drawn
-    from the environment.  The electrochemical reactions of a PEMFC are</p>
-    <table border=0 cellspacing=0 cellpadding=2 align=center style=\"margin-left: auto;
+    <li><b>Physics-based</b>: 
+    The equations are based on first principles, with explicit conservation of material, momentum, and energy
+    in every control volume and across every interface.  A unique and physically appropriate method of 
+    upstream discretization is used to describe coupled advective and diffusive transfer.  All physical
+    quantities are mapped to universal constants using a novel, flexible implementation of natural units.</li>
+
+    <li><b>Up to three-dimensional (3D)</b></li>
+    
+    <li><b>Highly reconfigurable</b>: 
+    There are options to adjust the assumptions, dimensionality (1D, 2D, or 3D), and spatial discretization 
+    (i.e., resolution).  Species may be independently enabled at instantiation, unlike 
+    <a href=\"modelica://Modelica.Media\">Modelica.Media</a>.  The framework is generic and can be extended 
+    to other electrochemical devices like batteries.</li>
+
+    <li><b>Highly modular</b>: 
+    Each layer of the cell is a separate model which is hierarchically constructed from graphical models of 
+    subregions, phases, and species.  At each level, EOO (i.e., effort/flow) connectors are used to combine 
+    the various components.</li>
+                    
+    <li><b>Computationally efficient</b>:  
+    There are minimal switching events and no nonlinear systems of equations after appropriate translation.  
+    A typical polarization curve can be simulated in less than two seconds.</li>
+    
+    </ul>
+    
+    <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC, which are also the components of the 
+    fuel cell model shown in <a href=\"#Fig2\">Figure 2</a>.
+    Fluid enters and exits the cell through channels in the flow plates (FPs).  It spreads through
+    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs) according to the following chemical equations:</p>
+      
+          <table border=0 cellspacing=0 cellpadding=2 align=center style=\"margin-left: auto;
 margin-right: auto;\" class=noBorder>
       <tr>
         <td align=right style=\"white-space:nowrap; text-align:right;\" class=noBorder>
           2(H<sub>2</sub>
         </td>
         <td align=center style=\"white-space:nowrap; text-align:center;\" class=noBorder>
-          &#8652;
+          &rarr;
         </td>
         <td align=left style=\"white-space:nowrap;\" class=noBorder>
           2e<sup>-</sup> + 2H<sup>+</sup>)
@@ -1019,7 +1067,7 @@ margin-right: auto;\" class=noBorder>
           4e<sup>-</sup> + 4H<sup>+</sup> + O<sub>2</sub>
         </td>
         <td align=center style=\"white-space:nowrap; text-align:center;\" class=noBorder>
-          &#8652;
+          &rarr;
         </td>
         <td align=left style=\"white-space:nowrap;\" class=noBorder>
           2H<sub>2</sub>O
@@ -1038,26 +1086,19 @@ margin-right: auto;\" class=noBorder>
           2H<sub>2</sub> + O<sub>2</sub>
         </td>
         <td align=center style=\"white-space:nowrap; text-align:center;\" class=noBorder>
-          &#8652;
+          &rarr;
         </td>
         <td align=left style=\"white-space:nowrap;\" class=noBorder>
           2H<sub>2</sub>O
         </td>
         <td class=noBorder>
-          (total)
+          (net)
         </td>
       </tr>
     </table>
-
-    <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC.
-    Fluid enters and exits the cell through channels in the flow plates (FPs).  It spreads through
-    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs).  The
+      <p>The
     proton exchange membrane (PEM) prevents electronic transport; therefore, electrons must
-    pass through an external load to sustain the net reaction.  As
-    shown in <a href=\"#Fig2\">Figure 2</a>, a PEMFC model is constructed from models
-    of the same layers in <a href=\"modelica://FCSys\">FCSys</a>.
-    The model is modular; the gas diffusion and catalyst layers can be combined,
-    or microporous layers can be inserted.</p>
+    pass through an external load to sustain the net reaction.</p>
 
     <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/CellFlows.png\">
 <br>Figure 1: Layers and primary flows of a PEMFC.</p>
@@ -1066,39 +1107,13 @@ margin-right: auto;\" class=noBorder>
     <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Cell\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.CellD.png\"></a>
 <br>Figure 2: Diagram of the <a href=\"modelica://FCSys.Assemblies.Cells.Cell\">PEMFC model</a>.</p>
 
-    <p>The models are primarily based on first principles&mdash;the transport, exchange, and storage of
-    material, momentum, and energy.  There are two modes of transport and exchange: diffusion and advection.
-    Both are important in fuel cells, and both are included in the model.
+    <p>The fuel cell model can be exercised using the test stand shown in <a href=\"#Fig3\">Figure 3</a> or connnected to the <a href=\"modelica://Modelica.Fluid\">Modelica.Fluid</a>
+    library using <a href=\"modelica://FCSys.Conditions.Adapters.MSL\">available adapters</a>.
+    Please see the <a href=\"modelica://FCSys.UsersGuide.SampleResults.Cell\">sample cell results</a> for examples and the
+    <a href=\"modelica://FCSys.UsersGuide.GettingStarted\">getting started page</a> for information about using the library.</p>
 
-    The model uses a method of upstream
-    discretization that reduces to the central difference scheme when the velocity is zero.  This is
-    appropriate for pure diffusion (e.g., Fick's law, Newton's law of viscosity, or Fourier's law).
-
-    As the velocity becomes infinitely large (in either direction), the approach reduces to the upwind scheme.
-    The upwind scheme represents
-    pure advection such as through idealized pipes.  It is the basis of
-
-    <a href = \"http://www.modelica.org/\">Modelica</a>
-    <code>stream</code> connectors (and previously the <code>semiLinear</code> function).
-    In <a href=\"modelica://FCSys\">FCSys</a>, however, the transition between diffusion
-    and advection is gradual.  This has the added benefit that there is no discontinuity upon flow reversal.</p>
-
-    <p>Each layer of the cell may be subdivided in any direction for increased fidelity.  Regions may
-    be directly connected without producing nonlinear systems of
-    equations, and species may be independently included in each region.  This is
-    different than
-    <a href=\"modelica://Modelica.Media\">Modelica.Media</a>,
-    where each media model contains a predefined set of species.</p>
-
-    <p>A cell may be simulated under specified boundary conditions or connected to
-    <a href=\"modelica://Modelica.Fluid\">Modelica.Fluid</a> components using available
-    <a href=\"modelica://FCSys.Conditions.Adapters\">adapters</a>.
-    <a href=\"#Fig3\">Figure 3</a> shows a series of polarization curves generated
-    from the <a href=\"modelica://FCSys.Regions.Examples.FPtoFP\">FPtoFP</a> model.
-    Please see the <a href=\"modelica://FCSys.UsersGuide.SampleResults\">sample results</a> for more plots and the
-    <a href=\"modelica://FCSys.UsersGuide.GettingStarted\">getting started page</a> for more details about the library.</p>
-
-    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Regions.Examples.FPtoFP\"><img src=\"modelica://FCSys/Resources/Documentation/Polarization.png\"></a>
+    <!--<p align=center id=\"Fig3\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.Examples.TestStandD.png\" width=500>-->
+    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.Examples.TestStandD.png\"></a>
 <br>Figure 3: Polarization curves under various conditions.</p>
 
     <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b>
