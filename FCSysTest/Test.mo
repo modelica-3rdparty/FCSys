@@ -234,8 +234,9 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
   package Tests "A library to test the assertion primitives in this library"
     extends Modelica.Icons.Package;
     package Trajectory "Tests on the AssertTrajectory model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       model CheckSuccess
+        extends Modelica.Icons.Example;
         Real x=time^2;
         AssertTrajectory check_x(actual=x, expected=[0, 0; 1, 1; 2, 4; 3, 9]);
         annotation (TestCase(action="simulate",result="success"), experiment(
@@ -268,8 +269,9 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end Trajectory;
 
     package BecomesTrueAt "Tests on the AssertBecomesTrueAt model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       model CheckSuccess
+        extends Modelica.Icons.Example;
         Real x=time;
         AssertBecomesTrueAt check_event(event=(x > 2), at=2);
         annotation (TestCase(action="simulate",result="success"), experiment(
@@ -309,8 +311,9 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end BecomesTrueAt;
 
     package Initial "Tests associated with AssertInitial model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       model CheckSuccess
+        extends Modelica.Icons.Example;
         Real x=2*time + 1;
         AssertInitial check_x(actual=x, expected=1);
         annotation (TestCase(action="simulate",result="success"));
@@ -326,8 +329,9 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end Initial;
 
     package Final "Tests associated with AssertFinal model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       model CheckSuccess
+        extends Modelica.Icons.Example;
         Real x=2*time + 1;
         AssertFinal check_x(actual=x, expected=9);
         annotation (TestCase(action="simulate",result="success"), experiment(
@@ -345,9 +349,10 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end Final;
 
     package Average "Tests associated with AssertAverage model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       constant Real pi=3.141592653589793238462643383279502884197169399;
       model CheckSuccess "Check for successful value of average"
+        extends Modelica.Icons.Example;
         Real x=sin(2*time);
         AssertAverageBetween check_x(
           average=0,
@@ -386,8 +391,9 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end Average;
 
     package ValueAt "Tests associated with AssertValueAt model"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       model CheckSuccess
+        extends Modelica.Icons.Example;
         Real x=2*time + 1;
         AssertValueAt check_x(
           actual=x,
@@ -424,7 +430,7 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end ValueAt;
 
     package Values "Tests associated with assertValues function"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       function CheckSuccess
 
       algorithm
@@ -445,7 +451,7 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end Values;
 
     package LogValue "Tests associated with assertLogValue function"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       function CheckSuccess
 
       algorithm
@@ -463,7 +469,7 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end LogValue;
 
     package LogValues "Tests associated with assertLogValues function"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.ExamplesPackage;
       function CheckSuccess
 
       algorithm
@@ -480,6 +486,13 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
 
     end LogValues;
 
+    annotation (Icon(graphics={Polygon(
+            points={{-70,0},{-44,0},{-24,-34},{50,56},{78,56},{-24,-74},{-70,0}},
+
+            lineColor={75,138,73},
+            smooth=Smooth.None,
+            fillColor={75,138,73},
+            fillPattern=FillPattern.Solid)}));
   end Tests;
   annotation (Documentation(info="<html><p>This package is modified from
   XogenyTest version 1.1 by Michael Tiller of Xogeny, Inc.  XogenyTest is available at

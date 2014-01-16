@@ -6,7 +6,6 @@ package WorkInProgress "Incomplete classes under development"
     "<html>Single-cell PEMFC with interfaces from the <a href=\"modelica://Modelica\">Modelica Standard Library</a></html>"
     extends FCSys.Icons.Cell;
 
-    extends Modelica.Icons.UnderConstruction;
     Assemblies.Cells.Examples.Cell cell(anFP(redeclare
           FCSys.Subregions.Subregion subregions(
           each final inclX=true,
@@ -61,7 +60,6 @@ package WorkInProgress "Incomplete classes under development"
 
   function plot "Create plots using FCRes"
     extends Modelica.Icons.Function;
-    extends Modelica.Icons.UnderConstruction;
 
   algorithm
     Modelica.Utilities.System.command("loadres");
@@ -83,15 +81,12 @@ package WorkInProgress "Incomplete classes under development"
                 p_IC=65536*U.kPa,
                 consMaterial=ConsThermo.IC)))));
 
-    extends Modelica.Icons.UnderConstruction;
-
   end ElectroOsmoticDrag;
 
   model RegionsExamplesCLtoCLVoltage
     "Test one catalyst layer to the other, with prescribed voltage"
 
     extends Modelica.Icons.Example;
-    extends Modelica.Icons.UnderConstruction;
     output Q.Potential w=anCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1,
         Side.n] - caCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1, Side.p]
       if environment.analysis "Electrical potential";

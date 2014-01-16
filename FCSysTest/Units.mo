@@ -10,12 +10,12 @@ package Units
     output Boolean ok "true, if all tests passed";
 
   algorithm
-    print("--- Test FCSys.Units");
-    print("--- Test FCSys.Units", logFile);
+    print("--- Test of FCSys.Units");
+    print("--- Test of FCSys.Units", logFile);
     ok := testValues(logFile) and testConversions(logFile);
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
   end callAll;
 
   function testValues
@@ -200,7 +200,7 @@ package Units
     ok := true;
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
   end testValues;
 
   function testConversions
@@ -240,7 +240,7 @@ package Units
 
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
   end testConversions;
 
 end Units;

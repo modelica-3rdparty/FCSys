@@ -10,14 +10,14 @@ package Utilities
     output Boolean ok "true, if all tests passed";
 
   algorithm
-    print("--- Test FCSys.Utilities");
-    print("--- Test FCSys.Utilities", logFile);
+    print("--- Test of FCSys.Utilities");
+    print("--- Test of FCSys.Utilities", logFile);
 
-    ok := Chemistry(logFile) and Coordinates(logFile) and Polynomial.f() and
-      testFunctions();
+    ok := Chemistry(logFile) and Coordinates(logFile) and Means(logFile) and
+      Polynomial.f(logFile) and testFunctions();
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
   end callAll;
 
   function Chemistry
@@ -79,7 +79,7 @@ package Utilities
     ok := true;
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
   end Chemistry;
 
   function Coordinates
@@ -111,6 +111,38 @@ package Utilities
 
     ok := true;
   end Coordinates;
+
+  function Means
+    "<html>Test the <a href=\"modelica://FCSys.Utilities.Means\">Means</a> package</html>"
+    import assert = FCSysTest.Test.assertValue;
+    import Modelica.Utilities.Streams.print;
+    import FCSys.Utilities.Means.*;
+    extends Modelica.Icons.Function;
+
+    input String logFile="FCSysTestLog.txt" "Filename where the log is stored";
+    output Boolean ok "true, if all tests passed";
+
+  algorithm
+    print("... Test of Utilities.Means");
+    print("... Test of Utilities.Means", logFile);
+
+    // arithmetic()
+    assert(
+        arithmetic({1,2,3}),
+        2,
+        name="arithmetic");
+
+    // arithmetic()
+    assert(
+        harmonic({1,1/2}),
+        2/3,
+        name="harmonic");
+
+    ok := true;
+    annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
+  incorrect result.  It will return <code>true</code> if all of the functions pass.
+  The input is the name of a log file where the results should be written.</p></html>"));
+  end Means;
 
   package Polynomial
     extends Modelica.Icons.Package;
@@ -245,7 +277,7 @@ package Utilities
       ok := true;
       annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an
   incorrect result.  It will return <code>true</code> if all of the functions pass.
-  There are no inputs.</p></html>"));
+  The input is the name of a log file where the results should be written.</p></html>"));
     end f;
 
     model df
@@ -376,9 +408,6 @@ package Utilities
       "The arrayStringEqual function failed on test 2.");
     assert(not arrayStringEqual({"a","b"}, {"a","b","c"}),
       "The arrayStringEqual function failed on test 3.");
-
-    // average()
-    assert(average({1,2,3}) == 2, "The average function failed.");
 
     // Delta()
     assert(Delta({1,2}) == 1, "The Delta function failed on test 1.");

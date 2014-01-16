@@ -9,26 +9,26 @@ package Icons "Icons to annotate and represent classes"
       // This has been modified from Modelica.Blocks.Interfaces.BlockIcon.
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Rectangle(
-                  extent={{-100,-100},{100,100}},
-                  lineColor={0,0,127},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Text(
-                  extent={{-100,-20},{100,20}},
-                  textString="%name",
-                  lineColor={0,0,0})}));
+              extent={{-100,-100},{100,100}},
+              lineColor={0,0,127},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid), Text(
+              extent={{-100,-20},{100,20}},
+              textString="%name",
+              lineColor={0,0,0})}));
 
     end Continuous;
 
     partial class ContinuousShort "Short icon for a continuous block"
       extends Names.Middle;
       annotation (Icon(graphics={Rectangle(
-                  extent={{-100,40},{100,-40}},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid,
-                  lineColor={0,0,0}),Text(
-                  extent={{-100,-20},{100,20}},
-                  textString="%name",
-                  lineColor={0,0,0})}));
+              extent={{-100,40},{100,-40}},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              lineColor={0,0,0}), Text(
+              extent={{-100,-20},{100,20}},
+              textString="%name",
+              lineColor={0,0,0})}));
 
     end ContinuousShort;
 
@@ -140,25 +140,21 @@ package Icons "Icons to annotate and represent classes"
     partial class SingleShort
       "Short icon for a single-connector boundary condition"
       // extends Names.Middle;
-      annotation (Icon(graphics={
-            Rectangle(
-              extent={{-100,40},{100,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),
-            Line(
-              points={{-100,-40},{-100,40},{100,40},{100,-40}},
-              pattern=LinePattern.None,
-              smooth=Smooth.None),
-            Line(
-              points={{-100,-40},{100,-40}},
-              color={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),
-            Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0})}));
+      annotation (Icon(graphics={Rectangle(
+                  extent={{-100,40},{100,-40}},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid,
+                  pattern=LinePattern.None),Line(
+                  points={{-100,-40},{-100,40},{100,40},{100,-40}},
+                  pattern=LinePattern.None,
+                  smooth=Smooth.None),Line(
+                  points={{-100,-40},{100,-40}},
+                  color={0,0,0},
+                  smooth=Smooth.None,
+                  pattern=LinePattern.Dash),Text(
+                  extent={{-100,-20},{100,20}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end SingleShort;
 
@@ -267,9 +263,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,80},{100,120}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,80},{100,120}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top4;
 
@@ -307,9 +303,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-                  extent={{-100,-20},{100,20}},
-                  textString="%name",
-                  lineColor={0,0,0})}));
+              extent={{-100,-20},{100,20}},
+              textString="%name",
+              lineColor={0,0,0})}));
 
     end Middle;
 

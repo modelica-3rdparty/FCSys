@@ -11,7 +11,7 @@ package Subregions
     // TODO:  Create a separate model to test reactions.
     // Currently, there are no assertions.  This model just checks that the
     // simulation runs.
-
+    extends Modelica.Icons.UnderConstruction;
   end Subregion;
 
   model Test2Subregions
@@ -33,7 +33,7 @@ package Subregions
             'e-'(redeclare function materialSpec =
                 FCSys.Conditions.ByConnector.Face.Single.Material.pressure))));
     // Note:  H+ is excluded to prevent reactions.
-
+    extends Modelica.Icons.UnderConstruction;
     output FCSys.Quantities.Amount S(stateSelect=StateSelect.never) =
       subregion1.graphite.'C+'.S + subregion2.graphite.'C+'.S + subregion1.ionomer.
       'SO3-'.S + subregion2.ionomer.'SO3-'.S + subregion1.graphite.'e-'.S +

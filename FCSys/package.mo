@@ -127,7 +127,7 @@ package UsersGuide "User's Guide"
 
     class Basic "Basic"
       extends Modelica.Icons.Information;
-      // TODO:  Recreate the plots using the Python script.
+      // TODO*:  Recreate the plots using the Python script.
 
       annotation (preferredView="info", Documentation(info="<html>
 
@@ -176,7 +176,7 @@ package UsersGuide "User's Guide"
     class Cell "Cell-level"
       extends Modelica.Icons.Information;
 
-      // TODO:  Add various polarization curves, update the existing plot.
+      // TODO*:  Add various polarization curves, update the existing plot.
 
       annotation (preferredView="info", Documentation(info="<html>
   
@@ -570,6 +570,12 @@ package UsersGuide "User's Guide"
 
       annotation (preferredView="info", DocumentationClass=false);
       end Sivertsen2005;
+
+    class Slattery1958
+      "<html>J. C. Slattery and R. B. Bird, \"Calculation of the Diffusion Coefficient of Dilute Gases and of the Self-diffusion Coefficient of Dense Gases,\" <i>American Institute of Chemical Engineers Journal</i>, vol. 4, no. 2, pp. 137&ndash;142, 1958</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+      end Slattery1958;
 
     class Springer1991
       "<html>T. E. Springer, T. A. Zawodzinski, and S. Gottesfeld, \"<a href=\"http://dx.doi.org/10.1149/1.2085971\">Polymer Electrolyte Fuel Cell Model</a>,\" <i>J. Electrochem. Soc.</i>, vol. 138, pp. 2334&ndash;2342, Aug. 1991</html>"
@@ -970,7 +976,7 @@ action. This section shall survive the termination of this License.</p>
 
   end UsersGuide;
 
-// TODO:  Summarize features of model--sim time, no nonlinear equations, included phenomena, scalability
+// TODO*:  Summarize features of model--sim time, no nonlinear equations, transient phase change, included phenomena, scalability
 
 
 annotation (

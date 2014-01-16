@@ -6,13 +6,15 @@ packages = {"FCSys.UsersGuide",
             "FCSys.Assemblies",
             "FCSys.Regions",
             "FCSys.Subregions",
-            "FCSys.Connectors",
+            "FCSys.Phases",
+            "FCSys.Species",
+            "FCSys.Chemistry",
             "FCSys.Characteristics",
+            "FCSys.Connectors",
             "FCSys.Units",
             "FCSys.Quantities",
-            "FCSys.BaseClasses",
-            "FCSys.Test",
-            "FCSys.Tests"
+            "FCSys.Utilities",
+            "FCSys.Icons"
            };
 
 // Check the models (low to high level).

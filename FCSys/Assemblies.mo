@@ -136,14 +136,14 @@ package Assemblies "Combinations of regions (e.g., cells)"
  </html>"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics={Text(
-                extent={{-20,70},{20,60}},
-                lineColor={127,127,127},
-                textStyle={TextStyle.UnderLine},
-                textString="Anode"), Text(
-                extent={{-20,10},{20,0}},
-                lineColor={127,127,127},
-                textStyle={TextStyle.UnderLine},
-                textString="Cathode")}),
+                      extent={{-20,70},{20,60}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Anode"),Text(
+                      extent={{-20,10},{20,0}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Cathode")}),
           Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics));
       end TestConditions;

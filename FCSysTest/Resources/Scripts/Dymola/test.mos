@@ -2,19 +2,21 @@
 // The first column contains the models to be tested (in Modelica dot
 // notation).  The second column contains the stop times of the simulations (as
 // strings).
-list = [//"FCSys.Conditions.Examples.FaceCondition", "1;"
-        //"FCSys.Conditions.Examples.FaceConditionMixtures", "1";
+list = [//"FCSys.Conditions.Examples.Stoichiometry", "1;"
+        //"FCSys.Conditions.Examples.BoundaryCondition", "1;"
+        //"FCSys.Conditions.Examples.BoundaryConditionPhases", "1";
         "FCSys.Conditions.Examples.Router", "1";
-        //"FCSys.Conditions.Examples.Adapteminus", "1";
-        //"FCSys.Conditions.Examples.AdaptFluid", "1";
-        //"FCSys.Assemblies.Examples.Cell", "1";
-        //"FCSys.Assemblies.Examples.CellProfile", "1";
-        //"FCSys.Assemblies.Examples.Polarization", "1";
-        //"FCSys.Assemblies.Examples.CellProfileIO", "1";
-        //"FCSys.Assemblies.Examples.CellModelica", "1";
-        "FCSys.Regions.Examples.FPToFP", "10";
-        "FCSys.Regions.Examples.GDLToGDL", "10";
-        "FCSys.Regions.Examples.CLToCL", "500";
+        //"FCSys.Conditions.Examples.AnodeAdapter", "1";
+        //"FCSys.Assemblies.Examples.TestStand", "1";
+        //"FCSys.Assemblies.Examples.TestStandCycle", "1";
+        //"FCSys.Assemblies.Examples.TestStandSimple", "1";
+        //"FCSys.Assemblies.Examples.TestStandLinearize", "1";
+        //"FCSys.Assemblies.Examples.TestStandSegmented", "1";
+        //"FCSys.Assemblies.Examples.TestStandFixedFlowSegmented", "1";
+        //"FCSys.Assemblies.Examples.TestStandFixedFlow", "1";
+        "FCSys.Regions.Examples.FPtoFP", "10";
+        "FCSys.Regions.Examples.GDLtoGDL", "10";
+        "FCSys.Regions.Examples.CLtoCL", "500";
         "FCSys.Regions.Examples.AnFP", "10";
         "FCSys.Regions.Examples.AnGDL", "10";
         "FCSys.Regions.Examples.AnCL", "500";
@@ -22,20 +24,31 @@ list = [//"FCSys.Conditions.Examples.FaceCondition", "1;"
         "FCSys.Regions.Examples.CaCL", "500";
         "FCSys.Regions.Examples.CaGDL", "10";
         "FCSys.Regions.Examples.CaFP", "10";
+        "FCSys.Subregions.Examples.AirColumn", "10";
+        "FCSys.Subregions.Examples.BinaryDiffusion", "10";
+        //"FCSys.Subregions.Examples.CapillaryAction", "10";
+        "FCSys.Subregions.Examples.Echo", "10";
+        "FCSys.Subregions.Examples.EchoCentral", "10";
+        "FCSys.Subregions.Examples.ElectricalConduction", "10";
+        "FCSys.Subregions.Examples.InternalFlow", "10";
         "FCSys.Subregions.Examples.Subregion", "10";
-        "FCSys.Subregions.Examples.SubregionHOR", "1000";
-        "FCSys.Subregions.Examples.SubregionORR", "1000";
-        "FCSys.Subregions.Examples.Subregions", "1";
-        "FCSys.Subregions.Examples.SubregionsCAndH2", "1";
-        "FCSys.Subregions.Examples.ThermalConduction", "298.15";
-        "FCSys.Subregions.Examples.ThermalConductionConvection", "200";
-        "FCSys.Subregions.Examples.Reaction", "100";
-        "FCSys.Subregions.Examples.SpeciesH2", "10";
-        "FCSys.Subregions.Examples.SubregionsCell", "4";
+        "FCSys.Subregions.Examples.Subregions", "10";
+        "FCSys.Subregions.Examples.ThermalConduction", "10";
+        "FCSys.Subregions.Examples.PhaseChange.Evaporation", "1000";
+        "FCSys.Subregions.Examples.PhaseChange.Hydration", "1000";
+        "FCSys.Subregions.Examples.Reactions.HOR", "1000";
+        "FCSys.Subregions.Examples.Reactions.ORR", "1000";
+        "FCSys.Chemistry.Examples.Overpotential", "1";
+        "FCSys.Chemistry.Examples.Stoichiometry", "1";
         "FCSys.Characteristics.Examples.Correlations", "1";
+        "FCSys.Characteristics.Examples.SurfaceTension", "1";
+        "FCSys.Characteristics.Examples.SaturationPressure", "1";
+        "FCSys.Characteristics.Examples.CellPotential", "1";
+        "FCSys.Characteristics.Examples.Leverett", "1";
+        "FCSys.Characteristics.Examples.LatentHeat", "1";
+        "FCSys.Characteristics.Examples.MobilityFactors", "1";
         "FCSys.Units.Evaluate", "1";
-        "FCSys.Quantities.Examples.TestQuantities", "1";
-        "FCSys.BaseClasses.Utilities.Examples.TranslatePoly", "1"
+        "FCSys.Quantities.Examples.Display", "1"
        ];
 
 // Test the functions.
