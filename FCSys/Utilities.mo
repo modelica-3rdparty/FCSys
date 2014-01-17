@@ -275,7 +275,8 @@ An unrelated species may be included.");
 
   package Means "Package of mathematical mean functions"
     extends Modelica.Icons.Package;
-    // TODO*:  Add other functions, move to (share with) Modelica standard library.
+    // TODO:  Remove this package, use Modelica.Math.Vectors.Means instead once
+    // ticket #1400 is accepted (https://trac.modelica.org/Modelica/ticket/1400).
 
     function arithmetic "Return the arithmetic mean of numbers"
       extends Modelica.Icons.Function;
@@ -289,6 +290,19 @@ An unrelated species may be included.");
     <code>arithmetic({1,2,3})</code> returns 2.</p></html>"));
     end arithmetic;
 
+    function geometric "Return the geometric mean of numbers"
+      extends Modelica.Icons.Function;
+      input Real u[:] "Vector of numbers"
+        annotation (Dialog(__Dymola_label="<html><i>u</i></html>"));
+      output Real mean "Harmonic mean";
+
+    algorithm
+      mean := if size(u, 1) == 1 then u[1] else (if size(u, 1) == 2 then sqrt(
+        product(u)) else product(u)^(1/size(u, 1)));
+      annotation (Inline=true,Documentation(info="<html><p><b>Example:</b><br>
+    <code>geometric({1,4})</code> returns 2.</p></html>"));
+    end geometric;
+
     function harmonic "Return the harmonic mean of numbers"
       extends Modelica.Icons.Function;
       input Real u[:] "Vector of numbers"
@@ -299,7 +313,7 @@ An unrelated species may be included.");
       mean := if size(u, 1) == 1 then u[1] else (if size(u, 1) == 2 then 2*
         product(u)/sum(u) else size(u, 1)/sum(1/u for u in u));
       annotation (Inline=true,Documentation(info="<html><p><b>Example:</b><br>
-    <code>harmonic({1,2,3})</code> returns 2.</p></html>"));
+    <code>harmonic({1,1/3})</code> returns 0.5.</p></html>"));
     end harmonic;
   end Means;
 

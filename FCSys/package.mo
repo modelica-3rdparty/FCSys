@@ -122,86 +122,55 @@ package UsersGuide "User's Guide"
 
     end GettingStarted;
 
-  package SampleResults "Sample results"
+  class SampleResults "Sample results"
     extends Modelica.Icons.Information;
 
-    // TODO:  Used hashed (anchored) bookmarks once they are supported in
-    // Dymola (doesn't work in Dymola 2014; causes the link to fail
-    // entirely).
-
-    class Basic "Basic"
-      extends Modelica.Icons.Information;
-      // TODO*:  Recreate the plots using the Python script.
-
-      annotation (preferredView="info", Documentation(info="<html>
-
-    <p>The figures below show the results from several basic, low-level examples of
-    <a href=\"modelica://FCSys\">FCSys</a>.   For more information, please
-    follow the links to the associated models.  For a complete discussion, please see
-    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2013</a>].  There are additional examples
-    throughout the library (e.g.,
-    <a href=\"modelica://FCSys.Subregions.Examples\">FCSys.Subregions.Examples</a> and
-    <a href=\"modelica://FCSys.Characteristics.Examples\">FCSys.Characteristics.Examples</a>).  
-    </p>
-
-    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Subregions.Examples.AirColumn\">
-    <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/AirColumn.png\"></a>
-<br>Figure 1: Pressure oscillations and steady-steady pressure differences in a vertical column of gas initially at uniform temperature and density
-    (<a href=\"modelica://FCSys.Subregions.Examples.AirColumn\">FCSys.Subregions.Examples.AirColumn</a>).</p>
-
-    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Subregions.Examples.Echo\">
-    <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/Echo.png\"></a>
-<br>Figure 2: Pressure waves reflecting across two 1 cm<sup>3</sup> regions with an initial pressure difference
-    (<a href=\"modelica://FCSys.Subregions.Examples.Echo\">FCSys.Subregions.Examples.Echo</a>).</p>
-
-    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Subregions.Examples.InternalFlow\">
-    <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/InternalFlow.png\"></a>
-<br>Figure 3: Temperature variation due to viscous dissipation under varying flow rate
-    (<a href=\"modelica://FCSys.Subregions.Examples.InternalFlow\">FCSys.Subregions.Examples.InternalFlow</a>).</p>
-
-    <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConduction\">
-    <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/ThermalConduction.png\"></a>
-<br>Figure 4: Thermal conduction through a graphite bar divided into segments, where the first segment is initially hotter
-    (<a href=\"modelica://FCSys.Subregions.Examples.ThermalConduction\">FCSys.Subregions.Examples.ThermalConduction</a>).</p>
-
-    <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Subregions.Examples.ThermalConductionConvection\">
-    <img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/ThermalConductionConvection.png\"></a>
-<br>Figure 5: Velocity induced in gas in contact with graphite undergoing transient thermal conduction
-    (<a href=\"modelica://FCSys.Subregions.Examples.ThermalConductionConvection\">FCSys.Subregions.Examples.ThermalConductionConvection</a>).</p>
-
-    <p>The models were simulated using Dymola 2014.  The plots were
-    generated using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a> and
-    <a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Basic/plot.py\">this Python script</a>.</p>
-    
-    </html>"));
-
-      end Basic;
-
-    class Cell "Cell-level"
-      extends Modelica.Icons.Information;
-
-      // TODO*:  Add various polarization curves, update the existing plot.
-
-      annotation (preferredView="info", Documentation(info="<html>
+    annotation (preferredView="info", Documentation(info="<html>
   
-  <p>The figures below show the results from several basic, cell-level examples of
-    <a href=\"modelica://FCSys\">FCSys</a>.   For more information, please
-    follow the links to the associated models.  For a complete discussion, please see
-    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2013</a>].  There are additional examples
-    in <a href=\"modelica://FCSys.Assemblies.Cells.Examples\">FCSys.Assemblies.Cells.Examples</a>.  
+  <p>The figures below show the results from several cell-level examples of
+    <a href=\"modelica://FCSys\">FCSys</a>.   The models were simulated using Dymola 2014.  The plots were
+    generated using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a>.  For more information, please
+    follow the links to the associated models.  For more results and complete discussions, please see
+    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2014</a>].  
     </p>
 
-    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Cell/Polarization.png\"></a>
-<br>Figure 1: Polarization curves of the cell under various cathode flow rates
+    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png\"></a>
+    <br>Figure&nbsp;1: Polarization curves of the cell with various inlet and flow plate temperatures
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+    
+    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.png\"></a>
+    <br>Figure&nbsp;2: Polarization curves of the cell with various outlet pressures
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+    
+    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Losses.png\"></a>
+    <br>Figure&nbsp;3: Potential losses during the baseline polarization test
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
-    <p>The models were simulated using Dymola 2014.  The plots were
-    generated using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a> and
-    <a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CellLevel/plot.py\">this Python script</a>.</p>
+    <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Temperature.png\"></a>
+    <br>Figure&nbsp;4: Temperature throughout the cell during the baseline polarization test
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+    
+    <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PressureO2.png\"></a>
+    <br>Figure&nbsp;5: Oxygen pressure during the baseline polarization test
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+
+    <p align=center id=\"Fig6\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Energy.png\"></a>
+    <br>Figure&nbsp;6: Energy balance at 1.5&nbsp;A/cm<sup>2</sup> during the baseline polarization test
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+
+    <p align=center id=\"Fig7\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.png\"></a>
+    <br>Figure&nbsp;7: Polarization of cell segments with fixed reactant flow rates
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\">FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented</a>).</p>
+
+    <p align=center id=\"Fig8\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.png\"></a>
+    <br>Figure&nbsp;8: Polarization under sinuosoidal, reversing load
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
+
+    <p align=center id=\"Fig9\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.png\"></a>
+    <br>Figure&nbsp;9: Liquid pore saturation under sinuosoidal, reversing load
+    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
 
     </html>"));
-
-      end Cell;
 
     end SampleResults;
 
@@ -979,21 +948,6 @@ action. This section shall survive the termination of this License.</p>
   annotation (preferredView="info", DocumentationClass=true);
 
   end UsersGuide;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 annotation (

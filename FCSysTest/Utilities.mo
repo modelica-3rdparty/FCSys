@@ -128,14 +128,32 @@ package Utilities
 
     // arithmetic()
     assert(
+        arithmetic({1,1}),
+        1,
+        name="arithmetic");
+    assert(
         arithmetic({1,2,3}),
         2,
         name="arithmetic");
 
-    // arithmetic()
+    // geometric()
     assert(
-        harmonic({1,1/2}),
-        2/3,
+        geometric({1,1}),
+        1,
+        name="geometric");
+    assert(
+        geometric({1,4}),
+        2,
+        name="geometric");
+
+    // harmonic()
+    assert(
+        harmonic({1,1}),
+        1,
+        name="harmonic");
+    assert(
+        harmonic({1,1/3}),
+        0.5,
         name="harmonic");
 
     ok := true;
