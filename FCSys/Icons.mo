@@ -9,26 +9,26 @@ package Icons "Icons to annotate and represent classes"
       // This has been modified from Modelica.Blocks.Interfaces.BlockIcon.
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Rectangle(
-              extent={{-100,-100},{100,100}},
-              lineColor={0,0,127},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid), Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,-100},{100,100}},
+                  lineColor={0,0,127},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Text(
+                  extent={{-100,-20},{100,20}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Continuous;
 
     partial class ContinuousShort "Short icon for a continuous block"
       extends Names.Middle;
       annotation (Icon(graphics={Rectangle(
-              extent={{-100,40},{100,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              lineColor={0,0,0}), Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,40},{100,-40}},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid,
+                  lineColor={0,0,0}),Text(
+                  extent={{-100,-20},{100,20}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end ContinuousShort;
 
@@ -36,13 +36,13 @@ package Icons "Icons to annotate and represent classes"
       "Short and wide icon for a continuous block"
       extends Names.Middle;
       annotation (Icon(graphics={Rectangle(
-              extent={{-120,40},{120,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              lineColor={0,0,0}), Text(
-              extent={{-120,-20},{120,20}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-120,40},{120,-40}},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid,
+                  lineColor={0,0,0}),Text(
+                  extent={{-120,-20},{120,20}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end ContinuousShortWide;
 
@@ -52,10 +52,10 @@ package Icons "Icons to annotate and represent classes"
       // Modelica.Blocks.Interfaces.DiscreteBlockIcon.
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Rectangle(
-              extent={{-100,-100},{100,100}},
-              lineColor={0,0,127},
-              fillColor={223,223,159},
-              fillPattern=FillPattern.Solid)}));
+                  extent={{-100,-100},{100,100}},
+                  lineColor={0,0,127},
+                  fillColor={223,223,159},
+                  fillPattern=FillPattern.Solid)}));
 
     end Discrete;
 
@@ -65,34 +65,28 @@ package Icons "Icons to annotate and represent classes"
     extends Modelica.Icons.Package;
     partial class Pair "Icon for a two-connector boundary condition"
       // extends Names.Middle;
-      annotation (Icon(graphics={
-            Rectangle(
-              extent={{-100,100},{100,-100}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),
-            Line(
-              points={{-100,100},{100,100}},
-              pattern=LinePattern.None,
-              smooth=Smooth.None),
-            Line(
-              points={{-100,-100},{-100,100}},
-              color={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),
-            Text(
-              extent={{-150,-20},{150,20}},
-              textString="%name",
-              lineColor={0,0,0}),
-            Line(
-              points={{-100,-100},{100,-100}},
-              pattern=LinePattern.None,
-              smooth=Smooth.None),
-            Line(
-              points={{100,-100},{100,100}},
-              color={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash)}));
+      annotation (Icon(graphics={Rectangle(
+                  extent={{-100,100},{100,-100}},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid,
+                  pattern=LinePattern.None),Line(
+                  points={{-100,100},{100,100}},
+                  pattern=LinePattern.None,
+                  smooth=Smooth.None),Line(
+                  points={{-100,-100},{-100,100}},
+                  color={0,0,0},
+                  smooth=Smooth.None,
+                  pattern=LinePattern.Dash),Text(
+                  extent={{-150,-20},{150,20}},
+                  textString="%name",
+                  lineColor={0,0,0}),Line(
+                  points={{-100,-100},{100,-100}},
+                  pattern=LinePattern.None,
+                  smooth=Smooth.None),Line(
+                  points={{100,-100},{100,100}},
+                  color={0,0,0},
+                  smooth=Smooth.None,
+                  pattern=LinePattern.Dash)}));
 
     end Pair;
 
@@ -223,9 +217,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,200},{100,240}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,200},{100,240}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top10;
 
@@ -233,9 +227,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,180},{100,220}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,180},{100,220}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top9;
 
@@ -243,9 +237,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,160},{100,200}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,160},{100,200}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top8;
 
@@ -253,9 +247,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,140},{100,180}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,140},{100,180}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top7;
 
@@ -263,9 +257,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,120},{100,160}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,120},{100,160}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top6;
 
@@ -273,9 +267,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,100},{100,140}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,100},{100,140}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Top5;
 
@@ -323,9 +317,9 @@ package Icons "Icons to annotate and represent classes"
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
                 -100},{100,100}}), graphics={Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0})}));
+                  extent={{-100,-20},{100,20}},
+                  textString="%name",
+                  lineColor={0,0,0})}));
 
     end Middle;
 

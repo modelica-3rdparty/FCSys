@@ -5,7 +5,6 @@ package Chemistry "Chemical reactions and related models"
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
 
-
     model Overpotential "Demonstrate the Butler-Volmer overpotential"
       extends Modelica.Icons.Example;
 
@@ -240,23 +239,19 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={
-            Line(
-              points={{-20,30},{-20,-30}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{20,30},{20,-30}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{-50,0},{-20,0}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{20,0},{50,0}},
-              color={255,195,38},
-              smooth=Smooth.None)}));
+                100,100}}), graphics={Line(
+                  points={{-20,30},{-20,-30}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{20,30},{20,-30}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{-50,0},{-20,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{20,0},{50,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
@@ -335,30 +330,25 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={
-            Line(
-              points={{0,-20},{0,-50}},
-              color={221,23,47},
-              smooth=Smooth.None),
-            Line(
-              points={{-50,0},{50,0}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Rectangle(
-              extent={{-30,20},{32,-20}},
-              lineColor={255,195,38},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(
-              points={{-20,4},{20,4},{8,12}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{-20,-5},{20,-5},{8,3}},
-              color={255,195,38},
-              smooth=Smooth.None,
-              origin={0,-11},
-              rotation=180)}));
+                100,100}}), graphics={Line(
+                  points={{0,-20},{0,-50}},
+                  color={221,23,47},
+                  smooth=Smooth.None),Line(
+                  points={{-50,0},{50,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Rectangle(
+                  extent={{-30,20},{32,-20}},
+                  lineColor={255,195,38},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(
+                  points={{-20,4},{20,4},{8,12}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{-20,-5},{20,-5},{8,3}},
+                  color={255,195,38},
+                  smooth=Smooth.None,
+                  origin={0,-11},
+                  rotation=180)}));
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -587,35 +577,30 @@ public
     <p>The characteristic radius (<i>R</i>) is the harmonic mean of the (2) principle radii of the liquid volume.</p>
 
     <p>The default surface tension (&gamma; = 0.0663 N/m) is for saturated water at 60 &deg;C, interpolated from
-    [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, pp. 924].  Note that the surface tension in
+    [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, pp.&nbsp;924].  Note that the surface tension in
     [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>] is incorrect (likely unit conversion error).</p>
 
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={
-          Rectangle(
-            extent={{-40,40},{40,-40}},
-            fillColor={170,213,255},
-            fillPattern=FillPattern.Solid,
-            pattern=LinePattern.None),
-          Rectangle(
-            extent={{42,40},{20,-40}},
-            pattern=LinePattern.None,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{0,40},{40,-40}},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid,
-            pattern=LinePattern.None),
-          Line(
-            points={{-40,40},{40,40}},
-            color={0,0,0},
-            smooth=Smooth.None),
-          Line(
-            points={{-40,-40},{40,-40}},
-            color={0,0,0},
-            smooth=Smooth.None)}),
+              100}}), graphics={Rectangle(
+              extent={{-40,40},{40,-40}},
+              fillColor={170,213,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),Rectangle(
+              extent={{42,40},{20,-40}},
+              pattern=LinePattern.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{0,40},{40,-40}},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),Line(
+              points={{-40,40},{40,40}},
+              color={0,0,0},
+              smooth=Smooth.None),Line(
+              points={{-40,-40},{40,-40}},
+              color={0,0,0},
+              smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
   end Capillary;
@@ -719,7 +704,7 @@ public
     annotation (
       Documentation(info="<html>
     <p>The default surface tension (&gamma; = 0.0663 N/m) is for saturated water at 60 &deg;C, interpolated from
-    [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, pp. 924].  Note that the surface tension in
+    [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, pp.&nbsp;924].  Note that the surface tension in
     [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>] is incorrect (likely unit conversion error).</p>
 
     <p>The default permeability (&kappa; = 6.46&times;10<sup>-5</sup> mm<sup>2</sup>) is based on
