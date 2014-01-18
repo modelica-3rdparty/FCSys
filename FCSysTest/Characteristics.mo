@@ -515,8 +515,6 @@ package Characteristics
     package Characteristic
       extends Modelica.Icons.ExamplesPackage;
 
-      // TODO: Add test for s().
-
       model TestProperties
         "<html>Test the <code>z</code>, <code>isCompressible</code>, <code>hasThermalExpansion</code> constants of the <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a> package</html>"
         import FCSys.Characteristics.*;

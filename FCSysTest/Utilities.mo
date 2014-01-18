@@ -130,31 +130,21 @@ package Utilities
     assert(
         arithmetic({1,1}),
         1,
-        name="arithmetic");
+        name="1 of arithmetic");
     assert(
         arithmetic({1,2,3}),
         2,
-        name="arithmetic");
-
-    // geometric()
-    assert(
-        geometric({1,1}),
-        1,
-        name="geometric");
-    assert(
-        geometric({1,4}),
-        2,
-        name="geometric");
+        name="2 of arithmetic");
 
     // harmonic()
     assert(
         harmonic({1,1}),
         1,
-        name="harmonic");
+        name="1 of harmonic");
     assert(
         harmonic({1,1/3}),
         0.5,
-        name="harmonic");
+        name="2 of harmonic");
 
     ok := true;
     annotation (Documentation(info="<html><p>This function call will fail if any of the functions return an

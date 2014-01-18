@@ -950,6 +950,21 @@ action. This section shall survive the termination of this License.</p>
   end UsersGuide;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 annotation (
   preferredView="info",
   uses(Modelica(version="3.2.1")),
@@ -1068,7 +1083,7 @@ margin-right: auto;\" class=noBorder>
 
     <!--<p align=center id=\"Fig3\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.Examples.TestStandD.png\" width=500>-->
     <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.Examples.TestStandD.png\"></a>
-<br>Figure 3: Polarization curves under various conditions.</p>
+<br>Figure 3: Diagram of the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">test stand model</a>.</p>
 
     <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b>
 <br>Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>

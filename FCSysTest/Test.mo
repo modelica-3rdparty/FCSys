@@ -487,12 +487,13 @@ package Test "Library to facilitate assertion-based testing of Modelica code"
     end LogValues;
 
     annotation (Icon(graphics={Polygon(
-            points={{-70,0},{-44,0},{-24,-34},{50,56},{78,56},{-24,-74},{-70,0}},
+              points={{-70,0},{-44,0},{-24,-34},{50,56},{78,56},{-24,-74},{-70,
+              0}},
+              lineColor={75,138,73},
+              smooth=Smooth.None,
+              fillColor={75,138,73},
+              fillPattern=FillPattern.Solid)}));
 
-            lineColor={75,138,73},
-            smooth=Smooth.None,
-            fillColor={75,138,73},
-            fillPattern=FillPattern.Solid)}));
   end Tests;
   annotation (Documentation(info="<html><p>This package is modified from
   XogenyTest version 1.1 by Michael Tiller of Xogeny, Inc.  XogenyTest is available at

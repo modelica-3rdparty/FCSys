@@ -225,6 +225,19 @@ package WorkInProgress "Incomplete classes under development"
               100,100}}), graphics));
   end RegionsExamplesCLtoCLVoltage;
 
+  model SubregionsExamplesCapillaryAction
+    "Transport of liquid due to capillary action"
+    extends Subregions.Examples.Subregions(
+      Deltap_IC=0,
+      subregion1(gas(H2(consEnergy=ConsThermo.dynamic))),
+      subregion2(gas(H2(consEnergy=ConsThermo.dynamic))),
+      environment(analysis=false));
+
+    annotation (Commands(file=
+            "Resources/Scripts/Dymola/Subregions.Examples.CapillaryAction.mos"
+          "Subregions.Examples.CapillaryAction.mos"));
+
+  end SubregionsExamplesCapillaryAction;
   annotation (Commands(
       file="../../units.mos"
         "Establish the constants and units in the workspace (first translate a model besides Units.Evaluate).",
