@@ -200,17 +200,17 @@ package UsersGuide "User's Guide"
               "<html><p>See <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.eta\">&eta;</a>().</p></html>"));
     end 'fluidity';
 
-    class 'Gibbs potential '
+    class 'Gibbs potential'
       "<html>(<i>noun</i>) specific Gibbs energy [L<sup>2</sup>&nbsp;M&nbsp;N<sup>-1</sup>&nbsp;T<sup>-2</sup>]</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
-    end 'Gibbs potential ';
+    end 'Gibbs potential';
 
-    class 'lineic '
+    class 'lineic'
       "<html>adjective that indicates the quotient of the following quantity and its associated length [&times;&nbsp;L<sup>-1</sup>]</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
-    end 'lineic ';
+    end 'lineic';
 
     class 'massic'
       "<html>adjective that indicates the quotient of the following quantity and its associated mass [&times;&nbsp;M<sup>-1</sup>]</html>"
@@ -250,11 +250,11 @@ package UsersGuide "User's Guide"
               "<html><p>See <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.nu\">&nu;</a>().</p></html>"));
     end 'thermal independity';
 
-    class 'translational Nusselt number '
+    class 'translational Nusselt number'
       "<html>(<i>noun</i>) correction to Newton's law of viscous shear for the shape of the flow profile [1]</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
-    end 'translational Nusselt number ';
+    end 'translational Nusselt number';
 
     class 'transport'
       "<html>(<i>noun</i>) transfer of a conserved quantity between adjacent subregions</html>"
