@@ -321,6 +321,7 @@ package Conditions "Models to specify and measure operating conditions"
               smooth=Smooth.None,
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid)}));
+
     end AmagatDalton;
 
     model ChemicalReaction
@@ -398,6 +399,7 @@ package Conditions "Models to specify and measure operating conditions"
               fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end ChemicalReaction;
 
     package MSL
@@ -4855,6 +4857,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 smooth=Smooth.None)}),
           Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
                   {100,100}}), graphics));
+
       end VolumeFixed;
 
       partial model Partial "Base model for a pressure/volume"
@@ -7109,8 +7112,8 @@ connected to <code>positive1</code>, as shown by <a href=\"#Fig1b\">Figure 1b</a
 
   annotation (Documentation(info="
 <html>
-  <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
-Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

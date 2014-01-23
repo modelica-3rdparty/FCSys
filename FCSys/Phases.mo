@@ -477,6 +477,7 @@ package Phases "Mixtures of species"
               120,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Gas;
 
   model Graphite "Graphite phase"
@@ -771,6 +772,7 @@ package Phases "Mixtures of species"
               60}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Graphite;
 
   model Ionomer "Ionomer phase"
@@ -1155,6 +1157,7 @@ package Phases "Mixtures of species"
               100,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Ionomer;
 
   model Liquid "Liquid phase"
@@ -1301,6 +1304,7 @@ package Phases "Mixtures of species"
               100}}), graphics),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               60}}), graphics));
+
   end Liquid;
 
 protected
@@ -1395,8 +1399,8 @@ public
 <html><p>The graphite, ionomer, and
 liquid phases can only be used with a compressible phase (gas).</p>
 
-  <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
-Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

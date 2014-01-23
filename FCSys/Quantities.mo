@@ -258,8 +258,8 @@ For more information, please see the
     <p id=\"fn1\"><small>1. This misnomer is necessary because <code>Real</code> variables do not have a <code>dimension</code>
     attribute.<a href=\"#ref1\" title=\"Jump back to footnote 1 in the text.\">&#8629;</a></small></p>    
 
-  <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
-Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

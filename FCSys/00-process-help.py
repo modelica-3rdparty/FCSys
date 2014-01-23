@@ -57,7 +57,7 @@ rpls = [
     (r'<pre>&quot;', r'&quot;'),
     (r'&quot;</pre>', r'&quot;'),
     # Remove the per-file license summary
-    ("""<p><b>Licensed by the Georgia Tech Research Corporation.*
+    ("""<p><b>Licensed by the Hawaii Natural Energy Institute.*
 .*
 .*
 .*
@@ -110,7 +110,7 @@ rpls = [
   </div>
 </div>
 <div class="footer">
-  &copy; Copyright 2012&ndash;2013, Kevin Davies, Georgia Tech Research Corporation. Last updated %s.
+  &copy; Copyright 2007&ndash;2014, Kevin Davies, Hawaii Natural Energy Institute. Last updated %s.
 </div>
 """ % r'\1'),
     # Remove Dymola's tags for the Microsoft Office template.

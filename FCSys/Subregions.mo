@@ -355,6 +355,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end AirColumn;
 
     model BinaryDiffusion
@@ -692,6 +693,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end InternalFlow;
 
     model Subregion
@@ -1375,6 +1377,7 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
               60}}), graphics));
+
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
@@ -1623,6 +1626,7 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
               100,60}}), graphics));
+
   end SubregionNoIonomer;
 
   partial model PartialSubregion
@@ -1787,8 +1791,8 @@ in diagram)")}));
   end PartialSubregion;
   annotation (Documentation(info="
 <html>
-  <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
-Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

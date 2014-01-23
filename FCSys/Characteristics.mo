@@ -1338,7 +1338,7 @@ package Characteristics "Data and functions to correlate physical properties"
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -1645,7 +1645,7 @@ package Characteristics "Data and functions to correlate physical properties"
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -1675,7 +1675,7 @@ package Characteristics "Data and functions to correlate physical properties"
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -1705,7 +1705,7 @@ package Characteristics "Data and functions to correlate physical properties"
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -1742,7 +1742,7 @@ package Characteristics "Data and functions to correlate physical properties"
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -1776,7 +1776,7 @@ temperature difference.</p>
     \"billiard-ball\"
     assumption, and it implies that the collisions are instantaneous and conserve kinetic
     energy.</li>
-    <li>Between collisions particles have no influence on one another.</li>
+    <li>Between collisions, particles have no influence on one another.</li>
     <li>The mean free path, or average distance a particle travels between collisions, is much larger than the
     diameter of a particle.</li>
     <li>The properties carried by a particle depend only on those of the last particle with which it collided.</li>
@@ -2224,8 +2224,8 @@ temperature difference.</p>
   [<a href=\"modelica://FCSys.UsersGuide.References.McBride1996\">McBride1996</a>,
   <a href=\"modelica://FCSys.UsersGuide.References.McBride2002\">McBride2002</a>].</p>
 
-  <p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b><br>
-Copyright 2007&ndash;2013, <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

@@ -681,7 +681,7 @@ package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
     annotation (preferredView="info", Documentation(info="<html>
 <p>All files in this directory (FCSys) and all subdirectories are licensed by
-<a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a> under the
+the <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> under the
 
 <a href=\"#ModelicaLicense2\">Modelica License 2</a>
 
@@ -704,7 +704,7 @@ with the additional condition:</p><ul>
       application under the guidance of persons with knowledge of the
       technology.</li></ul>
       
-<p><b>Copyright &copy; 2008&ndash;2013, Georgia Tech Research Corporation</b></p>
+<p><b>Copyright 2007&ndash;2014, Hawaii Natural Energy Institute and Georgia Tech Research Corporation</b></p>
 
 <hr>
 
@@ -723,7 +723,7 @@ license for their work.</p>
 following licensing notice adjacent to the copyright notice(s) for
 this Original Work:</p>
 
-<p><b>Licensed by the Georgia Tech Research Corporation under the Modelica License 2</b></p>
+<p><b>Licensed by the <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> under the Modelica License 2</b></p>
 
 <p><b>1. Definitions.</b></p>
 <ol type=\"a\">

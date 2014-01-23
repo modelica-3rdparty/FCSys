@@ -182,15 +182,15 @@ package Chemistry "Chemical reactions and related models"
 
       Connectors.Chemical negative(final n_trans=n_trans)
         "Chemical connector on the 1st side" annotation (Placement(
-            transformation(extent={{-70,-10},{-50,10}}), iconTransformation(
+            transformation(extent={{-30,-10},{-10,10}}), iconTransformation(
               extent={{-70,-10},{-50,10}})));
       Connectors.Chemical positive(final n_trans=n_trans)
         "Chemical connector on the 2nd side" annotation (Placement(
-            transformation(extent={{50,-10},{70,10}}), iconTransformation(
+            transformation(extent={{10,-10},{30,10}}), iconTransformation(
               extent={{50,-10},{70,10}})));
       Connectors.Inert inert(final n_trans=n_trans)
         "Translational and thermal interface with the substrate" annotation (
-          Placement(transformation(extent={{-10,-50},{10,-30}}),
+          Placement(transformation(extent={{-10,-30},{10,-10}}),
             iconTransformation(extent={{-10,-50},{10,-30}})));
 
       Connectors.Amagat amagat(final V=-A*L) if inclVolume
@@ -239,19 +239,23 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{-20,30},{-20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,30},{20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{-20,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None)}));
+                100,100}}), graphics={
+            Line(
+              points={{-20,30},{-20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,30},{20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{-20,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
@@ -278,11 +282,11 @@ package Chemistry "Chemical reactions and related models"
 
       Connectors.Chemical negative(final n_trans=n_trans)
         "Chemical connector on the 1st side" annotation (Placement(
-            transformation(extent={{-70,-10},{-50,10}}), iconTransformation(
+            transformation(extent={{-30,-10},{-10,10}}), iconTransformation(
               extent={{-70,-10},{-50,10}})));
       Connectors.Chemical positive(final n_trans=n_trans)
         "Chemical connector on the 2nd side" annotation (Placement(
-            transformation(extent={{50,-10},{70,10}}), iconTransformation(
+            transformation(extent={{10,-10},{30,10}}), iconTransformation(
               extent={{50,-10},{70,10}})));
 
       // Aliases
@@ -292,7 +296,7 @@ package Chemistry "Chemical reactions and related models"
 
       Connectors.Inert inert(final n_trans=n_trans)
         "Translational and thermal interface with the substrate" annotation (
-          Placement(transformation(extent={{-10,-50},{10,-30}}),
+          Placement(transformation(extent={{-10,-30},{10,-10}}),
             iconTransformation(extent={{-10,-50},{10,-30}})));
 
     equation
@@ -330,25 +334,31 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{0,-20},{0,-50}},
-                  color={221,23,47},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Rectangle(
-                  extent={{-30,20},{32,-20}},
-                  lineColor={255,195,38},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,4},{20,4},{8,12}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-20,-5},{20,-5},{8,3}},
-                  color={255,195,38},
-                  smooth=Smooth.None,
-                  origin={0,-11},
-                  rotation=180)}));
+                100,100}}), graphics={
+            Line(
+              points={{0,-20},{0,-50}},
+              color={221,23,47},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Rectangle(
+              extent={{-30,20},{32,-20}},
+              lineColor={255,195,38},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,4},{20,4},{8,12}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,-5},{20,-5},{8,3}},
+              color={255,195,38},
+              smooth=Smooth.None,
+              origin={0,-11},
+              rotation=180)}));
+
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -432,6 +442,7 @@ package Chemistry "Chemical reactions and related models"
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-20},{40,
               20}}), graphics));
+
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -533,6 +544,7 @@ package Chemistry "Chemical reactions and related models"
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-40},{40,
               20}}), graphics));
+
   end ORR;
 
 public
@@ -582,25 +594,30 @@ public
 
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-40,40},{40,-40}},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Rectangle(
-              extent={{42,40},{20,-40}},
-              pattern=LinePattern.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{0,40},{40,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Line(
-              points={{-40,40},{40,40}},
-              color={0,0,0},
-              smooth=Smooth.None),Line(
-              points={{-40,-40},{40,-40}},
-              color={0,0,0},
-              smooth=Smooth.None)}),
+              100}}), graphics={
+          Rectangle(
+            extent={{-40,40},{40,-40}},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Rectangle(
+            extent={{42,40},{20,-40}},
+            pattern=LinePattern.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{0,40},{40,-40}},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Line(
+            points={{-40,40},{40,40}},
+            color={0,0,0},
+            smooth=Smooth.None),
+          Line(
+            points={{-40,-40},{40,-40}},
+            color={0,0,0},
+            smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
   end Capillary;
