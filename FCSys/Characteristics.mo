@@ -49,6 +49,7 @@ package Characteristics "Data and functions to correlate physical properties"
         annotation (Placement(transformation(extent={{30,-70},{50,-50}})));
 
       // Conditions
+
     protected
       Connectors.RealOutputInternal T(unit="L2.M/(N.T2)",displayUnit="K")
         "Temperature" annotation (Placement(transformation(extent={{-10,10},{10,
@@ -267,8 +268,7 @@ package Characteristics "Data and functions to correlate physical properties"
         experiment(StopTime=10),
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
-            "Characteristics.Examples.SaturationPressure.mos"),
-        __Dymola_experimentSetupOutput);
+            "Characteristics.Examples.SaturationPressure.mos"));
     end SaturationPressure;
 
     model HydrationLevel
@@ -347,15 +347,13 @@ package Characteristics "Data and functions to correlate physical properties"
 
       inner Conditions.Environment environment
         annotation (Placement(transformation(extent={{-10,0},{10,20}})));
+
     equation
       T = temperatureSet.y;
 
-      annotation (
-        experiment(StopTime=10),
-        Commands(file=
+      annotation (experiment(StopTime=10), Commands(file=
               "Resources/Scripts/Dymola/Characteristics.Examples.CellPotential.mos"
-            "Characteristics.Examples.CellPotential.mos"),
-        __Dymola_experimentSetupOutput);
+            "Characteristics.Examples.CellPotential.mos"));
     end CellPotential;
 
     model Leverett
@@ -424,8 +422,7 @@ package Characteristics "Data and functions to correlate physical properties"
         experiment(StopTime=10),
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos"
-            "Characteristics.Examples.LatentHeat.mos"),
-        __Dymola_experimentSetupOutput);
+            "Characteristics.Examples.LatentHeat.mos"));
     end LatentHeat;
 
     model MobilityFactors "Test the mobility factors"
@@ -475,8 +472,7 @@ package Characteristics "Data and functions to correlate physical properties"
               "<html><p>See also <a href=\"modelica://FCSys.Subregions.Examples.PhaseChange.Condensation\">Subregions.Examples.PhaseChange.Condensation</a>.</p></html>"),
 
         experiment(StopTime=10),
-        Commands,
-        __Dymola_experimentSetupOutput);
+        Commands);
     end SurfaceTension;
 
   end Examples;
@@ -1892,6 +1888,7 @@ temperature difference.</p>
           annotation (Dialog(__Dymola_label="<html>d<i>v</i></html>"));
         output Q.Pressure dp "Derivative of pressure"
           annotation (Dialog(__Dymola_label="<html>d<i>p</i></html>"));
+
       algorithm
         dp := if isCompressible then Polynomial.f(
                 v,
@@ -1926,6 +1923,7 @@ temperature difference.</p>
           annotation (Dialog(__Dymola_label="<html>d<i>p</i></html>"));
         output Q.VolumeSpecific dv "Derivative of specific volume"
           annotation (Dialog(__Dymola_label="<html>d<i>v</i></html>"));
+
       algorithm
         dv := Polynomial.f(
                 p,
@@ -1953,6 +1951,7 @@ temperature difference.</p>
           annotation (Dialog(__Dymola_label="<html><i>v</i></html>"));
         output Q.PressureAbsolute p "Pressure"
           annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
+
       algorithm
         // assert(isCompressible,
         //  "The pressure is undefined since the material is incompressible.",
@@ -1986,6 +1985,7 @@ temperature difference.</p>
         input Q.PressureAbsolute p=p0 "Pressure"
           annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
         output Q.VolumeSpecificAbsolute v "Specific volume";
+
       algorithm
         v := Polynomial.f(
                 p,
@@ -2151,11 +2151,9 @@ temperature difference.</p>
         replaceable function pDstar =
             MobilityFactors.BaseClasses.pDstar_nonpolar
           "Reduced pressure-diffusivity product";
-        replaceable package A =
-            FCSys.Characteristics.BaseClasses.Characteristic
+        replaceable package A = Characteristics.BaseClasses.Characteristic
           "<html>Characteristic data of the 2<sup>nd</sup> species</html>";
-        replaceable package B =
-            FCSys.Characteristics.BaseClasses.Characteristic
+        replaceable package B = Characteristics.BaseClasses.Characteristic
           "<html>Characteristic data of the 2<sup>nd</sup> species</html>";
 
         input Q.TemperatureAbsolute T_crit
@@ -2176,7 +2174,7 @@ temperature difference.</p>
         annotation (Inline=true,Documentation(info="<html><p><i>v</i><sub>A</sub> and <i>v</i><sub>B</sub> are given as inputs even though they can be calculated
  from <i>T</i>, <i>p</i><sub>A</sub>, and <i>p</i><sub>B</sub> because it may be desirable to leave <i>v</i><sub>A</sub> and <i>v</i><sub>B</sub> constant while
   varying <i>p</i><sub>A</sub> and <i>p</i><sub>B</sub>.</p>
-  
+
   <p>This function is based on eq. 5 from [<a href=\"modelica://FCSys.UsersGuide.References.Slattery1958\">Slattery1958</a>].</p></html>"));
       end k;
 
@@ -2225,7 +2223,7 @@ temperature difference.</p>
   <a href=\"modelica://FCSys.UsersGuide.References.McBride2002\">McBride2002</a>].</p>
 
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

@@ -221,16 +221,16 @@ package Quantities "Types to represent physical values"
   type ResistivityThermal = Resistivity (displayUnit="m.K/W")
     "Thermal resistivity";
   type Conductance = Current (displayUnit="W/K") "Conductance";
-  annotation (Documentation(info="<html><p>In <a href=\"modelica://FCSys.FCSys\">FCSys</a>, the 
+  annotation (Documentation(info="<html><p>In <a href=\"modelica://FCSys.FCSys\">FCSys</a>, the
 <code>unit</code> attribute of each <code>Real</code> variable actually denotes the
   dimension.<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>  The fundamental dimensions are
   angle (A), length (L), mass (M), particle number (N), and time (T).  These
   are combined according to the rules established for unit strings
-  [<a href=\"modelica://FCSys.UsersGuide.References.Modelica2010\">Modelica2010</a>, p.&nbsp;210].  
+  [<a href=\"modelica://FCSys.UsersGuide.References.Modelica2010\">Modelica2010</a>, p.&nbsp;210].
 Temperature and charge are derived dimensions
   (see the <a href=\"modelica://FCSys.Units\">Units</a> package).</p>
 
-  <p>The <code>quantity</code> attribute is not used since the type <i>is</i> the quantity.  
+  <p>The <code>quantity</code> attribute is not used since the type <i>is</i> the quantity.
 The <code>displayUnit</code> attribute is
   only used for quantities that imply a certain display unit.</p>
 
@@ -244,22 +244,22 @@ The <code>displayUnit</code> attribute is
   the rest of <a href=\"modelica://FCSys.FCSys\">FCSys</a>.</p>
 The quantities are generally named with adjectives following the noun so that the
   quantities are grouped when alphabetized.
-Some quantities are aliases to other quantities but with special implied display units.  
-For example, <a href=\"modelica://FCSys.Quantities.Temperature\">Temperature</a> is an alias for 
-<a href=\"modelica://FCSys.Quantities.Potential\">Potential</a> with a default 
-display unit of K.\footnote{Temperature is a potential in the chosen system of units; 
-see the next section (\ref{sec:Units}).}  Also, some quantities have minimum values 
+Some quantities are aliases to other quantities but with special implied display units.
+For example, <a href=\"modelica://FCSys.Quantities.Temperature\">Temperature</a> is an alias for
+<a href=\"modelica://FCSys.Quantities.Potential\">Potential</a> with a default
+display unit of K.\footnote{Temperature is a potential in the chosen system of units;
+see the next section (\ref{sec:Units}).}  Also, some quantities have minimum values
 (e.g., zero for <a href=\"modelica://FCSys.Quantities.PressureAbsolute\">PressureAbsolute</a>).
-For more information, please see the 
+For more information, please see the
   documentation of the <a href=\"modelica://FCSys.Units\">Units</a> package.
 
     <hr>
-    
+
     <p id=\"fn1\"><small>1. This misnomer is necessary because <code>Real</code> variables do not have a <code>dimension</code>
-    attribute.<a href=\"#ref1\" title=\"Jump back to footnote 1 in the text.\">&#8629;</a></small></p>    
+    attribute.<a href=\"#ref1\" title=\"Jump back to footnote 1 in the text.\">&#8629;</a></small></p>
 
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

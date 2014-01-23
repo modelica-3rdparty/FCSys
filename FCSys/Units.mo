@@ -1627,7 +1627,7 @@ encompass other systems of units.</p>
   <p>The information below has been updated and adapted from
   [<a href=\"modelica://FCSys.UsersGuide.References\">Davies and Paredis, 2012</a>].  That paper
   also offers suggestions as to how the approach might be better integrated in
-  <a href=\"http://www.modelica.org\">Modelica</a>.  For more information, please also see the 
+  <a href=\"http://www.modelica.org\">Modelica</a>.  For more information, please also see the
   documentation of the <a href=\"modelica://FCSys.Quantities\">Quantities</a> package.</p>
 
 <p><b>Introduction and Overview:</b></p>
@@ -1643,11 +1643,11 @@ As stated by the Bureau International des Poids et Mesures (BIPM)
 <p>In general, a unit may be the product of powers of other units, whether they are base units or
 units derived from the base units in the same manner.</p>
 
-<p>In <a href=\"http://www.modelica.org\">Modelica</a>, a physical quantity is represented by a variable which is 
+<p>In <a href=\"http://www.modelica.org\">Modelica</a>, a physical quantity is represented by a variable which is
 an instance of the <code>Real</code>
 type.  Its <code>value</code> attribute is a number associated with the value of the
-quantity (not the value of the quantity itself, as will be shown).  Usually the  
-<code>value</code> attribute is not referenced explicitly because it is 
+quantity (not the value of the quantity itself, as will be shown).  Usually the
+<code>value</code> attribute is not referenced explicitly because it is
 automatically returned when a variable is referenced.
 The <code>unit</code> attribute is a
 string that describes the unit by which the value of the quantity has been divided to arrive at the
@@ -1660,7 +1660,7 @@ well, including the <code>quantity</code> string.</p>
 extend from the <code>Real</code> type.  The type definitions modify the
 <code>unit</code>, <code>displayUnit</code>, and <code>quantity</code> attributes (among others)
 to represent various physical quantities.  The <code>unit</code> and <code>displayUnit</code>
-attributes are based on the International System of Units (Syst&egrave;me international d'unit&eacute;s, SI).   The <code>quantity</code> string is 
+attributes are based on the International System of Units (Syst&egrave;me international d'unit&eacute;s, SI).   The <code>quantity</code> string is
 the name of the physical quantity.  For example, the <a href=\"modelica://Modelica.SIunits.Velocity\">Velocity</a> type has
 a <code>unit</code> of \"m/s\" and a <code>quantity</code> of
 \"Velocity\".  If an instance of <a href=\"modelica://Modelica.SIunits.Velocity\">Velocity</a> has
@@ -1792,7 +1792,7 @@ first section of this package establishes mathematical constants.  The next
  unabbreviated form in order to avoid naming conflicts.  All of the primary units of SI
  are included (Tables 1 and 3 of
  [<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>]) except for &deg;C, since
- it involves an offset.  Other units such as the atmosphere (atm) are included for convenience. 
+ it involves an offset.  Other units such as the atmosphere (atm) are included for convenience.
  Some units that include prefixes are defined as well (e.g., kg, mm, and kPa).  However,
  most prefixes must be given as explicit factors (e.g., <code>U.kilo*U.m</code>).</p>
 
@@ -1825,9 +1825,9 @@ maintain the quantities, default units, and the setup function.</p>
 
 <p>The values of the units, constants, and prefixes can be evaluated by translating the
 <a href=\"modelica://FCSys.Units.Examples.Evaluate\">Units.Examples.Evaluate</a> model.  This
-defines the values in the workspace of the Modelica development environment.  
+defines the values in the workspace of the Modelica development environment.
 For convenience, the <a href=\"modelica://FCSys/../load.mos\">load.mos</a> script automatically
-does this and saves the result as \"units.mos\" in the working directory.</p>  
+does this and saves the result as \"units.mos\" in the working directory.</p>
 
 <p>Where the <code>der</code> operator is used in models, it is explicitly divided by the unit second
 (e.g., <code>der(x)/U.s</code>).  This is necessary because the global variable <code>time</code>
@@ -1840,7 +1840,7 @@ is in seconds (i.e., <code>time</code> is a number, not a quantity).</p>
   plotting and analysis.</p>
 
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

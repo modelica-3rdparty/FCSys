@@ -3,7 +3,7 @@ package FCSys "Modelica fuel cell library"
 
 // Maximum line width before a new word is wrapped in the code listing in
 // the LaTeX document (76 characters, including leading spaces and // )
-// -------------------------------------------------------------------------    
+// -------------------------------------------------------------------------
 
 
 extends Modelica.Icons.Package;
@@ -52,48 +52,48 @@ annotation (
 
     <ul>
     <li><b>Dynamic</b></li>
-    
-    <li><b>Multi-domain</b>: 
+
+    <li><b>Multi-domain</b>:
     Chemical, electrical, fluid, and thermal phenomena are included.</li>
-    
-    <li><b>Multi-phase</b>: 
-    Water is included and transported independently as vapor, liquid, and absorbed in the ionomer.  
+
+    <li><b>Multi-phase</b>:
+    Water is included and transported independently as vapor, liquid, and absorbed in the ionomer.
     Phase change is represented as a dynamic process.</li>
 
     <li><b>Multi-dimensional</b></li>
-    
-    <li><b>Highly reconfigurable</b>: 
-    There are options to adjust the assumptions, dimensionality (1D, 2D, or 3D), and spatial discretization 
-    (i.e., resolution).  Species may be independently enabled at instantiation, unlike 
-    the <a href=\"modelica://Modelica.Media\">Modelica media library</a>.  The framework is generic and can be extended 
+
+    <li><b>Highly reconfigurable</b>:
+    There are options to adjust the assumptions, dimensionality (1D, 2D, or 3D), and spatial discretization
+    (i.e., resolution).  Species may be independently enabled at instantiation, unlike
+    the <a href=\"modelica://Modelica.Media\">Modelica media library</a>.  The framework is generic and can be extended
     to other fluidic or electrochemical devices like batteries.</li>
 
-    <li><b>Highly modular</b>: 
-    Each layer of the cell is a separate model which is hierarchically constructed from graphical models of 
-    subregions, phases, and species.  At each level, EOO (i.e., effort/flow) connectors are used to combine 
+    <li><b>Highly modular</b>:
+    Each layer of the cell is a separate model which is hierarchically constructed from graphical models of
+    subregions, phases, and species.  At each level, EOO (i.e., effort/flow) connectors are used to combine
     the various components.</li>
-                        
+
     <li><b>Fully declarative</b>:
-    There are no causal connectors besides those used to apply boundary conditions.  Functions are only 
+    There are no causal connectors besides those used to apply boundary conditions.  Functions are only
     used to simplify subexpressions of equations.</li>
-    
-    <li><b>Physics-based</b>: 
+
+    <li><b>Physics-based</b>:
     The equations are based on first principles, with explicit conservation of material, momentum, and energy
-    in every control volume and across every interface.  A unique and physically appropriate method of 
+    in every control volume and across every interface.  A unique and physically appropriate method of
     upstream discretization is used to describe coupled advective and diffusive transfer.  All physical
     quantities are mapped to universal physical constants using a novel, flexible implementation of natural units.</li>
-    
-    <li><b>Computationally efficient</b>:  
-    There are minimal switching events and no nonlinear systems of equations after appropriate translation.  
+
+    <li><b>Computationally efficient</b>:
+    There are minimal switching events and no nonlinear systems of equations after appropriate translation.
     A typical polarization curve can be simulated in less than two seconds.</li>
 
     </ul>
-    
-    <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC, which are also the components of the 
+
+    <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC, which are also the components of the
     fuel cell model shown in <a href=\"#Fig2\">Figure 2</a>.
     Fluid enters and exits the cell through channels in the flow plates (FPs).  It spreads through
-    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs) according to the following chemical equations:</p>
-      
+    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs) according to the following electrochemical equations:</p>
+
           <table border=0 cellspacing=0 cellpadding=2 align=center style=\"margin-left: auto;
 margin-right: auto;\" class=noBorder>
       <tr>
@@ -165,7 +165,7 @@ margin-right: auto;\" class=noBorder>
 <br>Figure 3: Diagram of the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">test stand model</a>.</p>
 
     <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b>
-<br>Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+<br>Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
     <p><i>This Modelica package is <u>free</u> software and the use is completely
     at <u>your own risk</u>; it can be redistributed and/or modified under the

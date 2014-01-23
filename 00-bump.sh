@@ -13,7 +13,8 @@
 # Kevin Davies, 7/7/13
 
 # Get the version.
-lasttag=`git describe --abbrev=0 --tags`
+version=`git describe --abbrev=0 --tags`
+version=${version:1}
 read -p "Enter the new version (last was $version): " version
 
 # Get the name of the package (see assumption 1).

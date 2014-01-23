@@ -42,8 +42,6 @@ rpls = [# Remove tabs.
         # Start single-line comments with a space.
         (r'([ \n]//)([^ ])', r'\1 \2'),
         # Remove extra spacing.
-        #(r' +\n', r'\n'),
-        #(r'\n\n\n+', r'\n\n'),
         (' +<br>', '<br>'),
         ('<br><br>(<br>)+', '<br><br>'),
         # Remove empty lines above annotations.
@@ -53,13 +51,17 @@ rpls = [# Remove tabs.
         # Use shortcuts for Units and Quantities.
         (r' FCSys\.Quantities\.', ' Q.'), # Leading spaces distinguish these from hyperlinks.
         (r' FCSys\.Units\.([^*])', r' U.\1'),
+        # Use %20 for space in URLs.
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
+        (r'(<a href=\"http.*?) (.*?\">)', r'\1%20\2'),
         # Don't use factor of 1 if unnecessary.
         (r'=1*U\.', '=U.'),
         # Use relative references where possible.
         (r'  FCSys.Conditions\.', r'  Conditions.'), # Two spaces to prevent change of import statements
-        (r'  FCSys.Assemblies\.', r'  Assemblies.'),
-        #(r'  FCSys.Regions\.', r'  Regions.'),
-        #(r'  FCSys.Subregions\.', r'  Subregions.'),
         (r'  FCSys.Connectors\.', r'  Connectors.'),
         (r'  FCSys.Characteristics\.', r'  Characteristics.'),
         # Use shortcuts to enumerations.
@@ -73,16 +75,12 @@ rpls = [# Remove tabs.
         ('=FCSys.Subregions.Species.BaseClasses.InitTranslational', '=InitTranslational'),
         # Remove useless import statements.
         (r'import FCSys;\n', ''),
-        # One empty line before "end x;"
-        (r'\n*(\n *end) +(.*;)', r'\n\1 \2'),
-        # unless end if, for, loop, when, or while.
+        # No empty line before end if, for, loop, when, and while
         (r'\n(\n *end if;)', r'\1'),
         (r'\n(\n *end for;)', r'\1'),
         (r'\n(\n *end loop;)', r'\1'),
         (r'\n(\n *end when;)', r'\1'),
         (r'\n(\n *end while;)', r'\1'),
-        # No empty line before annotation
-        (r'\n+(\n *annotation)', r'\1'),
         # One empty line before algorithm, equation, initial equation,
         # protected, and public but not after.
         (r'\n*(\n *algorithm\n)\n*', r'\n\1'),

@@ -72,9 +72,9 @@ rpls = [
 """, """<body>
 <div class="sidebar">
   <div class="sidebarwrapper">
-  <a href="FCSys.html"><p class="sidebar-title">FCSys</p></a>
-  <p class="logo"><a href="FCSys.html">
-    <img src="../Resources/Documentation/icon.gif" class="logo" alt="Logo" width=150>
+  <a href="FCSys.html"><h2>FCSys</h2></a>
+  <p align=center><a href="FCSys.html">
+    <img src="../Resources/Documentation/icon.gif" alt="Logo" width=150>
   </a></p>
 
   <h3>Table of Contents</h3>
@@ -110,7 +110,7 @@ rpls = [
   </div>
 </div>
 <div class="footer">
-  &copy; Copyright 2007&ndash;2014, Kevin Davies, Hawaii Natural Energy Institute. Last updated %s.
+  Copyright &copy; 2007&ndash;2014, Kevin Davies, Hawaii Natural Energy Institute. Last updated %s.
 </div>
 """ % r'\1'),
     # Remove Dymola's tags for the Microsoft Office template.

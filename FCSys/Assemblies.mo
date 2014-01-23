@@ -136,14 +136,14 @@ package Assemblies "Combinations of regions (e.g., cells)"
  </html>"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics={Text(
-                extent={{-20,70},{20,60}},
-                lineColor={127,127,127},
-                textStyle={TextStyle.UnderLine},
-                textString="Anode"), Text(
-                extent={{-20,10},{20,0}},
-                lineColor={127,127,127},
-                textStyle={TextStyle.UnderLine},
-                textString="Cathode")}),
+                      extent={{-20,70},{20,60}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Anode"),Text(
+                      extent={{-20,10},{20,0}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Cathode")}),
           Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                   {100,100}}), graphics));
       end TestConditions;
@@ -467,8 +467,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
               "Assemblies.Cells.Examples.TestStand-states.mos"),
           experiment(StopTime=36180, __Dymola_Algorithm="Dassl"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-80},
-                  {80,60}}), graphics),
-          __Dymola_experimentSetupOutput);
+                  {80,60}}), graphics));
       end TestStand;
 
       model TestStandCycle
@@ -493,8 +492,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
             __Dymola_Algorithm="Dassl"),
           Commands(file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandCycle.mos"
-              "Assemblies.Cells.Examples.TestStandCycle.mos"),
-          __Dymola_experimentSetupOutput);
+              "Assemblies.Cells.Examples.TestStandCycle.mos"));
 
       end TestStandCycle;
 
@@ -529,8 +527,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
           Commands(file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandSimple.mos"
               "Assemblies.Cells.Examples.TestStandSimple.mos"),
-          experiment(StopTime=36180, __Dymola_Algorithm="Dassl"),
-          __Dymola_experimentSetupOutput);
+          experiment(StopTime=36180, __Dymola_Algorithm="Dassl"));
 
       end TestStandSimple;
 
@@ -571,7 +568,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         annotation (experiment(
             StopTime=36180,
             Tolerance=1e-005,
-            __Dymola_Algorithm="Dassl"), __Dymola_experimentSetupOutput);
+            __Dymola_Algorithm="Dassl"));
       end TestStandSegmented;
 
       model TestStandFixedFlow
@@ -591,7 +588,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
           startTime=60)
           "Specify the equivalent current of the cathode supplies"
           annotation (Placement(transformation(extent={{40,-60},{60,-40}})));
-        annotation (experiment(StopTime=36120),__Dymola_experimentSetupOutput);
+        annotation (experiment(StopTime=36120));
       end TestStandFixedFlow;
 
       model TestStandFixedFlowSegmented
@@ -613,7 +610,6 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         annotation (
           experiment(StopTime=36120),
-          __Dymola_experimentSetupOutput,
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-80},
                   {80,60}}), graphics));
       end TestStandFixedFlowSegmented;
@@ -814,43 +810,37 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={
-            Line(
-              points={{-40,-58},{-40,-100}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{28,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,-92},
-              rotation=90),
-            Line(
-              points={{-40,100},{-40,60}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-66,0},{-100,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{44,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,56},
-              rotation=90),
-            Line(
-              points={{100,0},{56,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5)}),
+            initialScale=0.1), graphics={Line(
+                  points={{-40,-58},{-40,-100}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{28,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,-92},
+                  rotation=90),Line(
+                  points={{-40,100},{-40,60}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-66,0},{-100,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{44,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,56},
+                  rotation=90),Line(
+                  points={{100,0},{56,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5)}),
         experiment(StopTime=120, Tolerance=1e-06));
     end Cell;
 
@@ -1046,50 +1036,44 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={
-            Line(
-              points={{-40,100},{-40,60}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{44,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,56},
-              rotation=90),
-            Line(
-              points={{100,0},{56,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{28,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,-92},
-              rotation=90),
-            Line(
-              points={{-40,-58},{-40,-100}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-66,0},{-100,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5)}));
+            initialScale=0.1), graphics={Line(
+                  points={{-40,100},{-40,60}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{44,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,56},
+                  rotation=90),Line(
+                  points={{100,0},{56,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{28,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,-92},
+                  rotation=90),Line(
+                  points={{-40,-58},{-40,-100}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-66,0},{-100,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5)}));
     end SimpleCell;
 
   end Cells;
   annotation (Documentation(info="
 <html>
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

@@ -31,14 +31,14 @@ package UsersGuide "User's Guide"
     <p>These are the suggested steps to begin using FCSys:</p>
     <ol>
         <li>Read the overview in the <a href=\"modelica://FCSys\">top-level documentation</a>.</li>
-        
+
         <li>Browse the subpackages of FCSys.  In general, the subpackages are
         ordered with high-level models at the top and basic classes at the bottom.</li>
-        
+
         <li>Call <a href=\"modelica://FCSys.Units.setup\">FCSys.Units.setup</a>() to
         establish the display units.  This is automatic if FCSys
         is loaded via the <a href=\"modelica://FCSys/../load.mos\">load.mos</a> script.</li>
-        
+
         <li>Simulate the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>
         model.
         There are scripts in <a href=\"modelica://FCSys/Resources/Scripts/Dymola/README.md\">Resources/Scripts/Dymola/</a> to
@@ -49,20 +49,20 @@ package UsersGuide "User's Guide"
         <a href=\"modelica://FCSys/Resources/Source/Python/README.md\">Resources/Source/Python/</a>
         (HTML and PDF documentation <a href=\"modelica://FCSys/Resources/Source/Python/doc/index.html\">here</a> and
         <a href=\"modelica://FCSys/Resources/Source/Python/doc/FCRes.pdf\">here</a>).</li>
-        
+
         <li>Read the documentation of the classes. In particular, these may be of interest:
         <ul>
             <li><a href=\"modelica://FCSys.Units\">FCSys.Units</a> package:
             Information about the system of units, which is different
             than <a href=\"modelica://Modelica.SIunits\">Modelica.SIunits</a></li>
-            
+
             <li><a href=\"modelica://FCSys.Connectors\">FCSys.Connectors</a> package:
             Overview of the connectors</li>
-            
+
             <li><a href=\"modelica://FCSys.Species.Species\">FCSys.Species.Species</a> model:
             Details about the storage and transfer of material, momentum, and
             energy</li>
-            
+
             <li><a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">FCSys.Regions.AnFPs.AnFP</a> model:
             Information about the geometric orientation of the cell</li>
         </ul>
@@ -72,7 +72,7 @@ package UsersGuide "User's Guide"
         contain it.  Assumptions are only listed at the lowest level of inheritance at which they apply.  Therefore, the
         list of assumptions in a model should be considered in conjunction with the assumptions in all
         the models it inherits from.</li>
-        
+
         <li>Create and simulate examples of other applications and scenarios.  Many of the
         submodels (regions, subregions, species) are replaceable.
         Their parameters are often not propagated to the cell level, but may
@@ -80,13 +80,13 @@ package UsersGuide "User's Guide"
         many models have auxiliary output variables for analysis and diagnostics.
         These may be included by setting <code>analysis=true</code> in the outer environment model (instance
         of <a href=\"modelica://FCSys.Conditions.Environment\">Environment</a>).</li>
-        
+
         <li>Develop your own classes.  It should be possible to model other fluidic or electrochemical
         devices (solid oxide fuel cells, lithium ion batteries, flow batteries/regenerative fuel cells, etc.) by
         extending the existing classes and
         following the existing framework.  It will be necessary to add species models
         (Li<sup>+</sup>, O<sup>2-</sup>, etc.).</li>
-        
+
         <li>Please share your additions or modifications to the source code so that the library
         can be improved and others may benefit.  The best way is to create a fork from the
         development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
@@ -100,48 +100,47 @@ package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
 
     annotation (preferredView="info", Documentation(info="<html>
-  
+
   <p>The figures below show the results from several cell-level examples of
     <a href=\"modelica://FCSys\">FCSys</a>.   The models were simulated using Dymola 2014.  The plots were
     generated using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a>.  For more information, please
     follow the links to the associated models.  For discussion and more results, please see
-    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2014</a>].  
-    </p>
+    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2014</a>].</p>
 
     <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png\"></a>
-    <br>Figure&nbsp;1: Polarization curves of the cell with various inlet and flow plate temperatures
+<br>Figure&nbsp;1: Polarization curves of the cell with various inlet and flow plate temperatures
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
-    
+
     <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.png\"></a>
-    <br>Figure&nbsp;2: Polarization curves of the cell with various outlet pressures
+<br>Figure&nbsp;2: Polarization curves of the cell with various outlet pressures
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
-    
+
     <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Losses.png\"></a>
-    <br>Figure&nbsp;3: Potential losses during the baseline polarization test
+<br>Figure&nbsp;3: Potential losses during the baseline polarization test
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Temperature.png\"></a>
-    <br>Figure&nbsp;4: Temperature throughout the cell during the baseline polarization test
+<br>Figure&nbsp;4: Temperature throughout the cell during the baseline polarization test
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
-    
+
     <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PressureO2.png\"></a>
-    <br>Figure&nbsp;5: Oxygen pressure during the baseline polarization test
+<br>Figure&nbsp;5: Oxygen pressure during the baseline polarization test
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig6\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Energy.png\"></a>
-    <br>Figure&nbsp;6: Energy balance of a 50&nbsp;cm<sup>2</sup> cell at 1.5&nbsp;A/cm<sup>2</sup> during the baseline polarization test
+<br>Figure&nbsp;6: Energy balance of a 50&nbsp;cm<sup>2</sup> cell at 1.5&nbsp;A/cm<sup>2</sup> during the baseline polarization test
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig7\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.png\"></a>
-    <br>Figure&nbsp;7: Polarization of cell segments with fixed reactant flow rates
+<br>Figure&nbsp;7: Polarization of cell segments with fixed reactant flow rates
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\">FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented</a>).</p>
 
     <p align=center id=\"Fig8\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.png\"></a>
-    <br>Figure&nbsp;8: Polarization under sinusoidal, reversing load
+<br>Figure&nbsp;8: Polarization under sinusoidal, reversing load
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
 
     <p align=center id=\"Fig9\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.png\"></a>
-    <br>Figure&nbsp;9: Liquid pore saturation under sinusoidal, reversing load
+<br>Figure&nbsp;9: Liquid pore saturation under sinusoidal, reversing load
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
 
     </html>"));
@@ -174,7 +173,7 @@ package UsersGuide "User's Guide"
         preferredView="info",
         DocumentationClass=false,
         Documentation(info="<html><p>Synonyms: concentration, molar concentration, number density</p>
-    
+
     <p>Note that mass per volume is volumic mass (see <a href=\"modelica://FCSys.UsersGuide.Glossary.'massic'\">massic</a>).</p></html>"));
     end 'density';
 
@@ -279,16 +278,15 @@ package UsersGuide "User's Guide"
     end 'volumic';
 
     annotation (preferredView="info",Documentation(info="<html><p>Some of the terms below are
-  unique to FCSys (e.g., 
+  unique to FCSys (e.g.,
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'thermal independity'\">thermal independity</a> and
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'translational Nusselt number'\">translational Nusselt number</a>) or are have 
-  nontraditional definitions (e.g., 
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'configuration'\">configuration</a>, 
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'continuity'\">continuity</a>, 
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'density'\">density</a>, 
+  <a href=\"modelica://FCSys.UsersGuide.Glossary.'translational Nusselt number'\">translational Nusselt number</a>) or are have
+  nontraditional definitions (e.g.,
+  <a href=\"modelica://FCSys.UsersGuide.Glossary.'configuration'\">configuration</a>,
+  <a href=\"modelica://FCSys.UsersGuide.Glossary.'continuity'\">continuity</a>,
+  <a href=\"modelica://FCSys.UsersGuide.Glossary.'density'\">density</a>,
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'material'\">material</a>, and
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'specific'\">specific</a>).
-  </p></html>"));
+  <a href=\"modelica://FCSys.UsersGuide.Glossary.'specific'\">specific</a>).</p></html>"));
 
   end Glossary;
 
@@ -339,19 +337,19 @@ package UsersGuide "User's Guide"
     end Brown2011;
 
     class DuPont2004N
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110</a>,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004N;
 
     class DuPont2004NRE
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NRE-211 and NRE-212</a>,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes NRE-211 and NRE-212,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004NRE;
 
     class DuPont2005
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NE-1135, N-115, N-117, NE-1110</a>,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes NE-1135, N-115, N-117, NE-1110,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2005;
@@ -451,7 +449,7 @@ package UsersGuide "User's Guide"
     end McBride2002;
 
     class Modelica2010
-      "<html>Modelica Association, <i><a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\">Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</i></a>, Ver. 3.2, Mar. 2010</html>"
+      "<html>Modelica Association, <i><a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\">Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</a></i>, Ver. 3.2, Mar. 2010</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Modelica2010;
@@ -583,7 +581,7 @@ package UsersGuide "User's Guide"
     end Toray2010;
 
     class Wang2001
-      "<html>Z. H. Wang, C.-Y. Wang, and K. S. Chen, \"Two-phase Flow and Transport in the Air Cathode of Proton Exchange Membrane Fuel Cells</a>,\" <i>J. Power Sources</i>, vol. 94, pp. 40&ndash;50, 2001</html>"
+      "<html>Z. H. Wang, C.-Y. Wang, and K. S. Chen, \"Two-phase Flow and Transport in the Air Cathode of Proton Exchange Membrane Fuel Cells,\" <i>J. Power Sources</i>, vol. 94, pp. 40&ndash;50, 2001</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Wang2001;
@@ -603,13 +601,13 @@ package UsersGuide "User's Guide"
     annotation (preferredView="info", Documentation(info="<html>
     <p>This library (<a href=\"modelica://FCSys\">FCSys</a>) is described in</p>
     <ol>
-    <li>K. L. Davies, <i><a href=\"http://kdavies4.github.io/Dissertation/Davies - Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to FCs.pdf\">Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</a></i>, Ph.D. dissertation, Georgia Institute of Technology, Jan. 2014.</li>
+    <li>K. L. Davies, <i><a href=\"http://kdavies4.github.io/PhD/Davies%20-%20Declarative%20Modeling%20of%20Coupled%20Advection%20&%20Diffusion%20as%20Applied%20to%20FCs.pdf\">Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</a></i>, Ph.D. dissertation, Georgia Institute of Technology, 2014.</li>
     </ol>
 
     <p>These papers describe work leading up to it (most recent first):</p>
     <ol>
     <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=010\">Library for First-Principle Models of Proton Exchange Membrane Fuel Cells in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012.</li>
-    <li>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural Unit Representation in Modelica (poster).pdf\">poster</a>).</li>
+    <li>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural%20Unit%20Representation%20in%20Modelica%20(poster).pdf\">poster</a>).</li>
     <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0106/0106.pdf\">Modeling Reaction and Diffusion Processes of Fuel Cells within Modelica</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
     <li>K. L. Davies, R. M. Moore, and G. Bender, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0107/0107.pdf\">Model Library of Polymer Electrolyte Membrane Fuel Cells for System Hardware and Control Design</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
     <li>K. L. Davies and R. M. Moore, \"<a href=\"http://link.aip.org/link/abstract/ECSTF8/v11/i1/p797/s1\">Object-Oriented Fuel Cell Model Library</a>,\" <i>Electrochem. Soc. T.</i>, vol. 11, no. 1, pp. 797&ndash;808, 2007.</li>
@@ -640,29 +638,29 @@ package UsersGuide "User's Guide"
     <dd>email: <a href=\"mailto:kdavies4@gmail.com\">kdavies4@gmail.com</a></dd></dl>
 
     <p><b>Acknowledgments:</b></p><ul>
-    
-    <li>Technical discussions and insight from 
-    Mike Angelo, 
-    Guido Bender, 
-    Chris Ford, 
-    Tom Fuller, 
-    Comas Haynes, 
-    Sebastian Herzig, 
-    Sheldon Jeter, 
-    Ben Lee, 
-    Robert Moore, 
-    George Nelson, 
+
+    <li>Technical discussions and insight from
+    Mike Angelo,
+    Guido Bender,
+    Chris Ford,
+    Tom Fuller,
+    Comas Haynes,
+    Sebastian Herzig,
+    Sheldon Jeter,
+    Ben Lee,
+    Robert Moore,
+    George Nelson,
     Chris Paredis,
-    Mike Tiller, 
-    Hubertus Tummescheit, and 
+    Mike Tiller,
+    Hubertus Tummescheit, and
     Mebs Virji</li>
-    
+
     <li>Source-code contributions and bug fixes from Kevin Bandy, Martin Sj&ouml;lund, and Joerg Weiss-Ungeth&uuml;m</li>
 
     <li>Review and feedback from
     Mohammad Ali, Severine Busquet, Francois Steinmetz, and Dietmar Winkler
     </li>
-    
+
     <li>Financial support from:
     <ul>
     <li>Presidential Fellowship from the <a href=\"http://www.me.gatech.edu\">George W. Woodruff
@@ -703,8 +701,8 @@ with the additional condition:</p><ul>
       exchanged orally or when technology is made available by practice or
       application under the guidance of persons with knowledge of the
       technology.</li></ul>
-      
-<p><b>Copyright 2007&ndash;2014, Hawaii Natural Energy Institute and Georgia Tech Research Corporation</b></p>
+
+<p><b>Copyright &copy; 2007&ndash;2014, Hawaii Natural Energy Institute and Georgia Tech Research Corporation</b></p>
 
 <hr>
 

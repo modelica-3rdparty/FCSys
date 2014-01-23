@@ -192,6 +192,7 @@ package WorkInProgress "Incomplete classes under development"
       p=U.from_kPag(48.3),
       RH=0.7) "Environmental conditions"
       annotation (Placement(transformation(extent={{-10,70},{10,90}})));
+
   equation
     connect(anCL.xPositive, PEM.xNegative) annotation (Line(
         points={{-10,40},{-10,40}},

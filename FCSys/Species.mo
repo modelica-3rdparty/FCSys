@@ -174,11 +174,11 @@ package Species "Dynamic models of chemical species"
           <li>The fluidity is infinite.  All friction is by translational exchange with the
           the substrate
           (<a href=\"modelica://FCSys.Species.'C+'.Graphite\">C+</a>).</li>
-          
+
           <li>The thermal resistivity is infinite.  All of the thermal conductance is attributed to
           the substrate
           (<a href=\"modelica://FCSys.Species.'C+'.Graphite\">C+</a>).</li>
-          
+
           <li>The conductivity is mapped to the mobility of the electrons by assuming that
           the mobility of the substrate (<a href=\"modelica://FCSys.Species.'C+'.Graphite\">C+</a>) is zero.</li>
     </ol>
@@ -247,7 +247,7 @@ then internal inductance is included according to the relative permeability (&mu
     </ol>
 
 <p>The default electrical conductivity (&sigma; = <code>8.3*U.S/U.m</code>)
-  is for DuPont<sup>TM</sup> Nafion&reg; N-112 [<a href=\"modelica://FCSys.Regions.PEMs.DuPontN112\">DuPontN112</a>].  
+  is for DuPont<sup>TM</sup> Nafion&reg; N-112 [<a href=\"modelica://FCSys.Regions.PEMs.DuPontN112\">DuPontN112</a>].
   This is for the interaction between H<sup>+</sup> and the solid; it does not include the additional voltage loss
   due to electro-osmotic drag (with H<sub>2</sub>O).</p>
 
@@ -389,12 +389,11 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
 <tr><td>1900</td><td>17.49e3</td><td>1/307.2e-7</td><td>1/835e-3</td></tr>
 <tr><td>2000</td><td>18.25e3</td><td>1/318.2e-7</td><td>1/878e-3</td></tr>
   </table>
-  
-  <p>
-  The specific heat capacity is not fixed because it would
+
+  <p>The specific heat capacity is not fixed because it would
   affect the chemical potential and result in an incorrect cell
   potential.</p>
-  
+
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
@@ -445,7 +444,7 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
           Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>Ideal gas</li>
-        
+
                 <li>The specific exchange currents (&tau;&prime;) are zero.  The rate of phase change is governed by the
         other configurations (liquid and ionomer).</li>
     </ol>
@@ -544,14 +543,13 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
   </table>
 
 
-<p>
-  The specific heat capacity is not fixed because it would
+<p>The specific heat capacity is not fixed because it would
   affect the chemical potential and result in an incorrect cell
   potential.</p>
-  
-  <p>The relative humidities (RH and RH<sub>boundaries</sub>), which are calculated as output variables, 
+
+  <p>The relative humidities (RH and RH<sub>boundaries</sub>), which are calculated as output variables,
   do not account for surface tension.</p>
-  
+
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"));
 
       end Fixed;
@@ -602,7 +600,6 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
-
       end Fixed;
 
     end Ionomer;
@@ -715,10 +712,9 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <tr><td>640</td><td>26000</td><td>1/59e-6</td><td>1/367e-3</td></tr>
   </table>
 
-<p>
-  The specific heat capacity is not fixed because it would
+<p>The specific heat capacity is not fixed because it would
   affect the chemical potential and result in an incorrect saturation pressure.</p>
-  
+
   <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
@@ -767,7 +763,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
     <li>Ideal gas</li>
    <li>Fixed specific heat capacity (independent of temperature)</li>
- 
+
     </ol>
 
 <p>The default specific heat capacity (via <i>b<sub>c</sub></i> = <code>[1.041e3*U.J*Data.m/(U.kg*U.K)]</code>) and resistivities
@@ -859,7 +855,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
           Documentation(info="<html><p>Assumptions:</p><ol>
         <li>The generalized resistivities (&eta;, &theta;) are fixed (e.g., independent of thermodynamic state).</li>
   <li>Ideal gas</li>
-  
+
     </ol>
 
   <p>The default resistivities (&eta; = <code>1/(207.2e-7*U.Pa*U.s)</code> and &theta; = <code>U.m*U.K/(26.8e-3*U.W)</code>) are based on data of gas at 1&nbsp;atm and
@@ -895,15 +891,13 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <tr><td>1300</td><td>1.125e3</td><td>1/588.4e-7</td><td>1/87.1e-3</td></tr>
   </table>
 
-<p>
-  The specific heat capacity is not fixed because it would
+<p>The specific heat capacity is not fixed because it would
   affect the chemical potential and result in an incorrect cell
   potential.</p>
-  
+
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
-
       end Fixed;
 
     end Gas;
@@ -1231,6 +1225,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
               {{-30,80},{-50,100}})));
 
     // Geometric parameters
+
   protected
     outer Q.Area Aprime[n_trans] "Effective cross-sectional area" annotation (
         missingInnerMessage="This model should be used within a phase model.");
@@ -1761,7 +1756,6 @@ Choose any condition besides none.");
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
-
   end Solid;
 
 protected
@@ -1949,6 +1943,7 @@ protected
             extent={{-100,50},{-80,30}})));
 
     // Geometric parameters
+
   protected
     outer Q.Volume V "Volume of the phase (not of the subregion)" annotation (
         missingInnerMessage="This model should be used within a phase model.
@@ -2146,8 +2141,7 @@ Check that the volumes of the other phases are set properly.");
     subregion.  The <code>start</code> value for particle number (<i>N</i><sub>IC</sub>)
     is related to it via the material characteristics and the initial pressure and temperature.
     In order to apply other values for any of these initial conditions,
-    it may be necessary to do so before translating the model.</li>
-</p>
+    it may be necessary to do so before translating the model.</li></p>
 
     <p>In the <code>boundaries</code> connector array, the transverse translational flow (<i>m</i>&Phi;dot) is only the
     force due to diffusion.  Translational advection is calculated from the current and the velocity.
@@ -2170,16 +2164,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-            extent={{-100,100},{100,-100}},
-            lineColor={127,127,127},
-            pattern=LinePattern.Dash,
-            fillColor={225,225,225},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-100,-20},{100,20}},
-            textString="%name",
-            lineColor={0,0,0},
-            origin={-40,40},
-            rotation=45)}));
+              extent={{-100,100},{100,-100}},
+              lineColor={127,127,127},
+              pattern=LinePattern.Dash,
+              fillColor={225,225,225},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-100,-20},{100,20}},
+              textString="%name",
+              lineColor={0,0,0},
+              origin={-40,40},
+              rotation=45)}));
   end Species;
 
 public
@@ -2234,7 +2228,7 @@ public
   annotation (Documentation(info="
 <html>
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

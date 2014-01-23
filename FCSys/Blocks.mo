@@ -83,18 +83,16 @@ package Blocks "Imperative models (inputs and outputs only)"
       annotation (Documentation(info="<html>
 <p>Please see the documentation of the
   <a href=\"modelica://FCSys.Blocks.UnitConversions\">UnitConversions</a> package.</p></html>"),
-          Icon(graphics={
-            Rectangle(
-              extent={{-100,40},{100,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              lineColor={0,0,0}),
-            Line(points={{-70,0},{10,0}}, color={191,0,0}),
-            Polygon(
-              points={{70,0},{10,20},{10,-20},{70,0}},
-              lineColor={191,0,0},
-              fillColor={191,0,0},
-              fillPattern=FillPattern.Solid)}));
+          Icon(graphics={Rectangle(
+                  extent={{-100,40},{100,-40}},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid,
+                  lineColor={0,0,0}),Line(points={{-70,0},{10,0}}, color={191,0,
+              0}),Polygon(
+                  points={{70,0},{10,20},{10,-20},{70,0}},
+                  lineColor={191,0,0},
+                  fillColor={191,0,0},
+                  fillPattern=FillPattern.Solid)}));
 
     end Partial;
     annotation (Documentation(info="<html>
@@ -122,7 +120,7 @@ To convert to current in amperes use:<br>
   annotation (Documentation(info="
 <html>
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the

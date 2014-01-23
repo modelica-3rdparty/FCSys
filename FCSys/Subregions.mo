@@ -29,8 +29,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           experiment(StopTime=0.002),
           Commands(file=
                 "Resources/Scripts/Dymola/Subregions.Examples.PhaseChange.Evaporation.mos"
-              "Subregions.Examples.PhaseChange.Evaporation.mos"),
-          __Dymola_experimentSetupOutput);
+              "Subregions.Examples.PhaseChange.Evaporation.mos"));
 
       end Evaporation;
 
@@ -69,8 +68,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
               "Resources/Scripts/Dymola/Subregions.Examples.PhaseChange.Hydration.mos"
               "Subregions.Examples.PhaseChange.Hydration.mos"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                  {100,100}}), graphics),
-          __Dymola_experimentSetupOutput);
+                  {100,100}}), graphics));
 
       end Hydration;
 
@@ -133,6 +131,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           duration=20,
           startTime=5)
           annotation (Placement(transformation(extent={{-10,-60},{10,-40}})));
+
       equation
         connect(subregion.xPositive, caBC.boundary) annotation (Line(
             points={{10,0},{20,6.66134e-016}},
@@ -214,6 +213,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           startTime=5)
           annotation (Placement(transformation(extent={{-10,-60},{10,-40}})));
         // offset=-U.mA,
+
       equation
         connect(subregion.xPositive, caBC.boundary) annotation (Line(
             points={{10,0},{10,8.88178e-016},{20,8.88178e-016}},
@@ -355,7 +355,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end AirColumn;
 
     model BinaryDiffusion
@@ -430,12 +429,9 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
       extends Subregions(subregion1(gas(H2(zeta=k*Characteristics.H2.Gas.zeta()))),
           subregion2(gas(H2(zeta=k*FCSys.Characteristics.H2.Gas.zeta()))));
-      annotation (
-        experiment(StopTime=5e-005),
-        Commands(file(ensureTranslated=true) =
-            "Resources/Scripts/Dymola/Subregions.Examples.Echo.mos"
-            "Subregions.Examples.Echo.mos"),
-        __Dymola_experimentSetupOutput);
+      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated=
+                true) = "Resources/Scripts/Dymola/Subregions.Examples.Echo.mos"
+            "Subregions.Examples.Echo.mos"));
 
     end Echo;
 
@@ -457,12 +453,10 @@ package Subregions "Control volumes with multi-species transfer and storage"
             H2O(upstreamX=false),
             N2(upstreamX=false),
             O2(upstreamX=false))));
-      annotation (
-        experiment(StopTime=5e-005),
-        Commands(file(ensureTranslated=true) =
+      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated=
+                true) =
             "Resources/Scripts/Dymola/Subregions.Examples.EchoCentral.mos"
-            "Subregions.Examples.EchoCentral.mos"),
-        __Dymola_experimentSetupOutput);
+            "Subregions.Examples.EchoCentral.mos"));
 
     end EchoCentral;
 
@@ -553,8 +547,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
     radiation&mdash;only conduction to the sides.</p>
     </html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                {100,100}}), graphics),
-        __Dymola_experimentSetupOutput);
+                {100,100}}), graphics));
     end ElectricalConduction;
 
     model InternalFlow "Internal, laminar flow of liquid water"
@@ -693,7 +686,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end InternalFlow;
 
     model Subregion
@@ -887,15 +879,12 @@ package Subregions "Control volumes with multi-species transfer and storage"
           thickness=0.5,
           smooth=Smooth.None));
 
-      annotation (
-        experiment(
+      annotation (experiment(
           StopTime=2,
           Tolerance=1e-006,
-          __Dymola_Algorithm="Dassl"),
-        Commands(file(ensureTranslated=true) =
+          __Dymola_Algorithm="Dassl"), Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Subregions.Examples.Subregions.mos"
-            "Subregions.Examples.Subregions.mos"),
-        __Dymola_experimentSetupOutput);
+            "Subregions.Examples.Subregions.mos"));
     end Subregions;
 
     model ThermalConduction "Thermal conduction (through solid)"
@@ -907,12 +896,10 @@ package Subregions "Control volumes with multi-species transfer and storage"
         subregions(each graphite('C+'(epsilon=1))),
         subregion2(graphite('C+'(epsilon=1))));
 
-      annotation (
-        Commands(file=
+      annotation (Commands(file=
               "Resources/Scripts/Dymola/Subregions.Examples.ThermalConduction.mos"
-            "Subregions.Examples.ThermalConduction.mos"),
-        experiment(StopTime=500, __Dymola_Algorithm="Dassl"),
-        __Dymola_experimentSetupOutput);
+            "Subregions.Examples.ThermalConduction.mos"), experiment(StopTime=
+              500, __Dymola_Algorithm="Dassl"));
 
     end ThermalConduction;
 
@@ -935,12 +922,10 @@ package Subregions "Control volumes with multi-species transfer and storage"
                   displayUnit="mm/s"))), graphite('C+'(epsilon=0.5))),
         environment(psi_O2_dry=0, RH=0));
 
-      annotation (
-        Commands(file=
+      annotation (Commands(file=
               "Resources/Scripts/Dymola/Subregions.Examples.ThermalConductionConvection.mos"
-            "Subregions.Examples.ThermalConductionConvection.mos"),
-        experiment(StopTime=400, __Dymola_Algorithm="Dassl"),
-        __Dymola_experimentSetupOutput);
+            "Subregions.Examples.ThermalConductionConvection.mos"), experiment(
+            StopTime=400, __Dymola_Algorithm="Dassl"));
 
     end ThermalConductionConvection;
 
@@ -1275,11 +1260,11 @@ process, there is a difference.</li></ol>
    <a href=\"modelica://FCSys.Subregions.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-80},{
               120,60}}), graphics={Text(
-            extent={{78,-44},{118,-50}},
-            lineColor={127,127,127},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid,
-            textString="(connections not shown
+              extent={{78,-44},{118,-50}},
+              lineColor={127,127,127},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              textString="(connections not shown
 in diagram)")}));
   end Subregion;
 
@@ -1321,6 +1306,7 @@ in diagram)")}));
       final inclGas=false,
       final inclLiquid=false) "Volume with capillary pressure included"
       annotation (Dialog, Placement(transformation(extent={{0,-20},{20,0}})));
+
   equation
     // Boundaries
     // ----------
@@ -1377,7 +1363,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
               60}}), graphics));
-
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
@@ -1626,7 +1611,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
               100,60}}), graphics));
-
   end SubregionNoIonomer;
 
   partial model PartialSubregion
@@ -1696,95 +1680,79 @@ in diagram)")}));
 
   <p>This model should be extended to include the appropriate phases, reactions, etc.</p>
   </html>"),
-      Icon(graphics={
-          Line(
-            points={{-100,0},{-40,0}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransX,
-            smooth=Smooth.None),
-          Line(
-            points={{0,-40},{0,-100}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransY,
-            smooth=Smooth.None),
-          Line(
-            points={{40,40},{50,50}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransZ,
-            smooth=Smooth.None),
-          Polygon(
-            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-                16}},
-            lineColor={127,127,127},
-            smooth=Smooth.None,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(
-            points={{-40,-40},{-16,-16}},
-            color={127,127,127},
-            smooth=Smooth.None,
-            pattern=LinePattern.Dash),
-          Line(
-            points={{-16,40},{-16,-16},{40,-16}},
-            color={127,127,127},
-            smooth=Smooth.None,
-            pattern=LinePattern.Dash),
-          Line(
-            points={{-40,0},{28,0}},
-            color={210,210,210},
-            visible=inclTransX,
-            smooth=Smooth.None,
-            thickness=0.5),
-          Line(
-            points={{0,28},{0,-40}},
-            color={210,210,210},
-            visible=inclTransY,
-            smooth=Smooth.None,
-            thickness=0.5),
-          Line(
-            points={{28,0},{100,0}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransX,
-            smooth=Smooth.None),
-          Line(
-            points={{0,100},{0,28}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransY,
-            smooth=Smooth.None),
-          Line(
-            points={{-12,-12},{40,40}},
-            color={210,210,210},
-            visible=inclTransZ,
-            smooth=Smooth.None,
-            thickness=0.5),
-          Line(
-            points={{-40,16},{16,16},{16,-40}},
-            color={127,127,127},
-            smooth=Smooth.None),
-          Line(
-            points={{-50,-50},{-12,-12}},
-            color={127,127,127},
-            thickness=0.5,
-            visible=inclTransZ,
-            smooth=Smooth.None),
-          Polygon(
-            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-                16}},
-            lineColor={127,127,127},
-            smooth=Smooth.None),
-          Line(
-            points={{40,40},{16,16}},
-            color={127,127,127},
-            smooth=Smooth.None),
-          Text(
-            extent={{-100,56},{100,96}},
-            textString="%name",
-            lineColor={0,0,0})}),
+      Icon(graphics={Line(
+              points={{-100,0},{-40,0}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransX,
+              smooth=Smooth.None),Line(
+              points={{0,-40},{0,-100}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransY,
+              smooth=Smooth.None),Line(
+              points={{40,40},{50,50}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransZ,
+              smooth=Smooth.None),Polygon(
+              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+              16}},
+              lineColor={127,127,127},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Line(
+              points={{-40,-40},{-16,-16}},
+              color={127,127,127},
+              smooth=Smooth.None,
+              pattern=LinePattern.Dash),Line(
+              points={{-16,40},{-16,-16},{40,-16}},
+              color={127,127,127},
+              smooth=Smooth.None,
+              pattern=LinePattern.Dash),Line(
+              points={{-40,0},{28,0}},
+              color={210,210,210},
+              visible=inclTransX,
+              smooth=Smooth.None,
+              thickness=0.5),Line(
+              points={{0,28},{0,-40}},
+              color={210,210,210},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),Line(
+              points={{28,0},{100,0}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransX,
+              smooth=Smooth.None),Line(
+              points={{0,100},{0,28}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransY,
+              smooth=Smooth.None),Line(
+              points={{-12,-12},{40,40}},
+              color={210,210,210},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),Line(
+              points={{-40,16},{16,16},{16,-40}},
+              color={127,127,127},
+              smooth=Smooth.None),Line(
+              points={{-50,-50},{-12,-12}},
+              color={127,127,127},
+              thickness=0.5,
+              visible=inclTransZ,
+              smooth=Smooth.None),Polygon(
+              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+              16}},
+              lineColor={127,127,127},
+              smooth=Smooth.None),Line(
+              points={{40,40},{16,16}},
+              color={127,127,127},
+              smooth=Smooth.None),Text(
+              extent={{-100,56},{100,96}},
+              textString="%name",
+              lineColor={0,0,0})}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
 
@@ -1792,7 +1760,7 @@ in diagram)")}));
   annotation (Documentation(info="
 <html>
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 
 <p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
 it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the
