@@ -15,7 +15,7 @@ package Chemistry "Chemical reactions and related models"
       Chemistry.Electrochemistry.ElectronTransfer 'e-Transfer'(
         redeclare constant Integer n_trans=1,
         fromI=false,
-        I0=U.mA)
+        I0_300K=U.mA)
         annotation (Placement(transformation(extent={{-10,10},{10,-10}})));
       Conditions.ByConnector.Chemical.Potential potential(
         inclTransY=false,
@@ -270,8 +270,9 @@ package Chemistry "Chemical reactions and related models"
       parameter Q.NumberAbsolute alpha(max=1) = 0.5
         "Charge transfer coefficient" annotation (Dialog(group=
               "Chemical parameters", __Dymola_label="<html>&alpha;</html>"));
-      parameter Q.Current I0=U.A "Exchange current @ 300 K"
-        annotation (Dialog(__Dymola_label="<html><i>I</i><sup>o</sup></html>"));
+      parameter Q.Current I0_300K=U.A "Exchange current @ 300 K" annotation (
+          Dialog(__Dymola_label=
+              "<html><i>I</i><sup>o</sup><sub>300 K</sub></html>"));
       parameter Boolean fromI=true
         "<html>Invert the Butler-Volmer equation, if &alpha;=&frac12;</html>"
         annotation (Dialog(tab="Advanced", compact=true), choices(
@@ -290,6 +291,7 @@ package Chemistry "Chemical reactions and related models"
       Q.TemperatureAbsolute T(start=300*U.K) "Reaction rate";
       Q.Current I(start=0) "Reaction rate";
       Q.Potential Deltag(start=0) "Potential difference";
+      Q.Current I0 "Exchange current";
 
       Connectors.Inert inert(final n_trans=n_trans)
         "Translational and thermal interface with the substrate" annotation (
@@ -301,6 +303,7 @@ package Chemistry "Chemical reactions and related models"
       I = positive.Ndot;
       Deltag = positive.g - negative.g;
       T = inert.T;
+      I0 = I0_300K*exp(E_A*(1/(300*U.K) - 1/T)) "Based on Arrhenius equation";
 
       // Streams
       negative.phi = inStream(positive.phi);
@@ -310,10 +313,9 @@ package Chemistry "Chemical reactions and related models"
 
       // Reaction rate
       if abs(alpha - 0.5) < Modelica.Constants.eps and fromI then
-        Deltag = 2*T*asinh(0.5*exp(E_A*(1/T - 1/(300*U.K)))*I/I0);
+        Deltag = 2*T*asinh(0.5*I/I0);
       else
-        I*exp(E_A*(1/T - 1/(300*U.K))) = I0*(exp((1 - alpha)*Deltag/T) - exp(-
-          alpha*Deltag/T));
+        I = I0*(exp((1 - alpha)*Deltag/T) - exp(-alpha*Deltag/T));
       end if;
 
       // Conservation (without storage)
@@ -350,6 +352,7 @@ package Chemistry "Chemical reactions and related models"
                   smooth=Smooth.None,
                   origin={0,-11},
                   rotation=180)}));
+
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -432,6 +435,7 @@ package Chemistry "Chemical reactions and related models"
             "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-20},{40,
               20}}), graphics));
+
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -532,6 +536,7 @@ package Chemistry "Chemical reactions and related models"
             "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-40},{40,
               20}}), graphics));
+
   end ORR;
 
 public

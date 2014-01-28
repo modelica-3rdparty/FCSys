@@ -477,6 +477,7 @@ package Phases "Mixtures of species"
               120,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Gas;
 
   model Graphite "Graphite phase"
@@ -771,6 +772,7 @@ package Phases "Mixtures of species"
               60}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Graphite;
 
   model Ionomer "Ionomer phase"
@@ -1155,6 +1157,7 @@ package Phases "Mixtures of species"
               100,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Ionomer;
 
   model Liquid "Liquid phase"
@@ -1301,6 +1304,7 @@ package Phases "Mixtures of species"
               100}}), graphics),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               60}}), graphics));
+
   end Liquid;
 
 protected

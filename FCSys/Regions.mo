@@ -198,10 +198,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)),
-
         each gas(
           inclH2=true,
           inclH2O=true,
@@ -209,15 +207,12 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force),
-
           H2(
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)))
         annotation (Placement(transformation(
@@ -249,9 +244,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
           color={240,0,0},
           thickness=0.5,
           smooth=Smooth.None));
-      annotation (
-        experiment(StopTime=30),
-        Commands(file="Resources/Scripts/Dymola/Regions.Examples.AnGDL.mos"
+      annotation (experiment(StopTime=30), Commands(file=
+              "Resources/Scripts/Dymola/Regions.Examples.AnGDL.mos"
             "Regions.Examples.AnGDL.mos"));
     end AnGDL;
 
@@ -564,26 +558,20 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force),
-
           N2(
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force),
-
           O2(
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)),
-
         each graphite(
           'inclC+'=true,
           'incle-'=true,
@@ -593,7 +581,6 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)))
         annotation (Placement(transformation(
@@ -839,10 +826,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force),
-
           N2(
             redeclare function materialSpec =
                 Conditions.ByConnector.Boundary.Single.Material.pressure,
@@ -850,10 +835,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force),
-
           O2(
             redeclare function materialSpec =
                 Conditions.ByConnector.Boundary.Single.Material.pressure,
@@ -861,10 +844,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)),
-
         each graphite(
           'inclC+'=true,
           'incle-'=true,
@@ -879,7 +860,6 @@ package Regions "3D arrays of discrete, interconnected subregions"
             thermalSet(y=environment.T),
             redeclare function afterSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force,
-
             redeclare function beforeSpec =
                 Conditions.ByConnector.Boundary.Single.Translational.force)))
         annotation (Placement(transformation(
@@ -2037,8 +2017,8 @@ that reference may be outdated).
                 N0=0.1*U.C,
                 T(each stateSelect=StateSelect.default))),
             volume(inclCapillary=true,capillary(R=5*U.um))),
-        subregions(graphite('e-Transfer'(final I0=J0*subregions.A[Axis.x]))))
-        annotation (IconMap(primitivesVisible=false));
+        subregions(graphite('e-Transfer'(final I0_300K=J0_300K*subregions.A[
+                  Axis.x])))) annotation (IconMap(primitivesVisible=false));
 
       // See the documentation layer of Phases.PartialPhase regarding the
       // settings of k for each phase.
@@ -2047,9 +2027,9 @@ that reference may be outdated).
         annotation (Dialog(group="Geometry", __Dymola_label=
               "<html>&epsilon;</html>"));
 
-      parameter Q.CurrentAreic J0(min=0) = U.A/U.cm^2
-        "Exchange current density @ 300 K"
-        annotation (Dialog(__Dymola_label="<html><i>J</i><sup>o</sup></html>"));
+      parameter Q.CurrentAreic J0_300K(min=0) = U.A/U.cm^2
+        "Exchange current density @ 300 K" annotation (Dialog(__Dymola_label=
+              "<html><i>J</i><sup>o</sup><sub>300 K</sub></html>"));
 
     protected
       outer Conditions.Environment environment "Environmental conditions";
@@ -2506,8 +2486,8 @@ although in reality there is inductance.</p>
                 N0=0.1*U.C,
                 T(each stateSelect=StateSelect.default))),
             volume(inclCapillary=true,capillary(R=5*U.um))),
-        subregions(graphite('e-Transfer'(final I0=J0*subregions.A[Axis.x]))))
-        annotation (IconMap(primitivesVisible=false));
+        subregions(graphite('e-Transfer'(final I0_300K=J0_300K*subregions.A[
+                  Axis.x])))) annotation (IconMap(primitivesVisible=false));
 
       // See the documentation layer of Phases.PartialPhase regarding the
       // settings of k for each phase.
@@ -2516,14 +2496,15 @@ although in reality there is inductance.</p>
         annotation (Dialog(group="Geometry", __Dymola_label=
               "<html>&epsilon;</html>"));
 
-      parameter Q.CurrentAreic J0(min=0) = 0.023*U.mA/U.cm^2
-        "Exchange current density @ 300 K"
-        annotation (Dialog(__Dymola_label="<html><i>J</i><sup>o</sup></html>"));
+      parameter Q.CurrentAreic J0_300K(min=0) = 0.023*U.mA/U.cm^2
+        "Exchange current density @ 300 K" annotation (Dialog(__Dymola_label=
+              "<html><i>J</i><sup>o</sup><sub>300 K</sub></html>"));
 
     protected
       outer Conditions.Environment environment "Environmental conditions";
 
     initial equation
+
       annotation (Documentation(info="<html>
 <p>This model represents the cathode catalyst layer of a PEMFC. It is identical to
 the anode catalyst layer except for the included species, the exchange current density (<i>J</i><sup>o</sup>), and the activation energy ().
@@ -2618,6 +2599,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.an
                   textString="%name",
                   visible=not inclTransY,
                   lineColor={0,0,0})}));
+
     end CaCL;
 
     model CaCGDL "Integrated cathode catalyst/gas diffusion layer"

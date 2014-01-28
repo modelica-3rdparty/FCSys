@@ -149,11 +149,11 @@ margin-right: auto;\" class=noBorder>
     proton exchange membrane (PEM) prevents electronic transport; therefore, electrons must
     pass through an external load to sustain the net reaction.</p>
 
-    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/CellFlows.png\">
+    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/CellFlows.png\" alt=\"Layers and primary flows of a P E M F C\">
 <br>Figure 1: Layers and primary flows of a PEMFC.</p>
 
-    <!--<p align=center id=\"Fig2\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.CellD.png\" width=600>-->
-    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Cell\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.CellD.png\"></a>
+    <!--<p align=center id=\"Fig2\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.CellD.png\" alt=\"Diagram of the P E M F C model\" width=600>-->
+    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Cell\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.CellD.png\" alt=\"Diagram of the P E M F C model\"></a>
 <br>Figure 2: Diagram of the <a href=\"modelica://FCSys.Assemblies.Cells.Cell\">PEMFC model</a>.</p>
 
     <p>The fuel cell model can be exercised using the test stand shown in <a href=\"#Fig3\">Figure 3</a> or connected to the <a href=\"modelica://Modelica.Fluid\">Modelica fluid library</a>
@@ -161,8 +161,8 @@ margin-right: auto;\" class=noBorder>
     Please see the <a href=\"modelica://FCSys.UsersGuide.SampleResults\">sample cell results</a> for examples and the
     <a href=\"modelica://FCSys.UsersGuide.GettingStarted\">getting started page</a> for information about using the library.</p>
 
-    <!--<p align=center id=\"Fig3\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.Examples.TestStandD.png\" width=500>-->
-    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.Examples.TestStandD.png\"></a>
+    <!--<p align=center id=\"Fig3\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.Examples.TestStandD.png\" alt=\"Diagram of the test stand model\" width=500>-->
+    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/FCSys.Assemblies.Cells.Examples.TestStandD.png\" alt=\"Diagram of the test stand model\"></a>
 <br>Figure 3: Diagram of the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">test stand model</a>.</p>
 
     <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b>
@@ -351,6 +351,5 @@ margin-right: auto;\" class=noBorder>
         fillColor={0,0,0},
         pattern=LinePattern.None)}),
   version="",
-  dateModified="",
-  revisionID="");
+  versionDate="");
 end FCSys;

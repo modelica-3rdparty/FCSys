@@ -14,15 +14,16 @@ package UsersGuide "User's Guide"
       <tr bgcolor=#f7f7f7>
         <td>
         FCSys should be compatible with any
-        modeling environment that supports Modelica Standard Library 3.2.1.  The following tools have been tested:
+        modeling environment that fully supports version 3.2.1 of the Modelica Standard Library.  The following tools have been tested:
         <ul>
           <li>Dymola: Supported by version 2014.
-          Dymola's annotations for parameter dialogs and replaceable choices are used.</li>
+          Some of Dymola's nonstandard annotations are used.</li>
+          <!--<li>JModelica: Difficulty installing version 1.12 on Windows</li>-->
           <li>MapleSim: Not supported as of version 4.5</li>
           <li>MWorks: Not supported as of version 2.6.10</li>
-          <li>OpenModelica: Not supported as of version 1.8.1</li>
+          <li>OpenModelica: Not supported as of version 1.9.0</li>
           <li>SystemModeler: Not supported as of version 3.0</li>
-          <!--<li>JModelica: 9/17/12: Not able to get version 1.8 running on Windows or Linux </li>-->
+          <!--<li>SimulationX: **</li>-->
         </ul>
         </td>
       </tr>
@@ -45,7 +46,7 @@ package UsersGuide "User's Guide"
         create useful plots of that model and others.
         The scripts should be accessible from the \"Command\" menu of the Modelica development environment.
         For more detailed analysis,
-        a Python module called FCRes is available in
+        a Python module is available in
         <a href=\"modelica://FCSys/Resources/Source/Python/README.md\">Resources/Source/Python/</a>
         (HTML and PDF documentation <a href=\"modelica://FCSys/Resources/Source/Python/doc/index.html\">here</a> and
         <a href=\"modelica://FCSys/Resources/Source/Python/doc/FCRes.pdf\">here</a>).</li>
@@ -74,23 +75,22 @@ package UsersGuide "User's Guide"
         the models it inherits from.</li>
 
         <li>Create and simulate examples of other applications and scenarios.  Many of the
-        submodels (regions, subregions, species) are replaceable.
-        Their parameters are often not propagated to the cell level, but may
+        submodels (e.g., regions, subregions, species) are replaceable.
+        Their parameters are not propagated to the cell level, but may
         be edited via the parameter dialog by accessing the submodel.  Note that
         many models have auxiliary output variables for analysis and diagnostics.
         These may be included by setting <code>analysis=true</code> in the outer environment model (instance
         of <a href=\"modelica://FCSys.Conditions.Environment\">Environment</a>).</li>
 
         <li>Develop your own classes.  It should be possible to model other fluidic or electrochemical
-        devices (solid oxide fuel cells, lithium ion batteries, flow batteries/regenerative fuel cells, etc.) by
+        devices (e.g., solid oxide fuel cells, lithium ion batteries, flow batteries, and regenerative fuel cells) by
         extending the existing classes and
         following the existing framework.  It will be necessary to add species models
-        (Li<sup>+</sup>, O<sup>2-</sup>, etc.).</li>
+        (e.g., Li<sup>+</sup> and O<sup>2-</sup>).</li>
 
         <li>Please share your additions or modifications to the source code so that the library
         can be improved and others may benefit.  The best way is to create a fork from the
-        development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
-        Please also use the <a href=\"modelica://FCSys.UsersGuide.Contact\">contact information</a>.</li>
+        development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.</li>
     </ol>
     </html>"));
 
@@ -101,46 +101,59 @@ package UsersGuide "User's Guide"
 
     annotation (preferredView="info", Documentation(info="<html>
 
-  <p>The figures below show the results from several cell-level examples of
-    <a href=\"modelica://FCSys\">FCSys</a>.   The models were simulated using Dymola 2014.  The plots were
-    generated using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a>.  For more information, please
-    follow the links to the associated models.  For discussion and more results, please see
+  <p>Figures&nbsp;1 through&nbsp;9 show the results from several cell-level examples of
+    FCSys.   The models were simulated using Dymola 2014 and the plots were
+    generated in Python using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a>.  For more 
+    information, please
+    follow the links in parentheses to the associated models.  For further discussion and more results, please 
+    see
     [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2014</a>].</p>
 
     <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png\"></a>
-<br>Figure&nbsp;1: Polarization curves of the cell with various inlet and flow plate temperatures
+<br>Figure&nbsp;1: The polarization of the cell varies with boundary temperature primarily due to the temperature dependence of the exchange 
+current density
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.png\"></a>
-<br>Figure&nbsp;2: Polarization curves of the cell with various outlet pressures
+<br>Figure&nbsp;2: The polarization of the cell varies with outlet pressure primarily due to the dependence of the oxygen reduction reaction (ORR) 
+on the partial pressure of O<sub>2</sub>
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Losses.png\"></a>
-<br>Figure&nbsp;3: Potential losses during the baseline polarization test
+<br>Figure&nbsp;3: The ORR activation dominates the losses in cell potential
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Temperature.png\"></a>
-<br>Figure&nbsp;4: Temperature throughout the cell during the baseline polarization test
+<br>Figure&nbsp;4: The temperatures of the layers are distributed and rise to a maximum in the cathode catalyst layer due to the heat generation 
+there
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PressureO2.png\"></a>
-<br>Figure&nbsp;5: Oxygen pressure during the baseline polarization test
+<br>Figure&nbsp;5: The O<sub>2</sub> pressure is highest at the cathode inlet and lowest in the cathode catalyst layer.  At high current densities,
+ the O<sub>2</sub> pressure drops rapidly due to concentration losses.  It reaches zero at the limiting current density
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig6\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Energy.png\"></a>
-<br>Figure&nbsp;6: Energy balance of a 50&nbsp;cm<sup>2</sup> cell at 1.5&nbsp;A/cm<sup>2</sup> during the baseline polarization test
+<br>Figure&nbsp;6: At 1.5&nbsp;A/cm<sup>2</sup> (a rather high load) during the baseline polarization test, the 50&nbsp;cm<sup>2</sup> cell is 
+32.5% efficient.  Most of the heat is rejected to the cathode side.
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
 
     <p align=center id=\"Fig7\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.png\"></a>
-<br>Figure&nbsp;7: Polarization of cell segments with fixed reactant flow rates
+<br>Figure&nbsp;7: A model with six discretized segments along the channel shows that the downstream segments perform more poorly.  This is 
+primarily due to lower O<sub>2</sub> pressures in those segments.  Under fixed reactant supply rate and low cell potential, the current through the 
+segment nearest the outlet generates decreases as potential is decreased.  This occurs because it is nearly starved of O<sub>2</sub>; further 
+increases in net current must be supported by the upstream segments, and this pushes the O<sub>2</sub> pressure of the final segment even closer to zero
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\">FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented</a>).</p>
 
     <p align=center id=\"Fig8\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.png\"></a>
-<br>Figure&nbsp;8: Polarization under sinusoidal, reversing load
+<br>Figure&nbsp;8: Under a sinusoidal, reversing load (0.3&nbsp;Hz, offset 80&nbsp;A/cm<sup>2</sup>, amplitude
+140&nbsp;A/cm<sup>2</sup>), voltage lags current due to the cell dynamics
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
 
     <p align=center id=\"Fig9\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.png\"></a>
-<br>Figure&nbsp;9: Liquid pore saturation under sinusoidal, reversing load
+<br>Figure&nbsp;9: Under a sinusoidal, reversing load (0.3&nbsp;Hz, offset 80&nbsp;A/cm<sup>2</sup>, amplitude
+140&nbsp;A/cm<sup>2</sup>), the pores are slightly filled with liquid at peak forward current.  During
+  reverse load (electrolysis mode), H<sub>2</sub>O is consumed and the amount of liquid decreases
     (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
 
     </html>"));
@@ -295,7 +308,7 @@ package UsersGuide "User's Guide"
     extends Modelica.Icons.References;
 
     class Aronsson2009
-      "<html>P. Aronsson and D. Broman, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=043;article=105\">Extendable Physical Unit Checking with Understandable Error Reporting</a>,\"  in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009</html>"
+      "<html>P. Aronsson and D. Broman, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=043;article=105\">Extendable Physical Unit Checking with Understandable Error Reporting</a>,\"  in <i>Proc. 7th Modelica Conf.</i> (Como, Italy), Modelica Assoc., Sep. 2009</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Aronsson2009;
@@ -313,7 +326,7 @@ package UsersGuide "User's Guide"
     end Bejan2006;
 
     class Bernardi1992
-      "<html>D. M. Bernardi and M. W. Verbrugge, \"<a href=\"http://dx.doi.org/10.1149/1.2221251\">A Mathematical Model of the Solid-Polymer-Electrolyte Fuel Cell</a>,\" <i>J. Electrochem. Soc.</i>, vol. 139, no. 9, pp. 2477&ndash;2491, Sep. 1992</html>"
+      "<html>D. M. Bernardi and M. W. Verbrugge, \"<a href=\"http://dx.doi.org/10.1149/1.2221251\">A Mathematical Model of the Solid-Polymer-Electrolyte Fuel Cell</a>,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;139, no.&nbsp;9, pp.&nbsp;2477&ndash;2491, 1992</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Bernardi1992;
@@ -325,13 +338,13 @@ package UsersGuide "User's Guide"
     end BIPM2006;
 
     class Broman2008
-      "<html>D. Broman and P. Aronsson and P. Fritzson, \"<a href=\"http://dx.doi.org/10.1149/1.2221251\">Design Considerations for Dimensional Inference and Unit Consistency Checking in Modelica</a>,\"  in <i>Modelica Conference</i> (Bielefeld, Germany), Modelica Assoc., Mar. 2008</html>"
+      "<html>D. Broman and P. Aronsson and P. Fritzson, \"<a href=\"http://dx.doi.org/10.1149/1.2221251\">Design Considerations for Dimensional Inference and Unit Consistency Checking in Modelica</a>,\"  in <i>Proc. 6th Modelica Conf.</i> (Bielefeld, Germany), Modelica Assoc., Mar. 2008</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Broman2008;
 
     class Brown2011
-      "<html>W. M. Brown, P. Wang, S. J. Plimpton, and A. N. Tharrington, \"<a href=\"http://dx.doi.org/10.1016/j.cpc.2010.12.021\">Implementing Molecular Dynamics on Hybrid High Performance Computers&mdash;Short Range Forces</a>,\" <i>Comput. Phys. Commun.</i>, vol. 182, no. 4, pp. 898&ndash;911, 2011</html>"
+      "<html>W. M. Brown, P. Wang, S. J. Plimpton, and A. N. Tharrington, \"<a href=\"http://dx.doi.org/10.1016/j.cpc.2010.12.021\">Implementing Molecular Dynamics on Hybrid High Performance Computers&mdash;Short Range Forces</a>,\" <i>Comput. Phys. Commun.</i>, vol.&nbsp;182, no.&nbsp;4, pp.&nbsp;898&ndash;911, 2011</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Brown2011;
@@ -373,19 +386,19 @@ package UsersGuide "User's Guide"
     end Fritzson2004;
 
     class Greiner1995
-      "<html>W. Greiner, L. Neisem and H. St&ouml;cker, \"<a href=\"http://books.google.com/books?id=12DKsFtFTgYC\">A Mathematical Model of the Solid-Polymer-Electrolyte Fuel Cell</a>,\" <i>J. Electrochem. Soc.</i>, vol. 139, no. 9, pp. 2477&ndash;2491, Sep. 1992</html>"
+      "<html>W. Greiner, L. Neisem and H. St&ouml;cker, \"<a href=\"http://books.google.com/books?id=12DKsFtFTgYC\">A Mathematical Model of the Solid-Polymer-Electrolyte Fuel Cell</a>,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;139, no.&nbsp;9, pp.&nbsp;2477&ndash;2491, 1992</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Greiner1995;
 
     class Gurau1998
-      "<html>V. Gurau, H. Liu, and S. Kaka, \"<a href=\"http://dx.doi.org/10.1002/aic.690441109\">Two-Dimensional Model for Proton Exchange Membrane Fuel Cells</a>,\" <i>AIChE J.</i>, vol. 44, no. 11, pp. 2410&ndash;2422, Nov. 1998</html>"
+      "<html>V. Gurau, H. Liu, and S. Kaka, \"<a href=\"http://dx.doi.org/10.1002/aic.690441109\">Two-Dimensional Model for Proton Exchange Membrane Fuel Cells</a>,\" <i>AIChE J.</i>, vol.&nbsp;44, no.&nbsp;11, pp.&nbsp;2410&ndash;2422, 1998</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Gurau1998;
 
     class Hess2008
-      "<html>B. Hess, C. Kutzner, D. van der Spoel, and E. Lindahl, \"GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation,\" <i>J. Chem. Theory Comput.</i>, vol. 4, no. 3, pp. 435&ndash;447, 2008</html>"
+      "<html>B. Hess, C. Kutzner, D. van der Spoel, and E. Lindahl, \"GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation,\" <i>J. Chem. Theory Comput.</i>, vol.&nbsp;4, no.&nbsp;3, pp.&nbsp;435&ndash;447, 2008</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Hess2008;
@@ -397,7 +410,7 @@ package UsersGuide "User's Guide"
     end Incropera2002;
 
     class Kandlikar2009
-      "<html>S. G. Kandlikar and Z. Lu, \"<a href=\"http://dx.doi.org/10.1016/j.applthermaleng.2008.05.009\">Thermal Management Issues in a PEMFC Stack&mdash;A Brief Review of Current Status</a>,\" <i>Appl. Therm. Eng.</i>, vol. 29, no. 7, pp. 1276&ndash;1280, 2009</html>"
+      "<html>S. G. Kandlikar and Z. Lu, \"<a href=\"http://dx.doi.org/10.1016/j.applthermaleng.2008.05.009\">Thermal Management Issues in a PEMFC Stack&mdash;A Brief Review of Current Status</a>,\" <i>Appl. Therm. Eng.</i>, vol.&nbsp;29, no.&nbsp;7, pp.&nbsp;1276&ndash;1280, 2009</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Kandlikar2009;
@@ -409,7 +422,7 @@ package UsersGuide "User's Guide"
     end Larminie2003;
 
     class Lin2006
-      "<html>J. Lin, J. K. Lee, M. Kellner, R. Wycisk, and P. N. Pintauroa, \"<a href=\"http://dx.doi.org/10.1149/1.2196687\">Nafion-Flourinated Ethylene-Propylene Resin Membrane Blends for Direct Methanol Fuel Cells</a>,\" <i>J. Electrochem. Soc.</i>, vol. 153, no. 7, pp. A1325&ndash;A1331, 2006</html>"
+      "<html>J. Lin, J. K. Lee, M. Kellner, R. Wycisk, and P. N. Pintauroa, \"<a href=\"http://dx.doi.org/10.1149/1.2196687\">Nafion-Flourinated Ethylene-Propylene Resin Membrane Blends for Direct Methanol Fuel Cells</a>,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;153, no.&nbsp;7, pp.&nbsp;A1325&ndash;A1331, 2006</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Lin2006;
@@ -421,13 +434,13 @@ package UsersGuide "User's Guide"
     end Mark1999;
 
     class Mattsson1993
-      "<html>S. E. Mattsson and G. Soderlind, \"Index Reduction in Differential-Algebraic Equations Using Dummy Derivatives,\" <i>SIAM J. Sci. Comput.</i>, vol. 14, no. 3, pp. 677&ndash;692, May 1993</html>"
+      "<html>S. E. Mattsson and G. Soderlind, \"Index Reduction in Differential-Algebraic Equations Using Dummy Derivatives,\" <i>SIAM J. Sci. Comput.</i>, vol.&nbsp;14, no.&nbsp;3, pp.&nbsp;677&ndash;692, May 1993</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Mattsson1993;
 
     class Mattsson2008
-      "<html>S. E. Mattsson and H. Elmqvist, \"Unit Checking and Quantity Conservation,\" in <i>Modelica Conf.</i> (Bielefeld, Germany), Modelica Assoc., Mar. 2008</html>"
+      "<html>S. E. Mattsson and H. Elmqvist, \"Unit Checking and Quantity Conservation,\" in <i>Proc. 6th Modelica Conf.</i> (Bielefeld, Germany), Modelica Assoc., Mar. 2008</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Mattsson2008;
@@ -449,7 +462,7 @@ package UsersGuide "User's Guide"
     end McBride2002;
 
     class Modelica2010
-      "<html>Modelica Association, <i><a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\">Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</a></i>, Ver. 3.2, Mar. 2010</html>"
+      "<html>Modelica Association, <i><a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\">Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</a></i>, ver. 3.2, Mar. 2010</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Modelica2010;
@@ -467,13 +480,13 @@ package UsersGuide "User's Guide"
     end NIST2010;
 
     class Nitta2008
-      "<html>I. Nitta, O. Himanen, and M. Mikkola, \"<a href=\"http://dx.doi.org/10.1002/fuce.200700054\">Thermal Conductivity and Contact Resistance of Compressed Gas Diffusion Layer of PEM Fuel Cell</a>,\" <i>Fuel Cells</i>, vol. 8, pp. 111&ndash;119, 2008</html>"
+      "<html>I. Nitta, O. Himanen, and M. Mikkola, \"<a href=\"http://dx.doi.org/10.1002/fuce.200700054\">Thermal Conductivity and Contact Resistance of Compressed Gas Diffusion Layer of PEM Fuel Cell</a>,\" <i>Fuel Cells</i>, vol.&nbsp;8, pp.&nbsp;111&ndash;119, 2008</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Nitta2008;
 
     class Parikh2012
-      "<html>N. Parikh, J. S. Allen, R. S. Yassar, \"<a href=\"http://onlinelibrary.wiley.com/doi/10.1002/fuce.201100014/abstract\">Microstructure of Gas Diffusion Layers for PEM Fuel Cells</a>,\" <i>Fuel Cells</i>, vol. 12, no. 3, pp. 1615&ndash;6854, 2012</html>"
+      "<html>N. Parikh, J. S. Allen, R. S. Yassar, \"<a href=\"http://onlinelibrary.wiley.com/doi/10.1002/fuce.201100014/abstract\">Microstructure of Gas Diffusion Layers for PEM Fuel Cells</a>,\" <i>Fuel Cells</i>, vol.&nbsp;12, no.&nbsp;3, pp.&nbsp;1615&ndash;6854, 2012</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Parikh2012;
@@ -497,7 +510,7 @@ package UsersGuide "User's Guide"
     end Rapaport2004;
 
     class Reichert2010
-      "<html>P. Reichert and N. Schuwirth, \"<a href=\"http://dx.doi.org/10.1016/j.envsoft.2010.03.002\">A Generic Framework for Deriving Process Stoichiometry in Environmental Models</a>,\" <i>Environmental Modelling &amp; Software</i>, vol. 25, pp. 1241&ndash;1251, 2010</html>"
+      "<html>P. Reichert and N. Schuwirth, \"<a href=\"http://dx.doi.org/10.1016/j.envsoft.2010.03.002\">A Generic Framework for Deriving Process Stoichiometry in Environmental Models</a>,\" <i>Environmental Modelling &amp; Software</i>, vol.&nbsp;25, no.&nbsp;10, pp.&nbsp;1241&ndash;1251, 2010</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Reichert2010;
@@ -509,7 +522,7 @@ package UsersGuide "User's Guide"
     end Salzman2004;
 
     class Schetz1996
-      "<html>J. A. Schetz and A. E. Fuhs (ed.), <i>Handbook of Fluid Dynamics and Fluid Machinery</i>, John Wiley &amp; Sons, vol. 1: Fundamentals of Fluid Dynamics, 1996</html>"
+      "<html>J. A. Schetz and A. E. Fuhs (ed.), <i>Handbook of Fluid Dynamics and Fluid Machinery</i>, John Wiley &amp; Sons, vol.&nbsp;1: Fundamentals of Fluid Dynamics, 1996</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Schetz1996;
@@ -527,31 +540,31 @@ package UsersGuide "User's Guide"
     end SGL2007;
 
     class Shah2009
-      "<html>A. A. Shah, T. R. Ralph, and F. C. Walsh, \"Modeling and Simulation of the Degradation of Perfluorinated Ion-Exchange Membranes in PEM Fuel Cells,\" <i>J. Electrochem. Soc.</i>, vol. 156, no. 4, pp. B465&ndash;B484, 2009</html>"
+      "<html>A. A. Shah, T. R. Ralph, and F. C. Walsh, \"Modeling and Simulation of the Degradation of Perfluorinated Ion-Exchange Membranes in PEM Fuel Cells,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;156, no.&nbsp;4, pp.&nbsp;B465&ndash;B484, 2009</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Shah2009;
 
     class Sivertsen2005
-      "<html>B. R. Sivertsen and N. Djilali, \"CFD-based Modelling of Proton Exchange Membrane Fuel Cells,\" <i>J. Power Sources</i>, vol. 141, pp. 65&ndash;78, 2005</html>"
+      "<html>B. R. Sivertsen and N. Djilali, \"CFD-based Modelling of Proton Exchange Membrane Fuel Cells,\" <i>J. Power Sources</i>, vol.&nbsp;141, no.&nbsp;1, pp.&nbsp;65&ndash;78, 2005</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Sivertsen2005;
 
     class Slattery1958
-      "<html>J. C. Slattery and R. B. Bird, \"Calculation of the Diffusion Coefficient of Dilute Gases and of the Self-diffusion Coefficient of Dense Gases,\" <i>American Institute of Chemical Engineers Journal</i>, vol. 4, no. 2, pp. 137&ndash;142, 1958</html>"
+      "<html>J. C. Slattery and R. B. Bird, \"Calculation of the Diffusion Coefficient of Dilute Gases and of the Self-diffusion Coefficient of Dense Gases,\" <i>American Institute of Chemical Engineers Journal</i>, vol.&nbsp;4, no.&nbsp;2, pp.&nbsp;137&ndash;142, 1958</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Slattery1958;
 
     class Springer1991
-      "<html>T. E. Springer, T. A. Zawodzinski, and S. Gottesfeld, \"<a href=\"http://dx.doi.org/10.1149/1.2085971\">Polymer Electrolyte Fuel Cell Model</a>,\" <i>J. Electrochem. Soc.</i>, vol. 138, pp. 2334&ndash;2342, Aug. 1991</html>"
+      "<html>T. E. Springer, T. A. Zawodzinski, and S. Gottesfeld, \"<a href=\"http://dx.doi.org/10.1149/1.2085971\">Polymer Electrolyte Fuel Cell Model</a>,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;138, no.&nbsp;8, pp.&nbsp;2334&ndash;2342, 1991</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Springer1991;
 
     class Spry2009
-      "<html>D. B. Spry and M. D. Fayer, \"<a href=\"http://www.stanford.edu/group/fayer/articles/384-392/385.pdf\">Proton Transfer and Proton Concentrations in Protonated Nafion Fuel Cell Membranes</a>,\" <i>J. Phys. Chem. B</i>, vol. 113, no. 30, pp. 10210&ndash;10221, 2009</html>"
+      "<html>D. B. Spry and M. D. Fayer, \"<a href=\"http://www.stanford.edu/group/fayer/articles/384-392/385.pdf\">Proton Transfer and Proton Concentrations in Protonated Nafion Fuel Cell Membranes</a>,\" <i>J. Phys. Chem. B</i>, vol.&nbsp;113, no.&nbsp;30, pp.&nbsp;10210&ndash;10221, 2009</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Spry2009;
@@ -563,13 +576,13 @@ package UsersGuide "User's Guide"
     end Svehla1995;
 
     class Takenaka1990
-      "<html>M. Takenaka and R. Masui, \"<a href=\"http://iopscience.iop.org/0026-1394/27/4/001\">Measurement of the Thermal Expansion of Pure Water in the Temperature Range 0&nbsp;&deg;C&ndash;85&deg;C</a>,\" <i>Metrologia</i>, vol. 27, pp. 165&ndash;171, 1990</html>"
+      "<html>M. Takenaka and R. Masui, \"<a href=\"http://iopscience.iop.org/0026-1394/27/4/001\">Measurement of the Thermal Expansion of Pure Water in the Temperature Range 0&nbsp;&deg;C&ndash;85&deg;C</a>,\" <i>Metrologia</i>, vol.&nbsp;27, no.&nbsp;8, pp.&nbsp;165&ndash;171, 1990</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Takenaka1990;
 
     class Tissandier1998
-      "<html>M. D. Tissandier, K. A. Cowen, W. Y. Feng, E. Gundlach, M. H. Cohen, A. D. Earhart, J. V. Coe, and T. R. Tuttle, Jr., \"<a href=\"http://www.uh.edu/~chembi/single_ion_hydration.PDF\">The Proton's Absolute Aqueous Enthalpy and Gibbs Free Energy of Solvation from Cluster-Ion Solvation Data</a>,\" <i>J. Phys. Chem. A</i>, vol. 102, pp. 7787&ndash;7794, 1998</html>"
+      "<html>M. D. Tissandier, K. A. Cowen, W. Y. Feng, E. Gundlach, M. H. Cohen, A. D. Earhart, J. V. Coe, and T. R. Tuttle, Jr., \"<a href=\"http://www.uh.edu/~chembi/single_ion_hydration.PDF\">The Proton's Absolute Aqueous Enthalpy and Gibbs Free Energy of Solvation from Cluster-Ion Solvation Data</a>,\" <i>J. Phys. Chem. A</i>, vol.&nbsp;102, no.&nbsp;41, pp.&nbsp;7787&ndash;7794, 1998</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Tissandier1998;
@@ -581,61 +594,145 @@ package UsersGuide "User's Guide"
     end Toray2010;
 
     class Wang2001
-      "<html>Z. H. Wang, C.-Y. Wang, and K. S. Chen, \"Two-phase Flow and Transport in the Air Cathode of Proton Exchange Membrane Fuel Cells,\" <i>J. Power Sources</i>, vol. 94, pp. 40&ndash;50, 2001</html>"
+      "<html>Z. H. Wang, C.-Y. Wang, and K. S. Chen, \"Two-phase Flow and Transport in the Air Cathode of Proton Exchange Membrane Fuel Cells,\" <i>J. Power Sources</i>, vol.&nbsp;94, no.&nbsp;1, pp.&nbsp;40&ndash;50, 2001</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Wang2001;
 
     class Weber2004
-      "<html>A. Z. Weber and J. Newman, \"<a href=\"http://dx.doi.org/10.1021/cr020729l\">Modeling Transport in Polymer-Electrolyte Fuel Cells</a>,\" <i>Chem. Rev.</i>, vol. 104, pp. 4679&ndash;4726, 2004</html>"
+      "<html>A. Z. Weber and J. Newman, \"<a href=\"http://dx.doi.org/10.1021/cr020729l\">Modeling Transport in Polymer-Electrolyte Fuel Cells</a>,\" <i>Chem. Rev.</i>, vol.&nbsp;104, no.&nbsp;10, pp.&nbsp;4679&ndash;4726, 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Weber2004;
 
     class Woo1995
-      "<html>K. W. Woo and S. I. Yeo, \"Dalton's Law vs. Amagat's Law for the Mixture of Real Gases,\" <i>SNU J. Educ. Res.</i>, vol. 5, pp. 127&ndash;134, 1995</html>"
+      "<html>K. W. Woo and S. I. Yeo, \"Dalton's Law vs. Amagat's Law for the Mixture of Real Gases,\" <i>SNU J. Educ. Res.</i>, vol.&nbsp;5, pp.&nbsp;127&ndash;134, 1995</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Woo1995;
 
     annotation (preferredView="info", Documentation(info="<html>
-    <p>This library (<a href=\"modelica://FCSys\">FCSys</a>) is described in</p>
+    <p>This library (FCSys) is described in</p>
     <ol>
     <li>K. L. Davies, <i><a href=\"http://kdavies4.github.io/PhD/Davies%20-%20Declarative%20Modeling%20of%20Coupled%20Advection%20&%20Diffusion%20as%20Applied%20to%20FCs.pdf\">Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</a></i>, Ph.D. dissertation, Georgia Institute of Technology, 2014.</li>
     </ol>
 
     <p>These papers describe work leading up to it (most recent first):</p>
     <ol>
-    <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=010\">Library for First-Principle Models of Proton Exchange Membrane Fuel Cells in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012.</li>
-    <li>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Modelica Conference</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural%20Unit%20Representation%20in%20Modelica%20(poster).pdf\">poster</a>).</li>
-    <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0106/0106.pdf\">Modeling Reaction and Diffusion Processes of Fuel Cells within Modelica</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
-    <li>K. L. Davies, R. M. Moore, and G. Bender, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0107/0107.pdf\">Model Library of Polymer Electrolyte Membrane Fuel Cells for System Hardware and Control Design</a>,\" in <i>Modelica Conference</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
-    <li>K. L. Davies and R. M. Moore, \"<a href=\"http://link.aip.org/link/abstract/ECSTF8/v11/i1/p797/s1\">Object-Oriented Fuel Cell Model Library</a>,\" <i>Electrochem. Soc. T.</i>, vol. 11, no. 1, pp. 797&ndash;808, 2007.</li>
+    <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=010\">Library for First-Principle Models of Proton Exchange Membrane Fuel Cells in Modelica</a>,\" in <i>Proc. 9th Modelica Conf.</i> (Munich, Germany), Modelica Assoc., Sep. 2012.</li>
+    <li>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Proc. 9th Modelica Conf.</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural%20Unit%20Representation%20in%20Modelica%20(poster).pdf\">poster</a>).</li>
+    <li>K. L. Davies, C. L. Haynes, and C. J. Paredis, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0106/0106.pdf\">Modeling Reaction and Diffusion Processes of Fuel Cells within Modelica</a>,\" in <i>Proc. 7th Modelica Conf.</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
+    <li>K. L. Davies, R. M. Moore, and G. Bender, \"<a href=\"http://www.modelica.org/events/modelica2009/Proceedings/memorystick/pages/papers/0107/0107.pdf\">Model Library of Polymer Electrolyte Membrane Fuel Cells for System Hardware and Control Design</a>,\" in <i>Proc. 7th Modelica Conf.</i> (Como, Italy), Modelica Assoc., Sep. 2009.</li>
+    <li>K. L. Davies and R. M. Moore, \"<a href=\"http://link.aip.org/link/abstract/ECSTF8/v11/i1/p797/s1\">Object-Oriented Fuel Cell Model Library</a>,\" <i>Electrochem. Soc. T.</i>, vol.&nbsp;11, no.&nbsp;1, pp.&nbsp;797&ndash;808, 2007.</li>
     </ol>
 
-    <p>The external references, which are cited throughout <a href=\"modelica://FCSys\">FCSys</a>, are listed as entries in this package.</p>
+    <p>The external references, which are cited throughout FCSys, are listed as entries in this section of the User's Guide.</p>
     </html>"));
   end References;
+
+  package ReleaseNotes "Release notes"
+    extends Modelica.Icons.ReleaseNotes;
+
+    class VersionManagement "Version management"
+      extends Modelica.Icons.ReleaseNotes;
+
+      annotation (Documentation(info="<html>
+<p>
+The released version numbers have the form of Major.Minor.Patch in accordance with the
+<a href=\"http://semver.org/spec/v2.0.0.html\">Semantic Versioning Specification</a>.
+The FCSys library is maintained with three main branches on the GitHub server at 
+<a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>:
+</p>
+
+
+<h4><a href=\"https://github.com/kdavies4/FCSys/tree/master\">master</a></h4>
+
+<p>
+This branch contains the released versions.  All of the commits on this branch 
+are tagged with the version number (e.g., v1.0.0).
+Each tag message contains a one-line summary of the changes in the version.
+</p>
+
+<p>
+The <code>version</code> and <code>versionDate</code> 
+entries of the annotation of the top-level 
+package (<a href=\"modelica://FCSys\">FCSys</a>) are populated appropriately, e.g., 
+         <pre>  annotation(version     = \"1.0.0\",
+             versionDate = \"2014-01-25 16:41:20Z\");</pre>
+The name of the folder that contains the Modelica source files is renamed in 
+the form of \"FCSys Major.Minor.Patch\" (e.g., \"FCSys 1.0.0\").
+</p>
+  
+<h4><a href=\"https://github.com/kdavies4/FCSys/tree/development\">development</a></h4>
+
+<p>
+All development work is done on this branch or its sub-branches.  This branch and its
+sub-branches are typically only accessed by library developers, not by library users. 
+Once finished, all sub-branches are merged 
+back into the main development branch (with option <code>--no-ff</code>) and deleted.
+</p>
+
+<p>
+The <code>version</code> and <code>versionDate</code> 
+entries of the annotation of the top-level 
+package (<a href=\"modelica://FCSys\">FCSys</a>) are left blank in this branch, e.g., 
+         <pre>  annotation(version     = \"\",
+             versionDate = \"\");</pre>
+The name of the folder that contains the Modelica source files is named \"FCSys\".
+</p>
+
+
+<h4><a href=\"https://github.com/kdavies4/FCSys/tree/gh-pages\">gh-pages</a></h4>
+
+<p>
+This is an orphan branch for the web page of the library, which is viewable at
+<a href=\"http://kdavies4.github.io/FCSys/\">http://kdavies4.github.io/FCSys/</a>.  
+All of the content is built from the Modelica documentation of the library.
+This branch does not contain the Modelica source files or other
+files that are distributed with the library.
+</p>
+
+</html>"));
+    end VersionManagement;
+
+    annotation (Documentation(info="<html>
+
+<p>
+After version 1.0.0, the changes in each release of this library (FCSys) will be
+summarized in subsections below.  Until then, changes may be listed using the \"<code>git log</code>\" command
+on the <a href=\"https://github.com/kdavies4/FCSys/tree/development\">development branch</a>.
+The 
+<a href=\"modelica://FCSys.UsersGuide.ReleaseNotes.VersionManagement\">version management subsection</a>
+describes how the library is developed and maintained using the 
+<a href=\"http://git-scm.com/\">git version control system</a>.
+</p>
+
+</html>"));
+
+    // TODO: Update the documentation and add entries once version number is greater than 1.0.0.
+
+  end ReleaseNotes;
 
   class Contact "Contact"
     extends Modelica.Icons.Contact;
     annotation (preferredView="info", Documentation(info="<html>
-    <p>Updates to this library (<a href=\"modelica://FCSys\">FCSys</a>) may be available online at the
+    <p>Updates to this library (FCSys) may be available online at the
     <a href=\"http://kdavies4.github.io/FCSys/\">main project site</a> or the
     <a href=\"https://modelica.org/libraries\">Modelica libraries page</a>.
     The development page is
     <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
     Please report any problems using the <a href=\"https://github.com/kdavies4/FCSys/issues\">issues</a>
-    link on that page.</p>
+    link on that page.  If you have a publishable study you would like to perform, please feel free to
+    contact the author for support.</p>
 
     <dl><dt><b>Author:</b><br></dt>
     <dd>Kevin Davies</dd>
     <dd><a href=\"http://www.hnei.hawaii.edu\">Hawaii Natural Energy Institute</a></dd>
     <dd><a href=\"http://www.hawaii.edu\">University of Hawaii</a></dd>
-    <dd>1680 East-West Rd., POST 109</dd>
+    <dd>1680 East West Rd., POST 109</dd>
     <dd>Honolulu, HI  96822</dd>
     <dd>USA</dd>
-    <dd>email: <a href=\"mailto:kdavies4@gmail.com\">kdavies4@gmail.com</a></dd></dl>
+    <dd>email: <a href=\"mailto:kdavies@hawaii.edu\">kdavies@hawaii.edu</a></dd></dl>
 
     <p><b>Acknowledgments:</b></p><ul>
 
@@ -651,14 +748,19 @@ package UsersGuide "User's Guide"
     Robert Moore,
     George Nelson,
     Chris Paredis,
+    Jean St-Pierre,
     Mike Tiller,
     Hubertus Tummescheit, and
     Mebs Virji</li>
 
-    <li>Source-code contributions and bug fixes from Kevin Bandy, Martin Sj&ouml;lund, and Joerg Weiss-Ungeth&uuml;m</li>
+    <li>Code contributions and bug fixes from 
+    Kevin Bandy, 
+    Martin Sj&ouml;lund, 
+    Joerg Weiss-Ungeth&uuml;m, and 
+    Dietmar Winkler</li>
 
     <li>Review and feedback from
-    Mohammad Ali, Severine Busquet, Francois Steinmetz, and Dietmar Winkler
+    Mohammad Ali, Severine Busquet, and Francois Steinmetz
     </li>
 
     <li>Financial support from:
@@ -956,6 +1058,7 @@ action. This section shall survive the termination of this License.</p>
 </html>"));
 
   end License;
+
   annotation (preferredView="info", DocumentationClass=true);
 
 end UsersGuide;

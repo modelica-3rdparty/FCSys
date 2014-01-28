@@ -1,5 +1,5 @@
 #!/bin/bash
-# Add the version, time, and last git commit (SHA) to a Modelica package.
+# Add the version and versionDate to a Modelica package.
 #
 # Assumptions:
 # 1. The repository has the same name as the Modelica package.
@@ -26,9 +26,9 @@ hash=`git log --pretty=format:'%h' -n 1`
 cd "`echo $package*.*`"
 sed -i s/version='"'[0-9A-Za-z.-]*'"',/version='"'"$version"'"',/ package.mo
 # Date modified
-sed -i s/dateModified='"'[0-9\ Z:-]*'"'/dateModified='"'"$timestamp"'"'/ package.mo
+sed -i s/versionDate='"'[0-9\ Z:-]*'"'/versionDate='"'"$timestamp"'"'/ package.mo
 # Abbreviated SHA of the last git commit
-sed -i s/revisionID='"'[:\ 0-9A-Za-z]*'"'/revisionID='"'"SHA: $hash"'"'/ package.mo
+#sed -i s/revisionID='"'[:\ 0-9A-Za-z]*'"'/revisionID='"'"SHA: $hash"'"'/ package.mo
 
 # Finish.
 echo "Added release information (version, dateModified, and revisionID) for v$version."

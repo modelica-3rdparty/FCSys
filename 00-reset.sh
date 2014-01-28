@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reset the version, time, and last git commit (SHA) of a Modelica package.
+# Reset the version and versionDate of a Modelica package.
 #
 # Assumptions:
 # 1. The repository has the same name as the Modelica package.
@@ -17,6 +17,6 @@ cd $package*
 # Version
 sed -i s/version='"'[0-9A-Za-z.-]*'"',/version='""',/ package.mo
 # Date modified
-sed -i s/dateModified='"'[0-9\ Z:-]*'"'/dateModified='""'/ package.mo
+sed -i s/versionDate='"'[0-9\ Z:-]*'"'/versionDate='""'/ package.mo
 # Abbreviated SHA of the last git commit
-sed -i s/revisionID='"'[:\ 0-9A-Za-z]*'"'/revisionID='""'/ package.mo
+#sed -i s/revisionID='"'[:\ 0-9A-Za-z]*'"'/revisionID='""'/ package.mo
