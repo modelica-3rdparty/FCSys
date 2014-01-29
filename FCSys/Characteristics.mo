@@ -269,7 +269,6 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
             "Characteristics.Examples.SaturationPressure.mos"));
-
     end SaturationPressure;
 
     model HydrationLevel
@@ -312,7 +311,6 @@ package Characteristics "Data and functions to correlate physical properties"
             "Characteristics.Examples.HydrationLevel.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end HydrationLevel;
 
     model CellPotential
@@ -425,7 +423,6 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos"
             "Characteristics.Examples.LatentHeat.mos"));
-
     end LatentHeat;
 
     model MobilityFactors "Test the mobility factors"
@@ -476,7 +473,6 @@ package Characteristics "Data and functions to correlate physical properties"
 
         experiment(StopTime=10),
         Commands);
-
     end SurfaceTension;
 
   end Examples;

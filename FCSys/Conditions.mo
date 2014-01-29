@@ -315,7 +315,6 @@ package Conditions "Models to specify and measure operating conditions"
                   smooth=Smooth.None,
                   fillColor={255,255,255},
                   fillPattern=FillPattern.Solid)}));
-
     end AmagatDalton;
 
     model ChemicalReaction
@@ -389,7 +388,6 @@ package Conditions "Models to specify and measure operating conditions"
                   fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end ChemicalReaction;
 
     package MSL
@@ -1340,7 +1338,6 @@ package Conditions "Models to specify and measure operating conditions"
                           fillPattern=FillPattern.Solid)}),
             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics));
-
         end Electrical;
         extends Modelica.Icons.Package;
 
@@ -4759,7 +4756,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                       smooth=Smooth.None)}),
           Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
                   {100,100}}), graphics));
-
       end VolumeFixed;
 
       partial model Partial "Base model for a pressure/volume"

@@ -7,7 +7,7 @@ in the documentation, which can be accessed
 [online](http://kdavies4.github.com/FCSys) or from the documentation layer of
 the Modelica code (starting at the [top level](FCSys/package.mo)).
 
-![Diagram of the fuel cell model](FCSys/Resources/Documentation/FCSys.Assemblies.Cells.CellD.png)
+![Diagram of the fuel cell model](FCSys/Resources/Documentation/Overview.png)
 
 ### Installation
 

@@ -129,7 +129,7 @@ rpls = [
     ('<a href="#ref\d+">&#8629;</a>', ''),
     # Use online links to the Modelica Standard Library.
     ('"file:////opt/dymola/Modelica/Library/Modelica.*/help/(.*)"', r'"http://build.openmodelica.org/Documentation/\1"'),
-    ('"file:///C:/Program Files.*/Dymola.*/Modelica/Library/Modelica.*/help/(.*)"', r'"http://build.openmodelica.org/Documentation/\1"'),
+    ('"file:////C:/Program Files.*/Dymola.*/Modelica/Library/Modelica.*/help/(.*)"', r'"http://build.openmodelica.org/Documentation/\1"'),
     ('"(http://build\.openmodelica\.org/Documentation/[^"]+)_([^"]+)_([^"]+)_([^"]+)_([^"]+)_([^"]+)_([^"]+)_([^"]+)"', r'"\1.\2.\3.\4.\5.\6.\7.\8"'),
     ('"(http://build\.openmodelica\.org/Documentation/[^"]+)_([^"]+)_([^"]+)_([^"]+)"', r'"\1.\2.\3.\4"'),
     ('"(http://build\.openmodelica\.org/Documentation/[^"]+)_([^"]+)"', r'"\1.\2"'),

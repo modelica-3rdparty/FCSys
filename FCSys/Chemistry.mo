@@ -352,7 +352,6 @@ package Chemistry "Chemical reactions and related models"
                   smooth=Smooth.None,
                   origin={0,-11},
                   rotation=180)}));
-
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -435,7 +434,6 @@ package Chemistry "Chemical reactions and related models"
             "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-20},{40,
               20}}), graphics));
-
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -536,7 +534,6 @@ package Chemistry "Chemical reactions and related models"
             "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-40},{40,
               20}}), graphics));
-
   end ORR;
 
 public
