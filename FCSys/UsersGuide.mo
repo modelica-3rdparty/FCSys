@@ -350,19 +350,19 @@ increases in net current must be supported by the upstream segments, and this pu
     end Brown2011;
 
     class DuPont2004N
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004N;
 
     class DuPont2004NRE
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NRE-211 and NRE-212,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes NRE-211 and NRE-212,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004NRE;
 
     class DuPont2005
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NE-1135, N-115, N-117, NE-1110,\" <a href = http://www.fuelcells.dupont.com>http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
+      "<html>DuPont, \"Nafion&reg; PFSA Membranes NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2005;
@@ -462,7 +462,7 @@ increases in net current must be supported by the upstream segments, and this pu
     end McBride2002;
 
     class Modelica2010
-      "<html>Modelica Association, <i><a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\">Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</a></i>, ver. 3.2, Mar. 2010</html>"
+      "<html>Modelica Association, <a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\"><i>Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</i></a>, ver. 3.2, Mar. 2010</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Modelica2010;
@@ -614,7 +614,7 @@ increases in net current must be supported by the upstream segments, and this pu
     annotation (preferredView="info", Documentation(info="<html>
     <p>This library (FCSys) is described in</p>
     <ol>
-    <li>K. L. Davies, <i><a href=\"http://kdavies4.github.io/PhD/Davies%20-%20Declarative%20Modeling%20of%20Coupled%20Advection%20&%20Diffusion%20as%20Applied%20to%20FCs.pdf\">Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</a></i>, Ph.D. dissertation, Georgia Institute of Technology, 2014.</li>
+    <li>K. L. Davies, <a href=\"http://kdavies4.github.io/PhD/Davies%20-%20Declarative%20Modeling%20of%20Coupled%20Advection%20&%20Diffusion%20as%20Applied%20to%20FCs.pdf\"><i>Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</i></a>, Ph.D. dissertation, Georgia Institute of Technology, 2014.</li>
     </ol>
 
     <p>These papers describe work leading up to it (most recent first):</p>
