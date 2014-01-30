@@ -4,150 +4,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
   package Cells "Single-cell PEMFC models"
     package Examples "Examples"
-
       extends Modelica.Icons.ExamplesPackage;
-
-      model TestConditions "Fuel cell test conditions"
-        extends FCSys.Icons.Record;
-        // Note:  This isn't a record because it contains time-varying variables.
-        import FCSys.Characteristics.H2O.p_sat;
-
-        final parameter Q.NumberAbsolute psi_sat=environment.p_sat/environment.p
-          "Mole fraction of H2O at saturation";
-
-        // Anode
-        Connectors.RealInputInternal I_an(unit="N/T") = U.A
-          "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label=
-                "<html><i>I</i><sub>an</sub></html>"),Placement(transformation(
-                extent={{-70,30},{-50,50}}), iconTransformation(extent={{0,0},{
-                  0,0}})));
-        parameter Q.NumberAbsolute anRH(
-          displayUnit="%",
-          max=1) = 0.8 "Relative humidity (at inlet)"
-          annotation (Dialog(tab="Anode"));
-        final parameter Q.NumberAbsolute psi_H2O_an=anRH*psi_sat
-          "Mole fraction of H2O at the anode inlet";
-        final parameter Q.NumberAbsolute psi_H2=1 - psi_H2O_an
-          "Mole fraction of H2 at the anode inlet";
-
-        // Cathode
-        Connectors.RealInputInternal I_ca(unit="N/T") = U.A
-          "Equivalent current" annotation (Dialog(tab="Cathode", __Dymola_label
-              ="<html><i>I</i><sub>ca</sub></html>"), Placement(transformation(
-                extent={{-70,-50},{-50,-30}}), iconTransformation(extent={{0,0},
-                  {0,0}})));
-        parameter Q.NumberAbsolute caRH(
-          displayUnit="%",
-          max=1) = 0.5 "Relative humidity (at inlet)"
-          annotation (Dialog(tab="Cathode"));
-        final parameter Q.NumberAbsolute psi_H2O_ca=caRH*psi_sat
-          "Mole fraction of H2O at the cathode inlet";
-        final parameter Q.NumberAbsolute psi_O2=environment.psi_O2_dry*(1 -
-            psi_H2O_ca) "Mole fraction of O2 at the cathode inlet";
-        final parameter Q.NumberAbsolute psi_N2=(1 - environment.psi_O2_dry)*(1
-             - psi_H2O_ca) "Mole fraction of N2 at the cathode inlet";
-
-        Modelica.Blocks.Math.Gain stoichH2(k=1/2)
-          annotation (Placement(transformation(extent={{-42,30},{-22,50}})));
-        Modelica.Blocks.Math.Gain anStoichH2O(k=psi_H2O_an/psi_H2)
-          annotation (Placement(transformation(extent={{18,30},{38,50}})));
-        Modelica.Blocks.Math.Gain stoichO2(k=1/4)
-          annotation (Placement(transformation(extent={{-42,-50},{-22,-30}})));
-        Modelica.Blocks.Math.Gain caStoichH2O(k=psi_H2O_ca/psi_O2)
-          annotation (Placement(transformation(extent={{18,-30},{38,-10}})));
-        Modelica.Blocks.Math.Gain stoichN2(k=psi_N2/psi_O2)
-          annotation (Placement(transformation(extent={{18,-70},{38,-50}})));
-
-        Connectors.RealOutputInternal Ndot_H2O_an(unit="N/T")
-          "Rate of supply of H2O into the anode" annotation (Placement(
-              transformation(extent={{44,30},{64,50}}), iconTransformation(
-                extent={{0,0},{0,0}})));
-        Connectors.RealOutputInternal Ndot_O2(unit="N/T")
-          "Rate of supply of O2" annotation (Placement(transformation(extent={{
-                  -18,-50},{2,-30}}), iconTransformation(extent={{0,0},{0,0}})));
-        Connectors.RealOutputInternal Ndot_H2O_ca(unit="N/T")
-          "Rate of supply of H2O into the cathode" annotation (Placement(
-              transformation(extent={{42,-30},{62,-10}}),iconTransformation(
-                extent={{0,0},{0,0}})));
-        Connectors.RealOutputInternal Ndot_N2(unit="N/T")
-          "Rate of supply of N2" annotation (Placement(transformation(extent={{
-                  42,-70},{62,-50}}), iconTransformation(extent={{0,0},{0,0}})));
-        Connectors.RealOutputInternal Ndot_H2(unit="N/T")
-          "Rate of supply of H2" annotation (Placement(transformation(extent={{
-                  -18,30},{2,50}}), iconTransformation(extent={{0,0},{0,0}})));
-
-      protected
-        outer Conditions.Environment environment "Environmental conditions";
-
-      equation
-        connect(stoichH2.y, Ndot_H2) annotation (Line(
-            points={{-21,40},{-8,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(Ndot_H2, anStoichH2O.u) annotation (Line(
-            points={{-8,40},{16,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(anStoichH2O.y, Ndot_H2O_an) annotation (Line(
-            points={{39,40},{54,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(stoichO2.y, Ndot_O2) annotation (Line(
-            points={{-21,-40},{-8,-40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(Ndot_O2, caStoichH2O.u) annotation (Line(
-            points={{-8,-40},{8,-40},{8,-20},{16,-20}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(caStoichH2O.y, Ndot_H2O_ca) annotation (Line(
-            points={{39,-20},{52,-20}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(stoichN2.y, Ndot_N2) annotation (Line(
-            points={{39,-60},{52,-60}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(stoichN2.u, Ndot_O2) annotation (Line(
-            points={{16,-60},{8,-60},{8,-40},{-8,-40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(I_an, stoichH2.u) annotation (Line(
-            points={{-60,40},{-44,40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        connect(I_ca, stoichO2.u) annotation (Line(
-            points={{-60,-40},{-44,-40}},
-            color={0,0,127},
-            smooth=Smooth.None));
-        annotation (
-          Documentation(info="<html><p>Some conditions are taken from the outer <a href=\"modelica://FCSys.Conditions.Environment\">environment</a> model.  In particular,</p>
-    <ol>
-
-    <li><code>environment.T</code> is used as the initial temperature throughout the cell, the temperature at each inlet, and the exterior temperature of each end plate in the yz plane.</li>
-
-    <li><code>environment.p</code> is used as the initial pressure throughout the cell and the pressure at each outlet.</li>
-
-    <li><code>environment.RH</code> is used as the initial relative humidity throughout the cell.</li>
-
-    <li><code>environment.psi_O2_dry</code> is used as the dry-gas concentration of O<sub>2</sub> at the cathode inlet.</li>
-
- </ol>
- </html>"),
-          Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                  {100,100}}), graphics={Text(
-                      extent={{-20,70},{20,60}},
-                      lineColor={127,127,127},
-                      textStyle={TextStyle.UnderLine},
-                      textString="Anode"),Text(
-                      extent={{-20,10},{20,0}},
-                      lineColor={127,127,127},
-                      textStyle={TextStyle.UnderLine},
-                      textString="Cathode")}),
-          Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                  {100,100}}), graphics));
-      end TestConditions;
-
       model TestStand "Simulate the fuel cell under prescribed conditions"
         import 'Datae-' = FCSys.Characteristics.'e-'.Graphite;
         import DataH2 = FCSys.Characteristics.H2.Gas;
@@ -494,80 +351,6 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
       end TestStandCycle;
 
-      model TestStandSimple
-        "Simulate the simple fuel cell model under prescribed conditions"
-
-        import DataH2 = FCSys.Characteristics.H2.Gas;
-        import DataH2O = FCSys.Characteristics.H2O.Gas;
-        import DataO2 = FCSys.Characteristics.O2.Gas;
-
-        extends TestStand(
-          redeclare SimpleCell cell(inclN2=environment.psi_O2_dry < 1 -
-                Modelica.Constants.eps),
-          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, caSource[1, 1].gas.O2.boundary.p)
-               - cell.caCGDL.subregions[1, 1, 1].gas.O2.g)/4,
-          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, caSource[1,
-              1].gas.H2O.boundary.p) - cell.caCGDL.subregions[1, 1, 1].gas.H2O.g)
-              /2,
-          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, anSource[1, 1].gas.H2.boundary.p)
-               - cell.anCGDL.subregions[1, 1, 1].gas.H2.g)/2,
-          'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
-              1, Side.p] - cell.caCGDL.subregions[1, 1, 1].graphite.'e-'.g +
-              cell.anCGDL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
-              1, 1, 1].graphite.'e-'.g_boundaries[1, Side.n],
-          'Deltaw_H+'=cell.anCGDL.subregions[1, 1, 1].ionomer.'H+'.g - cell.caCGDL.subregions[
-              1, 1, 1].ionomer.'H+'.g,
-          Deltaw_an=cell.anCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag,
-
-          Deltaw_ca=-cell.caCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag);
-
-        annotation (Commands(file=
-                "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandSimple.mos"
-              "Assemblies.Cells.Examples.TestStandSimple.mos"), experiment(
-              StopTime=36180, __Dymola_Algorithm="Dassl"));
-
-      end TestStandSimple;
-
-      model TestStandLinearize
-        "Wrapper for linear analysis of the fuel cell under prescribed conditions"
-
-        extends TestStand(
-          environment(analysis=false),
-          cell(anCL(subregions(graphite(each inclDL=true, 'e-Transfer'(each
-                      fromI=false)))), caCL(subregions(graphite(each inclDL=
-                      true, 'e-Transfer'(each fromI=false))))),
-          redeclare Modelica.Electrical.Analog.Sources.SignalCurrent load(i(
-              start=50,
-              stateSelect=StateSelect.always,
-              fixed=true)));
-
-        output Modelica.SIunits.Voltage w_V=load.v "Potential in volts";
-
-      equation
-        der(load.i) = 0 "Current is a dummy state -- only for linear analysis.";
-
-      end TestStandLinearize;
-
-      model TestStandSegmented
-        "Simulate the fuel cell with multiple segments in the y direction"
-
-        parameter Integer n_y=6 "Number of segments in the y direction"
-          annotation (Dialog(group="Geometry", __Dymola_label=
-                "<html><i>n</i><sub>y</sub></html>"));
-        import Modelica.Constants.inf;
-
-        extends TestStand(cell(
-            inclLiq=false,
-            L_y=fill(8*U.cm/n_y, n_y),
-            anGDL(epsilon=0.45),
-            caGDL(epsilon=0.45)));
-
-        annotation (experiment(
-            StopTime=36180,
-            Tolerance=1e-005,
-            __Dymola_Algorithm="Dassl"));
-      end TestStandSegmented;
-
       model TestStandFixedFlow
         "Simulate the fuel cell with multiple segments in the y direction, with fixed flow rate"
         extends TestStand(testConditions(I_an=anFlowSet.y, I_ca=caFlowSet.y),
@@ -609,6 +392,224 @@ package Assemblies "Combinations of regions (e.g., cells)"
                 preserveAspectRatio=false, extent={{-80,-80},{80,60}}),
               graphics));
       end TestStandFixedFlowSegmented;
+
+      model TestStandLinearize
+        "Wrapper for linear analysis of the fuel cell under prescribed conditions"
+
+        extends TestStand(
+          environment(analysis=false),
+          cell(anCL(subregions(graphite(each inclDL=true, 'e-Transfer'(each
+                      fromI=false)))), caCL(subregions(graphite(each inclDL=
+                      true, 'e-Transfer'(each fromI=false))))),
+          redeclare Modelica.Electrical.Analog.Sources.SignalCurrent load(i(
+              start=50,
+              stateSelect=StateSelect.always,
+              fixed=true)));
+
+        output Modelica.SIunits.Voltage w_V=load.v "Potential in volts";
+
+      equation
+        der(load.i) = 0 "Current is a dummy state -- only for linear analysis.";
+
+      end TestStandLinearize;
+
+
+      model TestStandSegmented
+        "Simulate the fuel cell with multiple segments in the y direction"
+
+        parameter Integer n_y=6 "Number of segments in the y direction"
+          annotation (Dialog(group="Geometry", __Dymola_label=
+                "<html><i>n</i><sub>y</sub></html>"));
+        import Modelica.Constants.inf;
+
+        extends TestStand(cell(
+            inclLiq=false,
+            L_y=fill(8*U.cm/n_y, n_y),
+            anGDL(epsilon=0.45),
+            caGDL(epsilon=0.45)));
+
+        annotation (experiment(
+            StopTime=36180,
+            Tolerance=1e-005,
+            __Dymola_Algorithm="Dassl"));
+      end TestStandSegmented;
+
+      model TestStandSimple
+        "Simulate the simple fuel cell model under prescribed conditions"
+
+        import DataH2 = FCSys.Characteristics.H2.Gas;
+        import DataH2O = FCSys.Characteristics.H2O.Gas;
+        import DataO2 = FCSys.Characteristics.O2.Gas;
+
+        extends TestStand(
+          redeclare SimpleCell cell(inclN2=environment.psi_O2_dry < 1 -
+                Modelica.Constants.eps),
+          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, caSource[1, 1].gas.O2.boundary.p)
+               - cell.caCGDL.subregions[1, 1, 1].gas.O2.g)/4,
+          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, caSource[1,
+              1].gas.H2O.boundary.p) - cell.caCGDL.subregions[1, 1, 1].gas.H2O.g)
+              /2,
+          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, anSource[1, 1].gas.H2.boundary.p)
+               - cell.anCGDL.subregions[1, 1, 1].gas.H2.g)/2,
+          'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
+              1, Side.p] - cell.caCGDL.subregions[1, 1, 1].graphite.'e-'.g +
+              cell.anCGDL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
+              1, 1, 1].graphite.'e-'.g_boundaries[1, Side.n],
+          'Deltaw_H+'=cell.anCGDL.subregions[1, 1, 1].ionomer.'H+'.g - cell.caCGDL.subregions[
+              1, 1, 1].ionomer.'H+'.g,
+          Deltaw_an=cell.anCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag,
+
+          Deltaw_ca=-cell.caCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag);
+
+        annotation (Commands(file=
+                "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandSimple.mos"
+              "Assemblies.Cells.Examples.TestStandSimple.mos"), experiment(
+              StopTime=36180, __Dymola_Algorithm="Dassl"));
+
+      end TestStandSimple;
+
+
+
+      model TestConditions "Fuel cell test conditions"
+        extends FCSys.Icons.Record;
+        // Note:  This isn't a record because it contains time-varying variables.
+        import FCSys.Characteristics.H2O.p_sat;
+
+        final parameter Q.NumberAbsolute psi_sat=environment.p_sat/environment.p
+          "Mole fraction of H2O at saturation";
+
+        // Anode
+        Connectors.RealInputInternal I_an(unit="N/T") = U.A
+          "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label=
+                "<html><i>I</i><sub>an</sub></html>"), Placement(transformation(
+                extent={{-70,30},{-50,50}}), iconTransformation(extent={{0,0},{
+                  0,0}})));
+        parameter Q.NumberAbsolute anRH(
+          displayUnit="%",
+          max=1) = 0.8 "Relative humidity (at inlet)"
+          annotation (Dialog(tab="Anode"));
+        final parameter Q.NumberAbsolute psi_H2O_an=anRH*psi_sat
+          "Mole fraction of H2O at the anode inlet";
+        final parameter Q.NumberAbsolute psi_H2=1 - psi_H2O_an
+          "Mole fraction of H2 at the anode inlet";
+
+        // Cathode
+        Connectors.RealInputInternal I_ca(unit="N/T") = U.A
+          "Equivalent current" annotation (Dialog(tab="Cathode", __Dymola_label
+              ="<html><i>I</i><sub>ca</sub></html>"), Placement(transformation(
+                extent={{-70,-50},{-50,-30}}), iconTransformation(extent={{0,0},
+                  {0,0}})));
+        parameter Q.NumberAbsolute caRH(
+          displayUnit="%",
+          max=1) = 0.5 "Relative humidity (at inlet)"
+          annotation (Dialog(tab="Cathode"));
+        final parameter Q.NumberAbsolute psi_H2O_ca=caRH*psi_sat
+          "Mole fraction of H2O at the cathode inlet";
+        final parameter Q.NumberAbsolute psi_O2=environment.psi_O2_dry*(1 -
+            psi_H2O_ca) "Mole fraction of O2 at the cathode inlet";
+        final parameter Q.NumberAbsolute psi_N2=(1 - environment.psi_O2_dry)*(1
+             - psi_H2O_ca) "Mole fraction of N2 at the cathode inlet";
+
+        Modelica.Blocks.Math.Gain stoichH2(k=1/2)
+          annotation (Placement(transformation(extent={{-42,30},{-22,50}})));
+        Modelica.Blocks.Math.Gain anStoichH2O(k=psi_H2O_an/psi_H2)
+          annotation (Placement(transformation(extent={{18,30},{38,50}})));
+        Modelica.Blocks.Math.Gain stoichO2(k=1/4)
+          annotation (Placement(transformation(extent={{-42,-50},{-22,-30}})));
+        Modelica.Blocks.Math.Gain caStoichH2O(k=psi_H2O_ca/psi_O2)
+          annotation (Placement(transformation(extent={{18,-30},{38,-10}})));
+        Modelica.Blocks.Math.Gain stoichN2(k=psi_N2/psi_O2)
+          annotation (Placement(transformation(extent={{18,-70},{38,-50}})));
+
+        Connectors.RealOutputInternal Ndot_H2O_an(unit="N/T")
+          "Rate of supply of H2O into the anode" annotation (Placement(
+              transformation(extent={{44,30},{64,50}}), iconTransformation(
+                extent={{0,0},{0,0}})));
+        Connectors.RealOutputInternal Ndot_O2(unit="N/T")
+          "Rate of supply of O2" annotation (Placement(transformation(extent={{
+                  -18,-50},{2,-30}}), iconTransformation(extent={{0,0},{0,0}})));
+        Connectors.RealOutputInternal Ndot_H2O_ca(unit="N/T")
+          "Rate of supply of H2O into the cathode" annotation (Placement(
+              transformation(extent={{42,-30},{62,-10}}),iconTransformation(
+                extent={{0,0},{0,0}})));
+        Connectors.RealOutputInternal Ndot_N2(unit="N/T")
+          "Rate of supply of N2" annotation (Placement(transformation(extent={{
+                  42,-70},{62,-50}}), iconTransformation(extent={{0,0},{0,0}})));
+        Connectors.RealOutputInternal Ndot_H2(unit="N/T")
+          "Rate of supply of H2" annotation (Placement(transformation(extent={{
+                  -18,30},{2,50}}), iconTransformation(extent={{0,0},{0,0}})));
+
+      protected
+        outer Conditions.Environment environment "Environmental conditions";
+
+      equation
+        connect(stoichH2.y, Ndot_H2) annotation (Line(
+            points={{-21,40},{-8,40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(Ndot_H2, anStoichH2O.u) annotation (Line(
+            points={{-8,40},{16,40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(anStoichH2O.y, Ndot_H2O_an) annotation (Line(
+            points={{39,40},{54,40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(stoichO2.y, Ndot_O2) annotation (Line(
+            points={{-21,-40},{-8,-40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(Ndot_O2, caStoichH2O.u) annotation (Line(
+            points={{-8,-40},{8,-40},{8,-20},{16,-20}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(caStoichH2O.y, Ndot_H2O_ca) annotation (Line(
+            points={{39,-20},{52,-20}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(stoichN2.y, Ndot_N2) annotation (Line(
+            points={{39,-60},{52,-60}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(stoichN2.u, Ndot_O2) annotation (Line(
+            points={{16,-60},{8,-60},{8,-40},{-8,-40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(I_an, stoichH2.u) annotation (Line(
+            points={{-60,40},{-44,40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        connect(I_ca, stoichO2.u) annotation (Line(
+            points={{-60,-40},{-44,-40}},
+            color={0,0,127},
+            smooth=Smooth.None));
+        annotation (
+          Documentation(info="<html><p>Some conditions are taken from the outer <a href=\"modelica://FCSys.Conditions.Environment\">environment</a> model.  In particular,</p>
+    <ol>
+
+    <li><code>environment.T</code> is used as the initial temperature throughout the cell, the temperature at each inlet, and the exterior temperature of each end plate in the yz plane.</li>
+
+    <li><code>environment.p</code> is used as the initial pressure throughout the cell and the pressure at each outlet.</li>
+
+    <li><code>environment.RH</code> is used as the initial relative humidity throughout the cell.</li>
+
+    <li><code>environment.psi_O2_dry</code> is used as the dry-gas concentration of O<sub>2</sub> at the cathode inlet.</li>
+
+ </ol>
+ </html>"),
+          Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                  {100,100}}), graphics={Text(
+                      extent={{-20,70},{20,60}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Anode"),Text(
+                      extent={{-20,10},{20,0}},
+                      lineColor={127,127,127},
+                      textStyle={TextStyle.UnderLine},
+                      textString="Cathode")}),
+          Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                  {100,100}}), graphics));
+      end TestConditions;
     end Examples;
     extends Modelica.Icons.Package;
 

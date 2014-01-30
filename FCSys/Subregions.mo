@@ -1680,79 +1680,95 @@ in diagram)")}));
 
   <p>This model should be extended to include the appropriate phases, reactions, etc.</p>
   </html>"),
-      Icon(graphics={Line(
-              points={{-100,0},{-40,0}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransX,
-              smooth=Smooth.None),Line(
-              points={{0,-40},{0,-100}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransY,
-              smooth=Smooth.None),Line(
-              points={{40,40},{50,50}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransZ,
-              smooth=Smooth.None),Polygon(
-              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-              16}},
-              lineColor={127,127,127},
-              smooth=Smooth.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Line(
-              points={{-40,-40},{-16,-16}},
-              color={127,127,127},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),Line(
-              points={{-16,40},{-16,-16},{40,-16}},
-              color={127,127,127},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash),Line(
-              points={{-40,0},{28,0}},
-              color={210,210,210},
-              visible=inclTransX,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{0,28},{0,-40}},
-              color={210,210,210},
-              visible=inclTransY,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{28,0},{100,0}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransX,
-              smooth=Smooth.None),Line(
-              points={{0,100},{0,28}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransY,
-              smooth=Smooth.None),Line(
-              points={{-12,-12},{40,40}},
-              color={210,210,210},
-              visible=inclTransZ,
-              smooth=Smooth.None,
-              thickness=0.5),Line(
-              points={{-40,16},{16,16},{16,-40}},
-              color={127,127,127},
-              smooth=Smooth.None),Line(
-              points={{-50,-50},{-12,-12}},
-              color={127,127,127},
-              thickness=0.5,
-              visible=inclTransZ,
-              smooth=Smooth.None),Polygon(
-              points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
-              16}},
-              lineColor={127,127,127},
-              smooth=Smooth.None),Line(
-              points={{40,40},{16,16}},
-              color={127,127,127},
-              smooth=Smooth.None),Text(
-              extent={{-100,56},{100,96}},
-              textString="%name",
-              lineColor={0,0,0})}),
+      Icon(graphics={
+          Line(
+            points={{-100,0},{-40,0}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransX,
+            smooth=Smooth.None),
+          Line(
+            points={{0,-40},{0,-100}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransY,
+            smooth=Smooth.None),
+          Line(
+            points={{40,40},{50,50}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransZ,
+            smooth=Smooth.None),
+          Polygon(
+            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+                16}},
+            lineColor={127,127,127},
+            smooth=Smooth.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Line(
+            points={{-40,-40},{-16,-16}},
+            color={127,127,127},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash),
+          Line(
+            points={{-16,40},{-16,-16},{40,-16}},
+            color={127,127,127},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash),
+          Line(
+            points={{-40,0},{28,0}},
+            color={210,210,210},
+            visible=inclTransX,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{0,28},{0,-40}},
+            color={210,210,210},
+            visible=inclTransY,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{28,0},{100,0}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransX,
+            smooth=Smooth.None),
+          Line(
+            points={{0,100},{0,28}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransY,
+            smooth=Smooth.None),
+          Line(
+            points={{-12,-12},{40,40}},
+            color={210,210,210},
+            visible=inclTransZ,
+            smooth=Smooth.None,
+            thickness=0.5),
+          Line(
+            points={{-40,16},{16,16},{16,-40}},
+            color={127,127,127},
+            smooth=Smooth.None),
+          Line(
+            points={{-50,-50},{-12,-12}},
+            color={127,127,127},
+            thickness=0.5,
+            visible=inclTransZ,
+            smooth=Smooth.None),
+          Polygon(
+            points={{-40,16},{-16,40},{40,40},{40,-16},{16,-40},{-40,-40},{-40,
+                16}},
+            lineColor={127,127,127},
+            smooth=Smooth.None),
+          Line(
+            points={{40,40},{16,16}},
+            color={127,127,127},
+            smooth=Smooth.None),
+          Text(
+            extent={{-100,56},{100,96}},
+            textString="%name",
+            lineColor={0,0,0})}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
 
@@ -1769,4 +1785,92 @@ FCSys.UsersGuide.License</a> or visit <a href=\"http://www.modelica.org/licenses
 http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
 </html>"));
 
+  model Liq
+    import Data = FCSys.Characteristics.H2O.Gas;
+
+    // Q.Amount N(start=0,fixed=true);
+
+    Connectors.Amagat amagat
+      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
+    Mat mat annotation (Placement(transformation(extent={{10,-10},{30,10}})));
+
+  equation
+    Data.v_Tp(300*U.K, U.atm)*mat.N = amagat.V;
+
+    mat.g = Data.g(300*U.K, Data.p0);
+
+  end Liq;
+
+  model Gas
+
+    import Data = FCSys.Characteristics.H2O.Liquid;
+
+    Connectors.Amagat amagat(p(start=U.kPa,fixed=false)) annotation (Placement(
+          transformation(extent={{-30,-10},{-10,10}})), Icon(coordinateSystem(
+            preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+          graphics));
+    Mat mat annotation (Placement(transformation(extent={{10,-10},{30,10}}),
+          iconTransformation(extent={{10,-10},{30,10}})));
+
+  equation
+    Data.v_Tp(300*U.K, amagat.p)*mat.N = amagat.V;
+    mat.g = Data.g(300*U.K, amagat.p);
+
+  end Gas;
+
+  model Combined
+
+    Liq liq annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
+    Gas gas annotation (Placement(transformation(extent={{-10,10},{10,30}})));
+    Conditions.ByConnector.Amagat.VolumeFixed volume(V=-U.cc)
+      annotation (Placement(transformation(extent={{-68,-10},{-48,10}})));
+    Diode diode annotation (Placement(transformation(extent={{14,-8},{34,12}})));
+  equation
+    connect(gas.amagat, liq.amagat) annotation (Line(
+        points={{-2,20},{-2,-20}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(volume.amagat, liq.amagat) annotation (Line(
+        points={{-58,0},{-30,0},{-30,-20},{-2,-20}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(diode.mat1, gas.mat) annotation (Line(
+        points={{17.8,3.6},{17.8,11.8},{2,11.8},{2,20}},
+        color={0,0,0},
+        smooth=Smooth.None));
+    connect(diode.mat2, liq.mat) annotation (Line(
+        points={{29.8,2.4},{15.9,2.4},{15.9,-20},{2,-20}},
+        color={0,0,0},
+        smooth=Smooth.None));
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{
+              -100,-100},{100,100}}), graphics));
+  end Combined;
+
+  connector Mat
+    Q.Potential g;
+    flow Q.Amount N;
+
+  end Mat;
+
+  model Diode
+
+    Mat mat1 annotation (Placement(transformation(extent={{-72,6},{-52,26}})));
+    Mat mat2 annotation (Placement(transformation(extent={{48,-6},{68,14}})));
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics));
+
+    Real s;
+    Real diff;
+    Real N;
+    Boolean present;
+
+  equation
+    N = mat1.N;
+    0 = mat1.N + mat2.N;
+    diff = mat1.N - mat2.N;
+    present = s > 0;
+    diff = s*(if present then 0 else 1);
+    N = s*(if present then 1 else 0);
+
+  end Diode;
 end Subregions;

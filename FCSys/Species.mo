@@ -1788,7 +1788,7 @@ protected
       annotation (HideResult=true,Dialog(connectorSizing=true));
     parameter Integer n_inter=0
       "Number of exchange connections with other phases" annotation (Dialog(
-          __Dymola_label="<html><i>n</i><sub>interM/sub></html>"), HideResult=
+          __Dymola_label="<html><i>n</i><sub>inter</sub></html>"), HideResult=
           true);
 
     // Initialization parameters

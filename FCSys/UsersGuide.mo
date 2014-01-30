@@ -18,12 +18,12 @@ package UsersGuide "User's Guide"
         <ul>
           <li>Dymola: Supported by version 2014.
           Some of Dymola's nonstandard annotations are used.</li>
-          <!--<li>JModelica: Difficulty installing version 1.12 on Windows</li>-->
+          <!--<li>JModelica: Problems installing version 1.12 on Windows</li>-->
           <li>MapleSim: Not supported as of version 4.5</li>
           <li>MWorks: Not supported as of version 2.6.10</li>
           <li>OpenModelica: Not supported as of version 1.9.0</li>
           <li>SystemModeler: Not supported as of version 3.0</li>
-          <!--<li>SimulationX: **</li>-->
+          <!--<li>SimulationX: Problems installing version 3.6 on Windows</li>-->
         </ul>
         </td>
       </tr>
@@ -638,8 +638,6 @@ increases in net current must be supported by the upstream segments, and this pu
 
       annotation (Documentation(info="<html>
 <p>
-The released version numbers have the form of Major.Minor.Patch in accordance with the
-<a href=\"http://semver.org/spec/v2.0.0.html\">Semantic Versioning Specification</a>.
 The FCSys library is maintained with three main branches on the GitHub server at 
 <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>:
 </p>
@@ -648,7 +646,8 @@ The FCSys library is maintained with three main branches on the GitHub server at
 <h4><a href=\"https://github.com/kdavies4/FCSys/tree/master\">master</a></h4>
 
 <p>
-This branch contains the released versions.  All of the commits on this branch 
+This branch contains the released versions.  The version numbers have the form of Major.Minor.Patch in accordance with the
+<a href=\"http://semver.org/spec/v2.0.0.html\">Semantic Versioning Specification</a>.  All of the commits on this branch 
 are tagged with the version number (e.g., v1.0.0).
 Each tag message contains a one-line summary of the changes in the version.
 </p>
@@ -669,7 +668,7 @@ the form of \"FCSys Major.Minor.Patch\" (e.g., \"FCSys 1.0.0\").
 All development work is done on this branch or its sub-branches.  This branch and its
 sub-branches are typically only accessed by library developers, not by library users. 
 Once finished, all sub-branches are merged 
-back into the main development branch (with option <code>--no-ff</code>) and deleted.
+back into the main development branch (with option <code>--no-ff</code>) and eventually deleted.
 </p>
 
 <p>

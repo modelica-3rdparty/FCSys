@@ -1,8 +1,5 @@
 within FCSys;
 package Characteristics "Data and functions to correlate physical properties"
-  import Modelica.Media.IdealGases.Common.FluidData;
-  import Modelica.Media.IdealGases.Common.SingleGasesData;
-  extends Modelica.Icons.Package;
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
     model Correlations
@@ -246,6 +243,8 @@ package Characteristics "Data and functions to correlate physical properties"
         "Saturation pressure via chemical equilibrium";
       Q.PressureAbsolute p_sat_IG(start=U.kPa)
         "Saturation pressure of ideal gas via chemical equilibrium";
+      Q.PressureAbsolute p_sat_IG2(start=U.kPa)
+        "Saturation pressure of ideal gas via chemical equilibrium, neglecting pressure of the liquid";
       output Q.PressureAbsolute p_sat_MSL=Characteristics.H2O.p_sat(T)
         "Saturation pressure via Modelica.Media";
       output Q.Number T_degC=U.to_degC(T) "Temperature in degree Celsius";
@@ -260,6 +259,7 @@ package Characteristics "Data and functions to correlate physical properties"
       T = temperatureSet.y;
       Liquid.g(T, p_sat) = Gas.g(T, p_sat);
       Liquid.g(T, p_sat_IG) = IdealGas.g(T, p_sat_IG);
+      Liquid.g(T, Liquid.p0) = IdealGas.g(T, p_sat_IG2);
 
       annotation (
         Documentation(info=
@@ -269,6 +269,7 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
             "Characteristics.Examples.SaturationPressure.mos"));
+
     end SaturationPressure;
 
     model HydrationLevel
@@ -476,6 +477,9 @@ package Characteristics "Data and functions to correlate physical properties"
     end SurfaceTension;
 
   end Examples;
+  import Modelica.Media.IdealGases.Common.FluidData;
+  import Modelica.Media.IdealGases.Common.SingleGasesData;
+  extends Modelica.Icons.Package;
 
   package 'C+' "<html>C<sup>+</sup></html>"
     extends Modelica.Icons.Package;
