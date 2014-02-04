@@ -731,7 +731,7 @@ describes how the library is developed and maintained using the
     <dd>1680 East West Rd., POST 109</dd>
     <dd>Honolulu, HI  96822</dd>
     <dd>USA</dd>
-    <dd>email: <a href=\"mailto:kdavies@hawaii.edu\">kdavies@hawaii.edu</a></dd></dl>
+    <dd>email: <a href=\"mailto:kdavies@hawaii.edu?Subject=FCSys\">kdavies@hawaii.edu</a></dd></dl>
 
     <p><b>Acknowledgments:</b></p><ul>
 
