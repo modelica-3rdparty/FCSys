@@ -1342,9 +1342,9 @@ encompass other systems of units.</p>
   // ------------------------------------------------------------------------
   // Empirical units
   // ------------------------------------------------------------------------
-  // Note:  The values are currently based on the those from [NIST2010].
-  // The measured values are used rather than conventional values (where
-  // they exist).
+  // Note:  The values are currently based on those from [NIST2010].  The
+  // measured values are used instead of conventional values (where they
+  // exist).
 
   constant Q.Length m=10973731.568539*rad/R_inf "meter";
   // SI unit of length
@@ -1390,8 +1390,7 @@ encompass other systems of units.</p>
   // ------------------------------------------------------------------------
   // SI base units [BIPM2006, Table 1] and intermediate units
   // ------------------------------------------------------------------------
-  // Note:  Only A and kg  are remaining (s, m, S, K, mol, and cd
-  // already defined).
+  // Note:  Only A and kg remain (s, m, S, K, mol, and cd already defined).
 
   final constant Q.Potential V=Wb*rad/s "volt";
   // SI unit of EMF and rate of magnetic flux
@@ -1406,7 +1405,7 @@ encompass other systems of units.</p>
   // SI unit of energy
   final constant Q.Velocity2 Gy=(m/s)^2 "gray";
   // SI unit of specific energy (imparted by radiation into material)
-  final constant Q.Mass kg=J/Sv "kilogram ";
+  final constant Q.Mass kg=J/Gy "kilogram";
   // SI unit of mass
 
   // ------------------------------------------------------------------------
@@ -1437,8 +1436,8 @@ encompass other systems of units.</p>
   // ------------------------------------------------------------------------
   // Derived units in SI with special names and symbols [BIPM2006, Table 3]
   // ------------------------------------------------------------------------
-  // Note:  rad, S, C, Wb, V, J, and Sv have already been defined.  Degree
-  // Celsius is only defined in setup(), degC(), and from_degC() since it
+  // Note:  rad, S, C, Wb, V, J, and Gy have already been defined.  Degree
+  // Celsius is only defined in setup(), to_degC(), and from_degC() since it
   // includes an offset.
 
   final constant Q.Angle cyc=2*pi*rad "cycle";
@@ -1513,14 +1512,15 @@ encompass other systems of units.</p>
   // The Planck constant over 2*pi (hbar) isn't included as a unique
   // variable.  The unit of angle (rad or cyc) should be factored into the
   // variable that represents frequency as a quantity.  Then, it's
-  // unnecessary to use hbar, e.g.:
+  // not necessary to use hbar, e.g.:
   //     hbar = h = 1.0545e-34*J/Hz = 6.6260e-34*J*s/cyc,
   // where Hz = rad/s.  Currently, rad = 1 (see U.Bases.Base).
   final constant Q.Number alpha=pi*1e-7*c*s*G_0/(m*S)
     "<html>fine-structure constant (&alpha;)</html>";
-  // The fine-structure constant includes the product of the speed of light
-  // in vacuum, expressed in meters per second and conductance quantum,
-  // expressed in siemens.
+  // The fine-structure constant is simply the product of pi, 1e-7, the speed
+  // of light in vacuum in meters per second, and the conductance quantum
+  // in siemens.  Each of these four factors is dimensionless, so the fine-
+  // structure constant is dimensionless too.
   final constant Q.ResistanceElectrical Z_0=2*R_K*alpha
     "<html>characteristic impedance of vacuum (<i>Z</i><sub>0</sub>)</html>";
   // See  http://en.wikipedia.org/wiki/Characteristic_impedance_of_vacuum.
@@ -1597,7 +1597,7 @@ encompass other systems of units.</p>
   // dimensional consistency.
 
   // ------------------------------------------------------------------------
-  // Selected other non-SI units from [BIPM2006, Table 8]
+  // Other selected non-SI units from [BIPM2006, Table 8]
   // ------------------------------------------------------------------------
   // Note:  Logarithmic ratios have been excluded because they can't be
   // represented in Dymola's unit conversion GUI.

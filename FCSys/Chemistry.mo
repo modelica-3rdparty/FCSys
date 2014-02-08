@@ -4,15 +4,16 @@ package Chemistry "Chemical reactions and related models"
 
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
+    //  **update
 
     model Overpotential "Demonstrate the Butler-Volmer overpotential"
       extends Modelica.Icons.Example;
 
-      output Q.Potential w=-'e-Transfer'.Deltag "Overpotential";
-      output Q.Current I_A=-'e-Transfer'.I/U.A if environment.analysis
+      output Q.Potential w=-transfer.Deltag "Overpotential";
+      output Q.Current I_A=-transfer.I/U.A if environment.analysis
         "Reaction current in amperes";
 
-      Chemistry.Electrochemistry.ElectronTransfer 'e-Transfer'(
+      Chemistry.Electrochemistry.ElectronTransfer transfer(
         redeclare constant Integer n_trans=1,
         fromI=false,
         I0_300K=U.mA)
@@ -55,19 +56,19 @@ package Chemistry "Chemical reactions and related models"
         annotation (Placement(transformation(extent={{40,40},{60,60}})));
 
     equation
-      connect(current.chemical, 'e-Transfer'.negative) annotation (Line(
+      connect(current.chemical, transfer.negative) annotation (Line(
           points={{-32,0},{-6,0}},
           color={255,195,38},
           smooth=Smooth.None));
-      connect(potential.chemical, 'e-Transfer'.positive) annotation (Line(
+      connect(potential.chemical, transfer.positive) annotation (Line(
           points={{32,0},{6,0}},
           color={255,195,38},
           smooth=Smooth.None));
-      connect(doubleLayer.negative, 'e-Transfer'.negative) annotation (Line(
+      connect(doubleLayer.negative, transfer.negative) annotation (Line(
           points={{-6,30},{-20,30},{-20,0},{-6,0}},
           color={255,195,38},
           smooth=Smooth.None));
-      connect(doubleLayer.positive, 'e-Transfer'.positive) annotation (Line(
+      connect(doubleLayer.positive, transfer.positive) annotation (Line(
           points={{6,30},{20,30},{20,0},{6,0}},
           color={255,195,38},
           smooth=Smooth.None));
@@ -75,7 +76,7 @@ package Chemistry "Chemical reactions and related models"
           points={{60,10},{60,20},{0,20},{0,26}},
           color={221,23,47},
           smooth=Smooth.None));
-      connect(substrate.inter, 'e-Transfer'.inert) annotation (Line(
+      connect(substrate.inter, transfer.inert) annotation (Line(
           points={{60,10},{60,20},{0,20},{0,4}},
           color={221,23,47},
           smooth=Smooth.None));
@@ -159,7 +160,7 @@ package Chemistry "Chemical reactions and related models"
         __Dymola_choicesFromPackage=true);
 
       parameter Boolean setVelocity=true
-        "<html>Material exits at the velocity of the <code>inert</code> connector</html>"
+        "<html>Include the <code>inert</code> connector to set the exit velocity</html>"
         annotation (
         Evaluate=true,
         Dialog(tab="Assumptions", compact=true),
@@ -189,7 +190,11 @@ package Chemistry "Chemical reactions and related models"
         "Chemical connector on the 2nd side" annotation (Placement(
             transformation(extent={{10,-10},{30,10}}), iconTransformation(
               extent={{50,-10},{70,10}})));
-      Connectors.Inert inert(final n_trans=n_trans)
+      Connectors.Inert inert(
+        final n_trans=n_trans,
+        final phi=phi_inert,
+        final mPhidot=mPhidot_inert,
+        final Qdot=Qdot_inert) if setVelocity
         "Translational and thermal interface with the substrate" annotation (
           Placement(transformation(extent={{-10,-30},{10,-10}}),
             iconTransformation(extent={{-10,-50},{10,-30}})));
@@ -199,17 +204,28 @@ package Chemistry "Chemical reactions and related models"
         annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
     protected
+      Q.Velocity phi_inert[n_trans]
+        "Velocity at the inert connector (or zero if removed)";
+      Q.Force mPhidot_inert[n_trans] "Force into the inert connector";
+      Q.Power Qdot_inert "Rate of thermal conduction into the inert connector";
+
       outer Conditions.Environment environment "Environmental conditions";
 
     equation
+      // Equations if inert connector is removed
+      if not setVelocity then
+        phi_inert = zeros(n_trans);
+        mPhidot_inert = zeros(n_trans);
+      end if;
+
       // Aliases
       Data.z*w = positive.g - negative.g;
       I = positive.Ndot;
 
       // Streams
       if setVelocity then
-        negative.phi = inert.phi;
-        positive.phi = inert.phi;
+        negative.phi = phi_inert;
+        positive.phi = phi_inert;
       else
         negative.phi = inStream(positive.phi);
         positive.phi = inStream(negative.phi);
@@ -220,59 +236,68 @@ package Chemistry "Chemical reactions and related models"
       // Conservation
       0 = negative.Ndot + positive.Ndot "Material (no storage)";
       zeros(n_trans) = Data.m*(actualStream(negative.phi) - actualStream(
-        positive.phi))*I + inert.mPhidot "Translational momentum (no storage)";
+        positive.phi))*I + mPhidot_inert "Translational momentum (no storage)";
       der(C*w)/U.s = Data.z*I
         "Electrical energy (reversible; simplified using material conservation and divided by potential)";
-      0 = inert.Qdot + (actualStream(negative.phi)*actualStream(negative.phi)
+      0 = Qdot_inert + (actualStream(negative.phi)*actualStream(negative.phi)
          - actualStream(positive.phi)*actualStream(positive.phi))*I*Data.m/2 +
-        inert.phi*inert.mPhidot "Mechanical and thermal energy (no storage)";
+        phi_inert*mPhidot_inert "Mechanical and thermal energy (no storage)";
 
       annotation (
-        Documentation(info="<html><p>The capacitance (<i>C</i>) is calculated from the surface area (<i>A</i>), length of the gap (<i>L</i>), and the permittivity (&epsilon;) assuming that the
-
+        Documentation(info="<html><p>The capacitance (<i>C</i>) is calculated from the surface area (<i>A</i>), 
+    length of the gap (<i>L</i>), and the permittivity (&epsilon;) assuming that the
   charges are uniformly distributed over (infinite) parallel planes.</p>
 
   <p>If <code>setVelocity</code> is <code>true</code>, then the material exits with the
   velocity of the <code>inert</code> connector.  Typically, that connector should be connected to the stationary solid,
-  in which case heat will be generated if material arrives with a nonzero velocity.  That heat is rejected to the same connector.</p>
+  in which case heat will be generated if material arrives with a nonzero velocity.  That heat is rejected to the same connector.
+  If <code>setVelocity</code> is <code>false</code>, then the <code>inert</code> connector is removed.</p>
 
   </html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{-20,30},{-20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,30},{20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{-20,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None)}));
+                100,100}}), graphics={
+            Line(
+              points={{-20,30},{-20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,30},{20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{-20,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
       import Modelica.Math.asinh;
-      extends FCSys.Icons.Names.Top2;
+      extends FCSys.Icons.Names.Top1;
 
       parameter Integer n_trans(min=1,max=3)
         "Number of components of translational momentum" annotation (Evaluate=
             true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
 
-      parameter Integer z=-1 "Charge number";
+      parameter Integer n=1 "Apparent electron transfer number" annotation (
+          Dialog(group="Electrochemical parameters", __Dymola_label=
+              "<html><i>n</i></html>"));
       parameter Q.Potential E_A=0 "Activation energy" annotation (Dialog(group=
-              "Chemical parameters", __Dymola_label=
+              "Electrochemical parameters", __Dymola_label=
               "<html><i>E</i><sub>A</sub></html>"));
       parameter Q.NumberAbsolute alpha(max=1) = 0.5
         "Charge transfer coefficient" annotation (Dialog(group=
-              "Chemical parameters", __Dymola_label="<html>&alpha;</html>"));
+              "Electrochemical parameters", __Dymola_label=
+              "<html>&alpha;</html>"));
       parameter Q.Current I0_300K=U.A "Exchange current @ 300 K" annotation (
           Dialog(__Dymola_label=
-              "<html><i>I</i><sup>o</sup><sub>300 K</sub></html>"));
+              "<html><i>I</i><sup>o</sup><sub>300 K</sub></html>", group=
+              "Electrochemical parameters"));
       parameter Boolean fromI=true
         "<html>Invert the Butler-Volmer equation, if &alpha;=&frac12;</html>"
         annotation (Dialog(tab="Advanced", compact=true), choices(
@@ -303,7 +328,8 @@ package Chemistry "Chemical reactions and related models"
       I = positive.Ndot;
       Deltag = positive.g - negative.g;
       T = inert.T;
-      I0 = I0_300K*exp(E_A*(1/(300*U.K) - 1/T)) "Based on Arrhenius equation";
+      I0 = n*I0_300K*exp(E_A*(1/(300*U.K) - 1/T)) "From Arrhenius equation";
+      // **note that I0_300K is for single electron transfer
 
       // Streams
       negative.phi = inStream(positive.phi);
@@ -313,9 +339,9 @@ package Chemistry "Chemical reactions and related models"
 
       // Reaction rate
       if abs(alpha - 0.5) < Modelica.Constants.eps and fromI then
-        Deltag = 2*T*asinh(0.5*I/I0);
+        n*Deltag = 2*T*asinh(0.5*I/I0);
       else
-        I = I0*(exp((1 - alpha)*Deltag/T) - exp(-alpha*Deltag/T));
+        I = I0*(exp(n*(1 - alpha)*Deltag/T) - exp(-n*alpha*Deltag/T));
       end if;
 
       // Conservation (without storage)
@@ -325,33 +351,43 @@ package Chemistry "Chemical reactions and related models"
       // Note:  Energy and momentum cancel among the stream terms.
 
       annotation (
-        defaultComponentName="'e-Transfer'",
+        defaultComponentName="transfer",
         Documentation(info="<html><p><code>fromI</code> may help to eliminate nonlinear systems of equations if the
 
-    <a href=\"modelica://FCSys.Chemistry.Electrochemistry.DoubleLayer\">double layer capacitance</a> is not included.</p></html>"),
+    <a href=\"modelica://FCSys.Chemistry.Electrochemistry.DoubleLayer\">double layer capacitance</a> is not included.</p>
+    
+    <p>
+    Note that the apparent electron number may be different than the total number of electrons in the reaction, and
+    it may even depend on reaction rate [<a href=\"modelica://FCSys.UsersGuide.References.Yuan2009\">Yuan2009</a>, p.&nbsp;20]</html>"),
 
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{0,-20},{0,-50}},
-                  color={221,23,47},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Rectangle(
-                  extent={{-30,20},{32,-20}},
-                  lineColor={255,195,38},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,4},{20,4},{8,12}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-20,-5},{20,-5},{8,3}},
-                  color={255,195,38},
-                  smooth=Smooth.None,
-                  origin={0,-11},
-                  rotation=180)}));
+                100,100}}), graphics={
+            Line(
+              points={{0,-20},{0,-50}},
+              color={221,23,47},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Rectangle(
+              extent={{-30,20},{32,-20}},
+              lineColor={255,195,38},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,4},{20,4},{8,12}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,-5},{20,-5},{8,3}},
+              color={255,195,38},
+              smooth=Smooth.None,
+              origin={0,-11},
+              rotation=180)}));
+
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -370,52 +406,107 @@ package Chemistry "Chemical reactions and related models"
       n=-2) annotation (Placement(transformation(
           extent={{-10,10},{10,-10}},
           rotation=180,
-          origin={10,10})));
+          origin={-10,-10})));
     Conditions.Adapters.ChemicalReaction 'H+'(
       final n_trans=n_trans,
       m=Characteristics.'H+'.Gas.m,
-      n=-2) annotation (Placement(transformation(extent={{20,0},{0,-20}})));
+      n=-2) annotation (Placement(transformation(extent={{0,-20},{-20,-40}})));
     Conditions.Adapters.ChemicalReaction H2(
       final n_trans=n_trans,
       m=Characteristics.H2.Gas.m,
       n=1) annotation (Placement(transformation(
           extent={{-10,-10},{10,10}},
           rotation=0,
-          origin={-10,0})));
+          origin={-30,-20})));
 
     Connectors.Chemical 'cheme-'(redeclare final constant Integer n_trans=
           n_trans) "Connector for e-" annotation (Placement(transformation(
-            extent={{20,0},{40,20}}), iconTransformation(extent={{-10,-10},{10,
+            extent={{20,-20},{40,0}}), iconTransformation(extent={{-10,-10},{10,
               10}})));
     Connectors.Chemical 'chemH+'(redeclare final constant Integer n_trans=
           n_trans) "Connector for H+" annotation (Placement(transformation(
-            extent={{20,-20},{40,0}}), iconTransformation(extent={{30,-10},{50,
-              10}})));
+            extent={{20,-40},{40,-20}}), iconTransformation(extent={{30,-10},{
+              50,10}})));
     Connectors.Chemical chemH2(redeclare final constant Integer n_trans=n_trans)
-      "Connector for H2" annotation (Placement(transformation(extent={{-40,-10},
-              {-20,10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
+      "Connector for H2" annotation (Placement(transformation(extent={{-60,-30},
+              {-40,-10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
     // Note:  These redeclarations are necessary due to errors in Dymola 2014.
+    // **Try again
 
+    parameter Boolean inclDL=true "Include the double-layer capacitance"
+      annotation (
+      HideResult=true,
+      Dialog(tab="Assumptions", compact=true),
+      choices(__Dymola_checkBox=true));
+
+    Electrochemistry.ElectronTransfer transfer(redeclare final constant Integer
+        n_trans=n_trans, n=2) "Electron transfer" annotation (Placement(
+          transformation(
+          extent={{-10,10},{10,-10}},
+          rotation=0,
+          origin={10,-10})));
+    Electrochemistry.DoubleLayer doubleLayer(redeclare final constant Integer
+        n_trans=n_trans) if inclDL "Electrolytic double layer" annotation (
+        Placement(transformation(
+          extent={{-10,-10},{10,10}},
+          rotation=0,
+          origin={10,26})));
+    // Note:  n_trans must be constant in Dymola 2014 to prevent errors such as
+    // "Failed to expand the variable
+    // subregion.ORR.transfer.negative.phi".  The setting of n_trans=1
+    // must be manually changed at instantiation if additional transport axes
+    //  are enabled.
+    Connectors.Amagat amagat if inclDL "Connector for additivity of volume"
+      annotation (Placement(transformation(extent={{20,20},{40,40}}),
+          iconTransformation(extent={{90,-10},{110,10}})));
+    Connectors.Inter inert(final n_trans=n_trans)
+      "Translational and thermal interface with the substrate" annotation (
+        Placement(transformation(extent={{20,0},{40,20}}), iconTransformation(
+            extent={{-108,-10},{-88,10}})));
   equation
     connect(chemH2, H2.chemical) annotation (Line(
-        points={{-30,0},{-14,0}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect('e-'.chemical, 'cheme-') annotation (Line(
-        points={{14,10},{30,10}},
+        points={{-50,-20},{-34,-20}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('H+'.chemical, 'chemH+') annotation (Line(
-        points={{14,-10},{30,-10}},
+        points={{-6,-30},{30,-30}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(H2.reaction, 'e-'.reaction) annotation (Line(
-        points={{-6,0},{0,0},{0,10},{6,10}},
+        points={{-26,-20},{-20,-20},{-20,-10},{-14,-10}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('H+'.reaction, H2.reaction) annotation (Line(
-        points={{6,-10},{0,-10},{0,0},{-6,0}},
+        points={{-14,-30},{-20,-30},{-20,-20},{-26,-20}},
         color={255,195,38},
+        smooth=Smooth.None));
+    connect(doubleLayer.positive, 'cheme-') annotation (Line(
+        points={{16,26},{20,26},{20,-10},{30,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(transfer.positive, 'cheme-') annotation (Line(
+        points={{16,-10},{30,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect('e-'.chemical, transfer.negative) annotation (Line(
+        points={{-6,-10},{4,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect('e-'.chemical, doubleLayer.negative) annotation (Line(
+        points={{-6,-10},{0,-10},{0,26},{4,26}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(doubleLayer.inert, transfer.inert) annotation (Line(
+        points={{10,22},{10,-6}},
+        color={221,23,47},
+        smooth=Smooth.None));
+    connect(amagat, doubleLayer.amagat) annotation (Line(
+        points={{30,30},{10,30},{10,26}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(inert, transfer.inert) annotation (Line(
+        points={{30,10},{10,10},{10,-6}},
+        color={221,23,47},
         smooth=Smooth.None));
     annotation (
       defaultComponentName="HOR",
@@ -424,16 +515,18 @@ package Chemistry "Chemical reactions and related models"
 
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-20},{40,
-              20}}), graphics));
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
+
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{40,
+              40}}), graphics));
+
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -444,6 +537,12 @@ package Chemistry "Chemical reactions and related models"
           __Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
     // Note:  This must be a constant rather than a parameter due to errors in
     // Dymola 2014.
+    parameter Boolean inclDL=true "Include the double-layer capacitance"
+      annotation (
+      HideResult=true,
+      Dialog(tab="Assumptions", compact=true),
+      choices(__Dymola_checkBox=true));
+
     Conditions.Adapters.ChemicalReaction 'e-'(
       final n_trans=n_trans,
       m=Characteristics.'e-'.Gas.m,
@@ -451,71 +550,115 @@ package Chemistry "Chemical reactions and related models"
       n=4) annotation (Placement(transformation(
           extent={{10,10},{-10,-10}},
           rotation=180,
-          origin={-10,10})));
+          origin={-10,-10})));
     Conditions.Adapters.ChemicalReaction 'H+'(
       final n_trans=n_trans,
       m=Characteristics.'H+'.Gas.m,
-      n=4) annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
+      n=4) annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
     Conditions.Adapters.ChemicalReaction O2(
       final n_trans=n_trans,
       m=Characteristics.O2.Gas.m,
       n=1) annotation (Placement(transformation(
           extent={{-10,-10},{10,10}},
           rotation=0,
-          origin={-10,-30})));
+          origin={-10,-50})));
     Conditions.Adapters.ChemicalReaction H2O(
       final n_trans=n_trans,
       m=Characteristics.H2O.Gas.m,
       n=-2) annotation (Placement(transformation(
           extent={{10,-10},{-10,10}},
           rotation=0,
-          origin={10,-10})));
+          origin={10,-30})));
 
     Connectors.Chemical 'cheme-'(redeclare final constant Integer n_trans=
           n_trans) "Connector for e-" annotation (Placement(transformation(
-            extent={{-40,0},{-20,20}}), iconTransformation(extent={{-70,-10},{-50,
-              10}})));
+            extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-70,-10},{
+              -50,10}})));
     Connectors.Chemical 'chemH+'(redeclare final constant Integer n_trans=
           n_trans) "Connector for H+" annotation (Placement(transformation(
-            extent={{-40,-20},{-20,0}}), iconTransformation(extent={{-30,-10},{
-              -10,10}})));
+            extent={{-60,-40},{-40,-20}}), iconTransformation(extent={{-30,-10},
+              {-10,10}})));
     Connectors.Chemical chemO2(redeclare final constant Integer n_trans=n_trans)
-      "Connector for O2" annotation (Placement(transformation(extent={{-40,-40},
-              {-20,-20}}), iconTransformation(extent={{10,-10},{30,10}})));
+      "Connector for O2" annotation (Placement(transformation(extent={{-60,-60},
+              {-40,-40}}), iconTransformation(extent={{10,-10},{30,10}})));
     Connectors.Chemical chemH2O(redeclare final constant Integer n_trans=
           n_trans) "Connector for H2O" annotation (Placement(transformation(
-            extent={{20,-20},{40,0}}), iconTransformation(extent={{50,-10},{70,
-              10}})));
+            extent={{20,-40},{40,-20}}), iconTransformation(extent={{50,-10},{
+              70,10}})));
     // Note:  These redeclarations are necessary due to errors in Dymola 2014.
-
+    // **Try again
+    Electrochemistry.ElectronTransfer transfer(
+      redeclare final constant Integer n_trans=n_trans,
+      n=4,
+      E_A=0.75*U.V) "Electron transfer" annotation (Placement(transformation(
+          extent={{10,10},{-10,-10}},
+          rotation=0,
+          origin={-30,-10})));
+    Electrochemistry.DoubleLayer doubleLayer(redeclare final constant Integer
+        n_trans=n_trans) if inclDL "Electrolytic double layer" annotation (
+        Placement(transformation(
+          extent={{10,-10},{-10,10}},
+          rotation=0,
+          origin={-30,26})));
+    Connectors.Amagat amagat if inclDL "Connector for additivity of volume"
+      annotation (Placement(transformation(extent={{-60,20},{-40,40}}),
+          iconTransformation(extent={{90,-10},{110,10}})));
+    Connectors.Inter inert(final n_trans=n_trans)
+      "Translational and thermal interface with the substrate" annotation (
+        Placement(transformation(extent={{-60,0},{-40,20}}), iconTransformation(
+            extent={{-108,-10},{-88,10}})));
   equation
     connect('H+'.chemical, 'chemH+') annotation (Line(
-        points={{-14,-10},{-30,-10}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect('e-'.chemical, 'cheme-') annotation (Line(
-        points={{-14,10},{-30,10}},
+        points={{-14,-30},{-50,-30}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(O2.chemical, chemO2) annotation (Line(
-        points={{-14,-30},{-30,-30}},
+        points={{-14,-50},{-50,-50}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(H2O.chemical, chemH2O) annotation (Line(
-        points={{14,-10},{30,-10}},
+        points={{14,-30},{30,-30}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('e-'.reaction, H2O.reaction) annotation (Line(
-        points={{-6,10},{0,10},{0,-10},{6,-10}},
+        points={{-6,-10},{0,-10},{0,-30},{6,-30}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('H+'.reaction, H2O.reaction) annotation (Line(
-        points={{-6,-10},{6,-10}},
+        points={{-6,-30},{6,-30}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(O2.reaction, H2O.reaction) annotation (Line(
-        points={{-6,-30},{0,-30},{0,-10},{6,-10}},
+        points={{-6,-50},{0,-50},{0,-30},{6,-30}},
         color={255,195,38},
+        smooth=Smooth.None));
+    connect('e-'.chemical, transfer.negative) annotation (Line(
+        points={{-14,-10},{-24,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(doubleLayer.positive, 'cheme-') annotation (Line(
+        points={{-36,26},{-40,26},{-40,-10},{-50,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(transfer.positive, 'cheme-') annotation (Line(
+        points={{-36,-10},{-50,-10}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect('e-'.chemical, doubleLayer.negative) annotation (Line(
+        points={{-14,-10},{-20,-10},{-20,26},{-24,26}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(amagat, doubleLayer.amagat) annotation (Line(
+        points={{-50,30},{-30,30},{-30,26}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(doubleLayer.inert, transfer.inert) annotation (Line(
+        points={{-30,22},{-30,-6}},
+        color={221,23,47},
+        smooth=Smooth.None));
+    connect(inert, transfer.inert) annotation (Line(
+        points={{-50,10},{-30,10},{-30,-6}},
+        color={221,23,47},
         smooth=Smooth.None));
     annotation (
       defaultComponentName="ORR",
@@ -524,16 +667,18 @@ package Chemistry "Chemical reactions and related models"
 
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-40},{40,
-              20}}), graphics));
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
+
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
+              40}}), graphics));
+
   end ORR;
 
 public
@@ -583,25 +728,30 @@ public
 
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-40,40},{40,-40}},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Rectangle(
-              extent={{42,40},{20,-40}},
-              pattern=LinePattern.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{0,40},{40,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Line(
-              points={{-40,40},{40,40}},
-              color={0,0,0},
-              smooth=Smooth.None),Line(
-              points={{-40,-40},{40,-40}},
-              color={0,0,0},
-              smooth=Smooth.None)}),
+              100}}), graphics={
+          Rectangle(
+            extent={{-40,40},{40,-40}},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Rectangle(
+            extent={{42,40},{20,-40}},
+            pattern=LinePattern.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{0,40},{40,-40}},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Line(
+            points={{-40,40},{40,40}},
+            color={0,0,0},
+            smooth=Smooth.None),
+          Line(
+            points={{-40,-40},{40,-40}},
+            color={0,0,0},
+            smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
   end Capillary;
@@ -641,7 +791,7 @@ public
         enable=inclLiquid));
     Capillary capillary if inclLiquid and inclCapillary "Capillary model"
       annotation (Dialog(__Dymola_descriptionLabel=true, enable=inclLiquid and
-            inclCapillary), Placement(transformation(extent={{-30,-10},{-10,10}})));
+            inclCapillary), Placement(transformation(extent={{-40,0},{-20,20}})));
 
     // Alias variables (for common terms)
     Q.Volume V_pore "Pore volume";
@@ -652,24 +802,24 @@ public
       "Liquid saturation";
 
     Connectors.Dalton gas if inclGas "Interface to the gas phase" annotation (
-        Placement(transformation(extent={{30,-10},{50,10}}), iconTransformation(
+        Placement(transformation(extent={{20,0},{40,20}}),iconTransformation(
             extent={{10,10},{30,30}})));
     Connectors.Amagat liquid if inclLiquid "Interface to the liquid phase"
-      annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
+      annotation (Placement(transformation(extent={{-60,0},{-40,20}}),
           iconTransformation(extent={{-20,-20},{0,0}})));
     Connectors.Amagat solid "Interface to the solid phase" annotation (
-        Placement(transformation(extent={{6,-30},{26,-10}}), iconTransformation(
+        Placement(transformation(extent={{-4,-20},{16,0}}), iconTransformation(
             extent={{50,-30},{70,-10}})));
 
     Conditions.ByConnector.Amagat.VolumeFixed volume(final V=V) if inclGas or
       inclLiquid "Fixed volume"
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+      annotation (Placement(transformation(extent={{-20,0},{0,20}})));
 
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if inclGas or (inclSolid and
       not inclLiquid)
       "Adapter between additivity of volume and additivity of gas pressure"
-      annotation (Placement(transformation(extent={{10,-10},{30,10}})));
+      annotation (Placement(transformation(extent={{0,0},{20,20}})));
 
     outer Conditions.Environment environment "Environmental conditions";
 
@@ -683,23 +833,23 @@ public
     end if;
 
     connect(capillary.wetting, liquid) annotation (Line(
-        points={{-24,0},{-40,0}},
+        points={{-34,10},{-50,10}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(solid, amagatDalton.amagat) annotation (Line(
-        points={{16,-20},{16,-20},{16,0},{16,0}},
+        points={{6,-10},{6,10}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(volume.amagat, amagatDalton.amagat) annotation (Line(
-        points={{0,0},{16,0}},
+        points={{-10,10},{6,10}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(gas, amagatDalton.dalton) annotation (Line(
-        points={{40,0},{24,0}},
+        points={{30,10},{14,10}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(capillary.nonwetting, volume.amagat) annotation (Line(
-        points={{-16,0},{0,0}},
+        points={{-26,10},{-10,10}},
         color={47,107,251},
         smooth=Smooth.None));
     annotation (
@@ -720,34 +870,41 @@ public
 
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Polygon(
-              points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
-              -60}},
-              lineColor={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
-              lineColor={191,191,191},
-              smooth=Smooth.Bezier,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-40,8},{20,-30}},
-              lineColor={85,170,255},
-              fillPattern=FillPattern.Sphere,
-              fillColor={255,255,255}),Ellipse(extent={{-40,8},{20,-30}},
-            lineColor={225,225,225}),Line(
-              points={{-60,20},{20,20},{20,-60}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None),Line(
-              points={{60,60},{20,20}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None)}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics));
+              100}}), graphics={
+          Polygon(
+            points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
+                -60}},
+            lineColor={0,0,0},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
+            lineColor={191,191,191},
+            smooth=Smooth.Bezier,
+            visible=inclGas,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-40,8},{20,-30}},
+            lineColor={85,170,255},
+            visible=inclLiquid,
+            fillPattern=FillPattern.Sphere,
+            fillColor={255,255,255}),
+          Ellipse(extent={{-40,8},{20,-30}}, lineColor={225,225,225}),
+          Line(
+            points={{-60,20},{20,20},{20,-60}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None),
+          Line(
+            points={{60,60},{20,20}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None)}),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-20},{40,
+              20}}), graphics));
   end CapillaryVolume;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}), graphics));

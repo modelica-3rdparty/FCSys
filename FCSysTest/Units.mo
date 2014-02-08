@@ -50,8 +50,8 @@ package Units
     // symbols [BIPM2006]
     test(sr, name="1 in set 3");
     test(Hz/(cyc/s), name="2 in set 3");
-    // BIPM implicitly assumes that the unit cycle is 1, but the unit rad is 1
-    // too---a discrepancy.
+    // BIPM implicitly assumes that the unit cycle is 1, but the unit rad is
+    // 1 too -- a discrepancy.
     test(N/(kg*m/s^2), name="3 in set 3");
     test(Pa/(N/m^2), name="4 in set 3");
     test(J/(N*m), name="5 in set 3");

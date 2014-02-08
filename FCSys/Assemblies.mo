@@ -47,10 +47,10 @@ package Assemblies "Combinations of regions (e.g., cells)"
         output Q.Potential 'Deltaw_H+'=cell.anCL.subregions[1, 1, 1].ionomer.
             'H+'.g - cell.caCL.subregions[1, 1, 1].ionomer.'H+'.g if
           environment.analysis "Voltage loss due to H+ transport";
-        output Q.Potential Deltaw_an=cell.anCL.subregions[1, 1, 1].graphite.
-            'e-Transfer'.Deltag if environment.analysis "Anode overpotential";
-        output Q.Potential Deltaw_ca=-cell.caCL.subregions[1, 1, 1].graphite.
-            'e-Transfer'.Deltag if environment.analysis "Cathode overpotential";
+        output Q.Potential Deltaw_an=cell.anCL.subregions[1, 1, 1].HOR.transfer.Deltag
+          if environment.analysis "Anode overpotential";
+        output Q.Potential Deltaw_ca=-cell.caCL.subregions[1, 1, 1].ORR.transfer.Deltag
+          if environment.analysis "Cathode overpotential";
 
         replaceable Cell cell(inclN2=environment.psi_O2_dry < 1 - Modelica.Constants.eps)
           constrainedby FCSys.Icons.Cell "Fuel cell" annotation (
@@ -331,10 +331,10 @@ package Assemblies "Combinations of regions (e.g., cells)"
         "Simulate the fuel cell under prescribed conditions, with cyclical load"
         extends TestStand(
           cell(
-            anCL(subregions(graphite(each inclDL=true, 'e-Transfer'(each fromI=
+            anCL(subregions(graphite(each inclDL=true, transfer(each fromI=
                         false)), ionomer(H2O(each lambda_IC=13.53)))),
             PEM(subregions(ionomer(H2O(each lambda_IC=13.53)))),
-            caCL(subregions(graphite(each inclDL=true, 'e-Transfer'(each fromI=
+            caCL(subregions(graphite(each inclDL=true, transfer(each fromI=
                         false)), ionomer(H2O(each lambda_IC=13.53))))),
           redeclare Modelica.Electrical.Analog.Sources.SineCurrent load(
             freqHz=0.3,
@@ -398,9 +398,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         extends TestStand(
           environment(analysis=false),
-          cell(anCL(subregions(graphite(each inclDL=true, 'e-Transfer'(each
-                      fromI=false)))), caCL(subregions(graphite(each inclDL=
-                      true, 'e-Transfer'(each fromI=false))))),
+          cell(anCL(subregions(graphite(each inclDL=true, transfer(each fromI=
+                        false)))), caCL(subregions(graphite(each inclDL=true,
+                    transfer(each fromI=false))))),
           redeclare Modelica.Electrical.Analog.Sources.SignalCurrent load(i(
               start=50,
               stateSelect=StateSelect.always,
@@ -412,7 +412,6 @@ package Assemblies "Combinations of regions (e.g., cells)"
         der(load.i) = 0 "Current is a dummy state -- only for linear analysis.";
 
       end TestStandLinearize;
-
 
       model TestStandSegmented
         "Simulate the fuel cell with multiple segments in the y direction"
@@ -457,9 +456,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
               1, 1, 1].graphite.'e-'.g_boundaries[1, Side.n],
           'Deltaw_H+'=cell.anCGDL.subregions[1, 1, 1].ionomer.'H+'.g - cell.caCGDL.subregions[
               1, 1, 1].ionomer.'H+'.g,
-          Deltaw_an=cell.anCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag,
-
-          Deltaw_ca=-cell.caCGDL.subregions[1, 1, 1].graphite.'e-Transfer'.Deltag);
+          Deltaw_an=cell.anCGDL.subregions[1, 1, 1].HOR.transfer.Deltag,
+          Deltaw_ca=-cell.caCGDL.subregions[1, 1, 1].ORR.transfer.Deltag);
 
         annotation (Commands(file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStandSimple.mos"
@@ -467,8 +465,6 @@ package Assemblies "Combinations of regions (e.g., cells)"
               StopTime=36180, __Dymola_Algorithm="Dassl"));
 
       end TestStandSimple;
-
-
 
       model TestConditions "Fuel cell test conditions"
         extends FCSys.Icons.Record;
@@ -481,7 +477,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         // Anode
         Connectors.RealInputInternal I_an(unit="N/T") = U.A
           "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label=
-                "<html><i>I</i><sub>an</sub></html>"), Placement(transformation(
+                "<html><i>I</i><sub>an</sub></html>"),Placement(transformation(
                 extent={{-70,30},{-50,50}}), iconTransformation(extent={{0,0},{
                   0,0}})));
         parameter Q.NumberAbsolute anRH(

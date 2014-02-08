@@ -82,12 +82,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
         output Q.Potential h0=0.5*Characteristics.H2.Gas.Deltah0_f + 0.25*
             Characteristics.O2.Gas.Deltah0_f - 0.5*Characteristics.H2O.Gas.Deltah0_f;
 
-        output Q.Potential w=subregion.graphite.'e-Transfer'.Deltag
-          "Overpotential";
-        output Q.Current zI=subregion.graphite.'e-Transfer'.I "Reaction rate";
+        output Q.Potential w=subregion.ORR.transfer.Deltag "Overpotential";
+        output Q.Current zI=subregion.ORR.transfer.I "Reaction rate";
         output Q.Number J_Apercm2=zI*U.cm^2/(subregion.A[Axis.x]*U.A)
           "Electrical current density of the reaction, in A/cm2";
-        output Q.Power Qdot=-subregion.graphite.'e-Transfer'.inert.Qdot
+        output Q.Power Qdot=-subregion.ORR.transfer.inert.Qdot
           "Rate of heat generation due to reaction";
 
         extends Examples.Subregion(
@@ -154,12 +153,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
       model ORR "Test the oxygen reduction reaction in one subregion"
 
-        output Q.Potential w=-subregion.graphite.'e-Transfer'.Deltag
-          "Overpotential";
-        output Q.Current zI=-subregion.graphite.'e-Transfer'.I "Reaction rate";
+        output Q.Potential w=-subregion.ORR.transfer.Deltag "Overpotential";
+        output Q.Current zI=-subregion.ORR.transfer.I "Reaction rate";
         output Q.Number J_Apercm2=zI*U.cm^2/(subregion.A[Axis.x]*U.A)
           "Electrical current density, in A/cm2";
-        output Q.Power Qdot=-subregion.graphite.'e-Transfer'.inert.Qdot
+        output Q.Power Qdot=-subregion.ORR.transfer.inert.Qdot
           "Rate of heat generation due to reaction";
 
         extends Examples.Subregion(
@@ -355,6 +353,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end AirColumn;
 
     model BinaryDiffusion
@@ -686,6 +685,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end InternalFlow;
 
     model Subregion
@@ -949,7 +949,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
     FCSys.Phases.Graphite graphite(
       n_inter=1,
       final n_trans=n_trans,
-      'incle-Transfer'=inclHOR or inclORR,
       final k_inter_Phi={common.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q}) "Graphite" annotation (Dialog(group=
             "Phases (click to edit)"), Placement(transformation(extent={{10,-22},
@@ -1251,6 +1250,22 @@ package Subregions "Control volumes with multi-species transfer and storage"
     connect(graphite.'cheme-'[1], ORR.'cheme-');
     connect(ionomer.'chemH+'[1], HOR.'chemH+');
     connect(ionomer.'chemH+'[1], ORR.'chemH+');
+    connect(HOR.amagat, graphite.amagat) annotation (Line(
+        points={{108,-20},{28,-20}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(ORR.amagat, graphite.amagat) annotation (Line(
+        points={{108,-36},{68,-36},{68,-20},{28,-20}},
+        color={47,107,251},
+        smooth=Smooth.None));
+    connect(HOR.inert, graphite.inter[1]) annotation (Line(
+        points={{88.2,-20},{16,-20},{16,-7},{15,-7}},
+        color={127,127,127},
+        smooth=Smooth.None));
+    connect(ORR.inert, graphite.inter[1]) annotation (Line(
+        points={{88.2,-36},{14,-36},{14,-7},{15,-7}},
+        color={221,23,47},
+        smooth=Smooth.None));
     annotation (Documentation(info="<html><p>Assumptions:</p><ol>
 <li>The oxygen reduction reaction generates liquid water if it is included; otherwise,
 it generates H<sub>2</sub>O vapor.  Since phase change is a dynamic, nonequilibrium
@@ -1363,6 +1378,7 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
               60}}), graphics));
+
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
@@ -1611,6 +1627,7 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
               100,60}}), graphics));
+
   end SubregionNoIonomer;
 
   partial model PartialSubregion
@@ -1773,17 +1790,6 @@ in diagram)")}));
               100,100}}), graphics));
 
   end PartialSubregion;
-  annotation (Documentation(info="
-<html>
-  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
-Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
-
-<p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
-it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the
-disclaimer of warranty) see <a href=\"modelica://FCSys.UsersGuide.License\">
-FCSys.UsersGuide.License</a> or visit <a href=\"http://www.modelica.org/licenses/ModelicaLicense2\">
-http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
-</html>"));
 
   model Liq
     import Data = FCSys.Characteristics.H2O.Gas;
@@ -1842,8 +1848,8 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
         points={{29.8,2.4},{15.9,2.4},{15.9,-20},{2,-20}},
         color={0,0,0},
         smooth=Smooth.None));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{
-              -100,-100},{100,100}}), graphics));
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics));
   end Combined;
 
   connector Mat
@@ -1856,8 +1862,6 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
 
     Mat mat1 annotation (Placement(transformation(extent={{-72,6},{-52,26}})));
     Mat mat2 annotation (Placement(transformation(extent={{48,-6},{68,14}})));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics));
 
     Real s;
     Real diff;
@@ -1872,5 +1876,18 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
     diff = s*(if present then 0 else 1);
     N = s*(if present then 1 else 0);
 
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics));
   end Diode;
+  annotation (Documentation(info="
+<html>
+  <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
+Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
+
+<p><i>This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>;
+it can be redistributed and/or modified under the terms of the Modelica License 2. For license conditions (including the
+disclaimer of warranty) see <a href=\"modelica://FCSys.UsersGuide.License\">
+FCSys.UsersGuide.License</a> or visit <a href=\"http://www.modelica.org/licenses/ModelicaLicense2\">
+http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
+</html>"));
 end Subregions;

@@ -100,7 +100,7 @@ package WorkInProgress "Incomplete classes under development"
     Regions.AnCLs.AnCL anCL(
       final L_y=L_y,
       final L_z=L_z,
-      subregions(graphite(each inclDL=true, 'e-Transfer'(each fromI=false))))
+      subregions(graphite(each inclDL=true, transfer(each fromI=false))))
       annotation (Placement(transformation(extent={{-30,30},{-10,50}})));
 
     Regions.PEMs.PEM PEM(
@@ -111,8 +111,8 @@ package WorkInProgress "Incomplete classes under development"
     Regions.CaCLs.CaCL caCL(
       final L_y=L_y,
       final L_z=L_z,
-      subregions(graphite(each inclDL=true, 'e-Transfer'(each fromI=false)),
-          each ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
+      subregions(graphite(each inclDL=true, transfer(each fromI=false)), each
+          ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
       annotation (Placement(transformation(extent={{10,30},{30,50}})));
 
     // Conditions

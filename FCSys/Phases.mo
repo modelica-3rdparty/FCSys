@@ -195,14 +195,14 @@ package Phases "Mixtures of species"
 
     Connectors.Chemical chemH2[H2.n_chem](each final n_trans=n_trans) if inclH2
       "Chemical connector for H2" annotation (Placement(transformation(extent={
-              {-74,60},{-54,80}}), iconTransformation(extent={{-50,-50},{-30,-30}})));
+              {-74,58},{-54,78}}), iconTransformation(extent={{-50,-50},{-30,-30}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
       inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
-            extent={{-34,60},{-14,80}}), iconTransformation(extent={{-10,-50},{
+            extent={{-34,58},{-14,78}}), iconTransformation(extent={{-10,-50},{
               10,-30}})));
     Connectors.Chemical chemO2[O2.n_chem](each final n_trans=n_trans) if inclO2
       "Chemical connector for O2" annotation (Placement(transformation(extent={
-              {46,60},{66,80}}), iconTransformation(extent={{30,-50},{50,-30}})));
+              {46,58},{66,78}}), iconTransformation(extent={{30,-50},{50,-30}})));
 
   protected
     Connectors.InertNode exchCommon
@@ -220,15 +220,15 @@ package Phases "Mixtures of species"
   equation
     // Chemical exchange
     connect(O2.chemical, chemO2) annotation (Line(
-        points={{56,29},{56,70}},
+        points={{56,29},{56,68}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(H2.chemical, chemH2) annotation (Line(
-        points={{-64,29},{-64,70}},
+        points={{-64,29},{-64,68}},
         color={255,195,38},
         smooth=Smooth.None));
     connect(H2O.chemical, chemH2O) annotation (Line(
-        points={{-24,29},{-24,70}},
+        points={{-24,29},{-24,68}},
         color={255,195,38},
         smooth=Smooth.None));
 
@@ -477,6 +477,7 @@ package Phases "Mixtures of species"
               120,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Gas;
 
   model Graphite "Graphite phase"
@@ -513,7 +514,7 @@ package Phases "Mixtures of species"
         __Dymola_descriptionLabel=true,
         __Dymola_label="<html>C<sup>+</sup> model</html>",
         enable='inclC+'),
-      Placement(transformation(extent={{-30,-30},{-10,-10}})));
+      Placement(transformation(extent={{-30,-10},{-10,10}})));
 
     parameter Boolean 'incle-'=false "Include e-" annotation (
       HideResult=true,
@@ -536,146 +537,81 @@ package Phases "Mixtures of species"
         __Dymola_descriptionLabel=true,
         __Dymola_label="<html>'e-' model</html>",
         enable='incle-'),
-      Placement(transformation(extent={{10,-30},{30,-10}})));
-
-    parameter Boolean 'incle-Transfer'=false "Include electron transfer"
-      annotation (
-      HideResult=true,
-      choices(__Dymola_checkBox=true),
-      Dialog(
-        enable='incle-',
-        tab="Assumptions",
-        compact=true));
-
-    parameter Boolean inclDL=false "Include the double-layer capacitance"
-      annotation (
-      HideResult=true,
-      Dialog(
-        enable='incle-Transfer',
-        tab="Assumptions",
-        compact=true),
-      choices(__Dymola_checkBox=true));
-
-    Chemistry.Electrochemistry.ElectronTransfer 'e-Transfer'(redeclare
-        constant Integer n_trans=1) if 'incle-' and 'incle-Transfer'
-      "Electron transfer" annotation (Placement(transformation(
-          extent={{-10,10},{10,-10}},
-          rotation=90,
-          origin={16,34})));
-    Chemistry.Electrochemistry.DoubleLayer doubleLayer(redeclare constant
-        Integer n_trans=1) if 'incle-' and 'incle-Transfer' and inclDL
-      "Electrolytic double layer" annotation (Placement(transformation(
-          extent={{-10,-10},{10,10}},
-          rotation=90,
-          origin={-20,34})));
-    // Note:  n_trans must be constant in Dymola 2014 to prevent errors such as
-    // "Failed to expand the variable
-    // subregion.graphite.'e-Transfer'.negative.phi".  The setting of n_trans=1
-    // must be manually changed at instantiation if additional transport axes
-    //  are enabled.
+      Placement(transformation(extent={{10,-10},{30,10}})));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
-            extent={{-80,-30},{-60,-10}}), iconTransformation(extent={{-90,-10},
+            extent={{-80,-10},{-60,10}}), iconTransformation(extent={{-90,-10},
               {-70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
-            extent={{-56,-54},{-36,-34}}), iconTransformation(extent={{-10,-94},
+            extent={{-56,-34},{-36,-14}}), iconTransformation(extent={{-10,-94},
               {10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
-            extent={{48,-18},{68,2}}), iconTransformation(extent={{40,40},{60,
-              60}})));
+            extent={{48,2},{68,22}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
-            extent={{60,-30},{80,-10}}), iconTransformation(extent={{70,-10},{
-              90,10}})));
+            extent={{60,-10},{80,10}}), iconTransformation(extent={{70,-10},{90,
+              10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
-            extent={{36,-6},{56,14}}), iconTransformation(extent={{-10,90},{10,
+            extent={{36,14},{56,34}}), iconTransformation(extent={{-10,90},{10,
               110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
-            extent={{-68,-42},{-48,-22}}), iconTransformation(extent={{-90,-90},
+            extent={{-68,-22},{-48,-2}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
       "Connector to exchange momentum and energy with other phases" annotation
-      (Placement(transformation(extent={{60,-66},{80,-46}}), iconTransformation(
+      (Placement(transformation(extent={{60,-46},{80,-26}}), iconTransformation(
             extent={{-60,60},{-40,40}})));
 
     Connectors.Amagat amagat if n_spec > 0 "Connector for additivity of volume"
-      annotation (Placement(transformation(extent={{-80,4},{-60,24}}),
+      annotation (Placement(transformation(extent={{-80,24},{-60,44}}),
           iconTransformation(extent={{70,-90},{90,-70}})));
 
     Connectors.Chemical 'cheme-'[1](each final n_trans=n_trans) if 'incle-'
-       and 'incle-Transfer' "Chemical connector for e-" annotation (Placement(
-          transformation(extent={{6,40},{26,60}}), iconTransformation(extent={{
-              -10,-50},{10,-30}})));
+      "Chemical connector for e-" annotation (Placement(transformation(extent={
+              {6,36},{26,56}}), iconTransformation(extent={{-10,-50},{10,-30}})));
 
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
       "Adapter between additivity of volume and additivity of pressure"
-      annotation (Placement(transformation(extent={{-60,4},{-40,24}})));
+      annotation (Placement(transformation(extent={{-60,24},{-40,44}})));
     Connectors.InertNode exchCommon
-      "Connector for exchange among all species in the phase"
-      annotation (Placement(transformation(extent={{36,-78},{56,-58}})));
+      "Connector for exchange among all species in the phase" annotation (
+        Placement(transformation(extent={{36,-58},{56,-38}}),
+          iconTransformation(extent={{36,-78},{56,-58}})));
 
   equation
     // Chemical exchange
-    connect('e-Transfer'.negative, doubleLayer.negative) annotation (Line(
-        points={{16,28},{-20,28}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect('e-Transfer'.positive, doubleLayer.positive) annotation (Line(
-        points={{16,40},{-20,40}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect('e-Transfer'.negative, 'e-'.chemical[1]) annotation (Line(
-        points={{16,28},{16,-11}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect('e-Transfer'.positive, 'cheme-'[1]) annotation (Line(
-        points={{16,40},{16,50}},
-        color={255,195,38},
-        smooth=Smooth.None));
 
     // Inert exchange
     connect('C+'.inter, inter) annotation (Line(
-        points={{-11,-23.8},{-11,-56},{70,-56}},
+        points={{-11,-3.8},{-11,-36},{70,-36}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('C+'.intra[1], exchCommon.node) annotation (Line(
-        points={{-16,-29},{-16,-68},{46,-68}},
+        points={{-16,-9},{-16,-48},{46,-48}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('e-'.intra[1], exchCommon.node) annotation (Line(
-        points={{24,-29},{24,-68},{46,-68}},
-        color={221,23,47},
-        smooth=Smooth.None));
-    connect('e-Transfer'.inert, 'C+'.intra[1]) annotation (Line(
-        points={{12,34},{-16,34},{-16,-29}},
-        color={221,23,47},
-        smooth=Smooth.None));
-    connect(doubleLayer.inert, 'e-Transfer'.inert) annotation (Line(
-        points={{-16,34},{12,34}},
+        points={{24,-9},{24,-48},{46,-48}},
         color={221,23,47},
         smooth=Smooth.None));
 
     // Mixing
     connect(amagatDalton.amagat, amagat) annotation (Line(
-        points={{-54,14},{-70,14}},
+        points={{-54,34},{-70,34}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(amagatDalton.dalton, 'C+'.dalton) annotation (Line(
-        points={{-46,14},{-29,14},{-29,-16}},
+        points={{-46,34},{-29,34},{-29,4}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(amagatDalton.dalton, 'e-'.dalton) annotation (Line(
-        points={{-46,14},{11,14},{11,-16}},
-        color={47,107,251},
-        smooth=Smooth.None));
-    connect(doubleLayer.amagat, amagat) annotation (Line(
-        points={{-20,34},{-62,34},{-62,14},{-70,14}},
+        points={{-46,34},{11,34},{11,4}},
         color={47,107,251},
         smooth=Smooth.None));
 
@@ -684,76 +620,80 @@ package Phases "Mixtures of species"
     // C+
     connect('C+'.boundaries[transCart[Axis.x], Side.n], xNegative.'C+')
       annotation (Line(
-        points={{-20,-20},{-70,-20}},
+        points={{-20,0},{-70,0}},
         color={127,127,127},
         smooth=Smooth.None));
     connect('C+'.boundaries[transCart[Axis.x], Side.p], xPositive.'C+')
       annotation (Line(
-        points={{-20,-20},{70,-20}},
+        points={{-20,0},{70,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('C+'.boundaries[transCart[Axis.y], Side.n], yNegative.'C+')
       annotation (Line(
-        points={{-20,-20},{-20,-44},{-46,-44}},
+        points={{-20,0},{-20,-24},{-46,-24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('C+'.boundaries[transCart[Axis.y], Side.p], yPositive.'C+')
       annotation (Line(
-        points={{-20,-20},{-20,4},{46,4}},
+        points={{-20,0},{-20,24},{46,24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('C+'.boundaries[transCart[Axis.z], Side.n], zNegative.'C+')
       annotation (Line(
-        points={{-20,-20},{-8,-8},{58,-8}},
+        points={{-20,0},{-8,12},{58,12}},
         color={127,127,127},
         smooth=Smooth.None));
     connect('C+'.boundaries[transCart[Axis.z], Side.p], zPositive.'C+')
       annotation (Line(
-        points={{-20,-20},{-32,-32},{-58,-32}},
+        points={{-20,0},{-32,-12},{-58,-12}},
         color={127,127,127},
         smooth=Smooth.None));
 
     // e-
     connect('e-'.boundaries[transCart[Axis.x], Side.n], xNegative.'e-')
       annotation (Line(
-        points={{20,-20},{-70,-20}},
+        points={{20,0},{-70,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('e-'.boundaries[transCart[Axis.x], Side.p], xPositive.'e-')
       annotation (Line(
-        points={{20,-20},{70,-20}},
+        points={{20,0},{70,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('e-'.boundaries[transCart[Axis.y], Side.n], yNegative.'e-')
       annotation (Line(
-        points={{20,-20},{20,-44},{-46,-44}},
+        points={{20,0},{20,-24},{-46,-24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('e-'.boundaries[transCart[Axis.y], Side.p], yPositive.'e-')
       annotation (Line(
-        points={{20,-20},{20,4},{46,4}},
+        points={{20,0},{20,24},{46,24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('e-'.boundaries[transCart[Axis.z], Side.n], zNegative.'e-')
       annotation (Line(
-        points={{20,-20},{32,-8},{58,-8}},
+        points={{20,0},{32,12},{58,12}},
         color={127,127,127},
         smooth=Smooth.None));
     connect('e-'.boundaries[transCart[Axis.z], Side.p], zPositive.'e-')
       annotation (Line(
-        points={{20,-20},{8,-32},{-58,-32}},
+        points={{20,0},{8,-12},{-58,-12}},
         color={127,127,127},
         smooth=Smooth.None));
 
+    connect('e-'.chemical, 'cheme-') annotation (Line(
+        points={{16,9},{16,46}},
+        color={255,195,38},
+        smooth=Smooth.None));
     annotation (
-      Documentation(info="<html><p>From a physical standpoint, the electrolytic double layer is probably best
+      Documentation(info="<html><p>From a physical standpoint, the electrolytic double layer should be
 
     considered its own phase, but it is modeled as a part of the graphite phase in order to reduce the number of connections.  It is assumed to
 
@@ -767,10 +707,11 @@ package Phases "Mixtures of species"
     For more information, please see the
  <a href=\"modelica://FCSys.Phases.PartialPhase\">PartialPhase</a> model.</p></html>"),
 
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-80},{80,
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-60},{80,
               60}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Graphite;
 
   model Ionomer "Ionomer phase"
@@ -915,11 +856,11 @@ package Phases "Mixtures of species"
           iconTransformation(extent={{-60,60},{-40,40}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
       inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
-            extent={{-14,52},{6,72}}), iconTransformation(extent={{10,-50},{30,
+            extent={{-14,50},{6,70}}), iconTransformation(extent={{10,-50},{30,
               -30}})));
     Connectors.Chemical 'chemH+'['H+'.n_chem](each final n_trans=n_trans) if
       'inclH+' "Chemical connector for H+" annotation (Placement(transformation(
-            extent={{-54,52},{-34,72}}), iconTransformation(extent={{-30,-50},{
+            extent={{-54,50},{-34,70}}), iconTransformation(extent={{-30,-50},{
               -10,-30}})));
 
     // Independence factors
@@ -962,11 +903,11 @@ package Phases "Mixtures of species"
   equation
     // Chemical exchange
     connect(H2O.chemical, chemH2O) annotation (Line(
-        points={{-4,21},{-4,62}},
+        points={{-4,21},{-4,60}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('H+'.chemical, 'chemH+') annotation (Line(
-        points={{-44,21},{-44,62}},
+        points={{-44,21},{-44,60}},
         color={255,195,38},
         smooth=Smooth.None));
 
@@ -1155,6 +1096,7 @@ package Phases "Mixtures of species"
               100,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
+
   end Ionomer;
 
   model Liquid "Liquid phase"
@@ -1300,7 +1242,8 @@ package Phases "Mixtures of species"
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
-              60}}), graphics));
+              40}}), graphics));
+
   end Liquid;
 
 protected

@@ -1,5 +1,8 @@
 within FCSys;
 package Characteristics "Data and functions to correlate physical properties"
+  import Modelica.Media.IdealGases.Common.FluidData;
+  import Modelica.Media.IdealGases.Common.SingleGasesData;
+  extends Modelica.Icons.Package;
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
     model Correlations
@@ -312,6 +315,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Characteristics.Examples.HydrationLevel.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end HydrationLevel;
 
     model CellPotential
@@ -424,6 +428,7 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos"
             "Characteristics.Examples.LatentHeat.mos"));
+
     end LatentHeat;
 
     model MobilityFactors "Test the mobility factors"
@@ -474,12 +479,10 @@ package Characteristics "Data and functions to correlate physical properties"
 
         experiment(StopTime=10),
         Commands);
+
     end SurfaceTension;
 
   end Examples;
-  import Modelica.Media.IdealGases.Common.FluidData;
-  import Modelica.Media.IdealGases.Common.SingleGasesData;
-  extends Modelica.Icons.Package;
 
   package 'C+' "<html>C<sup>+</sup></html>"
     extends Modelica.Icons.Package;
@@ -823,7 +826,7 @@ package Characteristics "Data and functions to correlate physical properties"
    from <a href=\"http://en.wikipedia.org/wiki/Hydrogen\">http://en.wikipedia.org/wiki/Hydrogen</a> and the center-to-center
    distance of hydrogen atoms in H<sub>2</sub>O from [<a href=\"modelica://FCSys.UsersGuide.References.Avogadro\">Avogadro</a>],
    156.6 pm, the radius of H<sub>2</sub>O would be (120 + 156.6/2) pm = 198.3 pm.</li>
-  <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References\">Dymond2002</a>, p.&nbsp;4].  The
+  <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>, p.&nbsp;4].  The
   temperature range of the coefficients is [350, 770] K, but this is not enforced in the functions.</li>
      </ul>
 
@@ -967,7 +970,7 @@ package Characteristics "Data and functions to correlate physical properties"
    <a href=\"http://en.wikipedia.org/wiki/Van_der_Waals_radius\">http://en.wikipedia.org/wiki/Van_der_Waals_radius</a>.</li>
   <li>The virial coefficients are from [<a href=\"modelica://FCSys.UsersGuide.References.Dymond2002\">Dymond2002</a>, p.&nbsp;69].  The
   temperature range of the coefficients is [75, 745] K, but this is not enforced in the functions.  More precise virial coefficients are available from
-  <a href=\"http://www.tpub.com/content/nasa1996/NASA-96-cr4755/NASA-96-cr47550059.htm\">http://www.tpub.com/content/nasa1996/NASA-96-cr4755/NASA-96-cr47550059.htm</a>.</li>
+  <a href=\"http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19960054368_1996093103.pdf\">http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19960054368_1996093103.pdf</a>.</li>
      </ul>
 
 <p>For more information, please see the
@@ -1713,7 +1716,7 @@ package Characteristics "Data and functions to correlate physical properties"
   </ol>
   <p>Also, it is assumed that the Einstein relation applies.</p>
 
-  <p>Please see [<a href=\"modelica://FCSys.UsersGuide.References\">Davies2013</a>, Ch. 3] for a derivation
+  <p>Please see [<a href=\"modelica://FCSys.UsersGuide.References\">Davies2014</a>, Ch. 3] for a derivation
   of the rate of phase change from kinetic theory.</p>
 
   <p>Although specific volume is an input to this function, the result is independent of

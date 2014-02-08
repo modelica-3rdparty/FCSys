@@ -16,7 +16,7 @@ package Species "Dynamic models of chemical species"
               B_c=[Data.Deltah0_f - (935*U.J*Data.m/U.kg)*298.15, 154.663*U.J/(
                   U.mol*U.K) - Data.b_c[1, 1]*log(298.15*U.K)]),
           final mu=0,
-          redeclare parameter Q.TimeAbsolute nu=Data.nu(),
+          redeclare final parameter Q.TimeAbsolute nu=0*Data.nu(),
           redeclare parameter Q.ResistivityThermal theta=U.m*U.K/(11.1*U.W));
 
         // Note:  Parameter expressions (e.g., nu=Data.nu(environment.T)) are not
@@ -600,6 +600,7 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Ionomer;
@@ -898,6 +899,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Gas;
@@ -1756,6 +1758,7 @@ Choose any condition besides none.");
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
+
   end Solid;
 
 protected
@@ -2164,16 +2167,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-              extent={{-100,100},{100,-100}},
-              lineColor={127,127,127},
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0},
-              origin={-40,40},
-              rotation=45)}));
+            extent={{-100,100},{100,-100}},
+            lineColor={127,127,127},
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-100,-20},{100,20}},
+            textString="%name",
+            lineColor={0,0,0},
+            origin={-40,40},
+            rotation=45)}));
   end Species;
 
 public

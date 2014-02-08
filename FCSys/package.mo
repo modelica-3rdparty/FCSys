@@ -65,8 +65,9 @@ annotation (
     <li><b>Highly reconfigurable</b>:
     There are options to adjust the assumptions, dimensionality (1D, 2D, or 3D), and spatial discretization
     (i.e., resolution).  Species may be independently enabled at instantiation, unlike
-    the <a href=\"modelica://Modelica.Media\">Modelica media library</a>.  The framework is generic and can be extended
-    to other fluidic or electrochemical devices like batteries.</li>
+    the <a href=\"modelica://Modelica.Media\">Modelica media library</a>.  The framework is generic and could be extended
+    to other fluidic or electrochemical devices such as solid oxide fuel cells (SOFCs), electrolyzers, primary and 
+    secondary batteries, and flow batteries.</li>
 
     <li><b>Highly modular and reusable</b>:
     Each layer of the cell is a separate model which is hierarchically constructed from graphical models of
@@ -87,8 +88,12 @@ annotation (
     <li><b>Computationally efficient</b>:
     There are minimal switching events and no nonlinear systems of equations after appropriate translation.
     A typical polarization curve can be simulated in less than two seconds.</li>
-
     </ul>
+    
+    <p>The models encompass a wide range of phenomena such as electro-osmotic drag, 
+    liquid pore saturation, capillary action, multi-component diffusion, dynamic 
+    phase change, compressible flow, electrode kinetics, and thermal conduction and 
+    convection.</p>
 
     <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC, which are also the components of the
     fuel cell model shown in <a href=\"#Fig2\">Figure 2</a>.

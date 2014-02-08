@@ -611,6 +611,11 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end Woo1995;
 
+    class Yuan2009
+      "<html>X.-Z. Yuan, C. Song, H. Wang, and J. Zhang, <i>Electrochemical Impedance Spectroscopy in PEM Fuel Cells: Fundamentals and Applications</i>, Springer-Verlag, 2009</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Yuan2009;
     annotation (preferredView="info", Documentation(info="<html>
     <p>This library (FCSys) is described in</p>
     <ol>
@@ -721,14 +726,14 @@ describes how the library is developed and maintained using the
     The development page is
     <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.
     Please report any problems using the <a href=\"https://github.com/kdavies4/FCSys/issues\">issues</a>
-    link on that page.  If you have a publishable study you would like to perform, please feel free to
-    contact the author for support.</p>
+    link on that page.  Please contact the author to discuss potential applications or research collaboration.</p>
 
     <dl><dt><b>Author:</b><br></dt>
     <dd>Kevin Davies</dd>
-    <dd><a href=\"http://www.hnei.hawaii.edu\">Hawaii Natural Energy Institute</a></dd>
-    <dd><a href=\"http://www.hawaii.edu\">University of Hawaii</a></dd>
-    <dd>1680 East West Rd., POST 109</dd>
+    <dd><a href=\"http://www.hnei.hawaii.edu\">Hawai&#699;i Natural Energy Institute</a></dd>
+    <dd><a href=\"http://www.soest.hawaii.edu/\">School of Ocean and Earth Science and Technology</a></dd>
+    <dd><a href=\"http://manoa.hawaii.edu/\">University of Hawai&#699;i at Ma&#772;noa</a></dd>
+    <dd>1680 East-West Road, POST 109</dd>
     <dd>Honolulu, HI  96822</dd>
     <dd>USA</dd>
     <dd>email: <a href=\"mailto:kdavies@hawaii.edu?Subject=FCSys\">kdavies@hawaii.edu</a></dd></dl>
@@ -758,8 +763,10 @@ describes how the library is developed and maintained using the
     Joerg Weiss-Ungeth&uuml;m, and 
     Dietmar Winkler</li>
 
-    <li>Review and feedback from
-    Mohammad Ali, Severine Busquet, and Francois Steinmetz
+    <li>Testing by and feedback from
+    Mohammad Ali, 
+    Severine Busquet, and 
+    Fran&ccedil;ois Steinmetz
     </li>
 
     <li>Financial support from:
@@ -1058,6 +1065,28 @@ action. This section shall survive the termination of this License.</p>
 
   end License;
 
+  class SeeAlso "See also"
+    extends Modelica.Icons.Information;
+    annotation (preferredView="info", Documentation(info="<html>
+<p>Please also see the following open-source fuel cell modeling resources:</p>
+<ul>
+<li><a href=\"http://www.openfcst.mece.ualberta.ca/\">OpenFCST</a> (Open Fuel Cell Simulation Toolbox) is an 
+open-source modeling package for polymer exchange membrane fuel cells (PEMFCs).  Since it is based on the 
+finite element method (FEM) and partial differential equations (PDEs) rather than differential algebraic equations (DAEs),
+it is better suited than <a href=\"modelica://FCSys\">FCSys</a> for studies requiring high spatial resolution.</li>
+
+<li><a href=\"http://www.pemfcdata.org/\">Investigation of Micro- and Macro-Scale Transport Processes for Improved Fuel Cell Performance</a> 
+is a project that shares experimental data and model results of PEMFCs 
+\"to provide a common validation tool that generates dialog about fundamental transport physics.\"  
+It is sponsored by the U.S. Department of Energy Fuel Cells Program.</li>
+
+
+<li></li>
+</ul>
+</p>
+</html>"));
+
+  end SeeAlso;
   annotation (preferredView="info", DocumentationClass=true);
 
 end UsersGuide;

@@ -110,7 +110,7 @@ rpls = [
   </div>
 </div>
 <div class="footer">
-  Copyright &copy; 2007&ndash;2014, <a href="mailto:kdavies@hawaii.edu?Subject=FCSys">Kevin Davies</a>, <a href="http://www.hnei.hawaii.edu">Hawaii Natural Energy Institute</a>. Last updated %s.
+  Copyright &copy; 2007&ndash;2014, <a href="http://www.hnei.hawaii.edu/staff/kevin-davies">Kevin Davies</a>, <a href="http://www.hnei.hawaii.edu">Hawaii Natural Energy Institute</a>. Last updated %s.
 </div>
 """ % r'\1'),
     # Remove Dymola's tags for the Microsoft Office template.
