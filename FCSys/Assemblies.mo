@@ -15,6 +15,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         // Aliases
         Q.Current zI "Electrical current";
+        Real r_an "Ratio of pressure and current at the anode outlet";
+        Real r_ca "Ratio of pressure and current at the cathode outlet";
+        // **dimension: M/(L.N.T)
 
         // Auxiliary variables (for analysis)
         output Q.Potential w=load.v*U.V "Potential";
@@ -87,16 +90,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
           cell.n_z](gas(
             each inclH2=true,
             each inclH2O=true,
-            H2(redeclare each function materialSpec =
-                  Conditions.ByConnector.Boundary.Single.Material.current,
-                materialSet(y=anSink.gas.H2O.boundary.Ndot .* cell.anFP.subregions[
-                    :, cell.n_y, :].gas.H2O.v ./ cell.anFP.subregions[:, cell.n_y,
-                    :].gas.H2.v)),
-            H2O(materialSet(y=fill(
-                          environment.p,
-                          cell.anFP.n_x,
-                          cell.n_z) - anSink.gas.H2.p))), each liquid(inclH2O=
-                cell.inclLiq, H2O(materialSet(y=environment.p))))
+            H2O(materialSet(y=r_an*anSink.gas.H2O.boundary.Ndot)),
+            H2(materialSet(y=r_an*anSink.gas.H2.boundary.Ndot))), each liquid(
+              inclH2O=cell.inclLiq, H2O(materialSet(y=environment.p))))
           "Sink for the anode reactant stream" annotation (Placement(
               transformation(
               extent={{-10,-10},{10,10}},
@@ -135,24 +131,10 @@ package Assemblies "Combinations of regions (e.g., cells)"
             each inclO2=true,
             each inclN2=cell.inclN2,
             each inclH2O=true,
-            H2O(materialSet(y=fill(
-                          environment.p,
-                          cell.caFP.n_x,
-                          cell.n_z) - p_N2_out - caSink.gas.O2.p)),
-            N2(
-              redeclare function materialSpec =
-                  Conditions.ByConnector.Boundary.Single.Material.current,
-              materialSet(y=caSink.gas.H2O.boundary.Ndot .* cell.caFP.subregions[
-                    :, cell.n_y, :].gas.H2O.v ./ cell.caFP.subregions[:, cell.n_y,
-                    :].gas.N2.v),
-              redeclare function materialMeas =
-                  Conditions.ByConnector.Boundary.Single.Material.pressure),
-            O2(redeclare function materialSpec =
-                  Conditions.ByConnector.Boundary.Single.Material.current,
-                materialSet(y=caSink.gas.H2O.boundary.Ndot .* cell.caFP.subregions[
-                    :, cell.n_y, :].gas.H2O.v ./ cell.caFP.subregions[:, cell.n_y,
-                    :].gas.O2.v))), each liquid(inclH2O=cell.inclLiq, H2O(
-                materialSet(y=environment.p))))
+            H2O(materialSet(y=r_ca*caSink.gas.H2O.boundary.Ndot)),
+            N2(materialSet(y=r_ca*caSink.gas.N2.boundary.Ndot)),
+            O2(materialSet(y=r_ca*caSink.gas.O2.boundary.Ndot))), each liquid(
+              inclH2O=cell.inclLiq, H2O(materialSet(y=environment.p))))
           "Sink for the cathode reactant stream" annotation (Placement(
               transformation(
               extent={{-10,-10},{10,10}},
@@ -213,6 +195,15 @@ package Assemblies "Combinations of regions (e.g., cells)"
       equation
         // Aliases
         zI = load.i*U.A;
+
+        // Prescribed outlet pressure
+        fill(   environment.p,
+                cell.anFP.n_x,
+                cell.n_z) = anSink.gas.H2O.p + anSink.gas.H2.p "Anode";
+        fill(   environment.p,
+                cell.caFP.n_x,
+                cell.n_z) = caSink.gas.H2O.p + caSink.gas.N2.p + caSink.gas.O2.p
+          "Cathode";
 
         // Nitrogen pressures (since N2 is conditionally included)
         connect(p_N2_in, caSource.gas.N2.materialOut.y) "Not shown in diagram";
