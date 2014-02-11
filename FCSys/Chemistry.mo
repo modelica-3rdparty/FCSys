@@ -282,7 +282,7 @@ package Chemistry "Chemical reactions and related models"
 
       parameter Integer n_trans(min=1,max=3)
         "Number of components of translational momentum" annotation (Evaluate=
-            true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
+            true, Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
 
       parameter Integer n=1 "Apparent electron transfer number" annotation (
           Dialog(group="Electrochemical parameters", __Dymola_label=
@@ -294,10 +294,9 @@ package Chemistry "Chemical reactions and related models"
         "Charge transfer coefficient" annotation (Dialog(group=
               "Electrochemical parameters", __Dymola_label=
               "<html>&alpha;</html>"));
-      parameter Q.Current I0_300K=U.A "Exchange current @ 300 K" annotation (
-          Dialog(__Dymola_label=
-              "<html><i>I</i><sup>o</sup><sub>300 K</sub></html>", group=
-              "Electrochemical parameters"));
+      Q.Current I0_300K=U.A "Exchange current @ 300 K" annotation (Dialog(
+            __Dymola_label="<html><i>I</i><sup>o</sup><sub>300 K</sub></html>",
+            group="Electrochemical parameters"));
       parameter Boolean fromI=true
         "<html>Invert the Butler-Volmer equation, if &alpha;=&frac12;</html>"
         annotation (Dialog(tab="Advanced", compact=true), choices(
@@ -433,7 +432,7 @@ package Chemistry "Chemical reactions and related models"
     // Note:  These redeclarations are necessary due to errors in Dymola 2014.
     // **Try again
 
-    parameter Boolean inclDL=true "Include the double-layer capacitance"
+    parameter Boolean inclDL=false "Include the double-layer capacitance"
       annotation (
       HideResult=true,
       Dialog(tab="Assumptions", compact=true),
@@ -526,7 +525,6 @@ package Chemistry "Chemical reactions and related models"
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{40,
               40}}), graphics));
-
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -537,7 +535,7 @@ package Chemistry "Chemical reactions and related models"
           __Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
     // Note:  This must be a constant rather than a parameter due to errors in
     // Dymola 2014.
-    parameter Boolean inclDL=true "Include the double-layer capacitance"
+    parameter Boolean inclDL=false "Include the double-layer capacitance"
       annotation (
       HideResult=true,
       Dialog(tab="Assumptions", compact=true),
@@ -678,7 +676,6 @@ package Chemistry "Chemical reactions and related models"
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               40}}), graphics));
-
   end ORR;
 
 public

@@ -52,8 +52,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
         output Q.Potential Deltaw_ca=-cell.caCL.subregions[1, 1, 1].ORR.transfer.Deltag
           if environment.analysis "Cathode overpotential";
 
-        replaceable Cell cell(inclN2=environment.psi_O2_dry < 1 - Modelica.Constants.eps)
-          constrainedby FCSys.Icons.Cell "Fuel cell" annotation (
+        replaceable Cell cell(inclLiq=false,inclN2=environment.psi_O2_dry < 1
+               - Modelica.Constants.eps) constrainedby FCSys.Icons.Cell
+          "Fuel cell" annotation (
           __Dymola_choicesFromPackage=true,
           choicesAllMatching=true,
           Placement(transformation(extent={{-10,-10},{10,10}})));

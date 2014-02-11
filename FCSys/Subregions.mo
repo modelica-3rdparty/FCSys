@@ -353,7 +353,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end AirColumn;
 
     model BinaryDiffusion
@@ -685,7 +684,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end InternalFlow;
 
     model Subregion
@@ -1378,7 +1376,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
               60}}), graphics));
-
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
@@ -1627,7 +1624,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
               100,60}}), graphics));
-
   end SubregionNoIonomer;
 
   partial model PartialSubregion
