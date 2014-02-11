@@ -272,6 +272,7 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
             "Characteristics.Examples.SaturationPressure.mos"));
+
     end SaturationPressure;
 
     model HydrationLevel
@@ -314,6 +315,7 @@ package Characteristics "Data and functions to correlate physical properties"
             "Characteristics.Examples.HydrationLevel.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end HydrationLevel;
 
     model CellPotential
@@ -426,6 +428,7 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos"
             "Characteristics.Examples.LatentHeat.mos"));
+
     end LatentHeat;
 
     model MobilityFactors "Test the mobility factors"
@@ -476,6 +479,7 @@ package Characteristics "Data and functions to correlate physical properties"
 
         experiment(StopTime=10),
         Commands);
+
     end SurfaceTension;
 
   end Examples;
@@ -521,7 +525,7 @@ package Characteristics "Data and functions to correlate physical properties"
    <a href=\"http://en.wikipedia.org/wiki/Van_der_Waals_radius\">http://en.wikipedia.org/wiki/Van_der_Waals_radius</a>.</li>
      <li>The default specific volume (<code>v = U.cc*m/(2.210*U.g)</code>) is of pyrolytic graphite
   at 300&nbsp;K according to [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, p.&nbsp;909].  Other forms
-  are (Ibid., also at 300&nbsp;K) are:
+  are (ibid., also at 300&nbsp;K) are:
   <ul>
        <li>Amorphous carbon:  <code>v = U.cc*m/(1.950*U.g)</code></li>
        <li>Diamond (type IIa):  <code>v = U.cc*m/(3.500*U.g)</code></li>
@@ -921,7 +925,7 @@ package Characteristics "Data and functions to correlate physical properties"
 
       annotation (Inline=true,Documentation(info="<html><p>This implements the correlation by Springer et al. [<a href=\"modelica://FCSys.UsersGuide.References.Springer1991\">Springer1991</a>]
   for the ratio of H<sub>2</sub>O molecules to SO<sub>3</sub><sup>-</sup> units of
-  Nafion&reg; EW 1100 series ionomer.</p></html>"));
+  Nafion<sup>&reg;</sup> EW 1100 series ionomer.</p></html>"));
     end lambda_eq;
 
   end H2O;

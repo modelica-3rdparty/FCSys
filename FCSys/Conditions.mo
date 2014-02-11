@@ -315,6 +315,7 @@ package Conditions "Models to specify and measure operating conditions"
                   smooth=Smooth.None,
                   fillColor={255,255,255},
                   fillPattern=FillPattern.Solid)}));
+
     end AmagatDalton;
 
     model ChemicalReaction
@@ -388,6 +389,7 @@ package Conditions "Models to specify and measure operating conditions"
                   fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end ChemicalReaction;
 
     package MSL
@@ -1338,6 +1340,7 @@ package Conditions "Models to specify and measure operating conditions"
                           fillPattern=FillPattern.Solid)}),
             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics));
+
         end Electrical;
         extends Modelica.Icons.Package;
 
@@ -4756,6 +4759,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                       smooth=Smooth.None)}),
           Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
                   {100,100}}), graphics));
+
       end VolumeFixed;
 
       partial model Partial "Base model for a pressure/volume"
@@ -6941,11 +6945,11 @@ connected to <code>positive1</code>, as shown by <a href=\"#Fig1b\">Figure 1b</a
     <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" align=center>
       <tr align=center>
         <td id=\"Fig1a\" align=center width=120>
-          <img src=\"modelica://FCSys/Resources/Documentation/Conditions/Router/PassThrough.png\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Conditions/Router/pass.png\" alt=\"Pass-through mode of connection\">
 <br><b>a:</b> Pass-through
         </td>
         <td id=\"Fig1b\" align=center>
-          <img src=\"modelica://FCSys/Resources/Documentation/Conditions/Router/CrossOver.png\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Conditions/Router/cross.png\" alt=\"Cross-over mode of connection\">
 <br><b>b:</b> Cross-over
         </td>
       </tr>

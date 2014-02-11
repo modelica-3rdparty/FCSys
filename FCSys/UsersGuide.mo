@@ -350,19 +350,19 @@ increases in net current must be supported by the upstream segments, and this pu
     end Brown2011;
 
     class DuPont2004N
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion<sup>&reg;</sup> PFSA Membranes N-112, NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004N;
 
     class DuPont2004NRE
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NRE-211 and NRE-212,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
+      "<html>DuPont, \"Nafion<sup>&reg;</sup> PFSA Membranes NRE-211 and NRE-212,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2004NRE;
 
     class DuPont2005
-      "<html>DuPont, \"Nafion&reg; PFSA Membranes NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
+      "<html>DuPont, \"Nafion<sup>&reg;</sup> PFSA Membranes NE-1135, N-115, N-117, NE-1110,\" <a href=\"http://www.fuelcells.dupont.com\">http://www.fuelcells.dupont.com</a>, Feb. 2005</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end DuPont2005;
@@ -528,13 +528,13 @@ increases in net current must be supported by the upstream segments, and this pu
     end Schetz1996;
 
     class SGL2004
-      "<html>SGL Carbon Group, \"Sigracet&reg; 24 &amp; 25 Series Gas Diffusion Layer,\" <a href=\"http://www.sglcarbon.com\">http://www.sglcarbon.com</a>, Sep. 2004</html>"
+      "<html>SGL Carbon Group, \"Sigracet<sup>&reg;</sup> 24 &amp; 25 Series Gas Diffusion Layer,\" <a href=\"http://www.sglcarbon.com\">http://www.sglcarbon.com</a>, Sep. 2004</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end SGL2004;
 
     class SGL2007
-      "<html>SGL Carbon Group, \"Sigracet&reg; 10 Series Gas Diffusion Layer,\" <a href=\"http://www.sglcarbon.com\">http://www.sglcarbon.com</a>, Apr. 2007</html>"
+      "<html>SGL Carbon Group, \"Sigracet<sup>&reg;</sup> 10 Series Gas Diffusion Layer,\" <a href=\"http://www.sglcarbon.com\">http://www.sglcarbon.com</a>, Apr. 2007</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end SGL2007;
@@ -568,6 +568,12 @@ increases in net current must be supported by the upstream segments, and this pu
 
       annotation (preferredView="info", DocumentationClass=false);
     end Spry2009;
+
+    class Suzuki2010
+      "<html>Ai Suzuki, Tatsuya Hattori, Ryuji Miura, Hideyuki Tsuboi, Nozomu Hatakeyama, Hiromitsu Takaba, Mark C. Williams, and Akira Miyamoto, \"Porosity and Pt Content in the Catalyst Layer of PEMFC: Effects on Diffusion and Polarization Characteristics,\" <i>Int. J. Electrochem. Sci.</i>, vol.&nbsp;5, pp.&nbsp;1948&ndash;1961, 2010</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Suzuki2010;
 
     class Svehla1995
       "<html>R. A. Svehla, \"<a href=\"http://www.grc.nasa.gov/WWW/CEAWeb/TM-4647.htm\">Transport Coefficients for the NASA Lewis Chemical Equilibrium Program</a>,\" NASA Technical Memorandum 4647, Apr. 1995</html>"

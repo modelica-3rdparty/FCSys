@@ -33,7 +33,7 @@ git mv "`echo $package*.*`" "$package $version"
 # Load script
 sed -i "s/$package[ 0-9.]*\/package.mo/$package $version\/package.mo/" load.mos
 # Link to documentation
-sed -i "s/$package[ 0-9.]*\/help/$package $version\/help/" Documentation.html
+sed -i "s/$package[ 0-9.]*\/help/$package $version\/help/" documentation.html
 # Readme file
 sed -i "s/($package[ 0-9.]*\//($package $version\//" README.md
 # Python module

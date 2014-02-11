@@ -247,7 +247,7 @@ then internal inductance is included according to the relative permeability (&mu
     </ol>
 
 <p>The default electrical conductivity (&sigma; = <code>8.3*U.S/U.m</code>)
-  is for DuPont<sup>TM</sup> Nafion&reg; N-112 [<a href=\"modelica://FCSys.Regions.PEMs.DuPontN112\">DuPontN112</a>].
+  is for DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N-112 [<a href=\"modelica://FCSys.Regions.PEMs.DuPontN112\">DuPontN112</a>].
   This is for the interaction between H<sup>+</sup> and the solid; it does not include the additional voltage loss
   due to electro-osmotic drag (with H<sub>2</sub>O).</p>
 
@@ -600,6 +600,7 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Ionomer;
@@ -898,6 +899,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
+
       end Fixed;
 
     end Gas;
@@ -1756,6 +1758,7 @@ Choose any condition besides none.");
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
+
   end Solid;
 
 protected
@@ -2051,7 +2054,7 @@ Check that the volumes of the other phases are set properly.");
 
     in the <a href=\"modelica://FCSys.Species\">Species</a> instance that contains it.</p>
 
-    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Exchange.png\">
+    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/exchange.png\" alt=\"Exchange among configurations\">
 <br>Figure 1:  Exchange of a quantity (material, translational momentum, or thermal energy) among configurations
     (A, B, and C) within a subregion.</p>
 
@@ -2064,7 +2067,7 @@ Check that the volumes of the other phases are set properly.");
     etc. parameters.  Like for exchange, the transport resistances are inside the
     <a href=\"modelica://FCSys.Species\">Species</a> model.</p>
 
-    <p align=center id=\"Fig2\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Transport.png\">
+    <p align=center id=\"Fig2\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/transport.png\" alt=\"Transport between subregions\">
 <br>Figure 2:  Transport of a quantity associated with the same configuration
     between subregions (1 and 2).</p>
 
@@ -2084,11 +2087,11 @@ Check that the volumes of the other phases are set properly.");
     <table border=0 cellspacing=0 cellpadding=2 align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
       <tr align=center class=noBorder>
         <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/SharePressure.png\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Dalton.png\" alt=\"Additivity of pressure\">
 <br>a:  Pressures of species (A, B, and C) are additive within a phase.
         </td>
         <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/ShareVolume.png\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Amagat.png\" alt=\"Additivity of volume\">
 <br>b:  Volumes of phases (I, II, and III) are additive within a subregion.
         </td>
       </tr>
@@ -2164,16 +2167,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-              extent={{-100,100},{100,-100}},
-              lineColor={127,127,127},
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0},
-              origin={-40,40},
-              rotation=45)}));
+            extent={{-100,100},{100,-100}},
+            lineColor={127,127,127},
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-100,-20},{100,20}},
+            textString="%name",
+            lineColor={0,0,0},
+            origin={-40,40},
+            rotation=45)}));
   end Species;
 
 public

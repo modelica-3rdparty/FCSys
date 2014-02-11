@@ -1352,7 +1352,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
             FCSys.Subregions.SubregionNoIonomer (
             common(k_Phi={1e7,inf,1e7},k_Q=1e5),
             gas(
-              common(k_Phi={inf,inf,inf}),
+              common(k_Phi={inf,0,inf}),
               H2_H2O(k_Phi={inf,inf,inf}),
               k={0.22*epsilon,Lstar/n_y,n_y/Lstar},
               inclH2=true,
@@ -1645,7 +1645,7 @@ text layer of this model.</p>
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 T(each stateSelect=StateSelect.default))),
-            volume(inclCapillary=true,capillary(R=32*U.um)))) annotation (
+            volume(inclCapillary=true,capillary(R=16*U.um)))) annotation (
           IconMap(primitivesVisible=false));
 
       // Note:  The fluid species have zero fluidity (eta=0) so that the transverse
@@ -1667,19 +1667,19 @@ The x axis extends from the anode to the cathode.
 
 By default, the cross-sectional area in the yz plane is 50 cm<sup>2</sup>.</p>
 
-<p>The default porosity (&epsilon; = 0.88) is that of SGL Carbon Group Sigracet&reg; 24 BC GDLs.
+<p>The default porosity (&epsilon; = 0.88) is that of SGL Carbon Group Sigracet<sup>&reg;</sup> 24 BC GDLs.
 
 The porosity of a GDL may be lower than specified due to compression (e.g., 0.4 according to
 
 [<a href=\"modelica://FCSys.UsersGuide.References.Bernardi1992\">Bernardi1992</a>, p.&nbsp;2483], although
 that reference may be outdated).
   The default thermal conductivity of the carbon (&theta; = <code>U.m*U.K/(1.18*U.W)</code>)
-   represents a compressed Sigracet&reg; 10&nbsp;BA gas diffusion layer
+   represents a compressed Sigracet<sup>&reg;</sup> 10&nbsp;BA gas diffusion layer
   [<a href=\"modelica://FCSys.UsersGuide.References.Nitta2008\">Nitta2008</a>].  The default
   electrical conductivity
-  is also for Sigracet&reg; 10&nbsp;BA [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].
-<p>The default pore radius (32 &micro;m) is for SGL&nbsp;25 BC according to
-[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>.
+  is also for Sigracet<sup>&reg;</sup> 10&nbsp;BA [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].
+The default pore radius (16&nbsp;&micro;m) is for Sigracet<sup>&reg;</sup>&nbsp;25 BC according to
+[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>
 
 <p>Default assumptions (may be adjusted):</p>
 <ol>
@@ -1691,79 +1691,94 @@ that reference may be outdated).
           Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Rectangle(
-                  extent={{-98,62},{98,98}},
-                  fillColor={255,255,255},
-                  visible=not inclTransY,
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-78.7855,18.6813},{-50.5004,-23.7455}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  rotation=-45,
-                  fillPattern=FillPattern.VerticalCylinder,
-                  origin={42.5001,11.0805}),Rectangle(
-                  extent={{-40,40},{0,-60}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.VerticalCylinder),Polygon(
-                  points={{20,0},{42,0},{42,80},{-42,80},{-42,0},{-20,0},{-20,
-                40},{0,60},{20,60},{20,0}},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Polygon(
-                  points={{20,0},{42,0},{42,-80},{-42,-80},{-42,0},{-20,0},{-20,
-                -60},{0,-60},{20,-40},{20,0}},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Polygon(
-                  points={{0,40},{20,60},{20,-40},{0,-60},{0,40}},
-                  lineColor={0,0,0},
-                  smooth=Smooth.None,
-                  fillPattern=FillPattern.Solid,
-                  fillColor={64,64,64}),Rectangle(extent={{-20,40},{0,-60}},
-              lineColor={0,0,0}),Polygon(
-                  points={{0,60},{20,60},{0,40},{-20,40},{0,60}},
-                  lineColor={0,0,0},
-                  smooth=Smooth.None),Line(
-                  points={{-20,0},{-100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{10,0},{100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{0,-60},{0,-100}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{0,100},{0,50}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-50,-50},{-10,-10}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{20,20},{50,50}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Text(
-                  extent={{-100,60},{100,100}},
-                  textString="%name",
-                  visible=not inclTransY,
-                  lineColor={0,0,0})}));
+            initialScale=0.1), graphics={
+            Rectangle(
+              extent={{-98,62},{98,98}},
+              fillColor={255,255,255},
+              visible=not inclTransY,
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-78.7855,18.6813},{-50.5004,-23.7455}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              rotation=-45,
+              fillPattern=FillPattern.VerticalCylinder,
+              origin={42.5001,11.0805}),
+            Rectangle(
+              extent={{-40,40},{0,-60}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              fillPattern=FillPattern.VerticalCylinder),
+            Polygon(
+              points={{20,0},{42,0},{42,80},{-42,80},{-42,0},{-20,0},{-20,40},{
+                  0,60},{20,60},{20,0}},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Polygon(
+              points={{20,0},{42,0},{42,-80},{-42,-80},{-42,0},{-20,0},{-20,-60},
+                  {0,-60},{20,-40},{20,0}},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Polygon(
+              points={{0,40},{20,60},{20,-40},{0,-60},{0,40}},
+              lineColor={0,0,0},
+              smooth=Smooth.None,
+              fillPattern=FillPattern.Solid,
+              fillColor={64,64,64}),
+            Rectangle(extent={{-20,40},{0,-60}}, lineColor={0,0,0}),
+            Polygon(
+              points={{0,60},{20,60},{0,40},{-20,40},{0,60}},
+              lineColor={0,0,0},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,0},{-100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{10,0},{100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{0,-60},{0,-100}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{0,100},{0,50}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-50,-50},{-10,-10}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{20,20},{50,50}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Text(
+              extent={{-100,60},{100,100}},
+              textString="%name",
+              visible=not inclTransY,
+              lineColor={0,0,0})}));
 
     end AnGDL;
 
-    model Sigracet10BA "<html>SGL Carbon Group Sigracet&reg; 10 BA</html>"
+    model Sigracet10BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BA</html>"
       extends AnGDL(
         L_x={0.400}*U.mm,
         epsilon=0.88,
@@ -1780,7 +1795,8 @@ that reference may be outdated).
 
     end Sigracet10BA;
 
-    model Sigracet10BB "<html>SGL Carbon Group Sigracet&reg; 10 BB</html>"
+    model Sigracet10BB
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BB</html>"
       extends AnGDL(
         L_x={0.420}*U.mm,
         epsilon=0.84,
@@ -1796,7 +1812,8 @@ that reference may be outdated).
 
     end Sigracet10BB;
 
-    model Sigracet10BC "<html>SGL Carbon Group Sigracet&reg; 10 BC</html>"
+    model Sigracet10BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BC</html>"
       extends AnGDL(
         L_x={0.420}*U.mm,
         epsilon=0.82,
@@ -1812,7 +1829,8 @@ that reference may be outdated).
 
     end Sigracet10BC;
 
-    model Sigracet24BA "<html>SGL Carbon Group Sigracet&reg; 24 BA</html>"
+    model Sigracet24BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 24 BA</html>"
       extends AnGDL(
         L_x={0.190}*U.mm,
         epsilon=0.84,
@@ -1828,7 +1846,8 @@ that reference may be outdated).
 
     end Sigracet24BA;
 
-    model Sigracet24BC "<html>SGL Carbon Group Sigracet&reg; 24 BC</html>"
+    model Sigracet24BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 24 BC</html>"
       extends AnGDL(
         L_x={0.235}*U.mm,
         epsilon=0.76,
@@ -1844,7 +1863,8 @@ that reference may be outdated).
 
     end Sigracet24BC;
 
-    model Sigracet25BA "<html>SGL Carbon Group Sigracet&reg; 25 BA</html>"
+    model Sigracet25BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 25 BA</html>"
       extends AnGDL(
         L_x={0.190}*U.mm,
         epsilon=0.88,
@@ -1860,7 +1880,8 @@ that reference may be outdated).
 
     end Sigracet25BA;
 
-    model Sigracet25BC "<html>SGL Carbon Group Sigracet&reg; 25 BC</html>"
+    model Sigracet25BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 25 BC</html>"
       extends AnGDL(
         L_x={0.235}*U.mm,
         epsilon=0.80,
@@ -1880,13 +1901,17 @@ that reference may be outdated).
       extends AnGDL(
         L_x={0.11}*U.mm,
         epsilon=0.80,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity:  L = 0.110 mm, P/p = 2500 ml.mm/(cm2.hr.mmAq) = 0.70814e-3 m/(s.kPa)
       //         => D = P*L = 7.89e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="anGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity (&sigma;) is based on the
+  <p>The default pore radius (13&nbsp;&micro;m) is for Toray Industries TGP-H-060 (not TGP-H-030) according to
+[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>
+
+  <p>The rest of the default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity (&sigma;) is based on the
   through-plane value of resistivity.  The thermal conductivity is not listed but is
   taken to be the same as for TGP-H-060, TGP-H-090, and TGP-H-120.</p>
 
@@ -1899,14 +1924,18 @@ that reference may be outdated).
       extends AnGDL(
         L_x={0.19}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.190 mm, P/p = 1900 ml.mm/(cm2.hr.mmAq) = 0.53818e-3 m/(s.kPa)
       //         => D = P*L = 10.36e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="anGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity (&sigma;)  is based on the
+    <p>The default pore radius (13&nbsp;&micro;m) is from
+[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>
+
+<p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity (&sigma;)  is based on the
   through-plane value of resistivity.  The thermal conductivity is through the plane at
   room temperature.</p>
 
@@ -1919,14 +1948,18 @@ that reference may be outdated).
       extends AnGDL(
         L_x={0.28}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.280 mm, P/p = 1700 ml.mm/(cm2.hr.mmAq) = 0.48153e-3 m/(s.kPa)
       //         => D = P*L = 13.66e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="anGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity  (&sigma;) is based on the
+    <p>The default pore radius (13&nbsp;&micro;m) is for Toray Industries TGP-H-060 (not TGP-H-090) according to
+[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>
+
+<p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity  (&sigma;) is based on the
   through-plane value of resistivity.  The thermal conductivity is through the plane at
   room temperature.</p>
 
@@ -1939,14 +1972,18 @@ that reference may be outdated).
       extends AnGDL(
         L_x={0.37}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.370 mm, P/p = 1500 ml.mm/(cm2.hr.mmAq) = 0.42488e-3 m/(s.kPa)
       //         => D = P*L = 15.93e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="anGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity  (&sigma;) is based on the
+    <p>The default pore radius (13&nbsp;&micro;m) is for Toray Industries TGP-H-060 (not TGP-H-120) according to
+[<a href=\"modelica://FCSys.UsersGuide.References.Parikh2012\">Parikh2012</a>].</p>
+
+<p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electrical conductivity  (&sigma;) is based on the
   through-plane value of resistivity.  The thermal conductivity is through the plane at
   room temperature.</p>
 
@@ -2015,7 +2052,7 @@ that reference may be outdated).
                 each initEnergy=Init.none,
                 N0=0.1*U.C,
                 T(each stateSelect=StateSelect.default))),
-            volume(inclCapillary=true,capillary(R=5*U.um))),
+            volume(inclCapillary=true,capillary(R=2.5*U.nm))),
         subregions(HOR(transfer(final I0_300K=J0_300K*subregions.A[Axis.x]))))
         annotation (IconMap(primitivesVisible=false));
 
@@ -2041,12 +2078,12 @@ The x axis extends from the anode to the cathode.
 
 By default, the cross-sectional area in the yz plane is 50 cm<sup>2</sup>.</p>
 
-<p>The default thickness (<i>L</i><sub>x</sub> = <code>{28.7*U.um}</code>) is from [<a href=\"modelica://FCSys.UsersGuide.References.Gurau1998\">Gurau1998</a>].
+<p>The default pore radius (2.5&nbsp;nm) is based on [<a href=\"modelica://FCSys.UsersGuide.References.Suzuki2010\">Suzuki2010</a>]. The default thickness (<i>L</i><sub>x</sub> = <code>{28.7*U.um}</code>) is from [<a href=\"modelica://FCSys.UsersGuide.References.Gurau1998\">Gurau1998</a>].
 The default thermal conductivity of the carbon (&theta; = <code>U.m*U.K/(1.18*U.W)</code>)
    represents a compressed SGL Sigracet 10 BA gas diffusion layer
   [<a href=\"modelica://FCSys.UsersGuide.References.Nitta2008\">Nitta2008</a>].  The default
   electronic conductivity (&sigma; = <code>40*U.S/(12*U.cm)</code>)
-  is for SGL Carbon Group Sigracet&reg; 10 BA (see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BA\">AnGDLs.Sigracet10BA</a>).</p>
+  is for SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BA (see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BA\">AnGDLs.Sigracet10BA</a>).</p>
 
 <p>Default assumptions (may be adjusted):</p>
 <ol>
@@ -2060,93 +2097,112 @@ The default thermal conductivity of the carbon (&theta; = <code>U.m*U.K/(1.18*U.
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Rectangle(
-                  extent={{-98,62},{98,98}},
-                  fillColor={255,255,255},
-                  visible=not inclTransY,
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-22.6085,-62.7355},{-56.551,-79.7156}},
-                  lineColor={64,64,64},
-                  rotation=45,
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={-34.3741,132.347}),Rectangle(
-                  extent={{-105.39,79.1846},{-139.33,70.6991}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  rotation=45,
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={148.513,82.5291}),Polygon(
-                  points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-6,40},{6,-60}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-38,40},{-14,-60}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-14,40},{-6,-60}},
-                  fillPattern=FillPattern.Solid,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},
-                {-42,80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,
-                -80},{-42,-80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(points={{0,60},{20,60},{0,
-              40},{-20,40},{0,60}}, lineColor={0,0,0}),Rectangle(
-                  extent={{-20,40},{0,-60}},
-                  pattern=LinePattern.None,
-                  lineColor={0,0,0}),Polygon(
-                  points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,0},{-100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{10,0},{100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{0,-60},{0,-100}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{0,100},{0,50}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-50,-50},{-10,-10}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{20,20},{50,50}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Text(
-                  extent={{-100,60},{100,100}},
-                  textString="%name",
-                  visible=not inclTransY,
-                  lineColor={0,0,0})}));
+            initialScale=0.1), graphics={
+            Rectangle(
+              extent={{-98,62},{98,98}},
+              fillColor={255,255,255},
+              visible=not inclTransY,
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-22.6085,-62.7355},{-56.551,-79.7156}},
+              lineColor={64,64,64},
+              rotation=45,
+              fillColor={127,127,127},
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={-34.3741,132.347}),
+            Rectangle(
+              extent={{-105.39,79.1846},{-139.33,70.6991}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              rotation=45,
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={148.513,82.5291}),
+            Polygon(
+              points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-6,40},{6,-60}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-38,40},{-14,-60}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-14,40},{-6,-60}},
+              fillPattern=FillPattern.Solid,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},{-42,
+                  80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,-80},
+                  {-42,-80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(points={{0,60},{20,60},{0,40},{-20,40},{0,60}}, lineColor={
+                  0,0,0}),
+            Rectangle(
+              extent={{-20,40},{0,-60}},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),
+            Polygon(
+              points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,0},{-100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{10,0},{100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{0,-60},{0,-100}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{0,100},{0,50}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-50,-50},{-10,-10}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{20,20},{50,50}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Text(
+              extent={{-100,60},{100,100}},
+              textString="%name",
+              visible=not inclTransY,
+              lineColor={0,0,0})}));
 
     end AnCL;
 
@@ -2314,7 +2370,8 @@ although in reality there is inductance.</p>
 
     end PEM;
 
-    model DuPontN112 "<html>DuPont<sup>TM</sup> Nafion&reg; N-112</html>"
+    model DuPontN112
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N-112</html>"
       extends PEM(L_x={51*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004N]:
       //     Density:  (100 g/m2)/(51 um) = 1.9608 g/cm3
@@ -2327,7 +2384,8 @@ although in reality there is inductance.</p>
 
     end DuPontN112;
 
-    model DuPontN115 "<html>DuPont<sup>TM</sup> Nafion&reg; N-115</html>"
+    model DuPontN115
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N-115</html>"
       extends PEM(L_x={127*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004N] and [DuPont2005]:
       //     Density:  (250 g/m2)/(127 um) = 1.9685 g/cm3
@@ -2339,7 +2397,8 @@ although in reality there is inductance.</p>
 
     end DuPontN115;
 
-    model DuPontN117 "<html>DuPont<sup>TM</sup> Nafion&reg; N-117</html>"
+    model DuPontN117
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N-117</html>"
       extends PEM(L_x={183*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004N] and [DuPont2005]:
       //     Density:  (360 g/m2)/(183 um) = 1.9672 g/cm3
@@ -2351,7 +2410,8 @@ although in reality there is inductance.</p>
 
     end DuPontN117;
 
-    model DuPontNE1110 "<html>DuPont<sup>TM</sup> Nafion&reg; NE-1110</html>"
+    model DuPontNE1110
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NE-1110</html>"
       extends PEM(L_x={254*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004N] and [DuPont2005]:
       //     Density:  (500 g/m2)/(254 um) = 1.9685 g/cm3
@@ -2363,7 +2423,8 @@ although in reality there is inductance.</p>
 
     end DuPontNE1110;
 
-    model DuPontNE1135 "<html>DuPont<sup>TM</sup> Nafion&reg; NE-1135</html>"
+    model DuPontNE1135
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NE-1135</html>"
       extends PEM(L_x={89*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004N] and [DuPont2005]:
       //     Density:  (190 g/m2)/(89 um) = 2.1348 g/cm3
@@ -2375,7 +2436,8 @@ although in reality there is inductance.</p>
 
     end DuPontNE1135;
 
-    model DuPontNRE211 "<html>DuPont<sup>TM</sup> Nafion&reg; NRE-1110</html>"
+    model DuPontNRE211
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NRE-1110</html>"
       extends PEM(L_x={25.4*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004NRE]:
       //     Density:  (50 g/m2)/(25.4 um) = 1.9685 g/cm3
@@ -2385,10 +2447,10 @@ although in reality there is inductance.</p>
   the default value of protonic conductivity (&sigma; = <code>0.083*U.S/U.cm</code>)
   is for the
 
-  DuPont<sup>TM</sup> Nafion&reg; N and NE series
+  DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N and NE series
   [<a href=\"modelica://FCSys.UsersGuide.References.DuPont2004N\">DuPont2004N</a>].
 
-  It is not listed for DuPont<sup>TM</sup> Nafion&reg; NRE-211
+  It is not listed for DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NRE-211
   in [<a href=\"modelica://FCSys.UsersGuide.References.DuPont2004NRE\">DuPont2004NRE</a>].</p>
 
   <p>For more information, please see the
@@ -2396,7 +2458,8 @@ although in reality there is inductance.</p>
 
     end DuPontNRE211;
 
-    model DuPontNRE212 "<html>DuPont<sup>TM</sup> Nafion&reg; NRE-1110</html>"
+    model DuPontNRE212
+      "<html>DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NRE-1110</html>"
       extends PEM(L_x={50.8*U.um},Subregion(ionomer('H+'(sigma=0.083*U.S/U.cm))));
       // Additional properties not yet incorporated [DuPont2004NRE]:
       //     Density:  (100 g/m2)/(50.8 um) = 1.9685 g/cm3
@@ -2405,9 +2468,9 @@ although in reality there is inductance.</p>
 
   the default value of protonic conductivity (&sigma; = <code>0.083*U.S/U.cm</code>)
   is for the
-  DuPont<sup>TM</sup> Nafion&reg; N and NE series
+  DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> N and NE series
   [<a href=\"modelica://FCSys.UsersGuide.References.DuPont2004N\">DuPont2004N</a>].
-    It is not listed for DuPont<sup>TM</sup> Nafion&reg; NRE-212
+    It is not listed for DuPont<sup>TM</sup> Nafion<sup>&reg;</sup> NRE-212
   in [<a href=\"modelica://FCSys.UsersGuide.References.DuPont2004NRE\">DuPont2004NRE</a>].</p>
 
   <p>For more information, please see the
@@ -2482,7 +2545,7 @@ although in reality there is inductance.</p>
                 each initEnergy=Init.none,
                 N0=0.1*U.C,
                 T(each stateSelect=StateSelect.default))),
-            volume(inclCapillary=true,capillary(R=5*U.um))),
+            volume(inclCapillary=true,capillary(R=2.5*U.nm))),
         subregions(ORR(transfer(final I0_300K=J0_300K*subregions.A[Axis.x] .*
                   subregions.gas.O2.p/(30*U.kPa))))) annotation (IconMap(
             primitivesVisible=false));
@@ -2506,7 +2569,7 @@ although in reality there is inductance.</p>
       annotation (Documentation(info="<html>
 <p>This model represents the cathode catalyst layer of a PEMFC. It is identical to
 the anode catalyst layer except for the included species, the exchange current density (<i>J</i><sup>o</sup>), and the activation energy ().
-For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.anCL\">anCL</a> model.</p>
+For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.AnCL\">AnCL</a> model.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
@@ -2645,6 +2708,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.an
   end CaCLs;
 
   package CaGDLs "Cathode gas diffusion layers"
+    extends Modelica.Icons.Package;
     model CaGDL "Cathode gas diffusion layer"
       import Modelica.Constants.inf;
       // extends FCSys.Icons.Names.Top4;
@@ -2707,7 +2771,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.an
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 T(each stateSelect=StateSelect.default))),
-            volume(inclCapillary=true,capillary(R=22*U.um)))) annotation (
+            volume(inclCapillary=true,capillary(R=16*U.um)))) annotation (
           IconMap(primitivesVisible=false));
 
       // Note:  The fluid species have zero fluidity (eta=0) so that the transverse
@@ -2726,81 +2790,94 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.an
       annotation (Documentation(info="<html>
 <p>This model represents the cathode gas diffusion layer of a PEMFC.   It is identical to
 the anode gas diffusion layer except for the included species.
-For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.anGDL\">anGDL</a> model.</p>
+For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.AnGDL\">AnGDL</a> model.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Rectangle(
-                  extent={{-98,62},{98,98}},
-                  fillColor={255,255,255},
-                  visible=not inclTransY,
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-78.7855,18.6813},{-50.5004,-23.7455}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  rotation=-45,
-                  fillPattern=FillPattern.VerticalCylinder,
-                  origin={52.5001,1.0805}),Rectangle(
-                  extent={{-20,40},{20,-60}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.VerticalCylinder),Polygon(
-                  points={{20,0},{42,0},{42,80},{-42,80},{-42,0},{-20,0},{-20,
-                40},{0,60},{20,60},{20,0}},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Polygon(
-                  points={{20,0},{42,0},{42,-80},{-42,-80},{-42,0},{-20,0},{-20,
-                -60},{0,-60},{20,-40},{20,0}},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Polygon(
-                  points={{0,40},{20,60},{20,-40},{0,-60},{0,40}},
-                  lineColor={0,0,0},
-                  smooth=Smooth.None,
-                  fillPattern=FillPattern.Solid,
-                  fillColor={127,127,127}),Rectangle(extent={{-20,40},{0,-60}},
-              lineColor={0,0,0}),Polygon(
-                  points={{0,60},{20,60},{0,40},{-20,40},{0,60}},
-                  lineColor={0,0,0},
-                  smooth=Smooth.None),Line(
-                  points={{-20,0},{-100,0}},
-                  color={0,0,240},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{10,0},{100,0}},
-                  color={0,0,240},
-                  thickness=0.5),Line(
-                  points={{0,-60},{0,-100}},
-                  color={0,0,240},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{0,100},{0,50}},
-                  color={0,0,240},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-50,-50},{-10,-10}},
-                  color={0,0,240},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{20,20},{50,50}},
-                  color={0,0,240},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Text(
-                  extent={{-100,60},{100,100}},
-                  textString="%name",
-                  visible=not inclTransY,
-                  lineColor={0,0,0})}));
+            initialScale=0.1), graphics={
+            Rectangle(
+              extent={{-98,62},{98,98}},
+              fillColor={255,255,255},
+              visible=not inclTransY,
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-78.7855,18.6813},{-50.5004,-23.7455}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              rotation=-45,
+              fillPattern=FillPattern.VerticalCylinder,
+              origin={52.5001,1.0805}),
+            Rectangle(
+              extent={{-20,40},{20,-60}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              fillPattern=FillPattern.VerticalCylinder),
+            Polygon(
+              points={{20,0},{42,0},{42,80},{-42,80},{-42,0},{-20,0},{-20,40},{
+                  0,60},{20,60},{20,0}},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Polygon(
+              points={{20,0},{42,0},{42,-80},{-42,-80},{-42,0},{-20,0},{-20,-60},
+                  {0,-60},{20,-40},{20,0}},
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Polygon(
+              points={{0,40},{20,60},{20,-40},{0,-60},{0,40}},
+              lineColor={0,0,0},
+              smooth=Smooth.None,
+              fillPattern=FillPattern.Solid,
+              fillColor={127,127,127}),
+            Rectangle(extent={{-20,40},{0,-60}}, lineColor={0,0,0}),
+            Polygon(
+              points={{0,60},{20,60},{0,40},{-20,40},{0,60}},
+              lineColor={0,0,0},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,0},{-100,0}},
+              color={0,0,240},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{10,0},{100,0}},
+              color={0,0,240},
+              thickness=0.5),
+            Line(
+              points={{0,-60},{0,-100}},
+              color={0,0,240},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{0,100},{0,50}},
+              color={0,0,240},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-50,-50},{-10,-10}},
+              color={0,0,240},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{20,20},{50,50}},
+              color={0,0,240},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Text(
+              extent={{-100,60},{100,100}},
+              textString="%name",
+              visible=not inclTransY,
+              lineColor={0,0,0})}));
 
     end CaGDL;
-    extends Modelica.Icons.Package;
 
     // Note:  Extensions of CaGDL should be placed directly in the CaGDLs
     // package rather than nested packages (e.g., by manufacturer) so that
@@ -2808,7 +2885,8 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
     // parameter dialogs launch too slowly when __Dymola_choicesAllMatching
     // is used.
 
-    model Sigracet10BA "<html>SGL Carbon Group Sigracet&reg; 10 BA</html>"
+    model Sigracet10BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BA</html>"
       extends CaGDL(
         L_x={0.400}*U.mm,
         epsilon=0.88,
@@ -2817,14 +2895,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.400 mm, p = 0.85 m/s (for air) => D = P*L = 340 mm2/s
       //     Density:  (85 g/m2)/(0.400 mm)/0.88 = 212.5 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BA\">AnGDLs.Sigracet10BA</a>.</p></html>"));
 
     end Sigracet10BA;
 
-    model Sigracet10BB "<html>SGL Carbon Group Sigracet&reg; 10 BB</html>"
+    model Sigracet10BB
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BB</html>"
       extends CaGDL(
         L_x={0.420}*U.mm,
         epsilon=0.84,
@@ -2833,14 +2911,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.420 mm, p = 0.03 m/s (for air) => D = P*L = 12.6 mm2/s
       //     Density:  (125 g/m2)/(0.420 mm) = 297.62 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BB\">AnGDLs.Sigracet10BB</a>.</p></html>"));
 
     end Sigracet10BB;
 
-    model Sigracet10BC "<html>SGL Carbon Group Sigracet&reg; 10 BC</html>"
+    model Sigracet10BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BC</html>"
       extends CaGDL(
         L_x={0.420}*U.mm,
         epsilon=0.82,
@@ -2849,14 +2927,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.420 mm, p = 0.0145 m/s (for air) => D = P*L = 6.09 mm2/s
       //     Density:  (135 g/m2)/(0.420 mm) = 321.43 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BC\">AnGDLs.Sigracet10BC</a>.</p></html>"));
 
     end Sigracet10BC;
 
-    model Sigracet24BA "<html>SGL Carbon Group Sigracet&reg; 24 BA</html>"
+    model Sigracet24BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 24 BA</html>"
       extends CaGDL(
         L_x={0.190}*U.mm,
         epsilon=0.84,
@@ -2865,14 +2943,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.190 mm, p = 0.30 m/s (for air) => D = P*L = 57 mm2/s
       //     Density:  (54 g/m2)/(0.190 mm) = 284.21 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2004\">SGL2004</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet24BA\">AnGDLs.Sigracet24BA</a>.</p></html>"));
 
     end Sigracet24BA;
 
-    model Sigracet24BC "<html>SGL Carbon Group Sigracet&reg; 24 BC</html>"
+    model Sigracet24BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 24 BC</html>"
       extends CaGDL(
         L_x={0.235}*U.mm,
         epsilon=0.76,
@@ -2881,14 +2959,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.235 mm, p = 0.0045 m/s (for air) => D = P*L = 1.0575 mm2/s
       //     Density:  (100 g/m2)/(0.235 mm) = 425.53 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2004\">SGL2004</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet24BC\">AnGDLs.Sigracet24BC</a>.</p></html>"));
 
     end Sigracet24BC;
 
-    model Sigracet25BA "<html>SGL Carbon Group Sigracet&reg; 25 BA</html>"
+    model Sigracet25BA
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 25 BA</html>"
       extends CaGDL(
         L_x={0.190}*U.mm,
         epsilon=0.88,
@@ -2897,14 +2975,14 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.190 mm, p = 0.90 m/s (for air) => D = P*L = 171 mm2/s
       //     Density:  (40 g/m2)/(0.190 mm) = 210.53 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2004\">SGL2004</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet25BA\">AnGDLs.Sigracet25BA</a>.</p></html>"));
 
     end Sigracet25BA;
 
-    model Sigracet25BC "<html>SGL Carbon Group Sigracet&reg; 25 BC</html>"
+    model Sigracet25BC
+      "<html>SGL Carbon Group Sigracet<sup>&reg;</sup> 25 BC</html>"
       extends CaGDL(
         L_x={0.235}*U.mm,
         epsilon=0.80,
@@ -2913,10 +2991,9 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       //     Diffusivity:  L = 0.235 mm, p = 0.008 m/s (for air) => D = P*L = 1.88 mm2/s
       //     Density:  (86 g/m2)/(0.235 mm) = 365.96 kg/m3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.SGL2004\">SGL2004</a>].</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet25BC\">AnGDLs.Sigracet25BC</a>.</p></html>"));
 
     end Sigracet25BC;
 
@@ -2924,18 +3001,16 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       extends CaGDL(
         L_x={0.11}*U.mm,
         epsilon=0.80,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity:  L = 0.110 mm, P/p = 2500 ml.mm/(cm2.hr.mmAq) = 0.70814e-3 m/(s.kPa)
       //         => D = P*L = 7.89e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electronic mobility (&mu;) is based on the
-  through-plane value of resistivity.  The thermal conductivity is not listed but is
-  taken to be the same as for TGP-H-060, TGP-H-090, and TGP-H-120.</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.TorayTGPH060\">AnGDLs.TorayTGPH060</a>.</p></html>"));
 
     end TorayTGPH030;
 
@@ -2943,19 +3018,17 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       extends CaGDL(
         L_x={0.19}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.190 mm, P/p = 1900 ml.mm/(cm2.hr.mmAq) = 0.53818e-3 m/(s.kPa)
       //         => D = P*L = 10.36e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electronic mobility (&mu;) is based on the
-  through-plane value of resistivity.  The thermal conductivity is through the plane at
-  room temperature.</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.TorayTGPH060\">AnGDLs.TorayTGPH060</a>.</p></html>"));
 
     end TorayTGPH060;
 
@@ -2963,19 +3036,17 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       extends CaGDL(
         L_x={0.28}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.280 mm, P/p = 1700 ml.mm/(cm2.hr.mmAq) = 0.48153e-3 m/(s.kPa)
       //         => D = P*L = 13.66e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electronic mobility (&mu;) is based on the
-  through-plane value of resistivity.  The thermal conductivity is through the plane at
-  room temperature.</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.TorayTGPH090\">AnGDLs.TorayTGPH090</a>.</p></html>"));
 
     end TorayTGPH090;
 
@@ -2983,19 +3054,17 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
       extends CaGDL(
         L_x={0.37}*U.mm,
         epsilon=0.78,
-        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm)))));
+        Subregion(graphite('C+'(theta=U.m*U.K/(1.7*U.W)),'e-'(sigma=U.S/(0.80*U.mm))),
+            volume(capillary(R=13*U.um))));
 
       // Additional properties not incorporated [Toray2010]:
       //     Diffusivity: L = 0.370 mm, P/p = 1500 ml.mm/(cm2.hr.mmAq) = 0.42488e-3 m/(s.kPa)
       //         => D = P*L = 15.93e-6 m2/s, assuming p = 101.325 kPa
       //     Bulk density:  0.44 g/cm3
       annotation (defaultComponentName="caGDL", Documentation(info="<html>
-  <p>The default properties are based on [<a href=\"modelica://FCSys.UsersGuide.References.Toray2010\">Toray2010</a>].  The electronic mobility (&mu;) is based on the
-  through-plane value of resistivity.  The thermal conductivity is through the plane at
-  room temperature.</p>
-
-  <p>For more information, please see the
-    <a href=\"modelica://FCSys.Regions.CaGDLs.CaGDL\">CaGDL</a> model.</p></html>"));
+  <p>This model is identical to the corresponding 
+anode GDL except for the included species.
+For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.TorayTGPH120\">AnGDLs.TorayTGPH120</a>.</p></html>"));
 
     end TorayTGPH120;
 
@@ -3019,7 +3088,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
             FCSys.Subregions.SubregionNoIonomer (
             common(k_Phi={1e7,inf,1e7},k_Q=1e5),
             gas(
-              common(k_Phi={inf,inf,inf}),
+              common(k_Phi={inf,0,inf}),
               H2O_N2(k_Phi={inf,inf,inf}),
               H2O_O2(k_Phi={inf,inf,inf}),
               N2_O2(k_Phi={inf,inf,inf}),
@@ -3092,7 +3161,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnGDLs.a
 the anode flow plate except for the included species, the default length of the
 channel, and the fraction of the volume for the fluid (&epsilon;).
 For more information, please see the
-<a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">anFP</a> model.</p>
+<a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">AnFP</a> model.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},

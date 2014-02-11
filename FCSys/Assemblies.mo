@@ -15,9 +15,6 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         // Aliases
         Q.Current zI "Electrical current";
-        Real r_an "Ratio of pressure and current at the anode outlet";
-        Real r_ca "Ratio of pressure and current at the cathode outlet";
-        // **dimension: M/(L.N.T)
 
         // Auxiliary variables (for analysis)
         output Q.Potential w=load.v*U.V "Potential";
@@ -33,15 +30,17 @@ package Assemblies "Combinations of regions (e.g., cells)"
           "Pressure difference down the anode channel";
         output Q.Pressure Deltap_ca=environment.p - p_ca_in if environment.analysis
           "Pressure difference down the cathode channel";
-        output Q.Potential Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T,
-            caSource[1, 1].gas.O2.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.O2.g)
-            /4 if environment.analysis "Voltage loss due to O2 supply";
-        output Q.Potential Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T,
-            caSource[1, 1].gas.H2O.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.H2O.g)
-            /2 if environment.analysis "Voltage loss due to H2O removal";
-        output Q.Potential Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T,
-            anSource[1, 1].gas.H2.boundary.p) - cell.anCL.subregions[1, 1, 1].gas.H2.g)
-            /2 if environment.analysis "Voltage loss due to H2 supply";
+        /* **
+  output Q.Potential Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T,
+      caSource[1, 1].gas.O2.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.O2.g)
+      /4 if environment.analysis "Voltage loss due to O2 supply";
+  output Q.Potential Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T,
+      caSource[1, 1].gas.H2O.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.H2O.g)
+      /2 if environment.analysis "Voltage loss due to H2O removal";
+  output Q.Potential Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T,
+      anSource[1, 1].gas.H2.boundary.p) - cell.anCL.subregions[1, 1, 1].gas.H2.g)
+      /2 if environment.analysis "Voltage loss due to H2 supply";
+  */
         output Q.Potential 'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.
             'e-'.g_boundaries[1, Side.p] - cell.caCL.subregions[1, 1, 1].graphite.
             'e-'.g + cell.anCL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
@@ -55,9 +54,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
         output Q.Potential Deltaw_ca=-cell.caCL.subregions[1, 1, 1].ORR.transfer.Deltag
           if environment.analysis "Cathode overpotential";
 
-        replaceable Cell cell(inclLiq=false,inclN2=environment.psi_O2_dry < 1
-               - Modelica.Constants.eps) constrainedby FCSys.Icons.Cell
-          "Fuel cell" annotation (
+        replaceable Cell cell(inclN2=environment.psi_O2_dry < 1 - Modelica.Constants.eps,
+            inclLiq=false) constrainedby FCSys.Icons.Cell "Fuel cell"
+          annotation (
           __Dymola_choicesFromPackage=true,
           choicesAllMatching=true,
           Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -187,6 +186,10 @@ package Assemblies "Combinations of regions (e.g., cells)"
           annotation (Dialog, Placement(transformation(extent={{10,30},{30,50}})));
 
       protected
+        Q.ResistanceFluid r_an
+          "Ratio of pressure and current at the anode outlet";
+        Q.ResistanceFluid r_ca
+          "Ratio of pressure and current at the cathode outlet";
         Connectors.RealInput p_N2_in[cell.caFP.n_x, cell.n_z](each unit=
               "M/(L.T2)") "Pressure of N2 at inlet";
         Connectors.RealInput p_N2_out[cell.caFP.n_x, cell.n_z](each unit=
@@ -314,9 +317,13 @@ package Assemblies "Combinations of regions (e.g., cells)"
               "Assemblies.Cells.Examples.TestStand.mos", file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand-states.mos"
               "Assemblies.Cells.Examples.TestStand-states.mos"),
-          experiment(StopTime=36180, __Dymola_Algorithm="Dassl"),
+          experiment(
+            StopTime=36180,
+            Tolerance=1e-005,
+            __Dymola_Algorithm="Dassl"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-80},
-                  {80,60}}), graphics));
+                  {80,60}}), graphics),
+          __Dymola_experimentSetupOutput);
       end TestStand;
 
       model TestStandCycle
@@ -391,7 +398,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         extends TestStand(
           environment(analysis=false),
           cell(anCL(subregions(graphite(each inclDL=true, transfer(each fromI=
-                        false)))), caCL(subregions(graphite(each inclDL=true,
+                        false)))),caCL(subregions(graphite(each inclDL=true,
                     transfer(each fromI=false))))),
           redeclare Modelica.Electrical.Analog.Sources.SignalCurrent load(i(
               start=50,

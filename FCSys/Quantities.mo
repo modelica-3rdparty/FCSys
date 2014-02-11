@@ -115,7 +115,7 @@ package Quantities "Types to represent physical values"
   extends Modelica.Icons.TypesPackage;
   import Modelica.Icons.TypeReal;
 
-  // Generated from FCSys/Resources/quantities.xls, 2013-10-17
+  // Generated from FCSys/Resources/quantities.xls, 2014-2-11
   type Acceleration = TypeReal (final unit="L/T2");
   type Amount = TypeReal (final unit="N", min=0);
   type AmountReciprocal = TypeReal (final unit="1/N", min=0)
@@ -185,6 +185,8 @@ package Quantities "Types to represent physical values"
     "Reciprocal of pressure";
   type ResistanceElectrical = TypeReal (final unit="L2.M/(N2.T)", min=0)
     "Electrical resistance";
+  type ResistanceFluid = TypeReal (final unit="M/(L.N.T)", min=0)
+    "Fluid resistance";
   type ResistanceThermal = TypeReal (final unit="T/N", min=0)
     "Thermal resistance";
   type SurfaceTension = TypeReal (final unit="M/T2") "Surface tension";

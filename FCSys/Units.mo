@@ -1615,8 +1615,9 @@ encompass other systems of units.</p>
   final constant Q.Energy kJ=kilo*J "kilojoule";
   final constant Q.Length cm=centi*m "centimeter";
   final constant Q.Length mm=milli*m "millimeter";
-  final constant Q.Current mA=milli*A "milliampere";
   final constant Q.Length um=micro*m "micrometer";
+  final constant Q.Length nm=nano*m "nanometer";
+  final constant Q.Current mA=milli*A "milliampere";
   final constant Q.Time ms=milli*s "millisecond";
   final constant Q.Number '%'=centi "percent (%)";
   final constant Q.Density M=U.mol/U.L "molar";

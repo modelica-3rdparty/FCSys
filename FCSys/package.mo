@@ -39,7 +39,6 @@ import FCSys.Species.Enumerations.Init;
 
 
 
-
 annotation (
   preferredView="info",
   uses(Modelica(version="3.2.1")),
@@ -154,7 +153,7 @@ margin-right: auto;\" class=noBorder>
     proton exchange membrane (PEM) prevents electronic transport; therefore, electrons must
     pass through an external load to sustain the net reaction.</p>
 
-    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/CellFlows.png\" alt=\"Layers and primary flows of a P E M F C\">
+    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/cell.png\" alt=\"Layers and primary flows of a P E M F C\">
 <br>Figure 1: Layers and primary flows of a PEMFC.</p>
 
     <!--<p align=center id=\"Fig2\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.CellD.png\" alt=\"Diagram of the P E M F C model\" width=600>-->
