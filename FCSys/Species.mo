@@ -114,7 +114,7 @@ package Species "Dynamic models of chemical species"
     </ol>
 
     <p>The default thermal resistivity (&theta; = <code>U.m*U.K/(0.16*U.W)</code>) is of dry
-  Nafion 115 [<a href=\"modelica://FCSys.UsersGuide.References.Kandlikar2009\">Kandlikar2009</a>, p.&nbsp;1277].</p>
+  Nafion<sup>&reg;</sup> 115 [<a href=\"modelica://FCSys.UsersGuide.References.Kandlikar2009\">Kandlikar2009</a>, p.&nbsp;1277].</p>
 
 <p>For more information, please see the
     <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"));
@@ -2011,7 +2011,7 @@ Check that the volumes of the other phases are set properly.");
 
     annotation (
       defaultComponentPrefixes="replaceable",
-      Documentation(info="<html>
+      Documentation(info="<html>**Move to top of package, update link in Getting started.
     <p>All of the details below are pertinent to the <a href=\"modelica://FCSys.Species.Fluid\">Fluid</a>
     model (and the derived <a href=\"modelica://FCSys.Species.Ion\">Ion</a> model) which inherits from this model.
 

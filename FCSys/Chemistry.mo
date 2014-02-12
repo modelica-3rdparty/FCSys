@@ -257,23 +257,19 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={
-            Line(
-              points={{-20,30},{-20,-30}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{20,30},{20,-30}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{-50,0},{-20,0}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{20,0},{50,0}},
-              color={255,195,38},
-              smooth=Smooth.None)}));
+                100,100}}), graphics={Line(
+                  points={{-20,30},{-20,-30}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{20,30},{20,-30}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{-50,0},{-20,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{20,0},{50,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
@@ -364,30 +360,25 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={
-            Line(
-              points={{0,-20},{0,-50}},
-              color={221,23,47},
-              smooth=Smooth.None),
-            Line(
-              points={{-50,0},{50,0}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Rectangle(
-              extent={{-30,20},{32,-20}},
-              lineColor={255,195,38},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),
-            Line(
-              points={{-20,4},{20,4},{8,12}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Line(
-              points={{-20,-5},{20,-5},{8,3}},
-              color={255,195,38},
-              smooth=Smooth.None,
-              origin={0,-11},
-              rotation=180)}));
+                100,100}}), graphics={Line(
+                  points={{0,-20},{0,-50}},
+                  color={221,23,47},
+                  smooth=Smooth.None),Line(
+                  points={{-50,0},{50,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Rectangle(
+                  extent={{-30,20},{32,-20}},
+                  lineColor={255,195,38},
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid),Line(
+                  points={{-20,4},{20,4},{8,12}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Line(
+                  points={{-20,-5},{20,-5},{8,3}},
+                  color={255,195,38},
+                  smooth=Smooth.None,
+                  origin={0,-11},
+                  rotation=180)}));
 
     end ElectronTransfer;
 
@@ -906,7 +897,6 @@ public
             smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-20},{40,
               20}}), graphics));
-
   end CapillaryVolume;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}), graphics));

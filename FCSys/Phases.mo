@@ -573,7 +573,7 @@ package Phases "Mixtures of species"
 
     Connectors.Chemical 'cheme-'[1](each final n_trans=n_trans) if 'incle-'
       "Chemical connector for e-" annotation (Placement(transformation(extent={
-              {6,36},{26,56}}), iconTransformation(extent={{-10,-50},{10,-30}})));
+              {6,36},{26,56}}),iconTransformation(extent={{-10,-50},{10,-30}})));
 
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
@@ -1334,8 +1334,7 @@ public
 
   end ExchangeParams;
   annotation (Documentation(info="
-<html><p>The graphite, ionomer, and
-liquid phases can only be used with a compressible phase (gas).</p>
+<html>
 
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
 Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>

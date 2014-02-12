@@ -1626,7 +1626,7 @@ encompass other systems of units.</p>
     Documentation(info="<html>
 
   <p>The information below has been updated and adapted from
-  [<a href=\"modelica://FCSys.UsersGuide.References\">Davies and Paredis, 2012</a>].  That paper
+  [<a href=\"modelica://FCSys.UsersGuide.Publications.Davies2012b\">Davies2012b</a>].  That paper
   also offers suggestions as to how the approach might be better integrated in
   <a href=\"http://www.modelica.org\">Modelica</a>.  For more information, please also see the
   documentation of the <a href=\"modelica://FCSys.Quantities\">Quantities</a> package.</p>

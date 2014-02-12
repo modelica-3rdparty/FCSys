@@ -11,6 +11,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         import DataH2O = FCSys.Characteristics.H2O.Gas;
         import DataO2 = FCSys.Characteristics.O2.Gas;
         import average = FCSys.Utilities.Means.arithmetic;
+        import Modelica.Constants.small;
         extends Modelica.Icons.Example;
 
         // Aliases
@@ -30,17 +31,18 @@ package Assemblies "Combinations of regions (e.g., cells)"
           "Pressure difference down the anode channel";
         output Q.Pressure Deltap_ca=environment.p - p_ca_in if environment.analysis
           "Pressure difference down the cathode channel";
-        /* **
-  output Q.Potential Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T,
-      caSource[1, 1].gas.O2.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.O2.g)
-      /4 if environment.analysis "Voltage loss due to O2 supply";
-  output Q.Potential Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T,
-      caSource[1, 1].gas.H2O.boundary.p) - cell.caCL.subregions[1, 1, 1].gas.H2O.g)
-      /2 if environment.analysis "Voltage loss due to H2O removal";
-  output Q.Potential Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T,
-      anSource[1, 1].gas.H2.boundary.p) - cell.anCL.subregions[1, 1, 1].gas.H2.g)
-      /2 if environment.analysis "Voltage loss due to H2 supply";
-  */
+        output Q.Potential Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T,
+            max(caSource[1, 1].gas.O2.boundary.p, small)) - cell.caCL.subregions[
+            1, 1, 1].gas.O2.g)/4 if environment.analysis
+          "Voltage loss due to O2 supply";
+        output Q.Potential Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T,
+            max(caSource[1, 1].gas.H2O.boundary.p, small)) - cell.caCL.subregions[
+            1, 1, 1].gas.H2O.g)/2 if environment.analysis
+          "Voltage loss due to H2O removal";
+        output Q.Potential Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T,
+            max(anSource[1, 1].gas.H2.boundary.p, small)) - cell.anCL.subregions[
+            1, 1, 1].gas.H2.g)/2 if environment.analysis
+          "Voltage loss due to H2 supply";
         output Q.Potential 'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.
             'e-'.g_boundaries[1, Side.p] - cell.caCL.subregions[1, 1, 1].graphite.
             'e-'.g + cell.anCL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
@@ -54,9 +56,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
         output Q.Potential Deltaw_ca=-cell.caCL.subregions[1, 1, 1].ORR.transfer.Deltag
           if environment.analysis "Cathode overpotential";
 
-        replaceable Cell cell(inclN2=environment.psi_O2_dry < 1 - Modelica.Constants.eps,
-            inclLiq=false) constrainedby FCSys.Icons.Cell "Fuel cell"
-          annotation (
+        replaceable Cell cell(inclN2=environment.psi_O2_dry < 1 - Modelica.Constants.eps)
+          constrainedby FCSys.Icons.Cell "Fuel cell" annotation (
           __Dymola_choicesFromPackage=true,
           choicesAllMatching=true,
           Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -317,10 +318,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
               "Assemblies.Cells.Examples.TestStand.mos", file=
                 "Resources/Scripts/Dymola/Assemblies.Cells.Examples.TestStand-states.mos"
               "Assemblies.Cells.Examples.TestStand-states.mos"),
-          experiment(
-            StopTime=36180,
-            Tolerance=1e-005,
-            __Dymola_Algorithm="Dassl"),
+          experiment(StopTime=36180, __Dymola_Algorithm="Dassl"),
           Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-80},
                   {80,60}}), graphics),
           __Dymola_experimentSetupOutput);
@@ -387,9 +385,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
           anFlowSet(startTime=0),
           load(startTime=0));
 
-        annotation (experiment(StopTime=36120), Diagram(coordinateSystem(
-                preserveAspectRatio=false, extent={{-80,-80},{80,60}}),
-              graphics));
+        annotation (experiment(StopTime=36120, Tolerance=1e-005),
+            __Dymola_experimentSetupOutput);
+
       end TestStandFixedFlowSegmented;
 
       model TestStandLinearize
@@ -434,7 +432,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
       model TestStandSimple
         "Simulate the simple fuel cell model under prescribed conditions"
-
+        import Modelica.Constants.small;
         import DataH2 = FCSys.Characteristics.H2.Gas;
         import DataH2O = FCSys.Characteristics.H2O.Gas;
         import DataO2 = FCSys.Characteristics.O2.Gas;
@@ -442,13 +440,15 @@ package Assemblies "Combinations of regions (e.g., cells)"
         extends TestStand(
           redeclare SimpleCell cell(inclN2=environment.psi_O2_dry < 1 -
                 Modelica.Constants.eps),
-          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, caSource[1, 1].gas.O2.boundary.p)
-               - cell.caCGDL.subregions[1, 1, 1].gas.O2.g)/4,
-          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, caSource[1,
-              1].gas.H2O.boundary.p) - cell.caCGDL.subregions[1, 1, 1].gas.H2O.g)
+          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, max(caSource[1,
+              1].gas.O2.boundary.p, small)) - cell.caCGDL.subregions[1, 1, 1].gas.O2.g)
+              /4,
+          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, max(caSource[
+              1, 1].gas.H2O.boundary.p, small)) - cell.caCGDL.subregions[1, 1,
+              1].gas.H2O.g)/2,
+          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, max(anSource[1,
+              1].gas.H2.boundary.p, small)) - cell.anCGDL.subregions[1, 1, 1].gas.H2.g)
               /2,
-          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, anSource[1, 1].gas.H2.boundary.p)
-               - cell.anCGDL.subregions[1, 1, 1].gas.H2.g)/2,
           'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
               1, Side.p] - cell.caCGDL.subregions[1, 1, 1].graphite.'e-'.g +
               cell.anCGDL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
@@ -802,43 +802,37 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={
-            Line(
-              points={{-40,-58},{-40,-100}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{28,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,-92},
-              rotation=90),
-            Line(
-              points={{-40,100},{-40,60}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-66,0},{-100,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{44,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,56},
-              rotation=90),
-            Line(
-              points={{100,0},{56,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5)}),
+            initialScale=0.1), graphics={Line(
+                  points={{-40,-58},{-40,-100}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{28,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,-92},
+                  rotation=90),Line(
+                  points={{-40,100},{-40,60}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-66,0},{-100,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{44,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,56},
+                  rotation=90),Line(
+                  points={{100,0},{56,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5)}),
         experiment(StopTime=120, Tolerance=1e-06));
     end Cell;
 
@@ -1034,43 +1028,37 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={
-            Line(
-              points={{-40,100},{-40,60}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{44,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,56},
-              rotation=90),
-            Line(
-              points={{100,0},{56,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5),
-            Line(
-              points={{-8,-1},{28,-1}},
-              color={0,0,240},
-              visible=inclX,
-              thickness=0.5,
-              origin={39,-92},
-              rotation=90),
-            Line(
-              points={{-40,-58},{-40,-100}},
-              color={240,0,0},
-              visible=inclY,
-              smooth=Smooth.None,
-              thickness=0.5),
-            Line(
-              points={{-66,0},{-100,0}},
-              color={127,127,127},
-              visible=inclX,
-              thickness=0.5)}));
+            initialScale=0.1), graphics={Line(
+                  points={{-40,100},{-40,60}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{44,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,56},
+                  rotation=90),Line(
+                  points={{100,0},{56,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5),Line(
+                  points={{-8,-1},{28,-1}},
+                  color={0,0,240},
+                  visible=inclX,
+                  thickness=0.5,
+                  origin={39,-92},
+                  rotation=90),Line(
+                  points={{-40,-58},{-40,-100}},
+                  color={240,0,0},
+                  visible=inclY,
+                  smooth=Smooth.None,
+                  thickness=0.5),Line(
+                  points={{-66,0},{-100,0}},
+                  color={127,127,127},
+                  visible=inclX,
+                  thickness=0.5)}));
     end SimpleCell;
 
   end Cells;

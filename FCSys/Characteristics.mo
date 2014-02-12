@@ -556,7 +556,7 @@ package Characteristics "Data and functions to correlate physical properties"
         n_c=0,
         T_lim_c={0,Modelica.Constants.inf},
         b_c=[4188*U.J*m/(U.kg*U.K)],
-        B_c=[Deltah0_f - 298.15*U.K*b_c[1, 1], 0],
+        B_c=[Deltah0_f - 298.15*U.K*b_c[1, 1], 10 - b_c[1, 1]*log(300*U.K)],
         d=(294 + 2259.8)*U.pico*U.m/U.q);
 
       annotation (Documentation(info="<html>
@@ -579,6 +579,7 @@ package Characteristics "Data and functions to correlate physical properties"
 
      <p>Additional notes:</p>
      <ul>
+     <li>The specific entropy is arbitrarily set to be 10 (&sim;83.14&nbsp;J/(mol&nbsp;K)) at 300&nbsp;K.</li>
      <li>Most of the data for this species is for C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S rather than
      C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S<sup>-</sup> (with the exception of specific mass).</li>
      <li>A form of C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S is
@@ -1716,7 +1717,7 @@ package Characteristics "Data and functions to correlate physical properties"
   </ol>
   <p>Also, it is assumed that the Einstein relation applies.</p>
 
-  <p>Please see [<a href=\"modelica://FCSys.UsersGuide.References\">Davies2014</a>, Ch. 3] for a derivation
+  <p>Please see [<a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>, Ch. 3] for a derivation
   of the rate of phase change from kinetic theory.</p>
 
   <p>Although specific volume is an input to this function, the result is independent of

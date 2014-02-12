@@ -236,7 +236,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
     model AirColumn
       "<html>Gas in a vertical array of subregions, affected by gravity</html>"
-      import FCSys.Utilities.round;
       extends Modelica.Icons.Example;
 
       parameter Integer n_y=3
@@ -249,7 +248,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
       output Q.Pressure Deltap=subregion2.gas.N2.p - subregion1.gas.N2.p
         "Measured pressure difference";
       output Q.Pressure Deltap_ex=-(n_y + 1)*10*U.m*environment.a[Axis.y]*
-          Characteristics.N2.Gas.m*subregions[round(n_y/2)].gas.N2.rho
+          Characteristics.N2.Gas.m*subregions[div(n_y, 2)].gas.N2.rho
         "Expected pressure difference";
 
       parameter Q.NumberAbsolute k=5 "Damping factor";
@@ -1845,7 +1844,7 @@ in diagram)")}));
         color={0,0,0},
         smooth=Smooth.None));
     connect(diode.mat2, liq.mat) annotation (Line(
-        points={{29.8,2.4},{15.9,2.4},{15.9,-20},{2,-20}},
+        points={{29.8,2.4},{29.9,2.4},{29.9,-20},{2,-20}},
         color={0,0,0},
         smooth=Smooth.None));
     annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
@@ -1871,7 +1870,7 @@ in diagram)")}));
   equation
     N = mat1.N;
     0 = mat1.N + mat2.N;
-    diff = mat1.N - mat2.N;
+    diff = mat1.g - mat2.g;
     present = s > 0;
     diff = s*(if present then 0 else 1);
     N = s*(if present then 1 else 0);
