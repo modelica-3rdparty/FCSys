@@ -275,8 +275,6 @@ An unrelated species may be included.");
 
   package Means "Package of mathematical mean functions"
     extends Modelica.Icons.Package;
-    // TODO:  Remove this package, use Modelica.Math.Vectors.Means instead if
-    // ticket #1400 is accepted (https://trac.modelica.org/Modelica/ticket/1400).
 
     function arithmetic "Return the arithmetic mean of numbers"
       extends Modelica.Icons.Function;
@@ -395,24 +393,22 @@ An unrelated species may be included.");
            + (if size(a, 1) > 10 then positivePoly(x, a[11:end]) else 0)) else
           0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0))
            else 0)) else 0 annotation (Inline=true);
-        // Note:  Dymola 7.4 does seem to not inline the recursive calls beyond
-        // depth 1; therefore, the function is "unrolled" up to the 10th order.
-        // Also, in Dymola 7.4, if this function is called from a stack of (nested)
-        // functions, it seems to reduce the depth allowed for the nested
-        // parentheses.  The implementation here ("unrolled" only up to the 10th
-        // order) allows poly() to be called from within one other function within
-        // a model.
+
+        // Note:  Dymola 2014 doesn't seem to inline the recursive calls beyond
+        // depth 1; therefore, this function is "unrolled" up to the 10th order.
+        // If this function is called from a stack of (nested) functions, it
+        // seems to reduce the available recursion depth.
 
       end positivePoly;
 
     algorithm
       f := (if n < 0 then (if n + size(a, 1) < 0 then x^(n + size(a, 1)) else 1)
-        *positivePoly(1/x, a[min(size(a, 1), -n):-1:1]) else 0) + (if n <= 0
-         and n > -size(a, 1) then a[1 - n] else 0) + (if n + size(a, 1) > 1
-         then (if n > 1 then x^(n - 1) else 1)*positivePoly(x, a[1 + max(0, 1
-         - n):size(a, 1)]) else 0);
-      // Here, Dymola 2014 won't allow indexing via a[1 + max(0, 1 - n):end], so
-      // a[1 + max(0, 1 - n):size(a, 1)] is necessary.
+        *positivePoly(1/x, a[min(size(a, 1), -n):-1:1]) else 0) + (if -size(a,
+        1) < n and n <= 0 then a[1 - n] else 0) + (if n + size(a, 1) > 1 then (
+        if n > 1 then x^(n - 1) else 1)*positivePoly(x, a[max(1, 2 - n):size(a,
+        1)]) else 0);
+      // Note:  Dymola 2014 won't allow indexing via a[max(1, 2 - n):end], so
+      // a[max(1, 2 - n):size(a, 1)] is necessary.
       annotation (
         Inline=true,
         derivative=FCSys.Utilities.Polynomial.df,
@@ -504,10 +500,6 @@ An unrelated species may be included.");
     external"C";
       annotation (IncludeDirectory="modelica://FCSys/Resources/Source/C",
           Include="#include \"time.c\"");
-      // Note:  Since Dymola 7.4 doesn't support the IncludeDirectory annotation,
-      // it will be necessary to use the full
-      // path in the Include annotation, e.g.
-      //   Include="#include \"FCSys/FCSys 2.0/Resources/Source/C/time.c\""
 
     end get_time;
 

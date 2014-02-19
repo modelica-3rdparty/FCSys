@@ -1391,29 +1391,12 @@ package Characteristics "Data and functions to correlate physical properties"
           h0 := Polynomial.F(
                     T,
                     b_c[i, :],
-                    n_c) + B_c[i, 1] annotation (Inline=true, derivative=dh0_i);
+                    n_c) + B_c[i, 1] annotation (Inline=true);
           // This is the integral of c0_p*dT up to T at p0.  The lower bound is the
           // enthalpy of formation (of ideal gas, if the material is gaseous) at
           // 25 degC [McBride2002, p. 2].
 
         end h0_i;
-
-        function dh0_i "Derivative of h0_i"
-          // Note:  This function is necessary for Dymola 7.4 to differentiate h().
-          import FCSys.Utilities.Polynomial;
-          input Q.TemperatureAbsolute T "Temperature";
-          input Integer i "Index of the temperature interval";
-          input Q.Temperature dT "Derivative of temperature";
-          output Q.Potential dh0
-            "Derivative of specific enthalpy at reference pressure";
-
-        algorithm
-          dh0 := Polynomial.f(
-                    T,
-                    b_c[i, :],
-                    n_c)*dT annotation (Inline=true);
-
-        end dh0_i;
 
         function h_resid
           "Residual specific enthalpy for pressure adjustment for selected rows of b_v"
@@ -1501,24 +1484,8 @@ package Characteristics "Data and functions to correlate physical properties"
           // This is the integral of c0_p/T*dT up to T at p0 with the absolute
           // entropy at the lower bound [McBride2002, p. 2].
 
-          annotation (Inline=true, derivative=ds0_i);
-        end s0_i;
-
-        function ds0_i "Derivative of s0_i"
-          // Note:  This function is necessary for Dymola 7.4 to differentiate s().
-          import FCSys.Utilities.Polynomial.f;
-          input Q.TemperatureAbsolute T "Temperature";
-          input Integer i "Index of the temperature interval";
-          input Q.Temperature dT "Derivative of temperature";
-          output Q.Number ds0
-            "Derivative of specific entropy at given temperature and reference pressure";
-
-        algorithm
-          ds0 := f( T,
-                    b_c[i, :],
-                    n_c - 1)*dT;
           annotation (Inline=true);
-        end ds0_i;
+        end s0_i;
 
         function s_resid
           "Residual specific entropy for pressure adjustment for selected rows of b_v"
@@ -1540,32 +1507,8 @@ package Characteristics "Data and functions to correlate physical properties"
           // Note:  According to the Maxwell relations,
           // (dels/delp)_T = -(delv/delT)_p.
 
-          annotation (Inline=true, derivative=ds_resid);
-        end s_resid;
-
-        function ds_resid "Derivative of s_resid"
-          // Note:  This function is necessary for Dymola 7.4 to differentiate s().
-          input Q.TemperatureAbsolute T "Temperature";
-          input Q.PressureAbsolute p "Pressure";
-          input Integer rowLimits[2]={1,size(b_v, 1)}
-            "Beginning and ending indices of rows of b_v to be included";
-          input Q.Temperature dT "Derivative of temperature";
-          input Q.Pressure dp "Derivative of pressure";
-          output Q.Number ds_resid
-            "Derivative of integral of (dels/delp)_T*dp up to p with zero integration constant (for selected rows)";
-
-        algorithm
-          ds_resid := Polynomial.dF(
-                    p,
-                    {Polynomial.df(
-                      T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j for j in 1:size(b_v,
-                2)},  n_v[2] - n_v[1] - i,
-                      dT) for i in rowLimits[1]:rowLimits[2]},
-                    n_v[1] + rowLimits[1] - 1,
-                    dp);
           annotation (Inline=true);
-        end ds_resid;
+        end s_resid;
 
       algorithm
         /*

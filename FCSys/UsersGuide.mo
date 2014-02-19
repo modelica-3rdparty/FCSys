@@ -823,7 +823,7 @@ describes how the library is developed and maintained using the
 
 </html>"));
 
-    // TODO: Update the documentation and add entries once version number is greater than 1.0.0.
+    // TODO: Update the documentation and add entries once version number > 1.0.0.
 
   end ReleaseNotes;
 
