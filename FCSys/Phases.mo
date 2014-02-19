@@ -195,14 +195,14 @@ package Phases "Mixtures of species"
 
     Connectors.Chemical chemH2[H2.n_chem](each final n_trans=n_trans) if inclH2
       "Chemical connector for H2" annotation (Placement(transformation(extent={
-              {-74,58},{-54,78}}), iconTransformation(extent={{-50,-50},{-30,-30}})));
+              {-74,58},{-54,78}}),iconTransformation(extent={{-50,-50},{-30,-30}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
       inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
             extent={{-34,58},{-14,78}}), iconTransformation(extent={{-10,-50},{
               10,-30}})));
     Connectors.Chemical chemO2[O2.n_chem](each final n_trans=n_trans) if inclO2
       "Chemical connector for O2" annotation (Placement(transformation(extent={
-              {46,58},{66,78}}), iconTransformation(extent={{30,-50},{50,-30}})));
+              {46,58},{66,78}}),iconTransformation(extent={{30,-50},{50,-30}})));
 
   protected
     Connectors.InertNode exchCommon
@@ -1334,7 +1334,11 @@ public
 
   end ExchangeParams;
   annotation (Documentation(info="
-<html>
+<html><p>This package contains models of phases&mdash;homogeneous mixtures of chemical species.   
+<a href=\"#Fig1\">Figure 1</a> shows the position of a phase in the model hierarchy.</p>
+
+<p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Phases/hierarchy.png\" alt=\"Position of a phase in the model hierarchy\">
+<br>Figure 1: Position of a phase in the model hierarchy.</p>
 
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
 Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>

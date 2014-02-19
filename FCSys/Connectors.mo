@@ -465,7 +465,7 @@ package Connectors "Declarative and imperative interfaces"
 
     parameter Integer n_trans(min=1,max=3)
       "Number of components of translational momentum" annotation (HideResult=
-          true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
+          true, Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
 
     Q.Velocity phi[n_trans](each nominal=U.cm/U.s,each start=0) "Velocity";
     flow Q.Force mPhidot[n_trans](each nominal=U.N) "Force";
@@ -794,15 +794,90 @@ package Connectors "Declarative and imperative interfaces"
   The connectors in the middle row are
   flat; they build on the connectors of the bottom row by extension.
   Each icon on the bottom row represents one effort/flow
-  pair, which may or may not be implemented as a separate connector.
-
-  The
-  <a href=\"modelica://FCSys.Connectors.Chemical\">Chemical</a> connector also
+  pair, which is also listed in
+  <a href=\"#Tab1\">Table 1</a>.  
+  In addition, the
+  <a href=\"modelica://FCSys.Connectors.Chemical\">Chemical</a> connector
   has stream variables to represent the advection of translational momentum and
   thermal energy.</p>
 
   <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Connectors.png\" alt=\"Hierarchy of the connectors\">
 <br>Figure 1: Hierarchy of the connectors.</p>
+
+    <table border=\"1\" cellspacing=0 cellpadding=2 style=\"border-collapse:collapse;\">
+  <caption align=\"top\" id=\"Tab1\">Table 1: Effort/flow pairs of the connectors.</caption>
+<tr>
+<th>Name</th>
+<th>Effort</th>
+<th>Flow</th>
+<th>Icon</th>
+<th>Within icon(s)</th>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Material</td>
+<td align=\"center\" valign=\"middle\">Pressure<br><i>p</i> [M L<sup>-1</sup> T<sup>-2</sup>]</td>
+<td align=\"center\" valign=\"middle\">Current<br><i>N&#775;</i> [N T<sup>-1</sup>]</td>
+<td><img source=\"modelica://FCSys/help/FCSys.Connectors.TranslationalI.png\"></td>
+<td><a href=\"modelica://FCSys.Connectors.Boundary\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.BoundaryBus\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryBusI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Translational</td>
+<td align=\"center\" valign=\"middle\">Velocity<br>&phi; [L T<sup>-1</sup>]</td>
+<td align=\"center\" valign=\"middle\">Force<br><i>m</i>&Phi;dot [L M T<sup>-2</sup>]</td>
+<td><a href=\"modelica://FCSys.Connectors.Translational\"><img source=\"modelica://FCSys/help/FCSys.Connectors.TranslationalI.png\"></a></td>
+<td><a href=\"modelica://FCSys.Connectors.Boundary\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.BoundaryBus\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryBusI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Inert\"><img source=\"modelica://FCSys/help/FCSys.Connectors.InertI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Intra\"><img source=\"modelica://FCSys/help/FCSys.Connectors.IntraI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Inter\"><img source=\"modelica://FCSys/help/FCSys.Connectors.InterI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Reaction\"><img source=\"modelica://FCSys/help/FCSys.Connectors.ReactionI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Thermal diffusive</td>
+<td align=\"center\" valign=\"middle\">Temperature<br><i>T</i> [L<sup>2</sup> M N<sup>-1</sup> T<sup>-2</sup>]</td>
+<td align=\"center\" valign=\"middle\">Heat flow rate<br><i>Q&#775;</i> [L<sup>2</sup> M T<sup>-3</sup>]</td>
+<td><a href=\"modelica://FCSys.Connectors.ThermalDiffusive\"><img source=\"modelica://FCSys/help/FCSys.Connectors.TranslationalI.png\"></a></td>
+<td><a href=\"modelica://FCSys.Connectors.Boundary\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.BoundaryBus\"><img source=\"modelica://FCSys/help/FCSys.Connectors.BoundaryBusI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Inert\"><img source=\"modelica://FCSys/help/FCSys.Connectors.InertI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Intra\"><img source=\"modelica://FCSys/help/FCSys.Connectors.IntraI.png\"></a>
+<a href=\"modelica://FCSys.Connectors.Inter\"><img source=\"modelica://FCSys/help/FCSys.Connectors.InterI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Thermal advective</td>
+<td align=\"center\" valign=\"middle\">Temperature times specific entropy<br><i>Ts</i> [L<sup>2</sup> M N<sup>-1</sup> T<sup>-2</sup>]</td>
+<td align=\"center\" valign=\"middle\">Heat flow rate<br><i>Q&#775;</i> [L<sup>2</sup> M T<sup>-3</sup>]</td>
+<td><img source=\"modelica://FCSys/help/FCSys.Connectors.TranslationalI.png\"></td>
+<td><a href=\"modelica://FCSys.Connectors.Reaction\"><img source=\"modelica://FCSys/help/FCSys.Connectors.ReactionI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Amagat</td>
+<td align=\"center\" valign=\"middle\">Pressure<br><i>p</i> [M L<sup>-1</sup> T<sup>-2</sup>]</td>
+<td align=\"center\" valign=\"middle\">Partial volume<br><i>V</i> [L<sup>3</sup>]</td>
+<td><a href=\"modelica://FCSys.Connectors.Amagat\"><img source=\"modelica://FCSys/help/FCSys.Connectors.AmagatI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Dalton</td>
+<td align=\"center\" valign=\"middle\">Volume<br><i>V</i> [L<sup>3</sup>]</td>
+<td align=\"center\" valign=\"middle\">Partial pressure<br><i>p</i> [M L<sup>-1</sup> T<sup>-2</sup>]</td>
+<td><a href=\"modelica://FCSys.Connectors.Dalton\"><img source=\"modelica://FCSys/help/FCSys.Connectors.DaltonI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Chemical</td>
+<td align=\"center\" valign=\"middle\">Chemical potential<br><i>g</i> [L<sup>2</sup> M N<sup>-1</sup> T<sup>-2</sup>]</td>
+<td align=\"center\" valign=\"middle\">Current<br><i>N&#775;</i> [N T<sup>-1</sup>]</td>
+<td><a href=\"modelica://FCSys.Connectors.Chemical\"><img source=\"modelica://FCSys/help/FCSys.Connectors.ChemicalI.png\"></a></td>
+</tr>
+<tr>
+<td align=\"center\" valign=\"middle\">Stoichiometric</td>
+<td align=\"center\" valign=\"middle\">Rate of reaction<br><i>N&#775;</i> [N T<sup>-1</sup>]</td>
+<td align=\"center\" valign=\"middle\">Net chemical potential<br><i>g</i> [L<sup>2</sup> M N<sup>-1</sup> T<sup>-2</sup>]</td>
+<td><img source=\"modelica://FCSys/help/FCSys.Connectors.TranslationalI.png\"></td>
+<td><a href=\"modelica://FCSys.Connectors.Reaction\"><img source=\"modelica://FCSys/help/FCSys.Connectors.ReactionI.png\"></a></td>
+</tr>
+  </table>
+  
   
   <p>The <a href=\"modelica://FCSys.Connectors.Chemical\">Chemical</a>
   connector is used for a single species in a chemical reaction or phase change process.

@@ -600,7 +600,6 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
-
       end Fixed;
 
     end Ionomer;
@@ -899,7 +898,6 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
 <p>For more information, please see the <a href=\"modelica://FCSys.Species.Species\">Species</a> model.</p></html>"),
 
           Icon(graphics));
-
       end Fixed;
 
     end Gas;
@@ -1622,7 +1620,8 @@ Choose any condition besides none.");
 
     momentum is not exchanged among species or directly transported (i.e., uniform or shaft rotation).</li>
 
-    <li>Upstream discretization is applied by default.
+    <li>By default, upstream discretization is applied according to the scheme described in 
+    [<a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>, pp.&nbsp;74&ndash;84].
     The central difference
     scheme may be used by setting <code>upstreamX</code>, <code>upstreamY</code>, and <code>upstreamZ</code> to
 
@@ -2011,8 +2010,7 @@ Check that the volumes of the other phases are set properly.");
 
     annotation (
       defaultComponentPrefixes="replaceable",
-      Documentation(info="<html>**Move to top of package, update link in Getting started.
-    <p>All of the details below are pertinent to the <a href=\"modelica://FCSys.Species.Fluid\">Fluid</a>
+      Documentation(info="<html>    <p>All of the details below are pertinent to the <a href=\"modelica://FCSys.Species.Fluid\">Fluid</a>
     model (and the derived <a href=\"modelica://FCSys.Species.Ion\">Ion</a> model) which inherits from this model.
 
     Only some of the details apply to the
@@ -2040,66 +2038,7 @@ Check that the volumes of the other phases are set properly.");
     Other assumptions are optional via the parameters.  Additional assumptions may be
 
     applied in models that inherit from this one.</p>
-
-    <p><a href=\"#Fig1\">Figure 1</a> shows how instances of
-    <a href=\"modelica://FCSys.Species\">Species</a> models are
-    connected within a <a href=\"modelica://FCSys.Subregions\">Subregion</a>.  A single species in
-    a single phase is called a <i>configuration</i>. The
-    generalized resistances (<i>R</i>) affect the force and rates of chemical exchange and
-
-    heat flow
-    associated with differences in activity, velocity, and temperature (respectively) between
-    each configuration and a common node.  These exchange processes are diffusive.
-    Each resistor generates heat
-
-    in the <a href=\"modelica://FCSys.Species\">Species</a> instance that contains it.</p>
-
-    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/exchange.png\" alt=\"Exchange among configurations\">
-<br>Figure 1:  Exchange of a quantity (material, translational momentum, or thermal energy) among configurations
-    (A, B, and C) within a subregion.</p>
-
-    <p><a href=\"#Fig2\">Figure 2</a> shows how
-    a configuration
-    is connected between neighboring instances of a
-    <a href=\"modelica://FCSys.Subregions.Subregion\">Subregion</a>.
-    Material, translational momentum, and thermal energy are transported by both advection and diffusion.
-    Upstream discretization is applied if it is enabled via the <code>upstreamX</code>,
-    etc. parameters.  Like for exchange, the transport resistances are inside the
-    <a href=\"modelica://FCSys.Species\">Species</a> model.</p>
-
-    <p align=center id=\"Fig2\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/transport.png\" alt=\"Transport between subregions\">
-<br>Figure 2:  Transport of a quantity associated with the same configuration
-    between subregions (1 and 2).</p>
-
-<p>The <a href=\"modelica://FCSys.Species\">Species</a> instances
-    within a <a href=\"modelica://FCSys.Phases\">Phase</a> are combined by Dalton's law of
-    partial pressures (see the
-    <a href=\"modelica://FCSys.Connectors.Dalton\">Dalton</a> connector), as shown
-    in Figure 3a.  The pressures are additive, and each species is assumed to exist at the
-    total extensive volume of the phase.  Within a
-
-    <a href=\"modelica://FCSys.Subregions.Subregion\">Subregion</a>,
-    the <a href=\"modelica://FCSys.Phases\">Phases</a> are combined by Amagat's law of partial volumes
-    (see the <a href=\"modelica://FCSys.Connectors.Amagat\">Amagat</a> connector), as shown
-    in Figure 3b.  The volumes are additive, and each species is assumed to exist at the
-    total pressure in the subregion.</p>
-
-    <table border=0 cellspacing=0 cellpadding=2 align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-      <tr align=center class=noBorder>
-        <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Dalton.png\" alt=\"Additivity of pressure\">
-<br>a:  Pressures of species (A, B, and C) are additive within a phase.
-        </td>
-        <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-          <img src=\"modelica://FCSys/Resources/Documentation/Subregions/Species/Species/Amagat.png\" alt=\"Additivity of volume\">
-<br>b:  Volumes of phases (I, II, and III) are additive within a subregion.
-        </td>
-      </tr>
-      <tr align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
-        <td colspan=2 align=center class=noBorder>Figure 3: Methods of attributing pressure and volume.</td>
-      </tr>
-    </table>
-
+    
     <p>Notes regarding the parameters:
     <ol>
 
@@ -2229,7 +2168,71 @@ public
 
   end Enumerations;
   annotation (Documentation(info="
-<html>
+<html><p>This package contains models of species&mdash;chemical substances that may be mixed to form phases.   
+<a href=\"#Fig1\">Figure 1</a> shows the position of a species in the model hierarchy.</p>
+
+<p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Species/hierarchy.png\" alt=\"Position of a species in the model hierarchy\">
+<br>Figure 1: Position of a species in the model hierarchy.</p>
+
+    <p><a href=\"#Fig2\">Figure 2</a> shows how instances of
+    <a href=\"modelica://FCSys.Species\">species</a> models are
+    connected within a <a href=\"modelica://FCSys.Subregions\">subregion</a>.  A single species in
+    a single phase is called a <i>configuration</i>. The
+    generalized resistances (<i>R</i>) affect the force and rates of chemical exchange and
+
+    heat flow
+    associated with differences in activity, velocity, and temperature (respectively) between
+    each configuration and a common node.  These exchange processes are diffusive.
+    Each resistor generates heat
+
+    in the <a href=\"modelica://FCSys.Species\">species</a> instance that contains it.</p>
+
+    <p align=center id=\"Fig2\"><img src=\"modelica://FCSys/Resources/Documentation/Species/exchange.png\" alt=\"Exchange among configurations\">
+<br>Figure 2:  Exchange of a quantity (material, translational momentum, or thermal energy) among configurations
+    (A, B, and C) within a subregion.</p>
+
+    <p><a href=\"#Fig3\">Figure 3</a> shows how
+    a configuration
+    is connected between neighboring instances of a
+    <a href=\"modelica://FCSys.Subregions.Subregion\">subregion</a>.
+    Material, translational momentum, and thermal energy are transported by both advection and diffusion.
+    Upstream discretization is applied if it is enabled via the <code>upstreamX</code>,
+    etc. parameters.  Like for exchange, the transport resistances are inside the
+    <a href=\"modelica://FCSys.Species\">species</a> model.</p>
+
+    <p align=center id=\"Fig3\"><img src=\"modelica://FCSys/Resources/Documentation/Species/transport.png\" alt=\"Transport between subregions\">
+<br>Figure 3:  Transport of a quantity associated with the same configuration
+    between subregions (1 and 2).</p>
+
+<p>The <a href=\"modelica://FCSys.Species\">species</a> instances
+    within a <a href=\"modelica://FCSys.Phases\">phase</a> are combined by Dalton's law of
+    partial pressures (see the
+    <a href=\"modelica://FCSys.Connectors.Dalton\">Dalton</a> connector), as shown
+    in Figure 4a.  The pressures are additive, and each species is assumed to exist at the
+    total extensive volume of the phase.  Within a
+
+    <a href=\"modelica://FCSys.Subregions.Subregion\">subregion</a>,
+    the <a href=\"modelica://FCSys.Phases\">phases</a> are combined by Amagat's law of partial volumes
+    (see the <a href=\"modelica://FCSys.Connectors.Amagat\">Amagat</a> connector), as shown
+    in Figure 4b.  The volumes are additive, and each species is assumed to exist at the
+    total pressure in the subregion.</p>
+
+    <table border=0 cellspacing=0 cellpadding=2 align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
+      <tr align=center class=noBorder>
+        <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Species/Dalton.png\" alt=\"Additivity of pressure\">
+<br>a:  Pressures of species (A, B, and C) are additive within a phase.
+        </td>
+        <td align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
+          <img src=\"modelica://FCSys/Resources/Documentation/Species/Amagat.png\" alt=\"Additivity of volume\">
+<br>b:  Volumes of phases (I, II, and III) are additive within a subregion.
+        </td>
+      </tr>
+      <tr align=center class=noBorder style=\"margin-left: auto; margin-right: auto;\">
+        <td colspan=2 align=center class=noBorder>Figure 4: Methods of attributing pressure and volume.</td>
+      </tr>
+    </table>
+    
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
 Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 

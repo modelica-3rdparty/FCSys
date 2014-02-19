@@ -352,7 +352,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.AirColumn.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end AirColumn;
 
     model BinaryDiffusion
@@ -684,7 +683,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end InternalFlow;
 
     model Subregion
@@ -942,7 +940,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"),Placement(transformation(extent={{-30,-22},
+            "Phases (click to edit)"), Placement(transformation(extent={{-30,-22},
               {-10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -1390,7 +1388,7 @@ in diagram)")}));
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"),Placement(transformation(extent={{-10,-22},
+            "Phases (click to edit)"), Placement(transformation(extent={{-10,-22},
               {10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -1452,7 +1450,7 @@ in diagram)")}));
 
     // Exchange
     Connectors.InertNode exchCommon "Among all phases" annotation (HideResult=
-          true,Placement(transformation(extent={{56,32},{76,52}}),
+          true, Placement(transformation(extent={{56,32},{76,52}}),
           iconTransformation(extent={{100,18},{120,38}})));
     Connectors.InertNode exchGasLiq "Between gas and liquid" annotation (
         HideResult=true, Placement(transformation(extent={{56,44},{76,64}}),
@@ -1879,7 +1877,14 @@ in diagram)")}));
               -100},{100,100}}), graphics));
   end Diode;
   annotation (Documentation(info="
-<html>
+<html><p>This package contains subregions&mdash;control volumes that may contain multiple phases.  A 
+subregion is the lowest level of spatial discretization in <a href=\"modelica://FCSys\">FCSys</a>;
+the locations of the individual phases are not further resolved.   
+<a href=\"#Fig1\">Figure 1</a> shows the position of a subregion in the model hierarchy.</p>
+
+    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Subregions/hierarchy.png\" alt=\"Position of a subregion in the model hierarchy\">
+<br>Figure 1: Position of a subregion in the model hierarchy.</p>
+
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
 Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 

@@ -272,7 +272,6 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
             "Characteristics.Examples.SaturationPressure.mos"));
-
     end SaturationPressure;
 
     model HydrationLevel
@@ -315,7 +314,6 @@ package Characteristics "Data and functions to correlate physical properties"
             "Characteristics.Examples.HydrationLevel.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end HydrationLevel;
 
     model CellPotential
@@ -428,7 +426,6 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands(file(ensureTranslated=true) =
             "Resources/Scripts/Dymola/Characteristics.Examples.LatentHeat.mos"
             "Characteristics.Examples.LatentHeat.mos"));
-
     end LatentHeat;
 
     model MobilityFactors "Test the mobility factors"
@@ -479,7 +476,6 @@ package Characteristics "Data and functions to correlate physical properties"
 
         experiment(StopTime=10),
         Commands);
-
     end SurfaceTension;
 
   end Examples;
@@ -1287,7 +1283,9 @@ package Characteristics "Data and functions to correlate physical properties"
         // See the notes in the algorithm of Characteristic.s.
         // Note:  [Dymond2002, p.17, eqs. 1.45 & 1.46] may be incorrect.
         annotation (Inline=true,Documentation(info="<html>
-  <p>For an ideal gas, this function is independent of pressure
+  <p>This function implements Equation&nbsp;3.17 in <a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>.
+  
+  For an ideal gas, the result is independent of pressure
   (although pressure remains as a valid input).</p>
   </html>"));
       end c_p;
@@ -1316,7 +1314,8 @@ package Characteristics "Data and functions to correlate physical properties"
         // FCSys 1 = U.R).
         // Note 2:  [Dymond2002, p.17, eqs. 1.43 & 1.44] may be incorrect.
         annotation (Inline=true,Documentation(info="<html>
-  <p>For an ideal gas, this function is independent of pressure
+  <p>This function implements Equation&nbsp;3.19 in <a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>.
+  For an ideal gas, the result is independent of pressure
   (although pressure remains as a valid input).</p>
   </html>"));
       end c_v;
@@ -1362,7 +1361,11 @@ package Characteristics "Data and functions to correlate physical properties"
 
       algorithm
         g := h(T, p) - T*s(T, p);
-        annotation (Inline=true);
+        annotation (Inline=true,Documentation(info="<html>
+  <p>Via <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.h\">h</a>() and 
+  <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.s\">s</a>(), this function implements Equation&nbsp;3.16 in <a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>.
+  </p>
+  </html>"));
       end g;
 
       function h "Specific enthalpy as a function of temperature and pressure"
@@ -1466,7 +1469,8 @@ package Characteristics "Data and functions to correlate physical properties"
           Inline=true,
           smoothOrder=1,
           Documentation(info="<html>
-  <p>For an ideal gas, this function is independent of pressure
+  <p>This function implements Equation&nbsp;3.13 in <a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>.
+  For an ideal gas, the result is independent of pressure
   (although pressure remains as a valid input).</p>
     </html>"));
       end h;
@@ -1591,10 +1595,14 @@ package Characteristics "Data and functions to correlate physical properties"
         // Note:  If the phase is gas, the virial equation of state (as defined by
         // b_v and n_v) must include an ideal gas term (v = ... + f(T)/p +
         // ...).  Otherwise, an indexing error will occur.
+
         annotation (
           InlineNoEvent=true,
           Inline=true,
-          smoothOrder=1);
+          smoothOrder=1,
+          Documentation(info="<html>
+  <p>This function implements Equation&nbsp;3.10 in <a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>.</p>
+    </html>"));
       end s;
 
       replaceable function zeta
@@ -2216,8 +2224,16 @@ temperature difference.</p>
     end BaseClasses;
   end MobilityFactors;
   annotation (Documentation(info="<html>
-  <p>Each species has a subpackage for each material phase in which the species
-  is represented.  The thermodynamic properties are generally different for each phase.</p>
+  <p>This package contains data and functions to relate 
+  thermodynamic, fluid, and thermal properties to
+  typical thermodynamic state variables (temperature, pressure, and specific volume).  
+  Each chemical species is given a subpackage with further subpackages for the phases in which the species may exist.
+  The base packages (<a href=\"modelica://FCSys.Characteristics.BaseClasses.CharacteristicNASA\">CharacteristicNASA</a>,
+  <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic\">Characteristic</a>, and
+  <a href=\"modelica://FCSys.Characteristics.BaseClasses.CharacteristicEOS\">CharacteristicEOS</a>) are generic and can be used to represent solids as well as fluids.  
+  These may be ideal gases, incompressible liquids, or any other substance
+  that can be represented by the Leiden form of the virial equation of state.
+  </p>
 
 <p>Additional materials may be included as needed.  The thermodynamic data for
   materials that are condensed at standard conditions is available in

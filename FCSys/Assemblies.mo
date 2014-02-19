@@ -802,37 +802,43 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Line(
-                  points={{-40,-58},{-40,-100}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{28,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,-92},
-                  rotation=90),Line(
-                  points={{-40,100},{-40,60}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-66,0},{-100,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{44,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,56},
-                  rotation=90),Line(
-                  points={{100,0},{56,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5)}),
+            initialScale=0.1), graphics={
+            Line(
+              points={{-40,-58},{-40,-100}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{28,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,-92},
+              rotation=90),
+            Line(
+              points={{-40,100},{-40,60}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-66,0},{-100,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{44,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,56},
+              rotation=90),
+            Line(
+              points={{100,0},{56,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5)}),
         experiment(StopTime=120, Tolerance=1e-06));
     end Cell;
 
@@ -1028,42 +1034,53 @@ package Assemblies "Combinations of regions (e.g., cells)"
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Line(
-                  points={{-40,100},{-40,60}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{44,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,56},
-                  rotation=90),Line(
-                  points={{100,0},{56,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{28,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,-92},
-                  rotation=90),Line(
-                  points={{-40,-58},{-40,-100}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-66,0},{-100,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5)}));
+            initialScale=0.1), graphics={
+            Line(
+              points={{-40,100},{-40,60}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{44,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,56},
+              rotation=90),
+            Line(
+              points={{100,0},{56,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{28,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,-92},
+              rotation=90),
+            Line(
+              points={{-40,-58},{-40,-100}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-66,0},{-100,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5)}));
     end SimpleCell;
 
   end Cells;
   annotation (Documentation(info="
-<html>
+<html><p>This package contains assemblies, or models of devices that have multiple dissimilar regions.   
+<a href=\"#Fig1\">Figure 1</a> shows the position of an assembly such as a fuel cell in the model hierarchy.</p>
+
+<p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/Assemblies/hierarchy.png\" alt=\"Position of an assembly in the model hierarchy\">
+<br>Figure 1: Position of an assembly such as a fuel cell in the model hierarchy.</p>
+
   <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica License 2</b><br>
 Copyright &copy; 2007&ndash;2014, <a href=\"http://www.hnei.hawaii.edu/\">Hawaii Natural Energy Institute</a> and <a href=\"http://www.gtrc.gatech.edu/\">Georgia Tech Research Corporation</a>.</p>
 

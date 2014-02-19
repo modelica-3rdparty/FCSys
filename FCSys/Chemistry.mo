@@ -379,7 +379,6 @@ package Chemistry "Chemical reactions and related models"
                   smooth=Smooth.None,
                   origin={0,-11},
                   rotation=180)}));
-
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -507,18 +506,16 @@ package Chemistry "Chemical reactions and related models"
 
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-            extent={{-100,40},{100,-50}},
-            pattern=LinePattern.Dash,
-            lineColor={127,127,127},
-            radius=15,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
-              fileName=
-                "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
-
+              extent={{-100,40},{100,-50}},
+              pattern=LinePattern.Dash,
+              lineColor={127,127,127},
+              radius=15,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
+            fileName=
+            "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{40,
               40}}), graphics));
-
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -659,18 +656,16 @@ package Chemistry "Chemical reactions and related models"
 
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-            extent={{-100,40},{100,-50}},
-            pattern=LinePattern.Dash,
-            lineColor={127,127,127},
-            radius=15,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
-              fileName=
-                "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
-
+              extent={{-100,40},{100,-50}},
+              pattern=LinePattern.Dash,
+              lineColor={127,127,127},
+              radius=15,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
+            fileName=
+            "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               40}}), graphics));
-
   end ORR;
 
 public
@@ -720,30 +715,25 @@ public
 
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={
-          Rectangle(
-            extent={{-40,40},{40,-40}},
-            fillColor={170,213,255},
-            fillPattern=FillPattern.Solid,
-            pattern=LinePattern.None),
-          Rectangle(
-            extent={{42,40},{20,-40}},
-            pattern=LinePattern.None,
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{0,40},{40,-40}},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid,
-            pattern=LinePattern.None),
-          Line(
-            points={{-40,40},{40,40}},
-            color={0,0,0},
-            smooth=Smooth.None),
-          Line(
-            points={{-40,-40},{40,-40}},
-            color={0,0,0},
-            smooth=Smooth.None)}),
+              100}}), graphics={Rectangle(
+              extent={{-40,40},{40,-40}},
+              fillColor={170,213,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),Rectangle(
+              extent={{42,40},{20,-40}},
+              pattern=LinePattern.None,
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{0,40},{40,-40}},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),Line(
+              points={{-40,40},{40,40}},
+              color={0,0,0},
+              smooth=Smooth.None),Line(
+              points={{-40,-40},{40,-40}},
+              color={0,0,0},
+              smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
   end Capillary;

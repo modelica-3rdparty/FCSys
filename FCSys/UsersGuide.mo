@@ -33,8 +33,9 @@ package UsersGuide "User's Guide"
     <ol>
         <li>Read the overview in the <a href=\"modelica://FCSys\">top-level documentation</a>.</li>
 
-        <li>Browse the subpackages of FCSys.  In general, the subpackages are
-        ordered with high-level models at the top and basic classes at the bottom.</li>
+        <li>Browse the subpackages of FCSys.  The subpackages are
+        ordered with high-level models at the top and basic classes at the bottom.  <a href=\"#Fig1\">Figure 1</a> shows
+        the hierarchy of the models that are instantiated to build an assembly such as a fuel cell.</li>
 
         <li>Call <a href=\"modelica://FCSys.Units.setup\">FCSys.Units.setup</a>() to
         establish the display units.  This is automatic if FCSys
@@ -60,8 +61,8 @@ package UsersGuide "User's Guide"
             <li><a href=\"modelica://FCSys.Connectors\">FCSys.Connectors</a> package:
             Overview of the connectors</li>
 
-            <li><a href=\"modelica://FCSys.Species.Species\">FCSys.Species.Species</a> model:
-            Details about the storage and transfer of material, momentum, and
+            <li><a href=\"modelica://FCSys.Species\">FCSys.Species</a> package:
+            Overview of the storage and transfer of material, momentum, and
             energy</li>
 
             <li><a href=\"modelica://FCSys.Regions.AnFPs.AnFP\">FCSys.Regions.AnFPs.AnFP</a> model:
@@ -92,6 +93,9 @@ package UsersGuide "User's Guide"
         can be improved and others may benefit.  The best way is to create a fork from the
         development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.</li>
     </ol>
+    
+    <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/GettingStarted/hierarchy.png\" alt=\"Hierarchy of the models in FCSys\">
+<br>Figure 1: Hierarchy of the models in FCSys.</p>
     </html>"));
 
   end GettingStarted;
@@ -107,7 +111,7 @@ package UsersGuide "User's Guide"
     information, please
     follow the links in parentheses to the associated models.  For further discussion and more results, please 
     see
-    [<a href=\"modelica://FCSys.UsersGuide.References\">Davies, 2014</a>].</p>
+    [<a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>].</p>
 
     <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png\"></a>
 <br>Figure&nbsp;1: The polarization of the cell varies with boundary temperature primarily due to the temperature dependence of the exchange 
@@ -372,12 +376,6 @@ increases in net current must be supported by the upstream segments, and this pu
   package Publications "Publications"
 
     extends Modelica.Icons.References;
-    annotation (preferredView="info", Documentation(info="<html>
-
-
-    <p>The publications listed below (most recent first) describe the development of this library (FCSys) or results derived from it.</p>
-
-    </html>"));
     class Davies2014
       "<html>K. L. Davies, <a href=\"http://kdavies4.github.io/PhD/Davies%20-%20Declarative%20Modeling%20of%20Coupled%20Advection%20&%20Diffusion%20as%20Applied%20to%20FCs.pdf\"><i>Declarative Modeling of Coupled Advective and Diffusive Processes as Applied to Fuel Cells</i></a>, Ph.D. dissertation, Georgia Institute of Technology, 2014.</html>"
 
@@ -414,15 +412,18 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end Davies2007;
 
+    annotation (preferredView="info", Documentation(info="<html>
+
+
+    <p>The publications listed below (most recent first) describe the development of this library (FCSys) or results derived from it.</p>
+
+    </html>"));
   end Publications;
 
   package References "References"
 
     extends Modelica.Icons.References;
 
-    annotation (preferredView="info", Documentation(info="<html>
-    <p>The references listed below are cited throughout the FCSys library.</p>
-    </html>"));
     class Aronsson2009
       "<html>P. Aronsson and D. Broman, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=043;article=105\">Extendable Physical Unit Checking with Understandable Error Reporting</a>,\"  in <i>Proc. 7th Modelica Conf.</i> (Como, Italy), Modelica Assoc., Sep. 2009.</html>"
 
@@ -739,6 +740,9 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end Yuan2009;
 
+    annotation (preferredView="info", Documentation(info="<html>
+    <p>The references listed below are cited throughout the FCSys library.</p>
+    </html>"));
   end References;
 
   package ReleaseNotes "Release notes"
