@@ -1377,7 +1377,10 @@ Choose any condition besides none.");
         // consEnergy == ConsThermo.steady.
       end if;
     end if;
-
+  public
+    Boolean x;
+    Real x2[n_chem];
+    Boolean sat[n_chem](each start=false);
   equation
     // Aliases (only to clarify and simplify other equations)
     v*I = Aprime .* phi "Current vs. velocity";
@@ -1397,12 +1400,27 @@ Choose any condition besides none.");
     // Properties upon outflow due to reaction and phase change
     chemical.phi = fill(phi, n_chem);
     chemical.sT = fill(h - g, n_chem);
-
+    x = N <= 0;
     // Material exchange
     for i in 1:n_chem loop
       if tauprime[i] > Modelica.Constants.small then
-        tauprime[i]*chemical[i].Ndot = (N + N0)*exp((chemical[i].g - g)/T) - N;
+        if Data.formula == "H2O" and i == 2 then
+          //0 = if sat[i] then chemical[i].g - g else N;
+          //x2[i] = if sat[i] then N else chemical[i].g - g;
+          N = if sat[i] then x2[i] else 0;
+          chemical[i].g = if sat[i] then g else x2[i];
+          sat[i] = (pre(sat[i]) and (N > 0 or pre(x))) or (not pre(sat[i]) and
+            chemical[i].g >= g);
+
+        else
+          //tauprime[i]*chemical[i].Ndot = (N + N0)*exp((chemical[i].g - g)/T) - N;
+          sat[i] = false;
+          chemical[i].g = g;
+          x2[i] = 0;
+        end if;
       else
+        sat[i] = false;
+        x2[i] = 0;
         chemical[i].g = g;
       end if;
     end for;
@@ -1989,8 +2007,8 @@ Check that the volumes of the other phases are set properly.");
     else
       v = Data.v_Tp(T, p);
     end if;
-    h = Data.h(T, p);
-    s = Data.s(T, p);
+    h = Data.h(T, if Data.isCompressible then p else Data.p0) "**temp";
+    s = Data.s(T, if Data.isCompressible then p else Data.p0) "**temp";
 
     // Exchange
     // --------

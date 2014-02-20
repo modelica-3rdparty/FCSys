@@ -389,7 +389,7 @@ increases in net current must be supported by the upstream segments, and this pu
     end Davies2012a;
 
     class Davies2012b
-      "<html>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Proc. 9th Modelica Conf.</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/References/Natural%20Unit%20Representation%20in%20Modelica%20(poster).pdf\">poster</a>).</html>"
+      "<html>K. L. Davies, \"<a href=\"http://www.ep.liu.se/ecp_article/index.en.aspx?issue=076;article=082\">Natural Unit Representation in Modelica</a>,\" in <i>Proc. 9th Modelica Conf.</i> (Munich, Germany), Modelica Assoc., Sep. 2012 (<a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/Publications/Natural%20Unit%20Representation%20in%20Modelica%20(poster).pdf\">poster</a>).</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end Davies2012b;

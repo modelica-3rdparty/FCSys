@@ -14,9 +14,18 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclH2O=true,
           inclH2=false,
           'inclC+'=true,
-          subregion(liquid(inclH2O=inclH2O, H2O(epsilon_IC=0.001)), gas(H2O(
-                  p_IC=U.kPa))));
+          subregion(liquid(inclH2O=inclH2O, H2O(
+                epsilon_IC=0.001,
+                T(stateSelect=StateSelect.always),
+                N(stateSelect=StateSelect.default))), gas(H2O(
+                p_IC=U.Pa,
+                initMaterial=Init.none,
+                T(stateSelect=StateSelect.always),
+                N(stateSelect=StateSelect.default)))),
+          environment(analysis=false));
 
+        //Real N(stateSelect=StateSelect.always) = subregion.gas.H2O.N + subregion.liquid.H2O.N;
+        Real x(stateSelect=StateSelect.always) = subregion.liquid.H2O.x2[2];
         annotation (
           Documentation(info="<html><p>Initially, the water vapor is below saturation and a small amount of liquid water is present (1/1000 of the total volume).
   Some of the liquid evaporates until saturation is reached. The boundaries are adiabatic; therefore, the temperature of the liquid and the gas

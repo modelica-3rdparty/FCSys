@@ -102,7 +102,7 @@ package Characteristics
         import FCSysTest.Test.assertValue;
         extends Modelica.Icons.Example;
 
-        // Note:  To work in Dymola 7.4., this and other tests of the
+        // Note:  To work in Dymola 7.4, this and other tests of the
         // Characteristics package must be models rather than functions.
 
         replaceable package Data = FCSys.Characteristics.H2.Gas (b_v=[1], n_v={
