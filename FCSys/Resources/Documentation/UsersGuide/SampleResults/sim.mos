@@ -1,0 +1,21 @@
+// Run simulations to provide sample results.
+
+// Setup
+cd("D:/Documents/Modelica");
+import U = FCSys.Units;
+
+// Varying temperature and pressure
+import FCSys.Assemblies.Cells.Examples.TestStand;
+simulateModel("TestStand", stopTime=36180, resultFile="baseline");
+simulateModel("TestStand(environment.T=U.from_degC(40))", stopTime=36180, resultFile="40C");
+simulateModel("TestStand(environment.T=U.from_degC(80))", stopTime=36180, resultFile="80C");
+simulateModel("TestStand(environment.p=U.from_kPag(0))", stopTime=36180, resultFile="0kPag");
+simulateModel("TestStand(environment.p=U.from_kPag(202.7))", stopTime=36180, resultFile="202.7kPag");
+
+// Segmented cell
+simulateModel("FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented", stopTime=36180, resultFile="segmented");
+
+// Sinuosoidal load
+simulateModel("FCSys.Assemblies.Cells.Examples.TestStandCycle", stopTime=9, tolerance=1e-5, resultFile="cycle");
+
+

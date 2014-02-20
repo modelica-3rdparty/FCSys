@@ -24,8 +24,9 @@ package Subregions "Control volumes with multi-species transfer and storage"
                 N(stateSelect=StateSelect.default)))),
           environment(analysis=false));
 
-        //Real N(stateSelect=StateSelect.always) = subregion.gas.H2O.N + subregion.liquid.H2O.N;
-        Real x(stateSelect=StateSelect.always) = subregion.liquid.H2O.x2[2];
+        //**Real N(stateSelect=StateSelect.always) = subregion.gas.H2O.N + subregion.liquid.H2O.N;
+        Real x(stateSelect=StateSelect.always) = subregion.liquid.H2O.x2[2]
+          "**";
         annotation (
           Documentation(info="<html><p>Initially, the water vapor is below saturation and a small amount of liquid water is present (1/1000 of the total volume).
   Some of the liquid evaporates until saturation is reached. The boundaries are adiabatic; therefore, the temperature of the liquid and the gas
@@ -1384,7 +1385,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
               60}}), graphics));
-
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
@@ -1633,7 +1633,6 @@ in diagram)")}));
 
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
               100,60}}), graphics));
-
   end SubregionNoIonomer;
 
   partial model PartialSubregion
@@ -1797,94 +1796,10 @@ in diagram)")}));
 
   end PartialSubregion;
 
-  model Liq
-    import Data = FCSys.Characteristics.H2O.Gas;
 
-    // Q.Amount N(start=0,fixed=true);
 
-    Connectors.Amagat amagat
-      annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-    Mat mat annotation (Placement(transformation(extent={{10,-10},{30,10}})));
 
-  equation
-    Data.v_Tp(300*U.K, U.atm)*mat.N = amagat.V;
 
-    mat.g = Data.g(300*U.K, Data.p0);
-
-  end Liq;
-
-  model Gas
-
-    import Data = FCSys.Characteristics.H2O.Liquid;
-
-    Connectors.Amagat amagat(p(start=U.kPa,fixed=false)) annotation (Placement(
-          transformation(extent={{-30,-10},{-10,10}})), Icon(coordinateSystem(
-            preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-          graphics));
-    Mat mat annotation (Placement(transformation(extent={{10,-10},{30,10}}),
-          iconTransformation(extent={{10,-10},{30,10}})));
-
-  equation
-    Data.v_Tp(300*U.K, amagat.p)*mat.N = amagat.V;
-    mat.g = Data.g(300*U.K, amagat.p);
-
-  end Gas;
-
-  model Combined
-
-    Liq liq annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
-    Gas gas annotation (Placement(transformation(extent={{-10,10},{10,30}})));
-    Conditions.ByConnector.Amagat.VolumeFixed volume(V=-U.cc)
-      annotation (Placement(transformation(extent={{-68,-10},{-48,10}})));
-    Diode diode annotation (Placement(transformation(extent={{14,-8},{34,12}})));
-  equation
-    connect(gas.amagat, liq.amagat) annotation (Line(
-        points={{-2,20},{-2,-20}},
-        color={47,107,251},
-        smooth=Smooth.None));
-    connect(volume.amagat, liq.amagat) annotation (Line(
-        points={{-58,0},{-30,0},{-30,-20},{-2,-20}},
-        color={47,107,251},
-        smooth=Smooth.None));
-    connect(diode.mat1, gas.mat) annotation (Line(
-        points={{17.8,3.6},{17.8,11.8},{2,11.8},{2,20}},
-        color={0,0,0},
-        smooth=Smooth.None));
-    connect(diode.mat2, liq.mat) annotation (Line(
-        points={{29.8,2.4},{29.9,2.4},{29.9,-20},{2,-20}},
-        color={0,0,0},
-        smooth=Smooth.None));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics));
-  end Combined;
-
-  connector Mat
-    Q.Potential g;
-    flow Q.Amount N;
-
-  end Mat;
-
-  model Diode
-
-    Mat mat1 annotation (Placement(transformation(extent={{-72,6},{-52,26}})));
-    Mat mat2 annotation (Placement(transformation(extent={{48,-6},{68,14}})));
-
-    Real s;
-    Real diff;
-    Real N;
-    Boolean present;
-
-  equation
-    N = mat1.N;
-    0 = mat1.N + mat2.N;
-    diff = mat1.g - mat2.g;
-    present = s > 0;
-    diff = s*(if present then 0 else 1);
-    N = s*(if present then 1 else 0);
-
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics));
-  end Diode;
   annotation (Documentation(info="
 <html><p>This package contains subregions&mdash;control volumes that may contain multiple phases.  A 
 subregion is the lowest level of spatial discretization in <a href=\"modelica://FCSys\">FCSys</a>;

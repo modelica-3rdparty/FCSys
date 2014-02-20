@@ -31,17 +31,17 @@ package UsersGuide "User's Guide"
 
     <p>These are the suggested steps to begin using FCSys:</p>
     <ol>
-        <li>Read the overview in the <a href=\"modelica://FCSys\">top-level documentation</a>.</li>
+        <li>Read the <a href=\"modelica://FCSys\">top-level documentation</a>.</li>
 
-        <li>Browse the subpackages of FCSys.  The subpackages are
-        ordered with high-level models at the top and basic classes at the bottom.  <a href=\"#Fig1\">Figure 1</a> shows
+        <li>Browse the subpackages of FCSys.  The high-level models are at the top and basic classes are at the bottom.  
+        <a href=\"#Fig1\">Figure 1</a> shows
         the hierarchy of the models that are instantiated to build an assembly such as a fuel cell.</li>
 
         <li>Call <a href=\"modelica://FCSys.Units.setup\">FCSys.Units.setup</a>() to
         establish the display units.  This is automatic if FCSys
         is loaded via the <a href=\"modelica://FCSys/../load.mos\">load.mos</a> script.</li>
 
-        <li>Simulate the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>
+        <li>Simulate the <a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">TestStand</a>
         model.
         There are scripts in <a href=\"modelica://FCSys/Resources/Scripts/Dymola/README.md\">Resources/Scripts/Dymola/</a> to
         create useful plots of that model and others.
@@ -55,7 +55,7 @@ package UsersGuide "User's Guide"
         <li>Read the documentation of the classes. In particular, these may be of interest:
         <ul>
             <li><a href=\"modelica://FCSys.Units\">FCSys.Units</a> package:
-            Information about the system of units, which is different
+            Introduction to the system of units, which is different
             than <a href=\"modelica://Modelica.SIunits\">Modelica.SIunits</a></li>
 
             <li><a href=\"modelica://FCSys.Connectors\">FCSys.Connectors</a> package:
@@ -83,13 +83,13 @@ package UsersGuide "User's Guide"
         These may be included by setting <code>analysis=true</code> in the outer environment model (instance
         of <a href=\"modelica://FCSys.Conditions.Environment\">Environment</a>).</li>
 
-        <li>Develop your own classes.  It should be possible to model other fluidic or electrochemical
+        <li>Develop your own models.  It should be possible to model other fluidic or electrochemical
         devices (e.g., solid oxide fuel cells, lithium ion batteries, flow batteries, and regenerative fuel cells) by
         extending the existing classes and
-        following the existing framework.  It will be necessary to add species models
+        following the existing framework.  It will be necessary to add species
         (e.g., Li<sup>+</sup> and O<sup>2-</sup>).</li>
 
-        <li>Please share your additions or modifications to the source code so that the library
+        <li>Please share your additions or modifications so that the library
         can be improved and others may benefit.  The best way is to create a fork from the
         development page at <a href=\"https://github.com/kdavies4/FCSys\">https://github.com/kdavies4/FCSys</a>.</li>
     </ol>
@@ -107,58 +107,49 @@ package UsersGuide "User's Guide"
 
   <p>Figures&nbsp;1 through&nbsp;9 show the results from several cell-level examples of
     FCSys.   The models were simulated using Dymola 2014 and the plots were
-    generated in Python using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a>.  For more 
-    information, please
-    follow the links in parentheses to the associated models.  For further discussion and more results, please 
+    generated in Python using <a href=\"http://kdavies4.github.io/ModelicaRes/\">ModelicaRes</a> via the scripts in 
+    <a href=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/README.md\">Resources/Documentation/UsersGuide/SampleResults/</a>.  For more 
+    information, please click on the plots, which are linked to the associated models.  For further discussion and more results, please 
     see
     [<a href=\"modelica://FCSys.UsersGuide.Publications.Davies2014\">Davies2014</a>].</p>
 
-    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationTemperature.png\"></a>
+    <p align=center id=\"Fig1\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/polarization-temperature.png\"></a>
 <br>Figure&nbsp;1: The polarization of the cell varies with boundary temperature primarily due to the temperature dependence of the exchange 
-current density
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+current density.</p>
 
-    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PolarizationPressure.png\"></a>
+    <p align=center id=\"Fig2\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/polarization-pressure.png\"></a>
 <br>Figure&nbsp;2: The polarization of the cell varies with outlet pressure primarily due to the dependence of the oxygen reduction reaction (ORR) 
-on the partial pressure of O<sub>2</sub>
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+on the partial pressure of O<sub>2</sub>.</p>
 
-    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Losses.png\"></a>
-<br>Figure&nbsp;3: The ORR activation dominates the losses in cell potential
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+    <p align=center id=\"Fig3\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/losses.png\"></a>
+<br>Figure&nbsp;3: The ORR activation dominates the losses in cell potential.</p>
 
-    <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Temperature.png\"></a>
+    <p align=center id=\"Fig4\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/temperature.png\"></a>
 <br>Figure&nbsp;4: The temperatures of the layers are distributed and rise to a maximum in the cathode catalyst layer due to the heat generation 
-there
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+there.</p>
 
-    <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/PressureO2.png\"></a>
+    <p align=center id=\"Fig5\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/pressure-O2.png\"></a>
 <br>Figure&nbsp;5: The O<sub>2</sub> pressure is highest at the cathode inlet and lowest in the cathode catalyst layer.  At high current densities,
- the O<sub>2</sub> pressure drops rapidly due to concentration losses.  It reaches zero at the limiting current density
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+ the O<sub>2</sub> pressure drops rapidly due to concentration losses.  It reaches zero at the limiting current density.</p>
 
-    <p align=center id=\"Fig6\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/Energy.png\"></a>
+    <p align=center id=\"Fig6\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/energy.png\"></a>
 <br>Figure&nbsp;6: At 1.5&nbsp;A/cm<sup>2</sup> (a rather high load) during the baseline polarization test, the 50&nbsp;cm<sup>2</sup> cell is 
-32.5% efficient.  Most of the heat is rejected to the cathode side.
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStand\">FCSys.Assemblies.Cells.Examples.TestStand</a>).</p>
+32.5% efficient.  Most of the heat is rejected to the cathode side.</p>
 
-    <p align=center id=\"Fig7\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/SegmentPolarization.png\"></a>
+    <p align=center id=\"Fig7\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/segment-polarization.png\"></a>
 <br>Figure&nbsp;7: A model with six discretized segments along the channel shows that the downstream segments perform more poorly.  This is 
 primarily due to lower O<sub>2</sub> pressures in those segments.  Under fixed reactant supply rate and low cell potential, the current through the 
 segment nearest the outlet generates decreases as potential is decreased.  This occurs because it is nearly starved of O<sub>2</sub>; further 
-increases in net current must be supported by the upstream segments, and this pushes the O<sub>2</sub> pressure of the final segment even closer to zero
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented\">FCSys.Assemblies.Cells.Examples.TestStandFixedFlowSegmented</a>).</p>
+increases in net current must be supported by the upstream segments, and this pushes the O<sub>2</sub> pressure of the final segment even closer to zero.</p>
 
-    <p align=center id=\"Fig8\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CyclePolarization.png\"></a>
+    <p align=center id=\"Fig8\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/cycle-polarization.png\"></a>
 <br>Figure&nbsp;8: Under a sinusoidal, reversing load (0.3&nbsp;Hz, offset 80&nbsp;A/cm<sup>2</sup>, amplitude
-140&nbsp;A/cm<sup>2</sup>), voltage lags current due to the cell dynamics
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
+140&nbsp;A/cm<sup>2</sup>), voltage lags current due to the cell dynamics.</p>
 
-    <p align=center id=\"Fig9\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/CycleSaturation.png\"></a>
+    <p align=center id=\"Fig9\"><a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\"><img src=\"modelica://FCSys/Resources/Documentation/UsersGuide/SampleResults/cycle-saturation.png\"></a>
 <br>Figure&nbsp;9: Under a sinusoidal, reversing load (0.3&nbsp;Hz, offset 80&nbsp;A/cm<sup>2</sup>, amplitude
 140&nbsp;A/cm<sup>2</sup>), the pores are slightly filled with liquid at peak forward current.  During
-  reverse load (electrolysis mode), H<sub>2</sub>O is consumed and the amount of liquid decreases
-    (<a href=\"modelica://FCSys.Assemblies.Cells.Examples.TestStandCycle\">FCSys.Assemblies.Cells.Examples.TestStandCycle</a>).</p>
+  reverse load (electrolysis mode), H<sub>2</sub>O is consumed and the amount of liquid decreases.</p>
 
     </html>"));
 
@@ -830,7 +821,7 @@ describes how the library is developed and maintained using the
   class Contact "Contact"
     extends Modelica.Icons.Contact;
     annotation (preferredView="info", Documentation(info="<html>
-    <p>Updates to this library (FCSys) may be available online at the
+    <p>Updates to FCSys may be available online at the
     <a href=\"http://kdavies4.github.io/FCSys/\">main project site</a> or the
     <a href=\"https://modelica.org/libraries\">Modelica libraries page</a>.
     The development page is

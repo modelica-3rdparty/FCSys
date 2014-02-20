@@ -98,7 +98,7 @@ annotation (
     <p><a href=\"#Fig1\">Figure 1</a> shows the seven primary layers of a typical PEMFC, which are also the components of the
     fuel cell model shown in <a href=\"#Fig2\">Figure 2</a>.
     Fluid enters and exits the cell through channels in the flow plates (FPs).  It spreads through
-    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs) according to the following electrochemical equations:</p>
+    the gas diffusion diffusion layers (GDLs) and reacts in the catalyst layers (CLs):</p>
 
           <table border=0 cellspacing=0 cellpadding=2 align=center style=\"margin-left: auto;
 margin-right: auto;\" class=noBorder>
@@ -152,7 +152,7 @@ margin-right: auto;\" class=noBorder>
     </table>
       <p>The
     proton exchange membrane (PEM) prevents electronic transport; therefore, electrons must
-    pass through an external load to sustain the net reaction.</p>
+    travel an external circuit to sustain the net reaction.</p>
 
     <p align=center id=\"Fig1\"><img src=\"modelica://FCSys/Resources/Documentation/cell.png\" alt=\"Layers and primary flows of a P E M F C\">
 <br>Figure 1: Layers and primary flows of a PEMFC.</p>
@@ -163,7 +163,7 @@ margin-right: auto;\" class=noBorder>
 
     <p>The fuel cell model can be exercised using the test stand shown in <a href=\"#Fig3\">Figure 3</a> or connected to the <a href=\"modelica://Modelica.Fluid\">Modelica fluid library</a>
     using <a href=\"modelica://FCSys.Conditions.Adapters.MSL\">available adapters</a>.
-    Please see the <a href=\"modelica://FCSys.UsersGuide.SampleResults\">sample cell results</a> for examples and the
+    Please see the <a href=\"modelica://FCSys.UsersGuide.SampleResults\">sample results</a> for examples and the
     <a href=\"modelica://FCSys.UsersGuide.GettingStarted\">getting started page</a> for information about using the library.</p>
 
     <!--<p align=center id=\"Fig3\"><img src=\"modelica://FCSys/help/FCSys.Assemblies.Cells.Examples.TestStandD.png\" alt=\"Diagram of the test stand model\" width=500>-->

@@ -477,7 +477,6 @@ package Phases "Mixtures of species"
               120,80}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
-
   end Gas;
 
   model Graphite "Graphite phase"
@@ -711,7 +710,6 @@ package Phases "Mixtures of species"
               60}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
-
   end Graphite;
 
   model Ionomer "Ionomer phase"
@@ -757,7 +755,7 @@ package Phases "Mixtures of species"
         __Dymola_descriptionLabel=true,
         __Dymola_label="<html>SO<sub>3</sub><sup>-</sup> model</html>",
         enable='inclSO3-'),
-      Placement(transformation(extent={{30,2},{50,22}})));
+      Placement(transformation(extent={{30,-10},{50,10}})));
 
     parameter Boolean 'inclH+'=false "Include H+" annotation (
       HideResult=true,
@@ -789,7 +787,7 @@ package Phases "Mixtures of species"
         __Dymola_descriptionLabel=true,
         __Dymola_label="<html>H<sup>+</sup> model</html>",
         enable='inclH+'),
-      Placement(transformation(extent={{-50,2},{-30,22}})));
+      Placement(transformation(extent={{-50,-10},{-30,10}})));
 
     parameter Boolean inclH2O=false "Include H2O" annotation (
       HideResult=true,
@@ -821,34 +819,33 @@ package Phases "Mixtures of species"
         __Dymola_descriptionLabel=true,
         __Dymola_label="<html>H<sub>2</sub>O model</html>",
         enable=inclH2O),
-      Placement(transformation(extent={{-10,2},{10,22}})));
+      Placement(transformation(extent={{-10,-10},{10,10}})));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
       "Negative boundary along the x axis" annotation (Placement(transformation(
-            extent={{-100,2},{-80,22}}), iconTransformation(extent={{-90,-10},{
-              -70,10}})));
+            extent={{-100,-10},{-80,10}}), iconTransformation(extent={{-90,-10},
+              {-70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
       "Negative boundary along the y axis" annotation (Placement(transformation(
-            extent={{-76,-22},{-56,-2}}), iconTransformation(extent={{-10,-94},
+            extent={{-76,-34},{-56,-14}}),iconTransformation(extent={{-10,-94},
               {10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
       "Negative boundary along the z axis" annotation (Placement(transformation(
-            extent={{68,14},{88,34}}), iconTransformation(extent={{40,40},{60,
-              60}})));
+            extent={{68,2},{88,22}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
       "Positive boundary along the x axis" annotation (Placement(transformation(
-            extent={{80,2},{100,22}}), iconTransformation(extent={{70,-10},{90,
-              10}})));
+            extent={{80,-10},{100,10}}), iconTransformation(extent={{70,-10},{
+              90,10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
       "Positive boundary along the y axis" annotation (Placement(transformation(
-            extent={{56,26},{76,46}}), iconTransformation(extent={{-10,90},{10,
+            extent={{56,14},{76,34}}), iconTransformation(extent={{-10,90},{10,
               110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
       "Positive boundary along the z axis" annotation (Placement(transformation(
-            extent={{-88,-10},{-68,10}}), iconTransformation(extent={{-90,-90},
+            extent={{-88,-22},{-68,-2}}), iconTransformation(extent={{-90,-90},
               {-70,-70}})));
     Connectors.Amagat amagat if n_spec > 0 "Connector for additivity of volume"
-      annotation (Placement(transformation(extent={{-100,38},{-80,58}}),
+      annotation (Placement(transformation(extent={{-100,26},{-80,46}}),
           iconTransformation(extent={{70,-90},{90,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
       "Connector to exchange momentum and energy with other phases" annotation
@@ -856,11 +853,11 @@ package Phases "Mixtures of species"
           iconTransformation(extent={{-60,60},{-40,40}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
       inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
-            extent={{-14,50},{6,70}}), iconTransformation(extent={{10,-50},{30,
+            extent={{-14,38},{6,58}}), iconTransformation(extent={{10,-50},{30,
               -30}})));
     Connectors.Chemical 'chemH+'['H+'.n_chem](each final n_trans=n_trans) if
       'inclH+' "Chemical connector for H+" annotation (Placement(transformation(
-            extent={{-54,50},{-34,70}}), iconTransformation(extent={{-30,-50},{
+            extent={{-54,38},{-34,58}}), iconTransformation(extent={{-30,-50},{
               -10,-30}})));
 
     // Independence factors
@@ -881,7 +878,7 @@ package Phases "Mixtures of species"
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
       "Adapter between additivity of volume and additivity of pressure"
-      annotation (Placement(transformation(extent={{-80,38},{-60,58}})));
+      annotation (Placement(transformation(extent={{-80,26},{-60,46}})));
 
     Connectors.InertNode exchCommon
       "Connector for exchange among all species in the phase" annotation (
@@ -903,73 +900,73 @@ package Phases "Mixtures of species"
   equation
     // Chemical exchange
     connect(H2O.chemical, chemH2O) annotation (Line(
-        points={{-4,21},{-4,60}},
+        points={{-4,9},{-4,48}},
         color={255,195,38},
         smooth=Smooth.None));
     connect('H+'.chemical, 'chemH+') annotation (Line(
-        points={{-44,21},{-44,60}},
+        points={{-44,9},{-44,48}},
         color={255,195,38},
         smooth=Smooth.None));
 
     // Inert exchange
     connect('SO3-'.inter, inter) annotation (Line(
-        points={{49,8.2},{49,-24},{90,-24}},
+        points={{49,-3.8},{49,-24},{90,-24}},
         color={221,23,47},
         smooth=Smooth.None));
 
     connect('SO3-'.intra[1], exchCommon.node) annotation (Line(
-        points={{44,3},{44,-36},{66,-36}},
+        points={{44,-9},{44,-36},{66,-36}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('SO3-'.intra[2], 'exchH+_SO3-'.node) annotation (Line(
-        points={{44,3},{44,-46},{66,-46}},
+        points={{44,-9},{44,-46},{66,-46}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('SO3-'.intra[3], 'exchH2O_SO3-'.node) annotation (Line(
-        points={{44,3},{44,-66},{66,-66}},
+        points={{44,-9},{44,-66},{66,-66}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('H+'.intra[1], exchCommon.node) annotation (Line(
-        points={{-36,3},{-36,-36},{66,-36}},
+        points={{-36,-9},{-36,-36},{66,-36}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('H+'.intra[2], 'exchH+_H2O'.node) annotation (Line(
-        points={{-36,3},{-36,-56},{66,-56}},
+        points={{-36,-9},{-36,-56},{66,-56}},
         color={221,23,47},
         smooth=Smooth.None));
     connect('H+'.intra[3], 'exchH+_SO3-'.node) annotation (Line(
-        points={{-36,3},{-36,-46},{66,-46}},
+        points={{-36,-9},{-36,-46},{66,-46}},
         color={221,23,47},
         smooth=Smooth.None));
 
     connect(H2O.intra[1], exchCommon.node) annotation (Line(
-        points={{4,3},{4,-36},{66,-36}},
+        points={{4,-9},{4,-36},{66,-36}},
         color={221,23,47},
         smooth=Smooth.None));
     connect(H2O.intra[2], 'exchH+_H2O'.node) annotation (Line(
-        points={{4,3},{4,-56},{66,-56}},
+        points={{4,-9},{4,-56},{66,-56}},
         color={221,23,47},
         smooth=Smooth.None));
     connect(H2O.intra[3], 'exchH2O_SO3-'.node) annotation (Line(
-        points={{4,3},{4,-66},{66,-66}},
+        points={{4,-9},{4,-66},{66,-66}},
         color={221,23,47},
         smooth=Smooth.None));
 
     // Mixing
     connect('SO3-'.dalton, amagatDalton.dalton) annotation (Line(
-        points={{31,16},{31,48},{-66,48}},
+        points={{31,4},{31,36},{-66,36}},
         color={47,107,251},
         smooth=Smooth.None));
     connect('H+'.dalton, amagatDalton.dalton) annotation (Line(
-        points={{-49,16},{-49,48},{-66,48}},
+        points={{-49,4},{-49,36},{-66,36}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(H2O.dalton, amagatDalton.dalton) annotation (Line(
-        points={{-9,16},{-9,48},{-66,48}},
+        points={{-9,4},{-9,36},{-66,36}},
         color={47,107,251},
         smooth=Smooth.None));
     connect(amagatDalton.amagat, amagat) annotation (Line(
-        points={{-74,48},{-90,48}},
+        points={{-74,36},{-90,36}},
         color={47,107,251},
         smooth=Smooth.None));
 
@@ -978,106 +975,106 @@ package Phases "Mixtures of species"
     // SO3-
     connect('SO3-'.boundaries[transCart[Axis.x], Side.n], xNegative.'SO3-')
       annotation (Line(
-        points={{40,12},{-90,12}},
+        points={{40,0},{-90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('SO3-'.boundaries[transCart[Axis.x], Side.p], xPositive.'SO3-')
       annotation (Line(
-        points={{40,12},{90,12}},
+        points={{40,0},{90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('SO3-'.boundaries[transCart[Axis.y], Side.n], yNegative.'SO3-')
       annotation (Line(
-        points={{40,12},{40,-12},{-66,-12}},
+        points={{40,0},{40,-24},{-66,-24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('SO3-'.boundaries[transCart[Axis.y], Side.p], yPositive.'SO3-')
       annotation (Line(
-        points={{40,12},{40,36},{66,36}},
+        points={{40,0},{40,24},{66,24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('SO3-'.boundaries[transCart[Axis.z], Side.n], zNegative.'SO3-')
       annotation (Line(
-        points={{40,12},{52,24},{78,24}},
+        points={{40,0},{52,12},{78,12}},
         color={127,127,127},
         smooth=Smooth.None));
     connect('SO3-'.boundaries[transCart[Axis.z], Side.p], zPositive.'SO3-')
       annotation (Line(
-        points={{40,12},{28,0},{-78,0}},
+        points={{40,0},{28,-12},{-78,-12}},
         color={127,127,127},
         smooth=Smooth.None));
     // 'H+'
     connect('H+'.boundaries[transCart[Axis.x], Side.n], xNegative.'H+')
       annotation (Line(
-        points={{-40,12},{-90,12}},
+        points={{-40,0},{-90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('H+'.boundaries[transCart[Axis.x], Side.p], xPositive.'H+')
       annotation (Line(
-        points={{-40,12},{90,12}},
+        points={{-40,0},{90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('H+'.boundaries[transCart[Axis.y], Side.n], yNegative.'H+')
       annotation (Line(
-        points={{-40,12},{-40,-12},{-66,-12}},
+        points={{-40,0},{-40,-24},{-66,-24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('H+'.boundaries[transCart[Axis.y], Side.p], yPositive.'H+')
       annotation (Line(
-        points={{-40,12},{-40,36},{66,36}},
+        points={{-40,0},{-40,24},{66,24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect('H+'.boundaries[transCart[Axis.z], Side.n], zNegative.'H+')
       annotation (Line(
-        points={{-40,12},{-28,24},{78,24}},
+        points={{-40,0},{-28,12},{78,12}},
         color={127,127,127},
         smooth=Smooth.None));
     connect('H+'.boundaries[transCart[Axis.z], Side.p], zPositive.'H+')
       annotation (Line(
-        points={{-40,12},{-52,0},{-78,0}},
+        points={{-40,0},{-52,-12},{-78,-12}},
         color={127,127,127},
         smooth=Smooth.None));
     // H2O
     connect(H2O.boundaries[transCart[Axis.x], Side.n], xNegative.H2O)
       annotation (Line(
-        points={{0,12},{-90,12}},
+        points={{0,0},{-90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect(H2O.boundaries[transCart[Axis.x], Side.p], xPositive.H2O)
       annotation (Line(
-        points={{0,12},{90,12}},
+        points={{0,0},{90,0}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect(H2O.boundaries[transCart[Axis.y], Side.n], yNegative.H2O)
       annotation (Line(
-        points={{0,12},{0,-12},{-66,-12}},
+        points={{0,0},{0,-24},{-66,-24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect(H2O.boundaries[transCart[Axis.y], Side.p], yPositive.H2O)
       annotation (Line(
-        points={{0,12},{0,36},{66,36}},
+        points={{0,0},{0,24},{66,24}},
         color={127,127,127},
         smooth=Smooth.None));
 
     connect(H2O.boundaries[transCart[Axis.z], Side.n], zNegative.H2O)
       annotation (Line(
-        points={{0,12},{12,24},{78,24}},
+        points={{0,0},{12,12},{78,12}},
         color={127,127,127},
         smooth=Smooth.None));
     connect(H2O.boundaries[transCart[Axis.z], Side.p], zPositive.H2O)
       annotation (Line(
-        points={{0,12},{0,0},{-78,0}},
+        points={{0,0},{0,-12},{-78,-12}},
         color={127,127,127},
         smooth=Smooth.None));
 
@@ -1093,10 +1090,9 @@ package Phases "Mixtures of species"
  <a href=\"modelica://FCSys.Phases.PartialPhase\">PartialPhase</a> model.</p></html>"),
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-80},{
-              100,80}}), graphics),
+              100,60}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               100}}), graphics));
-
   end Ionomer;
 
   model Liquid "Liquid phase"
@@ -1243,7 +1239,6 @@ package Phases "Mixtures of species"
               100}}), graphics),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               40}}), graphics));
-
   end Liquid;
 
 protected
