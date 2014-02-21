@@ -6,6 +6,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
     model AnFP "Test the anode flow plate"
 
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       parameter Q.NumberAbsolute psi_H2O=environment.psi_H2O
         "Mole fraction of H2O at the inlet";
@@ -151,6 +152,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
                 {100,100}}), graphics));
     end AnFP;
     extends Modelica.Icons.ExamplesPackage;
+    extends Modelica.Icons.UnderConstruction;
 
     model AnGDL "Test the anode gas diffusion layer"
 
@@ -252,6 +254,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
     model AnCL "Test the anode catalyst layer"
 
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       output Q.Current zI=sum(anCL.subregions[1, :, :].HOR.transfer.I) if
         environment.analysis "Reaction rate";
@@ -409,6 +412,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
     model CaCL "Test the cathode catalyst layer"
 
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       output Q.Current zI=-sum(caCL.subregions[1, :, :].ORR.transfer.I) if
         environment.analysis "Reaction rate";
@@ -589,9 +593,9 @@ package Regions "3D arrays of discrete, interconnected subregions"
             origin={64,0})));
 
       inner Conditions.Environment environment(
-        analysis=true,
         T=333.15*U.K,
         p=U.from_kPag(48.3),
+        analysis=true,
         RH=0.6) "Environmental conditions"
         annotation (Placement(transformation(extent={{-10,30},{10,50}})));
 
@@ -921,6 +925,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
     model CaFP "Test the cathode flow plate"
 
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       parameter Q.NumberAbsolute psi_H2O=environment.psi_H2O
         "Mole fraction of H2O at the inlet";
@@ -1363,7 +1368,9 @@ package Regions "3D arrays of discrete, interconnected subregions"
                 final zeta=0,
                 T(stateSelect=StateSelect.always)),
               H2O(
+                initMaterial=Init.none,
                 upstreamX=false,
+                N(stateSelect=StateSelect.default),
                 Nu_Phi={4,16*A[Axis.z]*epsilon/D^2,4},
                 final zeta=0,
                 I(each stateSelect=StateSelect.always, each fixed=true),
@@ -1378,8 +1385,8 @@ package Regions "3D arrays of discrete, interconnected subregions"
               inclH2O=true,
               H2O(
                 upstreamX=false,
+                N(stateSelect=StateSelect.default),
                 Nu_Phi={4,16*A[Axis.z]*epsilon/D^2,4},
-                epsilon_IC=1e-5,
                 N0=0.1*U.C)))) annotation (IconMap(primitivesVisible=false));
 
       parameter Q.NumberAbsolute epsilon(nominal=1) = 0.0588
@@ -1394,6 +1401,7 @@ package Regions "3D arrays of discrete, interconnected subregions"
               "<html><i>L</i><sub>channel</sub></html>"));
 
     protected
+      Real N(stateSelect=StateSelect.always) = subregions[1, 1, 1].liquid.H2O.x;
       final parameter Q.NumberAbsolute Lstar=L_channel/L[Axis.y]
         "Ratio of the length of the channel to the length of the layer in the y direction";
 
@@ -1610,7 +1618,9 @@ text layer of this model.</p>
                 final zeta=0,
                 final eta=0),
               H2O(
+                N(stateSelect=StateSelect.default),
                 initEnergy=Init.none,
+                initMaterial=Init.none,
                 upstreamX=false,
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 final zeta=0,
@@ -1627,8 +1637,10 @@ text layer of this model.</p>
               inclH2O=true,
               H2O(
                 upstreamX=false,
-                epsilon_IC=1e-5,
                 final eta=0,
+                epsilon_IC=0.01,
+                x(stateSelect=StateSelect.always),
+                N(stateSelect=StateSelect.default),
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 T(each stateSelect=StateSelect.default))),
@@ -2020,7 +2032,6 @@ The default pore radius (16&nbsp;&micro;m) is for Sigracet<sup>&reg;</sup>&nbsp;
               inclH2O=true,
               H2O(
                 upstreamX=false,
-                epsilon_IC=1e-5,
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 N0=0.1*U.C,
@@ -2028,6 +2039,7 @@ The default pore radius (16&nbsp;&micro;m) is for Sigracet<sup>&reg;</sup>&nbsp;
             volume(inclCapillary=true,capillary(R=2.5*U.nm))),
         subregions(HOR(transfer(final I0_300K=J0_300K*fill(outerProduct(L_y,
                   L_z), n_x))))) annotation (IconMap(primitivesVisible=false));
+
       // Note:  fill(outerProduct(L_y, L_z), n_x) is used instead of subregions.A[Axis.x]
       // to prevent a warning in Dymola 2014.
 
@@ -2490,7 +2502,6 @@ although in reality there is inductance.</p>
               inclH2O=true,
               H2O(
                 upstreamX=false,
-                epsilon_IC=1e-5,
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 N0=0.1*U.C,
@@ -2499,6 +2510,7 @@ although in reality there is inductance.</p>
         subregions(ORR(transfer(final I0_300K=J0_300K*fill(outerProduct(L_y,
                   L_z), n_x) .* subregions.gas.O2.p/Characteristics.O2.Gas.p0))))
         annotation (IconMap(primitivesVisible=false));
+
       // Note:  fill(outerProduct(L_y, L_z), n_x) is used instead of subregions.A[Axis.x]
       // to prevent a warning in Dymola 2014.
 
@@ -2643,6 +2655,7 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.An
     extends Modelica.Icons.Package;
     model CaGDL "Cathode gas diffusion layer"
       import Modelica.Constants.inf;
+
       // extends FCSys.Icons.Names.Top4;
 
       extends Region(
@@ -2664,7 +2677,9 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.An
               inclO2=true,
               H2O(
                 initEnergy=Init.none,
+                initMaterial=Init.none,
                 upstreamX=false,
+                N(each stateSelect=StateSelect.default),
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 final zeta=0,
                 final eta=0),
@@ -2692,13 +2707,16 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.An
               inclH2O=true,
               H2O(
                 upstreamX=false,
-                epsilon_IC=1e-5,
                 final eta=0,
+                epsilon_IC=1e-2,
+                on(start=true),
+                N(each stateSelect=StateSelect.default),
                 phi(each stateSelect=StateSelect.always, each fixed=true),
                 each initEnergy=Init.none,
                 T(each stateSelect=StateSelect.default))),
             volume(inclCapillary=true,capillary(R=16*U.um)))) annotation (
           IconMap(primitivesVisible=false));
+      //initMaterial=Init.none,
 
       // Note:  The fluid species have zero fluidity (eta=0) so that the transverse
       // velocity is zero at the interface with the flow plate.  That condition
@@ -2712,6 +2730,11 @@ For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.An
               "<html>&epsilon;</html>"));
 
     protected
+      Q.Amount N(
+        stateSelect=StateSelect.always,
+        start=U.C,
+        fixed=false) = subregions[1, 1, 1].gas.H2O.N + subregions[1, 1, 1].liquid.H2O.N
+        "**";
       outer Conditions.Environment environment "Environmental conditions";
       annotation (Documentation(info="<html>
 <p>This model represents the cathode gas diffusion layer of a PEMFC.   It is identical to
@@ -3029,7 +3052,6 @@ For more information, please see <a href=\"modelica://FCSys.Regions.AnGDLs.Toray
               H2O(
                 upstreamX=false,
                 Nu_Phi={4,16*A[Axis.z]*epsilon/D^2,4},
-                epsilon_IC=1e-5,
                 N0=0.1*U.C)))) annotation (IconMap(primitivesVisible=false));
 
       parameter Q.NumberAbsolute epsilon(nominal=1) = 0.0423
@@ -3306,7 +3328,7 @@ For more information, please see the
         "Direct pass-through (not shown in the diagram)";
     end if;
     // TODO:  Once primitivesVisible is supported by Modelica tools (not
-    // supported as of Dymola 2014), complete the icon of this model.
+    // supported as of Dymola 2014 FD01), complete the icon of this model.
     // Until then, the icon should be blank so that the layer models (AnFP, AnGDL, etc.)
     // are not affected.
     annotation (

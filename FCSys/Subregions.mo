@@ -14,33 +14,34 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclH2O=true,
           inclH2=false,
           'inclC+'=true,
-          subregion(liquid(inclH2O=inclH2O, H2O(
-                epsilon_IC=0.001,
-                T(stateSelect=StateSelect.always),
-                N(stateSelect=StateSelect.default))), gas(H2O(
+          subregion(
+            gasLiq(k_Q=0),
+            liquid(inclH2O=inclH2O, H2O(initEnergy=Init.none,epsilon_IC=1e-5)),
+
+            gas(H2O(
                 p_IC=U.Pa,
                 initMaterial=Init.none,
-                T(stateSelect=StateSelect.always),
-                N(stateSelect=StateSelect.default)))),
-          environment(analysis=false));
+                N(stateSelect=StateSelect.default),
+                consEnergy=ConsThermo.IC))),
+          environment(analysis=true));
 
-        //**Real N(stateSelect=StateSelect.always) = subregion.gas.H2O.N + subregion.liquid.H2O.N;
-        Real x(stateSelect=StateSelect.always) = subregion.liquid.H2O.x2[2]
-          "**";
         annotation (
-          Documentation(info="<html><p>Initially, the water vapor is below saturation and a small amount of liquid water is present (1/1000 of the total volume).
-  Some of the liquid evaporates until saturation is reached. The boundaries are adiabatic; therefore, the temperature of the liquid and the gas
+          Documentation(info="<html><p>Initially, the water vapor is below saturation and a small amount of liquid water is present (10 ppm of the total volume).
+  By 0.45&nbsp;s, all of the liquid evaporates, but it is not enough to reach saturation.
+  The boundaries are adiabatic; therefore, the temperature of the liquid and the gas
 
   decreases due to the enthalpy of formation.</p>
 
   <p>See also <a href=\"modelica://FCSys.Characteristics.Examples.SaturationPressure\">Characteristics.Examples.SaturationPressure</a>.
 
   </html>"),
-          experiment(StopTime=0.002),
+          experiment(StopTime=0.5),
           Commands(file=
                 "Resources/Scripts/Dymola/Subregions.Examples.PhaseChange.Evaporation.mos"
-              "Subregions.Examples.PhaseChange.Evaporation.mos"));
-
+              "Subregions.Examples.PhaseChange.Evaporation.mos"),
+          __Dymola_experimentSetupOutput,
+          Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                  {100,100}}), graphics));
       end Evaporation;
 
       model Hydration
@@ -950,7 +951,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-30,-22},
+            "Phases (click to edit)"),Placement(transformation(extent={{-30,-22},
               {-10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -1019,7 +1020,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
       final V=V,
       final inclGas=gas.n_spec > 0,
       final inclLiquid=liquid.n_spec > 0,
-      final inclSolid=graphite.n_spec + ionomer.n_spec > 0)
+      final inclSolid=graphite.n_spec + ionomer.n_spec > 0) if n_spec > 0
       "Volume with capillary pressure included" annotation (Dialog, Placement(
           transformation(extent={{-24,-80},{-4,-60}})));
 
@@ -1039,6 +1040,9 @@ package Subregions "Control volumes with multi-species transfer and storage"
           true, Placement(transformation(extent={{76,44},{96,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
 
+    Connectors.Activity activity(final n_trans=n_trans) if gas.inclH2O or
+      ionomer.inclH2O or liquid.inclH2O
+      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
   equation
     // Boundaries
     // ----------
@@ -1243,14 +1247,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
     connect(gas.chemH2[1], HOR.chemH2);
     connect(gas.chemO2[1], ORR.chemO2);
     connect(liquid.chemH2O[1], ORR.chemH2O);
-    if liquid.inclH2O then
-      if gas.inclH2O then
-        connect(liquid.chemH2O[2], gas.chemH2O[2]);
-      end if;
-      if ionomer.inclH2O then
-        connect(liquid.chemH2O[3], ionomer.chemH2O[1]);
-      end if;
-    elseif gas.inclH2O then
+    if gas.inclH2O and not liquid.inclH2O then
       connect(gas.chemH2O[1], ORR.chemH2O);
     end if;
     connect(graphite.'cheme-'[1], HOR.'cheme-');
@@ -1273,6 +1270,18 @@ package Subregions "Control volumes with multi-species transfer and storage"
         points={{88.2,-36},{14,-36},{14,-7},{15,-7}},
         color={221,23,47},
         smooth=Smooth.None));
+    connect(gas.activity, activity) annotation (Line(
+        points={{-19.8,-5.6},{-39.3,-5.6},{-39.3,20},{-90,20}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(ionomer.activity, activity) annotation (Line(
+        points={{62,-7.2},{-39.3,-7.2},{-39.3,20},{-90,20}},
+        color={255,195,38},
+        smooth=Smooth.None));
+    connect(liquid.activity, activity) annotation (Line(
+        points={{-58.6,-9},{-39.3,-9},{-39.3,20},{-90,20}},
+        color={255,195,38},
+        smooth=Smooth.None));
     annotation (Documentation(info="<html><p>Assumptions:</p><ol>
 <li>The oxygen reduction reaction generates liquid water if it is included; otherwise,
 it generates H<sub>2</sub>O vapor.  Since phase change is a dynamic, nonequilibrium
@@ -1280,13 +1289,13 @@ process, there is a difference.</li></ol>
 
    <p>Please see the documentation of the
    <a href=\"modelica://FCSys.Subregions.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
-        Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-80},{
-              120,60}}), graphics={Text(
-              extent={{78,-44},{118,-50}},
-              lineColor={127,127,127},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              textString="(connections not shown
+        Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,-80},
+              {120,60}}), graphics={Text(
+            extent={{78,-44},{118,-50}},
+            lineColor={127,127,127},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            textString="(connections not shown
 in diagram)")}));
   end Subregion;
 
@@ -1326,7 +1335,8 @@ in diagram)")}));
       final V=V,
       final inclSolid=ionomer.n_spec > 0,
       final inclGas=false,
-      final inclLiquid=false) "Volume with capillary pressure included"
+      final inclLiquid=false) if n_spec > 0
+      "Volume with capillary pressure included"
       annotation (Dialog, Placement(transformation(extent={{0,-20},{20,0}})));
 
   equation
@@ -1397,7 +1407,7 @@ in diagram)")}));
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-10,-22},
+            "Phases (click to edit)"),Placement(transformation(extent={{-10,-22},
               {10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -1450,7 +1460,7 @@ in diagram)")}));
       final V=V,
       final inclGas=gas.n_spec > 0,
       final inclLiquid=liquid.n_spec > 0,
-      final inclSolid=graphite.n_spec > 0)
+      final inclSolid=graphite.n_spec > 0) if n_spec > 0
       "Volume with capillary pressure included"
       annotation (Placement(transformation(extent={{-4,-80},{16,-60}})));
 
@@ -1459,7 +1469,7 @@ in diagram)")}));
 
     // Exchange
     Connectors.InertNode exchCommon "Among all phases" annotation (HideResult=
-          true, Placement(transformation(extent={{56,32},{76,52}}),
+          true,Placement(transformation(extent={{56,32},{76,52}}),
           iconTransformation(extent={{100,18},{120,38}})));
     Connectors.InertNode exchGasLiq "Between gas and liquid" annotation (
         HideResult=true, Placement(transformation(extent={{56,44},{76,64}}),
@@ -1622,7 +1632,7 @@ in diagram)")}));
     // Phase change (not shown in diagram)
     // -----------------------------------
     if gas.inclH2O and liquid.inclH2O then
-      connect(gas.chemH2O[2], liquid.chemH2O[2]);
+      connect(gas.activity, liquid.activity);
     end if;
 
     annotation (
@@ -1795,10 +1805,6 @@ in diagram)")}));
               100,100}}), graphics));
 
   end PartialSubregion;
-
-
-
-
 
   annotation (Documentation(info="
 <html><p>This package contains subregions&mdash;control volumes that may contain multiple phases.  A 

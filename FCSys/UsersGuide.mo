@@ -16,7 +16,7 @@ package UsersGuide "User's Guide"
         FCSys should be compatible with any
         modeling environment that fully supports version 3.2.1 of the Modelica Standard Library.  The following tools have been tested:
         <ul>
-          <li>Dymola: Supported by version 2014.
+          <li>Dymola: Supported by version 2014 FD01.
           Some of Dymola's nonstandard annotations are used.</li>
           <!--<li>JModelica: Problems installing version 1.12 on Windows</li>-->
           <li>MapleSim: Not supported as of version 4.5</li>
@@ -224,14 +224,51 @@ increases in net current must be supported by the upstream segments, and this pu
   package Glossary "Glossary"
     extends Modelica.Icons.Information;
 
+    class 'chemical amount'
+      "<html>(<i>noun</i>) quantity of <a href=\"modelica://FCSys.UsersGuide.Glossary.'material'\">material</a> [N]</html>"
+
+      annotation (
+        preferredView="info",
+        DocumentationClass=false,
+        Documentation(info="<html><p>This is
+    synonymous with \"amount of substance\" but is preferred because it is less awkward 
+    [<a href=\"modelica://FCSys.UsersGuide.References.Mills1996\">Mills1996</a>].  
+    Where the meaning is clear, it may be abbreviated as \"amount.\"  
+    The terms \"number of particles\" (or \"particle number\") and \"number of moles\" are avoided because they
+    imply expression in certain units&mdash;particles and moles, respectively.  Since 
+    FCSys uses quantity calculus, variables are independent of the unit of expression 
+    (see the <a href=\"modelica://FCSys.Units\">Units</a> package).
+      </p></html>"));
+    end 'chemical amount';
+
+    class 'chemical density'
+      "<html>(<i>noun</i>) <a href=\"modelica://FCSys.UsersGuide.Glossary.'material amount'\">chemical amount</a> per volume [N&nbsp;L<sup>-3</sup>]</html>"
+
+      annotation (
+        preferredView="info",
+        DocumentationClass=false,
+        Documentation(info="<html><p>This is synonymous with 
+    \"<a href=\"modelica://FCSys.UsersGuide.Glossary.'volumic'\">volumic</a> amount.\"  
+    Where it will not be confused with mass per volume 
+    (i.e., \"<a href=\"modelica://FCSys.UsersGuide.Glossary.'volumic'\">volumic</a> mass\"), it may be abbreviated as \"density.\"
+    The terms \"concentration\" and \"amount concentration\" are avoided because they imply a mixture; \"chemical density\"
+    may be used with a pure substance.
+    The terms \"number density\" and \"molar concentration\" are avoided because they
+    imply expression in certain units&mdash;particles per unit volume and moles per unit volume, respectively.  Since 
+    FCSys uses quantity calculus, variables are independent of the unit of expression 
+    (see the <a href=\"modelica://FCSys.Units\">Units</a> package).</p>
+
+    </html>"));
+    end 'chemical density';
+
     class 'configuration'
-      "<html>(<i>noun</i>) a species in a particular phase within a subregion</html>"
+      "<html>(<i>noun</i>) a <a href=\"modelica://FCSys.Species\">species</a> in a particular phase within a <a href=\"modelica://FCSys.Subregions\">subregion</a></html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end 'configuration';
 
     class 'continuity'
-      "<html>(<i>noun</i>) resistivity to axial compression or material storage during transport [M&nbsp;N<sup>-1</sup>&nbsp;T<sup>-1</sup>]</html>"
+      "<html>(<i>noun</i>) resistivity to axial compression or <a href=\"modelica://FCSys.UsersGuide.Glossary.'material'\">material</a> storage during <a href=\"modelica://FCSys.UsersGuide.Glossary.'transport'\">transport</a> [M&nbsp;N<sup>-1</sup>&nbsp;T<sup>-1</sup>]</html>"
 
       annotation (
         preferredView="info",
@@ -240,17 +277,6 @@ increases in net current must be supported by the upstream segments, and this pu
               "<html><p>See <a href=\"modelica://FCSys.Characteristics.BaseClasses.Characteristic.zeta\">&zeta;</a>().</p></html>"));
     end 'continuity';
 
-    class 'density'
-      "<html>(<i>noun</i>) amount of material per volume [N&nbsp;L<sup>-3</sup>]</html>"
-
-      annotation (
-        preferredView="info",
-        DocumentationClass=false,
-        Documentation(info="<html><p>Synonyms: concentration, molar concentration, number density</p>
-
-    <p>Note that mass per volume is volumic mass (see <a href=\"modelica://FCSys.UsersGuide.Glossary.'massic'\">massic</a>).</p></html>"));
-    end 'density';
-
     class 'equivalent current'
       "<html>(<i>noun</i>) rate of supply of a reactant required to support the given electrical current assuming complete <a href=\"modelica://FCSys.UsersGuide.Glossary.'utilization'\">utilization</a> [N&nbsp;T<sup>-1</sup>]</html>"
 
@@ -258,7 +284,7 @@ increases in net current must be supported by the upstream segments, and this pu
     end 'equivalent current';
 
     class 'exchange'
-      "<html>(<i>noun</i>) transfer of a conserved quantity among configurations within a region</html>"
+      "<html>(<i>noun</i>) transfer of a conserved quantity among <a href=\"modelica://FCSys.UsersGuide.Glossary.'configuration'\">configurations</a> within a <a href=\"modelica://FCSys.Subregions\">subregion</a></html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end 'exchange';
@@ -274,7 +300,7 @@ increases in net current must be supported by the upstream segments, and this pu
     end 'fluidity';
 
     class 'Gibbs potential'
-      "<html>(<i>noun</i>) specific Gibbs energy [L<sup>2</sup>&nbsp;M&nbsp;N<sup>-1</sup>&nbsp;T<sup>-2</sup>]</html>"
+      "<html>(<i>noun</i>) <a href=\"modelica://FCSys.UsersGuide.Glossary.'specific'\">specific</a> Gibbs energy [L<sup>2</sup>&nbsp;M&nbsp;N<sup>-1</sup>&nbsp;T<sup>-2</sup>]</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end 'Gibbs potential';
@@ -291,30 +317,25 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end 'massic';
 
-    class 'material' "<html>1. (<i>noun</i>) quantity that represents particles, atoms, or molecules (i.e., matter)<br>
+    class 'material' "<html>1. (<i>noun</i>) particles, atoms, or molecules (i.e., matter)<br>
 2. (<i>adj</i>) of particles, atoms, or molecules</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end 'material';
 
-    class 'particle number'
-      "<html>(<i>noun</i>) number of particles [N]</html>"
+    class 'specific'
+      "<html>adjective that indicates the quotient of the following quantity and its associated <a href=\"modelica://FCSys.UsersGuide.Glossary.'chemical amount'\">chemical amount</a> [&times;&nbsp;N<sup>-1</sup>]</html>"
 
       annotation (
         preferredView="info",
         DocumentationClass=false,
-        Documentation(info="<html><p>Note that particle number is equivalent to amount of material due to the system of units
-      (see the <a href=\"modelica://FCSys.Units\">Units</a> package).</p></html>"));
-    end 'particle number';
-
-    class 'specific'
-      "<html>adjective that indicates the quotient of the following quantity and its associated particle number [&times;&nbsp;N<sup>-1</sup>]</html>"
-
-      annotation (preferredView="info", DocumentationClass=false);
+        Documentation(info="<html><p>Note that this is not synonymous with <a href=\"modelica://FCSys.UsersGuide.Glossary.'massic'\">massic</a>;
+    it does not indicate the quotient of a quantity and its associated mass. 
+    </p></html>"));
     end 'specific';
 
     class 'thermal independity'
-      "<html>(<i>noun</i>) extent to which an exchange of thermal energy between species causes or requires a temperature difference [T]</html>"
+      "<html>(<i>noun</i>) extent to which an <a href=\"modelica://FCSys.UsersGuide.Glossary.'exchange'\">exchange</a> of thermal energy between <a href=\"modelica://FCSys.UsersGuide.Glossary.'configuration'\">configurations</a> causes or requires a temperature difference [T]</html>"
 
       annotation (
         preferredView="info",
@@ -330,7 +351,7 @@ increases in net current must be supported by the upstream segments, and this pu
     end 'translational Nusselt number';
 
     class 'transport'
-      "<html>(<i>noun</i>) transfer of a conserved quantity between adjacent subregions</html>"
+      "<html>(<i>noun</i>) transfer of a conserved quantity between adjacent <a href=\"modelica://FCSys.Subregions\">subregions</a></html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end 'transport';
@@ -358,7 +379,6 @@ increases in net current must be supported by the upstream segments, and this pu
   nontraditional definitions (e.g.,
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'configuration'\">configuration</a>,
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'continuity'\">continuity</a>,
-  <a href=\"modelica://FCSys.UsersGuide.Glossary.'density'\">density</a>,
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'material'\">material</a>, and
   <a href=\"modelica://FCSys.UsersGuide.Glossary.'specific'\">specific</a>).</p></html>"));
 
@@ -568,6 +588,12 @@ increases in net current must be supported by the upstream segments, and this pu
 
       annotation (preferredView="info", DocumentationClass=false);
     end McBride2002;
+
+    class Mills1997
+      "<html>I. M. Mills, \"The Language of Science,\" <i>Metrologia</i>, vol.&nbsp;34, pp.&nbsp;101&ndash;109, 1997.</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Mills1997;
 
     class Modelica2010
       "<html>Modelica Association, <a href=\"https://www.modelica.org/documents/ModelicaSpec32.pdf\"><i>Modelica: A Unified Object-Oriented Language for Physical Systems Modeling: Language Specification</i></a>, ver. 3.2, Mar. 2010.</html>"

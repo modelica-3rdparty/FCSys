@@ -228,7 +228,7 @@ package Quantities "Types to represent physical values"
   to represent physical values (<code>Real</code> variables).  The
 <code>unit</code> attribute of each quantity is used to denote the
   physical dimensionality in terms of fundamental dimensions:
-  angle (A), length (L), mass (M), particle number (N), and time (T).<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>  
+  angle (A), length (L), mass (M), chemical amount (N), and time (T).<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>  
   The fundamental dimensions
   are combined according to the rules established for unit strings
   [<a href=\"modelica://FCSys.UsersGuide.References.Modelica2010\">Modelica2010</a>, p.&nbsp;210].  

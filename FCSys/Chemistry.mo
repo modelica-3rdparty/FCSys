@@ -8,6 +8,7 @@ package Chemistry "Chemical reactions and related models"
 
     model Overpotential "Demonstrate the Butler-Volmer overpotential"
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       output Q.Potential w=-transfer.Deltag "Overpotential";
       output Q.Current I_A=-transfer.I/U.A if environment.analysis
@@ -92,6 +93,7 @@ package Chemistry "Chemical reactions and related models"
     model Stoichiometry
       "<html>Test the stoichiometry of the <a href=\"modelica://FCSys.Chemistry.HOR\">HOR</a></html>"
       extends Modelica.Icons.Example;
+      extends Modelica.Icons.UnderConstruction;
 
       HOR hOR(n_trans=3)
         annotation (Placement(transformation(extent={{-10,-10},{10,10}})));

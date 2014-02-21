@@ -1214,7 +1214,7 @@ encompass other systems of units.</p>
       // The unit of substance (mole) is inversely proportional to this value.
       // The Faraday constant isn't adjustable because the equations of FCSys
       // require that it's one, which means that charge is considered to be an
-      // amount of substance.
+      // amount.
       final constant Q.Number R=1 "gas constant";
       // The unit of temperature (kelvin) is inversely proportional to this
       // value.  The gas constant isn't adjustable because the equations of FCSys
@@ -1371,11 +1371,11 @@ encompass other systems of units.</p>
   // constant may be determined by measuring the quantum hall effect
   // [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
   constant Q.Amount mol=96485.3365*Wb*S/k_F "mole";
-  // SI unit of amount of substance
+  // SI unit of chemical amount
   // This is the "Faraday constant" relation [NIST2010].  The factor Wb*S is
   // the coulomb, which is defined below.  The ratio may be determined by
-  // electrochemical experiments relating the amount of charge and the
-  // amount of substance involved in a reaction.
+  // electrochemical experiments relating the charge and the chemical amount
+  // involved in a reaction.
   constant Q.Potential K=8.3144621*(Wb*rad)^2*S/(s*mol*R) "kelvin";
   // This is the "molar gas constant" relation [NIST2010].  The factor
   // (Wb*rad)^2*S/s is the joule, which is defined below.  The ratio may be

@@ -1,8 +1,5 @@
 within FCSys;
 package Characteristics "Data and functions to correlate physical properties"
-  import Modelica.Media.IdealGases.Common.FluidData;
-  import Modelica.Media.IdealGases.Common.SingleGasesData;
-  extends Modelica.Icons.Package;
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
     model Correlations
@@ -359,34 +356,6 @@ package Characteristics "Data and functions to correlate physical properties"
             "Characteristics.Examples.CellPotential.mos"));
     end CellPotential;
 
-    model Leverett
-      "<html>Evaluate the Leverett J function from [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>]</html>"
-      extends Modelica.Icons.Example;
-
-      output Q.NumberAbsolute s=saturationSet.y "Liquid saturation";
-      output Q.NumberAbsolute J=FCSys.Characteristics.H2O.J(s)
-        "Result of Leverett correlation";
-
-      Modelica.Blocks.Sources.Ramp saturationSet(height=1, duration=1)
-        "Set the saturation"
-        annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
-
-      inner Conditions.Environment environment(T=303.15*U.K)
-        annotation (Placement(transformation(extent={{-10,10},{10,30}})));
-
-      annotation (
-        experiment,
-        Documentation(info=
-              "<html><p>Please see <a href=\"modelica://FCSys.Characteristics.H2O.J\">H2O.J</a>().</p></html>"),
-
-        Commands(file=
-              "Resources/Scripts/Dymola/Characteristics.Examples.Leverett.mos"
-            "Characteristics.Examples.Leverett.mos"),
-        Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                {100,100}}), graphics));
-
-    end Leverett;
-
     model LatentHeat
       "<html>Evaluate the latent heat of vaporization of H<sub>2</sub>O</html>"
       import FCSys.Characteristics.H2O.Liquid;
@@ -478,7 +447,51 @@ package Characteristics "Data and functions to correlate physical properties"
         Commands);
     end SurfaceTension;
 
+    model SaturationPressure2 "**temp"
+      import FCSys.Characteristics.H2O.Liquid;
+      import FCSys.Characteristics.H2O.Gas;
+      package IdealGas = FCSys.Characteristics.H2O.Gas (b_v=[1], n_v={-1,0});
+
+      extends Modelica.Icons.Example;
+      parameter Q.Volume V=U.cc;
+
+      Q.Amount N(
+        start=U.C,
+        fixed=true,
+        stateSelect=StateSelect.always), N_l(start=0), N_g;
+
+      Boolean on(start=false,fixed=true);
+      parameter Q.TemperatureAbsolute T=300*U.K "Temperature"
+        annotation (Evaluate=true);
+      Q.PressureAbsolute p_g(start=U.kPa) "Pressure of the vapor";
+      Q.Number Deltaa;
+
+    equation
+      Deltaa = p_g/IdealGas.p0 - exp((Liquid.g(T, Liquid.p0) - IdealGas.g(T,
+        IdealGas.p0))/T);
+
+      on = N_l > 0 or Deltaa > 0;
+      0 = if on then Deltaa else N_l;
+
+      V = N_l*Liquid.v_Tp(T, Liquid.p0) + N_g*IdealGas.v_Tp(T, p_g);
+      N = N_l + N_g;
+      der(N)/U.s = if time < 1 then -U.A else (if 2 < time and time < 3 then U.A
+         else 0);
+
+      annotation (
+        Documentation(info=
+              "<html><p>See also <a href=\"modelica://FCSys.Subregions.Examples.PhaseChange.Evaporation\">Subregions.Examples.PhaseChange.Evaporation</a>.</p></html>"),
+
+        experiment(StopTime=10),
+        Commands(file(ensureTranslated=true) =
+            "Resources/Scripts/Dymola/Characteristics.Examples.SaturationPressure.mos"
+            "Characteristics.Examples.SaturationPressure.mos"),
+        __Dymola_experimentSetupOutput);
+    end SaturationPressure2;
   end Examples;
+  import Modelica.Media.IdealGases.Common.FluidData;
+  import Modelica.Media.IdealGases.Common.SingleGasesData;
+  extends Modelica.Icons.Package;
 
   package 'C+' "<html>C<sup>+</sup></html>"
     extends Modelica.Icons.Package;
@@ -1652,6 +1665,7 @@ package Characteristics "Data and functions to correlate physical properties"
 
       algorithm
         tauprime := v/(alpha*omega(T));
+        // ** remove alpha
         annotation (Inline=true,Documentation(info="<html>
   <p>This function is based on the kinetic theory of gases under the following assumptions
   [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
@@ -1761,7 +1775,7 @@ temperature difference.</p>
     By default,
     the powers of <i>T</i> for the first column are each -2, which corresponds to [<a href=\"modelica://FCSys.UsersGuide.References.McBride2002\">McBride2002</a>].
     In that case, the dimensionalities of the coefficients are {L4.M2/(N2.T4), L2.M/(N.T2), 1, &hellip;}
-    for each row, where L is length, M is mass, N is particle number, and T is time. (In <a href=\"modelica://FCSys\">FCSys</a>,
+    for each row, where L is length, M is mass, N is chemical amount, and T is time. (In <a href=\"modelica://FCSys\">FCSys</a>,
     temperature is a potential with dimension L2.M/(N.T2); see
     the <a href=\"modelica://FCSys.Units\">Units</a> package.)</li>
 
