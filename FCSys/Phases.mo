@@ -157,67 +157,62 @@ package Phases "Mixtures of species"
       annotation (Dialog(group="Independence factors"));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-120,10},{-100,30}}), iconTransformation(
-            extent={{-90,-10},{-70,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-120,10},{-100,30}}), iconTransformation(extent={{-90,-10},
+              {-70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-96,-14},{-76,6}}), iconTransformation(
-            extent={{-10,-94},{10,-74}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-96,-14},{-76,6}}), iconTransformation(extent={{-10,-94},{
+              10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{88,22},{108,42}}), iconTransformation(
-            extent={{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{88,22},{108,42}}), iconTransformation(extent={{40,40},{60,
+              60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{100,10},{120,30}}), iconTransformation(
-            extent={{70,-10},{90,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{100,10},{120,30}}), iconTransformation(extent={{70,-10},{
+              90,10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{76,34},{96,54}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{76,34},{96,54}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-108,-2},{-88,18}}), iconTransformation(
-            extent={{-90,-90},{-70,-70}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-108,-2},{-88,18}}), iconTransformation(extent={{-90,-90},
+              {-70,-70}})));
     Connectors.Dalton dalton if n_spec > 0
       "Connector for additivity of pressure" annotation (Placement(
           transformation(extent={{-120,46},{-100,66}}), iconTransformation(
             extent={{70,-90},{90,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
-      "Connector to exchange momentum and energy with other phases"
-      annotation (Placement(transformation(extent={{100,-26},{120,-6}}),
+      "Connector to exchange momentum and energy with other phases" annotation
+      (Placement(transformation(extent={{100,-26},{120,-6}}),
           iconTransformation(extent={{-60,60},{-40,40}})));
 
     // Auxiliary variables (for analysis)
     output Q.PressureAbsolute p(stateSelect=StateSelect.never) = dalton.p if
       n_spec > 0 and environment.analysis "Total thermodynamic pressure";
 
-    Connectors.Chemical chemH2[H2.n_chem](each final n_trans=n_trans) if
-      inclH2 "Chemical connector for H2" annotation (Placement(transformation(
-            extent={{-74,58},{-54,78}}), iconTransformation(extent={{-50,-50},
-              {-30,-30}})));
+    Connectors.Chemical chemH2[H2.n_chem](each final n_trans=n_trans) if inclH2
+      "Chemical connector for H2" annotation (Placement(transformation(extent={
+              {-74,58},{-54,78}}), iconTransformation(extent={{-50,-50},{-30,-30}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
-      inclH2O "Chemical connector for H2O" annotation (Placement(
-          transformation(extent={{-34,58},{-14,78}}), iconTransformation(
-            extent={{-10,-50},{10,-30}})));
-    Connectors.Chemical chemO2[O2.n_chem](each final n_trans=n_trans) if
-      inclO2 "Chemical connector for O2" annotation (Placement(transformation(
-            extent={{46,58},{66,78}}), iconTransformation(extent={{30,-50},{
-              50,-30}})));
+      inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
+            extent={{-34,58},{-14,78}}), iconTransformation(extent={{-10,-50},{
+              10,-30}})));
+    Connectors.Chemical chemO2[O2.n_chem](each final n_trans=n_trans) if inclO2
+      "Chemical connector for O2" annotation (Placement(transformation(extent={
+              {46,58},{66,78}}), iconTransformation(extent={{30,-50},{50,-30}})));
 
   protected
     Connectors.InertNode exchCommon
       "Connector for exchange among species in the phase"
       annotation (Placement(transformation(extent={{76,-38},{96,-18}})));
-    Connectors.InertNode exchH2_H2O
-      "Connector for exchange between H2 and H2O"
+    Connectors.InertNode exchH2_H2O "Connector for exchange between H2 and H2O"
       annotation (Placement(transformation(extent={{76,-48},{96,-28}})));
-    Connectors.InertNode exchH2O_N2
-      "Connector for exchange between H2O and N2"
+    Connectors.InertNode exchH2O_N2 "Connector for exchange between H2O and N2"
       annotation (Placement(transformation(extent={{76,-58},{96,-38}})));
-    Connectors.InertNode exchH2O_O2
-      "Connector for exchange between H2O and O2"
+    Connectors.InertNode exchH2O_O2 "Connector for exchange between H2O and O2"
       annotation (Placement(transformation(extent={{76,-68},{96,-48}})));
     Connectors.InertNode exchN2_O2 "Connector for exchange between N2 and O2"
       annotation (Placement(transformation(extent={{76,-78},{96,-58}})));
@@ -330,37 +325,37 @@ package Phases "Mixtures of species"
     // Transport
     // ---------
     // H2
-    connect(H2.boundaries[transCart[Axis.x], Side.n], xNegative.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.x], Side.n], xNegative.H2) annotation
+      (Line(
         points={{-60,20},{-110,20}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(H2.boundaries[transCart[Axis.x], Side.p], xPositive.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.x], Side.p], xPositive.H2) annotation
+      (Line(
         points={{-60,20},{110,20}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(H2.boundaries[transCart[Axis.y], Side.n], yNegative.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.y], Side.n], yNegative.H2) annotation
+      (Line(
         points={{-60,20},{-60,-4},{-86,-4}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(H2.boundaries[transCart[Axis.y], Side.p], yPositive.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.y], Side.p], yPositive.H2) annotation
+      (Line(
         points={{-60,20},{-60,44},{86,44}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(H2.boundaries[transCart[Axis.z], Side.n], zNegative.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.z], Side.n], zNegative.H2) annotation
+      (Line(
         points={{-60,20},{-48,32},{98,32}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(H2.boundaries[transCart[Axis.z], Side.p], zPositive.H2)
-      annotation (Line(
+    connect(H2.boundaries[transCart[Axis.z], Side.p], zPositive.H2) annotation
+      (Line(
         points={{-60,20},{-72,8},{-98,8}},
         color={127,127,127},
         smooth=Smooth.None));
@@ -400,67 +395,67 @@ package Phases "Mixtures of species"
         color={127,127,127},
         smooth=Smooth.None));
     // N2
-    connect(N2.boundaries[transCart[Axis.x], Side.n], xNegative.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.x], Side.n], xNegative.N2) annotation
+      (Line(
         points={{20,20},{-110,20}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(N2.boundaries[transCart[Axis.x], Side.p], xPositive.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.x], Side.p], xPositive.N2) annotation
+      (Line(
         points={{20,20},{110,20}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(N2.boundaries[transCart[Axis.y], Side.n], yNegative.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.y], Side.n], yNegative.N2) annotation
+      (Line(
         points={{20,20},{20,-4},{-86,-4}},
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(N2.boundaries[transCart[Axis.y], Side.p], yPositive.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.y], Side.p], yPositive.N2) annotation
+      (Line(
         points={{20,20},{20,44},{86,44}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(N2.boundaries[transCart[Axis.z], Side.n], zNegative.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.z], Side.n], zNegative.N2) annotation
+      (Line(
         points={{20,20},{20,20},{32,32},{98,32}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(N2.boundaries[transCart[Axis.z], Side.p], zPositive.N2)
-      annotation (Line(
+    connect(N2.boundaries[transCart[Axis.z], Side.p], zPositive.N2) annotation
+      (Line(
         points={{20,20},{8,8},{-98,8}},
         color={127,127,127},
         smooth=Smooth.None));
     // O2
-    connect(O2.boundaries[transCart[Axis.x], Side.n], xNegative.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.x], Side.n], xNegative.O2) annotation
+      (Line(
         points={{60,20},{-110,20}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(O2.boundaries[transCart[Axis.x], Side.p], xPositive.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.x], Side.p], xPositive.O2) annotation
+      (Line(
         points={{60,20},{110,20}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(O2.boundaries[transCart[Axis.y], Side.n], yNegative.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.y], Side.n], yNegative.O2) annotation
+      (Line(
         points={{60,20},{60,-4},{-86,-4}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(O2.boundaries[transCart[Axis.y], Side.p], yPositive.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.y], Side.p], yPositive.O2) annotation
+      (Line(
         points={{60,20},{60,44},{86,44}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(O2.boundaries[transCart[Axis.z], Side.n], zNegative.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.z], Side.n], zNegative.O2) annotation
+      (Line(
         points={{60,20},{72,32},{98,32}},
         color={127,127,127},
         smooth=Smooth.None));
-    connect(O2.boundaries[transCart[Axis.z], Side.p], zPositive.O2)
-      annotation (Line(
+    connect(O2.boundaries[transCart[Axis.z], Side.p], zPositive.O2) annotation
+      (Line(
         points={{60,20},{48,8},{-98,8}},
         color={127,127,127},
         smooth=Smooth.None));
@@ -487,8 +482,8 @@ package Phases "Mixtures of species"
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-80},{
               120,80}}), graphics),
-      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
+              100}}), graphics));
   end Gas;
 
   model Graphite "Graphite phase"
@@ -496,8 +491,8 @@ package Phases "Mixtures of species"
     import Modelica.Math.BooleanVectors.countTrue;
 
     extends Icons.Phases.Solid;
-    extends PartialPhase(final n_spec=countTrue({'inclC+','incle-'}),final V=
-          -amagat.V);
+    extends PartialPhase(final n_spec=countTrue({'inclC+','incle-'}),final V=-
+          amagat.V);
 
     // Conditionally include species.
     parameter Boolean 'inclC+'=false "Include C+" annotation (
@@ -551,42 +546,40 @@ package Phases "Mixtures of species"
       Placement(transformation(extent={{10,-10},{30,10}})));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-80,-10},{-60,10}}), iconTransformation(
-            extent={{-90,-10},{-70,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-80,-10},{-60,10}}), iconTransformation(extent={{-90,-10},
+              {-70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-56,-34},{-36,-14}}), iconTransformation(
-            extent={{-10,-94},{10,-74}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-56,-34},{-36,-14}}), iconTransformation(extent={{-10,-94},
+              {10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{48,2},{68,22}}), iconTransformation(extent=
-              {{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{48,2},{68,22}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{60,-10},{80,10}}), iconTransformation(
-            extent={{70,-10},{90,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{60,-10},{80,10}}), iconTransformation(extent={{70,-10},{90,
+              10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{36,14},{56,34}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{36,14},{56,34}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-68,-22},{-48,-2}}), iconTransformation(
-            extent={{-90,-90},{-70,-70}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-68,-22},{-48,-2}}), iconTransformation(extent={{-90,-90},
+              {-70,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
-      "Connector to exchange momentum and energy with other phases"
-      annotation (Placement(transformation(extent={{60,-46},{80,-26}}),
-          iconTransformation(extent={{-60,60},{-40,40}})));
+      "Connector to exchange momentum and energy with other phases" annotation
+      (Placement(transformation(extent={{60,-46},{80,-26}}), iconTransformation(
+            extent={{-60,60},{-40,40}})));
 
-    Connectors.Amagat amagat if n_spec > 0
-      "Connector for additivity of volume" annotation (Placement(
-          transformation(extent={{-80,24},{-60,44}}), iconTransformation(
-            extent={{70,-90},{90,-70}})));
+    Connectors.Amagat amagat if n_spec > 0 "Connector for additivity of volume"
+      annotation (Placement(transformation(extent={{-80,24},{-60,44}}),
+          iconTransformation(extent={{70,-90},{90,-70}})));
 
     Connectors.Chemical 'cheme-'[1](each final n_trans=n_trans) if 'incle-'
-      "Chemical connector for e-" annotation (Placement(transformation(extent
-            ={{6,36},{26,56}}),iconTransformation(extent={{-10,-50},{10,-30}})));
+      "Chemical connector for e-" annotation (Placement(transformation(extent={
+              {6,36},{26,56}}),iconTransformation(extent={{-10,-50},{10,-30}})));
 
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
@@ -720,10 +713,10 @@ package Phases "Mixtures of species"
     For more information, please see the
  <a href=\"modelica://FCSys.Phases.PartialPhase\">PartialPhase</a> model.</p></html>"),
 
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-60},{
-              80,60}}), graphics),
-      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-60},{80,
+              60}}), graphics),
+      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
+              100}}), graphics));
   end Graphite;
 
   model Ionomer "Ionomer phase"
@@ -791,10 +784,10 @@ package Phases "Mixtures of species"
       n_intra=3,
       n_inter=n_inter,
       kL=kL,
-      k_intra_Phi={common.k_Phi[cartTrans],'H+_H2O'.k_Phi[cartTrans],
-          'H+_SO3-'.k_Phi[cartTrans]},
-      k_intra_Q={common.k_Q,'H+_SO3-'.k_Q,'H+_H2O'.k_Q}) "H+ model"
-      annotation (
+      k_intra_Phi={common.k_Phi[cartTrans],'H+_H2O'.k_Phi[cartTrans],'H+_SO3-'.k_Phi[
+          cartTrans]},
+      k_intra_Q={common.k_Q,'H+_SO3-'.k_Q,'H+_H2O'.k_Q}) "H+ model" annotation
+      (
       __Dymola_choicesFromPackage=true,
       Dialog(
         group="Species",
@@ -823,8 +816,8 @@ package Phases "Mixtures of species"
       n_intra=3,
       n_inter=0,
       kL=kL,
-      k_intra_Phi={common.k_Phi[cartTrans],'H+_H2O'.k_Phi[cartTrans],
-          'H2O_SO3-'.k_Phi[cartTrans]},
+      k_intra_Phi={common.k_Phi[cartTrans],'H+_H2O'.k_Phi[cartTrans],'H2O_SO3-'.k_Phi[
+          cartTrans]},
       k_intra_Q={common.k_Q,'H+_H2O'.k_Q,'H2O_SO3-'.k_Q}) "H2O model"
       annotation (
       __Dymola_choicesFromPackage=true,
@@ -836,45 +829,43 @@ package Phases "Mixtures of species"
       Placement(transformation(extent={{-10,-10},{10,10}})));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-100,-10},{-80,10}}), iconTransformation(
-            extent={{-90,-10},{-70,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-100,-10},{-80,10}}), iconTransformation(extent={{-90,-10},
+              {-70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-76,-34},{-56,-14}}), iconTransformation(
-            extent={{-10,-94},{10,-74}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-76,-34},{-56,-14}}), iconTransformation(extent={{-10,-94},
+              {10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{68,2},{88,22}}), iconTransformation(extent=
-              {{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{68,2},{88,22}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{80,-10},{100,10}}), iconTransformation(
-            extent={{70,-10},{90,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{80,-10},{100,10}}), iconTransformation(extent={{70,-10},{
+              90,10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{56,14},{76,34}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{56,14},{76,34}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-88,-22},{-68,-2}}), iconTransformation(
-            extent={{-90,-90},{-70,-70}})));
-    Connectors.Amagat amagat if n_spec > 0
-      "Connector for additivity of volume" annotation (Placement(
-          transformation(extent={{-100,26},{-80,46}}), iconTransformation(
-            extent={{70,-90},{90,-70}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-88,-22},{-68,-2}}), iconTransformation(extent={{-90,-90},
+              {-70,-70}})));
+    Connectors.Amagat amagat if n_spec > 0 "Connector for additivity of volume"
+      annotation (Placement(transformation(extent={{-100,26},{-80,46}}),
+          iconTransformation(extent={{70,-90},{90,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
-      "Connector to exchange momentum and energy with other phases"
-      annotation (Placement(transformation(extent={{80,-34},{100,-14}}),
+      "Connector to exchange momentum and energy with other phases" annotation
+      (Placement(transformation(extent={{80,-34},{100,-14}}),
           iconTransformation(extent={{-60,60},{-40,40}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
-      inclH2O "Chemical connector for H2O" annotation (Placement(
-          transformation(extent={{-14,38},{6,58}}), iconTransformation(extent
-            ={{10,-50},{30,-30}})));
+      inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
+            extent={{-14,38},{6,58}}), iconTransformation(extent={{10,-50},{30,
+              -30}})));
     Connectors.Chemical 'chemH+'['H+'.n_chem](each final n_trans=n_trans) if
-      'inclH+' "Chemical connector for H+" annotation (Placement(
-          transformation(extent={{-54,38},{-34,58}}), iconTransformation(
-            extent={{-30,-50},{-10,-30}})));
+      'inclH+' "Chemical connector for H+" annotation (Placement(transformation(
+            extent={{-54,38},{-34,58}}), iconTransformation(extent={{-30,-50},{
+              -10,-30}})));
 
     // Independence factors
     ExchangeParams common(k_Phi={inf,inf,inf},k_Q=0) if n_spec > 0
@@ -887,8 +878,7 @@ package Phases "Mixtures of species"
       inclH2O "<html>Between H<sup>+</sup> and H<sub>2</sub>O</html>"
       annotation (Dialog(group="Exchange (click to edit)"));
 
-    ExchangeParams 'H2O_SO3-'(k_Phi={1,1,1}, k_Q=inf) if 'inclSO3-' or
-      inclH2O
+    ExchangeParams 'H2O_SO3-'(k_Phi={1,1,1}, k_Q=inf) if 'inclSO3-' or inclH2O
       "<html>Between H<sub>2</sub>O and SO<sub>3</sub><sup>-</sup></html>"
       annotation (Dialog(group="Exchange (click to edit)"));
 
@@ -903,16 +893,16 @@ package Phases "Mixtures of species"
           iconTransformation(extent={{86,-50},{106,-30}})));
     Connectors.InertNode 'exchH+_SO3-'
       "Connector for exchange between H+ and SO3-" annotation (Placement(
-          transformation(extent={{56,-56},{76,-36}}), iconTransformation(
-            extent={{48,-76},{68,-56}})));
+          transformation(extent={{56,-56},{76,-36}}), iconTransformation(extent
+            ={{48,-76},{68,-56}})));
     Connectors.InertNode 'exchH+_H2O'
       "Connector for exchange between H+ and H2O" annotation (Placement(
-          transformation(extent={{56,-66},{76,-46}}), iconTransformation(
-            extent={{48,-76},{68,-56}})));
+          transformation(extent={{56,-66},{76,-46}}), iconTransformation(extent
+            ={{48,-76},{68,-56}})));
     Connectors.InertNode 'exchH2O_SO3-'
       "Connector for exchange between H2O and SO3-" annotation (Placement(
-          transformation(extent={{56,-76},{76,-56}}), iconTransformation(
-            extent={{48,-76},{68,-56}})));
+          transformation(extent={{56,-76},{76,-56}}), iconTransformation(extent
+            ={{48,-76},{68,-56}})));
 
   public
     Connectors.Activity activity(final n_trans=n_trans) if inclH2O
@@ -1115,14 +1105,13 @@ package Phases "Mixtures of species"
 
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-80},{
               100,60}}), graphics),
-      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
+              100}}), graphics));
   end Ionomer;
 
   model Liquid "Liquid phase"
     extends Icons.Phases.Liquid;
-    extends PartialPhase(final n_spec=if inclH2O then 1 else 0,final V=-
-          amagat.V);
+    extends PartialPhase(final n_spec=if inclH2O then 1 else 0,final V=-amagat.V);
 
     // Conditionally include species.
     parameter Boolean inclH2O=false "Include H2O" annotation (
@@ -1155,41 +1144,39 @@ package Phases "Mixtures of species"
       Placement(transformation(extent={{-20,-20},{0,0}})));
 
     Connectors.BoundaryBus xNegative if inclTrans[Axis.x]
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-60,-20},{-40,0}}), iconTransformation(
-            extent={{-90,-10},{-70,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-90,-10},{
+              -70,10}})));
     Connectors.BoundaryBus yNegative if inclTrans[Axis.y]
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-20,-60},{0,-40}}), iconTransformation(
-            extent={{-10,-94},{10,-74}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-20,-60},{0,-40}}), iconTransformation(extent={{-10,-94},{
+              10,-74}})));
     Connectors.BoundaryBus zNegative if inclTrans[Axis.z]
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{0,0},{20,20}}), iconTransformation(extent={
-              {40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{0,0},{20,20}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTrans[Axis.x]
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{20,-20},{40,0}}), iconTransformation(extent
-            ={{70,-10},{90,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{20,-20},{40,0}}), iconTransformation(extent={{70,-10},{90,
+              10}})));
     Connectors.BoundaryBus yPositive if inclTrans[Axis.y]
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{-20,20},{0,40}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{-20,20},{0,40}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTrans[Axis.z]
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-40,-40},{-20,-20}}), iconTransformation(
-            extent={{-90,-90},{-70,-70}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-40,-40},{-20,-20}}), iconTransformation(extent={{-90,-90},
+              {-70,-70}})));
     Connectors.Inter inter[n_inter](each final n_trans=n_trans) if n_spec > 0
-      "Connector to exchange momentum and energy with other phases"
-      annotation (Placement(transformation(extent={{20,-40},{40,-20}}),
-          iconTransformation(extent={{-60,60},{-40,40}})));
-    Connectors.Amagat amagat if n_spec > 0
-      "Connector for additivity of volume" annotation (Placement(
-          transformation(extent={{-60,0},{-40,20}}), iconTransformation(
-            extent={{70,-90},{90,-70}})));
+      "Connector to exchange momentum and energy with other phases" annotation
+      (Placement(transformation(extent={{20,-40},{40,-20}}), iconTransformation(
+            extent={{-60,60},{-40,40}})));
+    Connectors.Amagat amagat if n_spec > 0 "Connector for additivity of volume"
+      annotation (Placement(transformation(extent={{-60,0},{-40,20}}),
+          iconTransformation(extent={{70,-90},{90,-70}})));
     Connectors.Chemical chemH2O[H2O.n_chem](each final n_trans=n_trans) if
-      inclH2O "Chemical connector for H2O" annotation (Placement(
-          transformation(extent={{-40,20},{-20,40}}), iconTransformation(
-            extent={{-10,-50},{10,-30}})));
+      inclH2O "Chemical connector for H2O" annotation (Placement(transformation(
+            extent={{-40,20},{-20,40}}), iconTransformation(extent={{-10,-50},{
+              10,-30}})));
 
   protected
     Conditions.Adapters.AmagatDalton amagatDalton if n_spec > 0
@@ -1269,10 +1256,10 @@ package Phases "Mixtures of species"
     <p>Please see the documentation of the
  <a href=\"modelica://FCSys.Phases.PartialPhase\">PartialPhase</a> model.</p></html>"),
 
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{
-              40,40}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              100}}), graphics),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
+              40}}), graphics));
   end Liquid;
 
 protected
@@ -1297,19 +1284,18 @@ protected
     inner Q.Volume V=0 if n_spec > 0 "Volume of the phase";
 
     // Independence factors
-    inner parameter Q.NumberAbsolute k_inter_Phi[n_inter, n_trans]=ones(
-        n_inter, n_trans) if n_spec > 0
-      "For translational exchange with other phases" annotation (Dialog(group
-          ="Independence factors", __Dymola_label=
+    inner parameter Q.NumberAbsolute k_inter_Phi[n_inter, n_trans]=ones(n_inter,
+        n_trans) if n_spec > 0 "For translational exchange with other phases"
+      annotation (Dialog(group="Independence factors", __Dymola_label=
             "<html><i>k</i><sub>inter &Phi;</sub></html>"));
-    inner parameter Q.NumberAbsolute k_inter_Q[n_inter]=ones(n_inter) if
-      n_spec > 0 "For thermal exchange with other phases" annotation (Dialog(
-          group="Independence factors", __Dymola_label=
+    inner parameter Q.NumberAbsolute k_inter_Q[n_inter]=ones(n_inter) if n_spec
+       > 0 "For thermal exchange with other phases" annotation (Dialog(group=
+            "Independence factors", __Dymola_label=
             "<html><i>k</i><sub>inter <i>Q</i></sub></html>"));
 
     // Auxiliary variables (for analysis)
-    output Q.NumberAbsolute epsilon=V/product(L) if n_spec > 0 and
-      environment.analysis "Volumetric fill fraction";
+    output Q.NumberAbsolute epsilon=V/product(L) if n_spec > 0 and environment.analysis
+      "Volumetric fill fraction";
 
   protected
     outer parameter Q.Length L[Axis] if n_spec > 0 "Length of the subregion"
@@ -1341,14 +1327,14 @@ protected
 
     the resistance associated with the transport of material, transverse translational momentum, and energy of all of the species
     within the phase.  It can be used to introduce minor head loss or the effects of
-    porosity or tortousity.  These effects may be anisotropic.  Using
+    porosity or tortuosity.  These effects may be anisotropic.  Using
     Bruggeman correction [<a href=\"modelica://FCSys.UsersGuide.References.Weber2004\">Weber2004</a>, p.&nbsp;4696],
     the factor (<b><i>k</i></b>) within a phase should be set to &epsilon;<sup>-1/2</sup>
     along each axis, where &epsilon; is the volumetric filling ratio, or the ratio of the volume of the phase to the total volume of the subregion.
     The Bruggeman factor itself increases resistance by a &epsilon;<sup>-3/2</sup>, but a factor of &epsilon;<sup>-1</sup> is included inherently.</p>
 </html>"),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+              100}}), graphics));
 
   end PartialPhase;
 
@@ -1356,8 +1342,8 @@ public
   record ExchangeParams "Independence factors for an exchange process"
     extends Modelica.Icons.Record;
 
-    parameter Q.NumberAbsolute k_Phi[Axis]={1,1,1} "Translational"
-      annotation (Evaluate=true, Dialog(__Dymola_label=
+    parameter Q.NumberAbsolute k_Phi[Axis]={1,1,1} "Translational" annotation (
+        Evaluate=true, Dialog(__Dymola_label=
             "<html><i>k</i><sub>&Phi;</sub></html>"));
     parameter Q.NumberAbsolute k_Q=1 "Thermal" annotation (Evaluate=true,
         Dialog(__Dymola_label="<html><i>k<sub>Q</sub></i></html>"));

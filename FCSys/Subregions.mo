@@ -113,15 +113,14 @@ package Subregions "Control volumes with multi-species transfer and storage"
             'incle-'=true,
             'inclC+'=true,
             redeclare
-              Conditions.ByConnector.ThermalDiffusive.Single.Temperature 'C+'
-              (set(y=environment.T)),
+              Conditions.ByConnector.ThermalDiffusive.Single.Temperature 'C+'(
+                set(y=environment.T)),
             'e-'(redeclare function materialSpec =
                   Conditions.ByConnector.Boundary.Single.Material.current,
                 materialSet(y=currentSet.y))), gas(inclH2=true, H2(
               materialSet(y=environment.p_dry),
               redeclare function thermalSpec =
                   Conditions.ByConnector.Boundary.Single.Thermal.temperature,
-
               thermalSet(y=environment.T)))) annotation (Placement(
               transformation(
               extent={{-10,10},{10,-10}},
@@ -131,9 +130,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         Conditions.ByConnector.BoundaryBus.Single.Sink caBC(ionomer('inclH+'=
                 true, 'H+'(redeclare function materialSpec =
                   Conditions.ByConnector.Boundary.Single.Material.potential (
-                    redeclare package Data =
-                      FCSys.Characteristics.'H+'.Ionomer), materialSet(y=0))))
-          annotation (Placement(transformation(
+                    redeclare package Data = FCSys.Characteristics.'H+'.Ionomer),
+                materialSet(y=0)))) annotation (Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=270,
               origin={24,0})));
@@ -185,15 +183,14 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
           environment(T=333.15*U.K, RH=0.6));
 
-        Conditions.ByConnector.BoundaryBus.Single.Source anBC(ionomer(
-              'inclH+'=true, 'H+'(
+        Conditions.ByConnector.BoundaryBus.Single.Source anBC(ionomer('inclH+'=
+                true, 'H+'(
               thermalSet(y=environment.T),
               materialSet(y=0),
               redeclare function materialSpec =
                   Conditions.ByConnector.Boundary.Single.Material.potential (
-                    redeclare package Data =
-                      FCSys.Characteristics.'H+'.Ionomer)))) annotation (
-            Placement(transformation(
+                    redeclare package Data = FCSys.Characteristics.'H+'.Ionomer))))
+          annotation (Placement(transformation(
               extent={{-10,10},{10,-10}},
               rotation=270,
               origin={-24,0})));
@@ -285,8 +282,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         each inclTransZ=false,
         gas(each inclN2=true, N2(
             each zeta=k*FCSys.Characteristics.H2.Gas.zeta(),
-            p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_y + 1) for i
-                 in 1:n_y},
+            p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_y + 1) for i in
+                1:n_y},
             each upstreamY=false)),
         each inclTransX=false,
         each inclTransY=true) if n_y > 0
@@ -323,8 +320,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
         connect(subregion1.yPositive, subregion2.yNegative)
           "Not shown in the diagram";
       end if;
-      connect(subregions[n_y].yPositive, subregion2.yNegative) annotation (
-          Line(
+      connect(subregions[n_y].yPositive, subregion2.yNegative) annotation (Line(
           points={{6.10623e-16,10},{0,14},{1.22125e-15,16},{6.10623e-16,16},{
               6.10623e-16,20}},
           color={127,127,127},
@@ -397,8 +393,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             redeclare function materialSpec =
                 Conditions.ByConnector.Boundary.Single.Material.pressure,
             materialSet(y=environment.p_H2O),
-            thermalSet(y=environment.T)))) annotation (Placement(
-            transformation(
+            thermalSet(y=environment.T)))) annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=90,
             origin={-24,0})));
@@ -412,8 +407,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             redeclare function materialSpec =
                 Conditions.ByConnector.Boundary.Single.Material.pressure,
             materialSet(y=environment.p_H2O),
-            thermalSet(y=environment.T)))) annotation (Placement(
-            transformation(
+            thermalSet(y=environment.T)))) annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
             origin={24,0})));
@@ -443,9 +437,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
       extends Subregions(subregion1(gas(H2(zeta=k*Characteristics.H2.Gas.zeta()))),
           subregion2(gas(H2(zeta=k*FCSys.Characteristics.H2.Gas.zeta()))));
-      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated
-              =true) =
-            "Resources/Scripts/Dymola/Subregions.Examples.Echo.mos"
+      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated=
+                true) = "Resources/Scripts/Dymola/Subregions.Examples.Echo.mos"
             "Subregions.Examples.Echo.mos"));
 
     end Echo;
@@ -468,8 +461,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
             H2O(upstreamX=false),
             N2(upstreamX=false),
             O2(upstreamX=false))));
-      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated
-              =true) =
+      annotation (experiment(StopTime=5e-005), Commands(file(ensureTranslated=
+                true) =
             "Resources/Scripts/Dymola/Subregions.Examples.EchoCentral.mos"
             "Subregions.Examples.EchoCentral.mos"));
 
@@ -489,15 +482,15 @@ package Subregions "Control volumes with multi-species transfer and storage"
       output Q.Power P_ex=zI^2*R "Expected rate of heat generation";
       output Q.TemperatureAbsolute T=subregion.graphite.'C+'.T
         "Measured temperature";
-      output Q.TemperatureAbsolute T_ex=environment.T + subregion.graphite.
-          'C+'.theta*U.cm*P/(4*subregion.A[Axis.x]) "Expected temperature";
+      output Q.TemperatureAbsolute T_ex=environment.T + subregion.graphite.'C+'.theta
+          *U.cm*P/(4*subregion.A[Axis.x]) "Expected temperature";
 
       extends Examples.Subregion(
         'inclC+'=true,
         'incle-'=true,
         inclH2=false,
-        subregion(L={U.cm,U.mm,U.mm}, graphite('C+'(epsilon=1),'e-'(sigma=1e2
-                  *U.S/U.m))));
+        subregion(L={U.cm,U.mm,U.mm}, graphite('C+'(epsilon=1),'e-'(sigma=1e2*U.S
+                  /U.m))));
 
       Conditions.ByConnector.BoundaryBus.Single.Source BC1(graphite(
           'incle-'='incle-',
@@ -515,9 +508,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
       Conditions.ByConnector.BoundaryBus.Single.Sink BC2(graphite(
           'inclC+'=true,
           'incle-'='incle-',
-          redeclare
-            Conditions.ByConnector.ThermalDiffusive.Single.Temperature 'C+'(
-              set(y=environment.T)))) annotation (Placement(transformation(
+          redeclare Conditions.ByConnector.ThermalDiffusive.Single.Temperature
+            'C+'(set(y=environment.T)))) annotation (Placement(transformation(
             extent={{-10,10},{10,-10}},
             rotation=90,
             origin={24,0})));
@@ -580,8 +572,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         "Measured pressure difference";
       output Q.Length D=2*A/(subregion.L[Axis.y] + subregion.L[Axis.z]);
       output Q.Number Re=subregion.liquid.H2O.phi[Axis.x]*D*subregion.liquid.H2O.eta
-          *subregion.liquid.H2O.Data.m*subregion.liquid.H2O.rho if
-        environment.analysis "Reynolds number";
+          *subregion.liquid.H2O.Data.m*subregion.liquid.H2O.rho if environment.analysis
+        "Reynolds number";
       output Q.Pressure Deltap_Poiseuille=-32*subregion.L[Axis.x]*subregion.liquid.H2O.phi[
           Axis.x]/(D^2*subregion.liquid.H2O.eta)
         "Pressure difference according to Poiseuille's law";
@@ -598,8 +590,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclTransZ=true,
           liquid(inclH2O=true, H2O(initMaterial=Init.none))));
 
-      Conditions.ByConnector.BoundaryBus.Single.Source BC1(liquid(inclH2O=
-              true, H2O(
+      Conditions.ByConnector.BoundaryBus.Single.Source BC1(liquid(inclH2O=true,
+            H2O(
             redeclare Modelica.Blocks.Sources.Sine materialSet(
               amplitude=0.2*Vdot_large,
               offset=Vdot_large,
@@ -607,9 +599,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             redeclare function materialSpec =
                 Conditions.ByConnector.Boundary.Single.Material.volumeRate (
                   redeclare package Data = FCSys.Characteristics.H2O.Liquid),
-
-            thermalSet(y=environment.T)))) annotation (Placement(
-            transformation(
+            thermalSet(y=environment.T)))) annotation (Placement(transformation(
             extent={{-10,10},{10,-10}},
             rotation=270,
             origin={-24,0})));
@@ -620,32 +610,32 @@ package Subregions "Control volumes with multi-species transfer and storage"
             rotation=270,
             origin={24,0})));
 
-      Conditions.ByConnector.BoundaryBus.Single.Source BC3(liquid(inclH2O=
-              true, H2O(redeclare function thermalSpec =
+      Conditions.ByConnector.BoundaryBus.Single.Source BC3(liquid(inclH2O=true,
+            H2O(redeclare function thermalSpec =
                 Conditions.ByConnector.Boundary.Single.Thermal.heatRate,
               thermalSet(y=0)))) annotation (Placement(transformation(
             extent={{-10,10},{10,-10}},
             rotation=0,
             origin={0,-24})));
 
-      Conditions.ByConnector.BoundaryBus.Single.Source BC4(liquid(inclH2O=
-              true, H2O(redeclare function thermalSpec =
+      Conditions.ByConnector.BoundaryBus.Single.Source BC4(liquid(inclH2O=true,
+            H2O(redeclare function thermalSpec =
                 Conditions.ByConnector.Boundary.Single.Thermal.heatRate,
               thermalSet(y=0)))) annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=0,
             origin={0,24})));
 
-      Conditions.ByConnector.BoundaryBus.Single.Source BC5(liquid(inclH2O=
-              true, H2O(redeclare function thermalSpec =
+      Conditions.ByConnector.BoundaryBus.Single.Source BC5(liquid(inclH2O=true,
+            H2O(redeclare function thermalSpec =
                 Conditions.ByConnector.Boundary.Single.Thermal.heatRate,
               thermalSet(y=0)))) annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=315,
             origin={24,24})));
 
-      Conditions.ByConnector.BoundaryBus.Single.Source BC6(liquid(inclH2O=
-              true, H2O(redeclare function thermalSpec =
+      Conditions.ByConnector.BoundaryBus.Single.Source BC6(liquid(inclH2O=true,
+            H2O(redeclare function thermalSpec =
                 Conditions.ByConnector.Boundary.Single.Thermal.heatRate,
               thermalSet(y=0)))) annotation (Placement(transformation(
             extent={{-10,10},{10,-10}},
@@ -719,9 +709,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         "<html>Nafion sulfonate (C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S<sup>-</sup>, abbreviated as SO<sub>3</sub><sup>-</sup>)</html>"
         annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
             __Dymola_descriptionLabel=true));
-      parameter Boolean 'incle-'=false
-        "<html>Electrons (e<sup>-</sup>)</html>" annotation (choices(
-            __Dymola_checkBox=true), Dialog(group="Species",
+      parameter Boolean 'incle-'=false "<html>Electrons (e<sup>-</sup>)</html>"
+        annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
             __Dymola_descriptionLabel=true));
       parameter Boolean 'inclH+'=false "<html>Protons (H<sup>+</sup>)</html>"
         annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
@@ -788,9 +777,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         "<html>Nafion sulfonate (C<sub>19</sub>HF<sub>37</sub>O<sub>5</sub>S)</html>"
         annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
             __Dymola_descriptionLabel=true));
-      parameter Boolean 'incle-'=false
-        "<html>Electrons (e<sup>-</sup>)</html>" annotation (choices(
-            __Dymola_checkBox=true), Dialog(group="Species",
+      parameter Boolean 'incle-'=false "<html>Electrons (e<sup>-</sup>)</html>"
+        annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
             __Dymola_descriptionLabel=true));
       parameter Boolean 'inclH+'=false "<html>Protons (H<sup>+</sup>)</html>"
         annotation (choices(__Dymola_checkBox=true), Dialog(group="Species",
@@ -820,14 +808,14 @@ package Subregions "Control volumes with multi-species transfer and storage"
           final inclH2O=inclH2O,
           final inclN2=inclN2,
           final inclO2=inclO2,
-          H2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=
-                  StateSelect.always, each fixed=true)),
+          H2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=StateSelect.always,
+                each fixed=true)),
           H2O(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=
                   StateSelect.always, each fixed=true)),
-          N2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=
-                  StateSelect.always, each fixed=true)),
-          O2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=
-                  StateSelect.always, each fixed=true))),
+          N2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=StateSelect.always,
+                each fixed=true)),
+          O2(p_IC=environment.p - Deltap_IC/2, phi(each stateSelect=StateSelect.always,
+                each fixed=true))),
         graphite(final 'inclC+'='inclC+', final 'incle-'='incle-'),
         ionomer(final 'inclSO3-'='inclSO3-', final 'inclH+'='inclH+'),
         liquid(H2O(epsilon_IC=0.25)))
@@ -843,21 +831,20 @@ package Subregions "Control volumes with multi-species transfer and storage"
           each final inclN2=inclN2,
           each final inclO2=inclO2,
           H2(p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_x + 1) for i
-                 in 1:n_x}, each phi(each stateSelect=StateSelect.always,
-                each fixed=true)),
+                 in 1:n_x}, each phi(each stateSelect=StateSelect.always, each
+                fixed=true)),
           H2O(p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_x + 1) for i
-                 in 1:n_x}, each phi(each stateSelect=StateSelect.always,
-                each fixed=true)),
+                 in 1:n_x}, each phi(each stateSelect=StateSelect.always, each
+                fixed=true)),
           N2(p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_x + 1) for i
-                 in 1:n_x}, each phi(each stateSelect=StateSelect.always,
-                each fixed=true)),
+                 in 1:n_x}, each phi(each stateSelect=StateSelect.always, each
+                fixed=true)),
           O2(p_IC={environment.p - Deltap_IC/2 - i*Deltap_IC/(n_x + 1) for i
-                 in 1:n_x}, each phi(each stateSelect=StateSelect.always,
-                each fixed=true))),
+                 in 1:n_x}, each phi(each stateSelect=StateSelect.always, each
+                fixed=true))),
         graphite(each final 'inclC+'='inclC+', each final 'incle-'='incle-'),
+        ionomer(each final 'inclSO3-'='inclSO3-', each final 'inclH+'='inclH+'),
 
-        ionomer(each final 'inclSO3-'='inclSO3-', each final 'inclH+'=
-              'inclH+'),
         liquid(H2O(each epsilon_IC=0.25))) if n_x > 0
         annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
@@ -894,8 +881,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
         connect(subregion1.xPositive, subregion2.xNegative)
           "Not shown in the diagram";
       end if;
-      connect(subregions[n_x].xPositive, subregion2.xNegative) annotation (
-          Line(
+      connect(subregions[n_x].xPositive, subregion2.xNegative) annotation (Line(
           points={{10,6.10623e-016},{10,6.10623e-016}},
           color={127,127,127},
           thickness=0.5,
@@ -904,8 +890,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
       annotation (experiment(
           StopTime=2,
           Tolerance=1e-006,
-          __Dymola_Algorithm="Dassl"), Commands(file(ensureTranslated=true)
-             = "Resources/Scripts/Dymola/Subregions.Examples.Subregions.mos"
+          __Dymola_Algorithm="Dassl"), Commands(file(ensureTranslated=true) =
+            "Resources/Scripts/Dymola/Subregions.Examples.Subregions.mos"
             "Subregions.Examples.Subregions.mos"));
     end Subregions;
 
@@ -920,8 +906,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
       annotation (Commands(file=
               "Resources/Scripts/Dymola/Subregions.Examples.ThermalConduction.mos"
-            "Subregions.Examples.ThermalConduction.mos"), experiment(StopTime
-            =500, __Dymola_Algorithm="Dassl"));
+            "Subregions.Examples.ThermalConduction.mos"), experiment(StopTime=
+              500,__Dymola_Algorithm="Dassl"));
 
     end ThermalConduction;
 
@@ -933,8 +919,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
         subregion1(gas(N2(
               T_IC=subregion1.graphite.'C+'.T_IC,
               phi(stateSelect=StateSelect.always, displayUnit="mm/s"),
-              phi_boundaries(each displayUnit="mm/s"))), graphite('C+'(
-                epsilon=0.5))),
+              phi_boundaries(each displayUnit="mm/s"))), graphite('C+'(epsilon=
+                  0.5))),
         subregions(
           common(each k_Phi={10,10,10}),
           gas(N2(each phi(each stateSelect=StateSelect.always, displayUnit=
@@ -946,8 +932,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
 
       annotation (Commands(file=
               "Resources/Scripts/Dymola/Subregions.Examples.ThermalConductionConvection.mos"
-            "Subregions.Examples.ThermalConductionConvection.mos"),
-          experiment(StopTime=400, __Dymola_Algorithm="Dassl"));
+            "Subregions.Examples.ThermalConductionConvection.mos"), experiment(
+            StopTime=400, __Dymola_Algorithm="Dassl"));
 
     end ThermalConductionConvection;
 
@@ -964,8 +950,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
       n_inter=2,
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group
-          ="Phases (click to edit)"), Placement(transformation(extent={{-30,-22},
+      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
+            "Phases (click to edit)"),Placement(transformation(extent={{-30,-22},
               {-10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -974,8 +960,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
       final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
 
       final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Graphite" annotation (
-        Dialog(group="Phases (click to edit)"), Placement(transformation(
-            extent={{10,-22},{30,-2}})));
+        Dialog(group="Phases (click to edit)"), Placement(transformation(extent
+            ={{10,-22},{30,-2}})));
 
     FCSys.Phases.Ionomer ionomer(
       n_inter=1,
@@ -990,8 +976,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q}) "Liquid" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-70,
-              -22},{-50,-2}})));
+            "Phases (click to edit)"), Placement(transformation(extent={{-70,-22},
+              {-50,-2}})));
 
     Chemistry.HOR HOR(final n_trans=n_trans) if inclHOR
       "Hydrogen oxidation reaction"
@@ -1008,29 +994,29 @@ package Subregions "Control volumes with multi-species transfer and storage"
       annotation (Dialog(group="Independence factors"));
 
     Connectors.BoundaryBus xNegative if inclTransX
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-120,-40},{-100,-20}}), iconTransformation(
-            extent={{-110,-10},{-90,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-120,-40},{-100,-20}}), iconTransformation(extent={{-110,-10},
+              {-90,10}})));
     Connectors.BoundaryBus yNegative if inclTransY
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-96,-64},{-76,-44}}), iconTransformation(
-            extent={{-10,-110},{10,-90}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-96,-64},{-76,-44}}), iconTransformation(extent={{-10,-110},
+              {10,-90}})));
     Connectors.BoundaryBus zNegative if inclTransZ
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{88,8},{108,28}}), iconTransformation(extent
-            ={{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{88,8},{108,28}}), iconTransformation(extent={{40,40},{60,
+              60}})));
     Connectors.BoundaryBus xPositive if inclTransX
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{100,-4},{120,16}}), iconTransformation(
-            extent={{90,-10},{110,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{100,-4},{120,16}}), iconTransformation(extent={{90,-10},{
+              110,10}})));
     Connectors.BoundaryBus yPositive if inclTransY
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{76,20},{96,40}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{76,20},{96,40}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTransZ
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-108,-52},{-88,-32}}), iconTransformation(
-            extent={{-60,-60},{-40,-40}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-108,-52},{-88,-32}}), iconTransformation(extent={{-60,-60},
+              {-40,-40}})));
 
     Chemistry.CapillaryVolume volume(
       final V=V,
@@ -1041,20 +1027,19 @@ package Subregions "Control volumes with multi-species transfer and storage"
           transformation(extent={{-24,-80},{-4,-60}})));
 
   protected
-    final parameter Boolean inclHOR=graphite.'incle-' and ionomer.'inclH+'
-         and gas.inclH2 "Include the hydrogen oxidation reaction";
-    final parameter Boolean inclORR=graphite.'incle-' and ionomer.'inclH+'
-         and gas.inclO2 and (gas.inclH2O or liquid.inclH2O)
+    final parameter Boolean inclHOR=graphite.'incle-' and ionomer.'inclH+' and
+        gas.inclH2 "Include the hydrogen oxidation reaction";
+    final parameter Boolean inclORR=graphite.'incle-' and ionomer.'inclH+' and
+        gas.inclO2 and (gas.inclH2O or liquid.inclH2O)
       "Include the oxygen reduction reaction";
 
     outer Conditions.Environment environment "Environmental conditions";
-    Connectors.InertNode exchCommon
-      "Connector for exchange among all species" annotation (HideResult=true,
-        Placement(transformation(extent={{76,32},{96,52}}),
-          iconTransformation(extent={{100,18},{120,38}})));
+    Connectors.InertNode exchCommon "Connector for exchange among all species"
+      annotation (HideResult=true, Placement(transformation(extent={{76,32},{96,
+              52}}), iconTransformation(extent={{100,18},{120,38}})));
     Connectors.InertNode exchGasGraphite
-      "Connector for exchange between gas and graphite" annotation (
-        HideResult=true, Placement(transformation(extent={{76,44},{96,64}}),
+      "Connector for exchange between gas and graphite" annotation (HideResult=
+          true, Placement(transformation(extent={{76,44},{96,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
 
     Connectors.Activity activity(final n_trans=n_trans) if gas.inclH2O or
@@ -1308,11 +1293,11 @@ process, there is a difference.</li></ol>
    <a href=\"modelica://FCSys.Subregions.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,-80},
               {120,60}}), graphics={Text(
-            extent={{78,-44},{118,-50}},
-            lineColor={127,127,127},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid,
-            textString="(connections not shown
+              extent={{78,-44},{118,-50}},
+              lineColor={127,127,127},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              textString="(connections not shown
 in diagram)")}));
   end Subregion;
 
@@ -1325,29 +1310,28 @@ in diagram)")}));
           transformation(extent={{-20,0},{0,20}})));
 
     Connectors.BoundaryBus xNegative if inclTransX
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-60,0},{-40,20}}), iconTransformation(
-            extent={{-110,-10},{-90,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-60,0},{-40,20}}), iconTransformation(extent={{-110,-10},{
+              -90,10}})));
     Connectors.BoundaryBus yNegative if inclTransY
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-20,-40},{0,-20}}), iconTransformation(
-            extent={{-10,-110},{10,-90}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-20,-40},{0,-20}}), iconTransformation(extent={{-10,-110},
+              {10,-90}})));
     Connectors.BoundaryBus zNegative if inclTransZ
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{0,20},{20,40}}), iconTransformation(extent=
-              {{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{0,20},{20,40}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTransX
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{20,0},{40,20}}), iconTransformation(extent=
-              {{90,-10},{110,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{20,0},{40,20}}), iconTransformation(extent={{90,-10},{110,
+              10}})));
     Connectors.BoundaryBus yPositive if inclTransY
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{-20,40},{0,60}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{-20,40},{0,60}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTransZ
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-40,-20},{-20,0}}), iconTransformation(
-            extent={{-60,-60},{-40,-40}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-40,-20},{-20,0}}), iconTransformation(extent={{-60,-60},{
+              -40,-40}})));
 
     Chemistry.CapillaryVolume volume(
       final V=V,
@@ -1411,22 +1395,21 @@ in diagram)")}));
    <p>Please see the documentation of the
    <a href=\"modelica://FCSys.Subregions.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
 
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{
-              40,60}}), graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-60,-40},{40,
+              60}}), graphics));
   end SubregionIonomer;
 
   model SubregionNoIonomer "Subregion with all phases except ionomer"
     import Modelica.Constants.inf;
 
-    extends PartialSubregion(final n_spec=gas.n_spec + graphite.n_spec +
-          liquid.n_spec);
+    extends PartialSubregion(final n_spec=gas.n_spec + graphite.n_spec + liquid.n_spec);
 
     FCSys.Phases.Gas gas(
       n_inter=2,
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group
-          ="Phases (click to edit)"), Placement(transformation(extent={{-10,-22},
+      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
+            "Phases (click to edit)"),Placement(transformation(extent={{-10,-22},
               {10,-2}})));
 
     FCSys.Phases.Graphite graphite(
@@ -1435,16 +1418,16 @@ in diagram)")}));
       final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
 
       final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Graphite" annotation (
-        Dialog(group="Phases (click to edit)"), Placement(transformation(
-            extent={{30,-22},{50,-2}})));
+        Dialog(group="Phases (click to edit)"), Placement(transformation(extent
+            ={{30,-22},{50,-2}})));
 
     FCSys.Phases.Liquid liquid(
       n_inter=1,
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans]},
       final k_inter_Q={common.k_Q}) "Liquid" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-50,
-              -22},{-30,-2}})));
+            "Phases (click to edit)"), Placement(transformation(extent={{-50,-22},
+              {-30,-2}})));
 
     // Independence factors
     Phases.ExchangeParams common(k_Phi={0.45,0.45,0.45}) "Among all phases"
@@ -1454,29 +1437,28 @@ in diagram)")}));
       annotation (Dialog(group="Independence factors"));
 
     Connectors.BoundaryBus xNegative if inclTransX
-      "Negative boundary along the x axis" annotation (Placement(
-          transformation(extent={{-100,-40},{-80,-20}}), iconTransformation(
-            extent={{-110,-10},{-90,10}})));
+      "Negative boundary along the x axis" annotation (Placement(transformation(
+            extent={{-100,-40},{-80,-20}}), iconTransformation(extent={{-110,-10},
+              {-90,10}})));
     Connectors.BoundaryBus yNegative if inclTransY
-      "Negative boundary along the y axis" annotation (Placement(
-          transformation(extent={{-76,-64},{-56,-44}}), iconTransformation(
-            extent={{-10,-110},{10,-90}})));
+      "Negative boundary along the y axis" annotation (Placement(transformation(
+            extent={{-76,-64},{-56,-44}}), iconTransformation(extent={{-10,-110},
+              {10,-90}})));
     Connectors.BoundaryBus zNegative if inclTransZ
-      "Negative boundary along the z axis" annotation (Placement(
-          transformation(extent={{68,8},{88,28}}), iconTransformation(extent=
-              {{40,40},{60,60}})));
+      "Negative boundary along the z axis" annotation (Placement(transformation(
+            extent={{68,8},{88,28}}), iconTransformation(extent={{40,40},{60,60}})));
     Connectors.BoundaryBus xPositive if inclTransX
-      "Positive boundary along the x axis" annotation (Placement(
-          transformation(extent={{80,-4},{100,16}}), iconTransformation(
-            extent={{90,-10},{110,10}})));
+      "Positive boundary along the x axis" annotation (Placement(transformation(
+            extent={{80,-4},{100,16}}), iconTransformation(extent={{90,-10},{
+              110,10}})));
     Connectors.BoundaryBus yPositive if inclTransY
-      "Positive boundary along the y axis" annotation (Placement(
-          transformation(extent={{56,20},{76,40}}), iconTransformation(extent
-            ={{-10,90},{10,110}})));
+      "Positive boundary along the y axis" annotation (Placement(transformation(
+            extent={{56,20},{76,40}}), iconTransformation(extent={{-10,90},{10,
+              110}})));
     Connectors.BoundaryBus zPositive if inclTransZ
-      "Positive boundary along the z axis" annotation (Placement(
-          transformation(extent={{-88,-52},{-68,-32}}), iconTransformation(
-            extent={{-60,-60},{-40,-40}})));
+      "Positive boundary along the z axis" annotation (Placement(transformation(
+            extent={{-88,-52},{-68,-32}}), iconTransformation(extent={{-60,-60},
+              {-40,-40}})));
 
     Chemistry.CapillaryVolume volume(
       final V=V,
@@ -1490,12 +1472,12 @@ in diagram)")}));
     outer Conditions.Environment environment "Environmental conditions";
 
     // Exchange
-    Connectors.InertNode exchCommon "Among all phases" annotation (HideResult
-        =true, Placement(transformation(extent={{56,32},{76,52}}),
+    Connectors.InertNode exchCommon "Among all phases" annotation (HideResult=
+          true,Placement(transformation(extent={{56,32},{76,52}}),
           iconTransformation(extent={{100,18},{120,38}})));
-    Connectors.InertNode exchGasGraphite "Between gas and graphite"
-      annotation (HideResult=true, Placement(transformation(extent={{56,44},{
-              76,64}}), iconTransformation(extent={{100,18},{120,38}})));
+    Connectors.InertNode exchGasGraphite "Between gas and graphite" annotation
+      (HideResult=true, Placement(transformation(extent={{56,44},{76,64}}),
+          iconTransformation(extent={{100,18},{120,38}})));
 
   equation
     // Boundaries
@@ -1663,8 +1645,8 @@ in diagram)")}));
    <p>Please see the documentation of the
    <a href=\"modelica://FCSys.Subregions.PartialSubregion\">PartialSubregion</a> model.</p></html>"),
 
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},
-              {100,60}}),graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-80},{
+              100,60}}), graphics));
   end SubregionNoIonomer;
 
   partial model PartialSubregion
@@ -1676,8 +1658,8 @@ in diagram)")}));
 
     // Geometric parameters
     inner parameter Q.Length L[Axis](each min=Modelica.Constants.small) = {U.cm,
-      U.cm,U.cm} "Lengths" annotation (Dialog(group="Geometry",
-          __Dymola_label="<html><b><i>L</i></b></html>"));
+      U.cm,U.cm} "Lengths" annotation (Dialog(group="Geometry", __Dymola_label=
+            "<html><b><i>L</i></b></html>"));
 
     // Assumptions
     // -----------
@@ -1823,8 +1805,8 @@ in diagram)")}));
             extent={{-100,56},{100,96}},
             textString="%name",
             lineColor={0,0,0})}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}),graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics));
 
   end PartialSubregion;
 

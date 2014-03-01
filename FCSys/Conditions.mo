@@ -52,13 +52,13 @@ package Conditions "Models to specify and measure operating conditions"
             rotation=90,
             origin={-30,-20})));
 
-      ByConnector.BoundaryBus.Single.Sink sink2(gas(inclH2=true)) annotation
-        (Placement(transformation(
+      ByConnector.BoundaryBus.Single.Sink sink2(gas(inclH2=true)) annotation (
+          Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
             origin={30,-20})));
-      ByConnector.BoundaryBus.Single.Sink sink1(gas(inclH2=true)) annotation
-        (Placement(transformation(
+      ByConnector.BoundaryBus.Single.Sink sink1(gas(inclH2=true)) annotation (
+          Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
             origin={30,20})));
@@ -84,8 +84,8 @@ package Conditions "Models to specify and measure operating conditions"
           color={127,127,127},
           thickness=0.5,
           smooth=Smooth.None));
-      annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent=
-                {{-100,-100},{100,100}}), graphics), Commands(file=
+      annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{
+                -100,-100},{100,100}}), graphics), Commands(file=
               "Resources/Scripts/Dymola/Conditions.Examples.Router.mos"
             "Conditions.Examples.Router.mos"));
     end Router;
@@ -164,8 +164,7 @@ package Conditions "Models to specify and measure operating conditions"
           points={{70,30},{60,30},{60,-2},{-6,-2}},
           color={191,0,0},
           smooth=Smooth.None));
-      connect(anodeAdapter.liquidPort, liquidVolume.ports[1]) annotation (
-          Line(
+      connect(anodeAdapter.liquidPort, liquidVolume.ports[1]) annotation (Line(
           points={{-6,-6},{80,-6},{80,20}},
           color={0,127,255},
           smooth=Smooth.None));
@@ -234,8 +233,7 @@ package Conditions "Models to specify and measure operating conditions"
       Conditions.Adapters.ChemicalReaction C(
         m=U.g/U.mol,
         final n_trans=n_trans,
-        n=2)
-        annotation (Placement(transformation(extent={{30,-30},{10,-10}})));
+        n=2) annotation (Placement(transformation(extent={{30,-30},{10,-10}})));
 
     protected
       final inner constant Boolean inclTrans[Axis]={inclTransX,inclTransY,
@@ -285,8 +283,8 @@ package Conditions "Models to specify and measure operating conditions"
 
       extends FCSys.Icons.Names.Top1;
 
-      Connectors.Amagat amagat "Connector for additivity of volume"
-        annotation (Placement(transformation(extent={{-30,-10},{-10,10}}),
+      Connectors.Amagat amagat "Connector for additivity of volume" annotation
+        (Placement(transformation(extent={{-30,-10},{-10,10}}),
             iconTransformation(extent={{-50,-10},{-30,10}})));
       Connectors.Dalton dalton "Connector for additivity of pressure"
         annotation (Placement(transformation(extent={{10,-10},{30,10}}),
@@ -309,14 +307,14 @@ package Conditions "Models to specify and measure operating conditions"
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
                 100,100}}), graphics={Line(
-              points={{-30,0},{30,0}},
-              color={47,107,251},
-              smooth=Smooth.None), Polygon(
-              points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-              lineColor={47,107,251},
-              smooth=Smooth.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}));
+                  points={{-30,0},{30,0}},
+                  color={47,107,251},
+                  smooth=Smooth.None),Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={47,107,251},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}));
     end AmagatDalton;
 
     model ChemicalReaction
@@ -375,25 +373,21 @@ package Conditions "Models to specify and measure operating conditions"
     <p>For more information, please see the documentation in the
     <a href=\"modelica://FCSys.Connectors\">Connectors</a> package.</p></html>"),
 
-        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                {100,100}}), graphics={
-            Line(
-              points={{-30,0},{30,0}},
-              color={255,195,38},
-              smooth=Smooth.None),
-            Text(
-              extent={{-100,20},{100,60}},
-              lineColor={0,0,0},
-              textString="%n %name"),
-            Polygon(
-              points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-              lineColor={255,195,38},
-              smooth=Smooth.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid)}),
+        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+                100,100}}), graphics={Line(
+                  points={{-30,0},{30,0}},
+                  color={255,195,38},
+                  smooth=Smooth.None),Text(
+                  extent={{-100,20},{100,60}},
+                  lineColor={0,0,0},
+                  textString="%n %name"),Polygon(
+                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                  lineColor={255,195,38},
+                  smooth=Smooth.None,
+                  fillColor={255,255,255},
+                  fillPattern=FillPattern.Solid)}),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
-
     end ChemicalReaction;
 
     package MSL
@@ -410,31 +404,28 @@ package Conditions "Models to specify and measure operating conditions"
                 "Material properties"));
         replaceable package LiquidMedium =
             Modelica.Media.Water.ConstantPropertyLiquidWater constrainedby
-          Modelica.Media.Interfaces.PartialMedium
-          "Medium model for the liquid" annotation (choicesAllMatching=true,
-            Dialog(group="Material properties"));
+          Modelica.Media.Interfaces.PartialMedium "Medium model for the liquid"
+          annotation (choicesAllMatching=true, Dialog(group=
+                "Material properties"));
 
         Connectors.BoundaryBus boundary
           "Multi-species connector for translational momentum and heat"
           annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
               iconTransformation(extent={{-50,-10},{-30,10}})));
         Modelica.Fluid.Interfaces.FluidPort_b gasPort(redeclare final package
-            Medium = GasMedium) "Modelica fluid port for the gas" annotation
-          (Placement(transformation(extent={{50,50},{70,70}}),
+            Medium = GasMedium) "Modelica fluid port for the gas" annotation (
+            Placement(transformation(extent={{50,50},{70,70}}),
               iconTransformation(extent={{30,50},{50,70}})));
         Modelica.Electrical.Analog.Interfaces.NegativePin pin
-          "Modelica electrical pin" annotation (Placement(transformation(
-                extent={{50,10},{70,30}}), iconTransformation(extent={{30,10},
-                  {50,30}})));
+          "Modelica electrical pin" annotation (Placement(transformation(extent
+                ={{50,10},{70,30}}), iconTransformation(extent={{30,10},{50,30}})));
         Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-          "Modelica heat port" annotation (Placement(transformation(extent={{
-                  50,-30},{70,-10}}), iconTransformation(extent={{30,-30},{50,
-                  -10}})));
+          "Modelica heat port" annotation (Placement(transformation(extent={{50,
+                  -30},{70,-10}}), iconTransformation(extent={{30,-30},{50,-10}})));
         Modelica.Fluid.Interfaces.FluidPort_b liquidPort(redeclare final
-            package Medium = LiquidMedium)
-          "Modelica fluid port for the liquid" annotation (Placement(
-              transformation(extent={{50,-70},{70,-50}}), iconTransformation(
-                extent={{30,-70},{50,-50}})));
+            package Medium = LiquidMedium) "Modelica fluid port for the liquid"
+          annotation (Placement(transformation(extent={{50,-70},{70,-50}}),
+              iconTransformation(extent={{30,-70},{50,-50}})));
         Phases.AnodeGas gas(redeclare final package Medium = GasMedium)
           "Gas subadapter"
           annotation (Placement(transformation(extent={{-10,30},{10,50}})));
@@ -477,7 +468,6 @@ package Conditions "Models to specify and measure operating conditions"
             smooth=Smooth.None));
         connect(liquid.boundary, boundary.liquid) annotation (Line(
             points={{-4,-40},{-20,-40},{-20,5.55112e-016},{-40,5.55112e-016}},
-
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
@@ -491,72 +481,60 @@ package Conditions "Models to specify and measure operating conditions"
             color={191,0,0},
             smooth=Smooth.None));
 
-        annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={
-                  {-100,-100},{100,100}}), graphics={
-              Line(
-                points={{-40,0},{-20,0}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{0,60},{40,60}},
-                color={0,127,255},
-                smooth=Smooth.None),
-              Line(
-                points={{-20,60},{-20,-60}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{0,-20},{40,-20}},
-                color={191,0,0},
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                lineColor={191,0,0},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Polygon(
-                points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
-                lineColor={0,127,255},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{0,-60},{40,-60}},
-                color={0,127,255},
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
-                lineColor={0,127,255},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{10,20},{40,20}},
-                color={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                lineColor={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Text(
-                extent={{-20,-48},{20,-72}},
-                lineColor={127,127,127},
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid,
-                textString="l"),
-              Text(
-                extent={{-20,72},{20,48}},
-                lineColor={127,127,127},
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid,
-                textString="g")}), Diagram(coordinateSystem(
+        annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+                  -100},{100,100}}), graphics={Line(
+                      points={{-40,0},{-20,0}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{0,60},{40,60}},
+                      color={0,127,255},
+                      smooth=Smooth.None),Line(
+                      points={{-20,60},{-20,-60}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{0,-20},{40,-20}},
+                      color={191,0,0},
+                      smooth=Smooth.None),Polygon(
+                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                      lineColor={191,0,0},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Polygon(
+                      points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
+                      lineColor={0,127,255},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{0,-60},{40,-60}},
+                      color={0,127,255},
+                      smooth=Smooth.None),Polygon(
+                      points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
+                      lineColor={0,127,255},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{10,20},{40,20}},
+                      color={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None),Polygon(
+                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                      lineColor={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Text(
+                      extent={{-20,-48},{20,-72}},
+                      lineColor={127,127,127},
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid,
+                      textString="l"),Text(
+                      extent={{-20,72},{20,48}},
+                      lineColor={127,127,127},
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid,
+                      textString="g")}), Diagram(coordinateSystem(
                 preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
               graphics));
       end Anode;
@@ -571,30 +549,28 @@ package Conditions "Models to specify and measure operating conditions"
                 "Material properties"));
         replaceable package LiquidMedium =
             Modelica.Media.Water.ConstantPropertyLiquidWater constrainedby
-          Modelica.Media.Interfaces.PartialMedium
-          "Medium model for the liquid" annotation (choicesAllMatching=true,
-            Dialog(group="Material properties"));
+          Modelica.Media.Interfaces.PartialMedium "Medium model for the liquid"
+          annotation (choicesAllMatching=true, Dialog(group=
+                "Material properties"));
 
         Connectors.BoundaryBus boundary
           "Multi-species connector for translational momentum and heat"
           annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
               iconTransformation(extent={{-50,-10},{-30,10}})));
         Modelica.Fluid.Interfaces.FluidPort_b gasPort(redeclare final package
-            Medium = GasMedium) "Modelica fluid port for the gas" annotation
-          (Placement(transformation(extent={{50,70},{70,90}}),
+            Medium = GasMedium) "Modelica fluid port for the gas" annotation (
+            Placement(transformation(extent={{50,70},{70,90}}),
               iconTransformation(extent={{30,50},{50,70}})));
         Modelica.Electrical.Analog.Interfaces.NegativePin pin
-          "Modelica electrical pin" annotation (Placement(transformation(
-                extent={{50,30},{70,50}}), iconTransformation(extent={{30,10},
-                  {50,30}})));
+          "Modelica electrical pin" annotation (Placement(transformation(extent
+                ={{50,30},{70,50}}), iconTransformation(extent={{30,10},{50,30}})));
         Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-          "Modelica heat port" annotation (Placement(transformation(extent={{
-                  50,-12},{70,8}}), iconTransformation(extent={{30,-30},{50,-10}})));
+          "Modelica heat port" annotation (Placement(transformation(extent={{50,
+                  -12},{70,8}}), iconTransformation(extent={{30,-30},{50,-10}})));
         Modelica.Fluid.Interfaces.FluidPort_b liquidPort(redeclare final
-            package Medium = LiquidMedium)
-          "Modelica fluid port for the liquid" annotation (Placement(
-              transformation(extent={{50,-48},{70,-28}}), iconTransformation(
-                extent={{30,-70},{50,-50}})));
+            package Medium = LiquidMedium) "Modelica fluid port for the liquid"
+          annotation (Placement(transformation(extent={{50,-48},{70,-28}}),
+              iconTransformation(extent={{30,-70},{50,-50}})));
 
         Phases.CathodeGas gas(redeclare final package Medium = GasMedium)
           "Gas subadapter"
@@ -621,8 +597,8 @@ package Conditions "Models to specify and measure operating conditions"
             color={191,0,0},
             smooth=Smooth.None));
         connect(graphite.boundary, boundary.graphite) annotation (Line(
-            points={{-4,6.10623e-016},{-20,6.10623e-016},{-20,5.55112e-016},{
-                -40,5.55112e-016}},
+            points={{-4,6.10623e-016},{-20,6.10623e-016},{-20,5.55112e-016},{-40,
+                5.55112e-016}},
             color={127,127,127},
             smooth=Smooth.None,
             thickness=0.5));
@@ -637,7 +613,6 @@ package Conditions "Models to specify and measure operating conditions"
             smooth=Smooth.None));
         connect(liquid.boundary, boundary.liquid) annotation (Line(
             points={{-4,-40},{-20,-40},{-20,5.55112e-016},{-40,5.55112e-016}},
-
             color={127,127,127},
             thickness=0.5,
             smooth=Smooth.None));
@@ -651,71 +626,59 @@ package Conditions "Models to specify and measure operating conditions"
             color={191,0,0},
             smooth=Smooth.None));
 
-        annotation (Icon(graphics={
-              Line(
-                points={{-40,0},{-20,0}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{0,60},{40,60}},
-                color={0,127,255},
-                smooth=Smooth.None),
-              Line(
-                points={{-20,60},{-20,-60}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{0,-20},{40,-20}},
-                color={191,0,0},
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                lineColor={191,0,0},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Polygon(
-                points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
-                lineColor={0,127,255},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{0,-60},{40,-60}},
-                color={0,127,255},
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
-                lineColor={0,127,255},
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{10,20},{40,20}},
-                color={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                lineColor={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Text(
-                extent={{-20,-48},{20,-72}},
-                lineColor={127,127,127},
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid,
-                textString="l"),
-              Text(
-                extent={{-20,72},{20,48}},
-                lineColor={127,127,127},
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid,
-                textString="g")}), Diagram(coordinateSystem(
+        annotation (Icon(graphics={Line(
+                      points={{-40,0},{-20,0}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{0,60},{40,60}},
+                      color={0,127,255},
+                      smooth=Smooth.None),Line(
+                      points={{-20,60},{-20,-60}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{0,-20},{40,-20}},
+                      color={191,0,0},
+                      smooth=Smooth.None),Polygon(
+                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                      lineColor={191,0,0},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Polygon(
+                      points={{0,80},{-20,60},{0,40},{20,60},{0,80}},
+                      lineColor={0,127,255},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{0,-60},{40,-60}},
+                      color={0,127,255},
+                      smooth=Smooth.None),Polygon(
+                      points={{0,-40},{-20,-60},{0,-80},{20,-60},{0,-40}},
+                      lineColor={0,127,255},
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{10,20},{40,20}},
+                      color={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None),Polygon(
+                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                      lineColor={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Text(
+                      extent={{-20,-48},{20,-72}},
+                      lineColor={127,127,127},
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid,
+                      textString="l"),Text(
+                      extent={{-20,72},{20,48}},
+                      lineColor={127,127,127},
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid,
+                      textString="g")}), Diagram(coordinateSystem(
                 preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
               graphics));
       end Cathode;
@@ -739,13 +702,12 @@ package Conditions "Models to specify and measure operating conditions"
             __Dymola_descriptionLabel=true,
             __Dymola_label="<html>Electrons (e<sup>-</sup>)</html>"));
 
-        Connectors.BoundaryBus boundary "Multi-species connector" annotation
-          (Placement(transformation(extent={{-50,-10},{-30,10}}),
+        Connectors.BoundaryBus boundary "Multi-species connector" annotation (
+            Placement(transformation(extent={{-50,-10},{-30,10}}),
               iconTransformation(extent={{-50,-10},{-30,10}})));
         Modelica.Electrical.Analog.Interfaces.NegativePin pin if 'incle-'
-          "Modelica electrical pin" annotation (Placement(transformation(
-                extent={{30,10},{50,30}}), iconTransformation(extent={{30,10},
-                  {50,30}})));
+          "Modelica electrical pin" annotation (Placement(transformation(extent
+                ={{30,10},{50,30}}), iconTransformation(extent={{30,10},{50,30}})));
         Phases.Graphite graphite(final 'inclC+'='inclC+', final 'incle-'=
               'incle-') "Graphite subadapter"
           annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -771,98 +733,84 @@ package Conditions "Models to specify and measure operating conditions"
             points={{4,-2},{20,-2},{20,-20},{40,-20}},
             color={191,0,0},
             smooth=Smooth.None));
-        annotation (Icon(graphics={
-              Line(
-                points={{0,20},{30,20}},
-                color={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None),
-              Line(
-                points={{-20,20},{-20,0}},
-                color={127,127,127},
-                visible='incle-',
-                smooth=Smooth.None),
-              Line(
-                points={{-20,0},{-20,-20}},
-                color={127,127,127},
-                visible='inclC+',
-                smooth=Smooth.None),
-              Line(
-                points={{0,-20},{30,-20}},
-                color={140,0,0},
-                visible='inclC+',
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                lineColor={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Polygon(
-                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                lineColor={140,0,0},
-                visible='inclC+',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{-30,0},{-20,0}},
-                color={127,127,127},
-                visible='incle-' or 'inclC+',
-                smooth=Smooth.None),
-              Line(
-                points={{0,-20},{40,-20}},
-                color={140,0,0},
-                visible='inclC+',
-                smooth=Smooth.None),
-              Line(
-                points={{10,20},{40,20}},
-                color={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None),
-              Polygon(
-                points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                lineColor={140,0,0},
-                visible='inclC+',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Polygon(
-                points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                lineColor={0,0,255},
-                visible='incle-',
-                smooth=Smooth.None,
-                fillColor={255,255,255},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{-20,0},{-20,20}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{-20,-20},{-20,0}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5),
-              Line(
-                points={{-40,0},{-20,0}},
-                color={127,127,127},
-                smooth=Smooth.None,
-                thickness=0.5)}));
+        annotation (Icon(graphics={Line(
+                      points={{0,20},{30,20}},
+                      color={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None),Line(
+                      points={{-20,20},{-20,0}},
+                      color={127,127,127},
+                      visible='incle-',
+                      smooth=Smooth.None),Line(
+                      points={{-20,0},{-20,-20}},
+                      color={127,127,127},
+                      visible='inclC+',
+                      smooth=Smooth.None),Line(
+                      points={{0,-20},{30,-20}},
+                      color={140,0,0},
+                      visible='inclC+',
+                      smooth=Smooth.None),Polygon(
+                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                      lineColor={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Polygon(
+                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                      lineColor={140,0,0},
+                      visible='inclC+',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{-30,0},{-20,0}},
+                      color={127,127,127},
+                      visible='incle-' or 'inclC+',
+                      smooth=Smooth.None),Line(
+                      points={{0,-20},{40,-20}},
+                      color={140,0,0},
+                      visible='inclC+',
+                      smooth=Smooth.None),Line(
+                      points={{10,20},{40,20}},
+                      color={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None),Polygon(
+                      points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                      lineColor={140,0,0},
+                      visible='inclC+',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Polygon(
+                      points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                      lineColor={0,0,255},
+                      visible='incle-',
+                      smooth=Smooth.None,
+                      fillColor={255,255,255},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{-20,0},{-20,20}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{-20,-20},{-20,0}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5),Line(
+                      points={{-40,0},{-20,0}},
+                      color={127,127,127},
+                      smooth=Smooth.None,
+                      thickness=0.5)}));
       end Conductor;
 
       model Electronic
         "<html>Adapter for e<sup>-</sup> between <a href=\"modelica://Modelica\">Modelica</a> and <a href=\"modelica://FCSys\">FCSys</a></html>"
         extends FCSys.Icons.Names.Top1;
 
-        Connectors.BoundaryBus boundary "Multi-species connector" annotation
-          (Placement(transformation(extent={{-50,-10},{-30,10}}),
+        Connectors.BoundaryBus boundary "Multi-species connector" annotation (
+            Placement(transformation(extent={{-50,-10},{-30,10}}),
               iconTransformation(extent={{-50,-10},{-30,10}})));
         Modelica.Electrical.Analog.Interfaces.NegativePin pin
-          "Modelica electrical pin" annotation (Placement(transformation(
-                extent={{30,-10},{50,10}}), iconTransformation(extent={{30,-10},
-                  {50,10}})));
+          "Modelica electrical pin" annotation (Placement(transformation(extent
+                ={{30,-10},{50,10}}), iconTransformation(extent={{30,-10},{50,
+                  10}})));
         Phases.Graphite graphite(final 'incle-'=true, final 'inclC+'=false)
           "Graphite subadapter"
           annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -901,9 +849,8 @@ package Conditions "Models to specify and measure operating conditions"
                 points={{-40,0},{-20,0}},
                 color={127,127,127},
                 smooth=Smooth.None,
-                thickness=0.5)}), Diagram(coordinateSystem(
-                preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-              graphics));
+                thickness=0.5)}), Diagram(coordinateSystem(preserveAspectRatio=
+                  false, extent={{-100,-100},{100,100}}), graphics));
       end Electronic;
 
       package Phases "Adapters for material phases"
@@ -924,8 +871,8 @@ package Conditions "Models to specify and measure operating conditions"
             annotation (Placement(transformation(extent={{-10,10},{10,30}})));
           Domains.FluidNeutral H2O(redeclare package Data =
                 Characteristics.H2O.Gas, redeclare final package Medium =
-                Modelica.Media.IdealGases.SingleGases.H2O) annotation (
-              Placement(transformation(extent={{-10,-30},{10,-10}})));
+                Modelica.Media.IdealGases.SingleGases.H2O)
+            annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
           Junctions.Junction2 junction
             annotation (Placement(transformation(extent={{46,30},{26,50}})));
 
@@ -937,15 +884,14 @@ package Conditions "Models to specify and measure operating conditions"
             annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
                 iconTransformation(extent={{-50,-10},{-30,10}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{50,-50},{70,-30}}), iconTransformation(extent={{30,-30},
-                    {50,-10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    50,-50},{70,-30}}), iconTransformation(extent={{30,-30},{50,
+                    -10}})));
 
         equation
           // H2
           connect(H2.boundary, boundary.H2) annotation (Line(
               points={{-4,20},{-20,20},{-20,5.55112e-016},{-40,5.55112e-016}},
-
               color={127,127,127},
               smooth=Smooth.None));
 
@@ -979,39 +925,33 @@ package Conditions "Models to specify and measure operating conditions"
               points={{40,40},{60,40}},
               color={0,127,255},
               smooth=Smooth.None));
-          annotation (Icon(graphics={
-                Line(
-                  points={{-40,0},{-20,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,20},{40,20}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-20,20},{-20,-20}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,-20},{40,-20}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,127,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
-                  preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-                graphics));
+          annotation (Icon(graphics={Line(
+                          points={{-40,0},{-20,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,20},{40,20}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{-20,20},{-20,-20}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,-20},{40,-20}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,127,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}), Diagram(
+                coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end AnodeGas;
 
         model CathodeGas
@@ -1039,12 +979,12 @@ package Conditions "Models to specify and measure operating conditions"
             annotation (Placement(transformation(extent={{-10,10},{10,30}})));
           Domains.FluidNeutral N2(redeclare package Data =
                 Characteristics.N2.Gas, redeclare final package Medium =
-                Modelica.Media.IdealGases.SingleGases.N2) annotation (
-              Placement(transformation(extent={{-10,-10},{10,10}})));
+                Modelica.Media.IdealGases.SingleGases.N2)
+            annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
           Domains.FluidNeutral O2(redeclare package Data =
                 Characteristics.O2.Gas, redeclare final package Medium =
-                Modelica.Media.IdealGases.SingleGases.O2) annotation (
-              Placement(transformation(extent={{-10,-30},{10,-10}})));
+                Modelica.Media.IdealGases.SingleGases.O2)
+            annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
 
           Modelica.Fluid.Interfaces.FluidPort_b fluidPort(redeclare final
               package Medium = Medium) "Modelica fluid port" annotation (
@@ -1053,18 +993,17 @@ package Conditions "Models to specify and measure operating conditions"
 
           Connectors.BoundaryBus boundary
             "FCSys boundary connector for shear force" annotation (Placement(
-                transformation(extent={{-50,-10},{-30,10}}),
-                iconTransformation(extent={{-50,-10},{-30,10}})));
+                transformation(extent={{-50,-10},{-30,10}}), iconTransformation(
+                  extent={{-50,-10},{-30,10}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{50,-50},{70,-30}}), iconTransformation(extent={{30,-30},
-                    {50,-10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    50,-50},{70,-30}}), iconTransformation(extent={{30,-30},{50,
+                    -10}})));
 
         equation
           // H2O
           connect(H2O.boundary, boundary.H2O) annotation (Line(
               points={{-4,20},{-20,20},{-20,5.55112e-016},{-40,5.55112e-016}},
-
               color={127,127,127},
               smooth=Smooth.None));
 
@@ -1079,8 +1018,8 @@ package Conditions "Models to specify and measure operating conditions"
 
           // N2
           connect(N2.boundary, boundary.N2) annotation (Line(
-              points={{-4,6.10623e-016},{-20,6.10623e-016},{-20,5.55112e-016},
-                  {-40,5.55112e-016}},
+              points={{-4,6.10623e-016},{-20,6.10623e-016},{-20,5.55112e-016},{
+                  -40,5.55112e-016}},
               color={127,127,127},
               smooth=Smooth.None));
 
@@ -1116,39 +1055,33 @@ package Conditions "Models to specify and measure operating conditions"
               color={0,127,255},
               smooth=Smooth.None));
 
-          annotation (Icon(graphics={
-                Line(
-                  points={{-40,0},{-20,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,20},{40,20}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-20,20},{-20,-20}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,-20},{40,-20}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,127,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
-                  preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-                graphics));
+          annotation (Icon(graphics={Line(
+                          points={{-40,0},{-20,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,20},{40,20}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{-20,20},{-20,-20}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,-20},{40,-20}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,127,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}), Diagram(
+                coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end CathodeGas;
 
         model Graphite
@@ -1162,8 +1095,8 @@ package Conditions "Models to specify and measure operating conditions"
               group="Species",
               __Dymola_descriptionLabel=false,
               __Dymola_label="<html>Carbon plus (C<sup>+</sup>)</html>"));
-          Domains.Thermal 'C+' if 'inclC+' annotation (Placement(
-                transformation(extent={{-10,-30},{10,-10}})));
+          Domains.Thermal 'C+' if 'inclC+'
+            annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
           parameter Boolean 'incle-'=true "Include e-" annotation (
             HideResult=true,
             choices(__Dymola_checkBox=true),
@@ -1179,19 +1112,18 @@ package Conditions "Models to specify and measure operating conditions"
             annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
                 iconTransformation(extent={{-50,-10},{-30,10}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort if
-            'inclC+' "Modelica heat port" annotation (Placement(
-                transformation(extent={{30,-30},{50,-10}}),
-                iconTransformation(extent={{30,-30},{50,-10}})));
+            'inclC+' "Modelica heat port" annotation (Placement(transformation(
+                  extent={{30,-30},{50,-10}}), iconTransformation(extent={{30,-30},
+                    {50,-10}})));
           Modelica.Electrical.Analog.Interfaces.NegativePin pin if 'incle-'
             "Modelica electrical pin" annotation (Placement(transformation(
-                  extent={{30,10},{50,30}}), iconTransformation(extent={{30,
-                    10},{50,30}})));
+                  extent={{30,10},{50,30}}), iconTransformation(extent={{30,10},
+                    {50,30}})));
 
         equation
           // C
           connect('C+'.boundary, boundary.'C+') annotation (Line(
               points={{-4,-20},{-20,-20},{-20,0},{-40,0},{-40,5.55112e-016}},
-
               color={127,127,127},
               smooth=Smooth.None));
 
@@ -1210,78 +1142,66 @@ package Conditions "Models to specify and measure operating conditions"
               points={{4,20},{40,20}},
               color={0,0,255},
               smooth=Smooth.None));
-          annotation (Icon(graphics={
-                Line(
-                  points={{0,20},{30,20}},
-                  color={0,0,255},
-                  visible='incle-',
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,-20},{30,-20}},
-                  color={140,0,0},
-                  visible='inclC+',
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,0,255},
-                  visible='incle-',
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={140,0,0},
-                  visible='inclC+',
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Line(
-                  points={{-30,0},{-20,0}},
-                  color={127,127,127},
-                  visible='incle-' or 'inclC+',
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,-20},{40,-20}},
-                  color={191,0,0},
-                  visible='inclC+',
-                  smooth=Smooth.None),
-                Line(
-                  points={{10,20},{40,20}},
-                  color={0,0,255},
-                  visible='incle-',
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={191,0,0},
-                  visible='inclC+',
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,0,255},
-                  visible='incle-',
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Line(
-                  points={{-20,0},{-20,20}},
-                  color={127,127,127},
-                  visible='incle-',
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{-20,-20},{-20,0}},
-                  color={127,127,127},
-                  visible='inclC+',
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{-40,0},{-20,0}},
-                  color={127,127,127},
-                  visible='inclC+' or 'incle-',
-                  smooth=Smooth.None,
-                  thickness=0.5)}), Diagram(coordinateSystem(
+          annotation (Icon(graphics={Line(
+                          points={{0,20},{30,20}},
+                          color={0,0,255},
+                          visible='incle-',
+                          smooth=Smooth.None),Line(
+                          points={{0,-20},{30,-20}},
+                          color={140,0,0},
+                          visible='inclC+',
+                          smooth=Smooth.None),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,0,255},
+                          visible='incle-',
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={140,0,0},
+                          visible='inclC+',
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Line(
+                          points={{-30,0},{-20,0}},
+                          color={127,127,127},
+                          visible='incle-' or 'inclC+',
+                          smooth=Smooth.None),Line(
+                          points={{0,-20},{40,-20}},
+                          color={191,0,0},
+                          visible='inclC+',
+                          smooth=Smooth.None),Line(
+                          points={{10,20},{40,20}},
+                          color={0,0,255},
+                          visible='incle-',
+                          smooth=Smooth.None),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={191,0,0},
+                          visible='inclC+',
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,0,255},
+                          visible='incle-',
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Line(
+                          points={{-20,0},{-20,20}},
+                          color={127,127,127},
+                          visible='incle-',
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{-20,-20},{-20,0}},
+                          color={127,127,127},
+                          visible='inclC+',
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{-40,0},{-20,0}},
+                          color={127,127,127},
+                          visible='inclC+' or 'incle-',
+                          smooth=Smooth.None,
+                          thickness=0.5)}), Diagram(coordinateSystem(
                   preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
                 graphics));
         end Graphite;
@@ -1298,8 +1218,8 @@ package Conditions "Models to specify and measure operating conditions"
 
           Domains.FluidNeutral H2O(redeclare package Data =
                 Characteristics.H2O.Liquid, redeclare final package Medium =
-                Medium) annotation (Placement(transformation(extent={{-10,-10},
-                    {10,10}})));
+                Medium)
+            annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
           Modelica.Fluid.Interfaces.FluidPort_b fluidPort(redeclare final
               package Medium = Medium) "Modelica fluid port" annotation (
@@ -1310,9 +1230,9 @@ package Conditions "Models to specify and measure operating conditions"
             annotation (Placement(transformation(extent={{-50,-10},{-30,10}}),
                 iconTransformation(extent={{-50,-10},{-30,10}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{30,-30},{50,-10}}), iconTransformation(extent={{30,-30},
-                    {50,-10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    30,-30},{50,-10}}), iconTransformation(extent={{30,-30},{50,
+                    -10}})));
 
         equation
           // H2O
@@ -1332,39 +1252,33 @@ package Conditions "Models to specify and measure operating conditions"
               color={0,127,255},
               smooth=Smooth.None));
 
-          annotation (Icon(graphics={
-                Line(
-                  points={{-40,0},{-20,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,20},{40,20}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-20,20},{-20,-20}},
-                  color={127,127,127},
-                  smooth=Smooth.None,
-                  thickness=0.5),
-                Line(
-                  points={{0,-20},{40,-20}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,127,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
-                  preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-                graphics));
+          annotation (Icon(graphics={Line(
+                          points={{-40,0},{-20,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,20},{40,20}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{-20,20},{-20,-20}},
+                          color={127,127,127},
+                          smooth=Smooth.None,
+                          thickness=0.5),Line(
+                          points={{0,-20},{40,-20}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,127,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}), Diagram(
+                coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end Liquid;
 
       end Phases;
@@ -1388,8 +1302,8 @@ package Conditions "Models to specify and measure operating conditions"
                 iconTransformation(extent={{-50,-10},{-30,10}})));
           Modelica.Electrical.Analog.Interfaces.NegativePin pin
             "Modelica electrical pin" annotation (Placement(transformation(
-                  extent={{30,-10},{50,10}}), iconTransformation(extent={{30,
-                    -10},{50,10}})));
+                  extent={{30,-10},{50,10}}), iconTransformation(extent={{30,-10},
+                    {50,10}})));
 
         initial equation
           assert(Data.z <> 0, "The species must have charge.");
@@ -1410,23 +1324,20 @@ package Conditions "Models to specify and measure operating conditions"
   </ol>
   <p>Note that the same assumptions are applied in <a href=\"modelica://FCSys.Species.'e-'.Graphite.Fixed\">Species.'e-'.Graphite.Fixed</a>.</p></html>"),
 
-            Icon(graphics={
-                Line(
-                  points={{10,0},{40,0}},
-                  color={0,0,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-40,0},{0,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                  lineColor={0,0,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}),
-            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-                    -100},{100,100}}), graphics));
+            Icon(graphics={Line(
+                          points={{10,0},{40,0}},
+                          color={0,0,255},
+                          smooth=Smooth.None),Line(
+                          points={{-40,0},{0,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                          lineColor={0,0,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}),
+            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end Electrical;
         extends Modelica.Icons.Package;
 
@@ -1434,8 +1345,7 @@ package Conditions "Models to specify and measure operating conditions"
           "<html>Adapter to connect a single fluid species between <a href=\"modelica://FCSys\">FCSys</a> and <a href=\"modelica://Modelica\">Modelica</a></html>"
           extends FCSys.Icons.Names.Top3;
 
-          replaceable package Data =
-              Characteristics.BaseClasses.Characteristic
+          replaceable package Data = Characteristics.BaseClasses.Characteristic
             "Characteristic data (for FCSys)" annotation (
             Dialog(group="Material properties"),
             __Dymola_choicesAllMatching=true,
@@ -1456,13 +1366,13 @@ package Conditions "Models to specify and measure operating conditions"
               Placement(transformation(extent={{30,30},{50,50}}),
                 iconTransformation(extent={{30,30},{50,50}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{30,-10},{50,10}}), iconTransformation(extent={{30,-10},
-                    {50,10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    30,-10},{50,10}}), iconTransformation(extent={{30,-10},{50,
+                    10}})));
           Modelica.Electrical.Analog.Interfaces.NegativePin pin
             "Modelica electrical pin" annotation (Placement(transformation(
-                  extent={{30,-50},{50,-30}}), iconTransformation(extent={{30,
-                    -50},{50,-30}})));
+                  extent={{30,-50},{50,-30}}), iconTransformation(extent={{30,-50},
+                    {50,-30}})));
 
         equation
           // Assumptions
@@ -1484,47 +1394,39 @@ package Conditions "Models to specify and measure operating conditions"
   <li>The transverse velocity is zero.</li>
   </ol></html>"),
             Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-                    {100,100}}), graphics={
-                Line(
-                  points={{0,40},{40,40}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-20,40},{-20,-40}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,-40},{40,-40}},
-                  color={0,0,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,0},{40,0}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-40,0},{0,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
-                  lineColor={0,0,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
-                  lineColor={0,127,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}),
-            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-                    -100},{100,100}}), graphics));
+                    {100,100}}), graphics={Line(
+                          points={{0,40},{40,40}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{-20,40},{-20,-40}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Line(
+                          points={{0,-40},{40,-40}},
+                          color={0,0,255},
+                          smooth=Smooth.None),Line(
+                          points={{0,0},{40,0}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Line(
+                          points={{-40,0},{0,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,-20},{-20,-40},{0,-60},{20,-40},{0,-20}},
+                          lineColor={0,0,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,60},{-20,40},{0,20},{20,40},{0,60}},
+                          lineColor={0,127,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}),
+            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end Fluid;
 
         model FluidNeutral
@@ -1532,8 +1434,7 @@ package Conditions "Models to specify and measure operating conditions"
           import assert = FCSys.Utilities.assertEval;
           extends FCSys.Icons.Names.Top2;
 
-          replaceable package Data =
-              Characteristics.BaseClasses.Characteristic
+          replaceable package Data = Characteristics.BaseClasses.Characteristic
             "Characteristic data (for FCSys)" annotation (
             Dialog(group="Material properties"),
             __Dymola_choicesAllMatching=true,
@@ -1554,14 +1455,13 @@ package Conditions "Models to specify and measure operating conditions"
               Placement(transformation(extent={{30,10},{50,30}}),
                 iconTransformation(extent={{30,10},{50,30}})));
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{30,-30},{50,-10}}), iconTransformation(extent={{30,-30},
-                    {50,-10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    30,-30},{50,-10}}), iconTransformation(extent={{30,-30},{50,
+                    -10}})));
 
         initial equation
           assert(Data.z == 0,
-            "The species must be neutral, but its chemical formula is " +
-            Data.formula);
+            "The species must be neutral, but its chemical formula is " + Data.formula);
 
         equation
           // Assumptions
@@ -1582,37 +1482,31 @@ package Conditions "Models to specify and measure operating conditions"
             Documentation(info="<html><p>Assumptions:</p><ol>
   <li>The transverse velocity is zero.</li>
   </ol></html>"),
-            Icon(graphics={
-                Line(
-                  points={{0,20},{40,20}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,-20},{40,-20}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-20,20},{-20,-20}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Line(
-                  points={{-40,0},{-20,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),
-                Polygon(
-                  points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
-                  lineColor={0,127,255},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}),
-            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-                    -100},{100,100}}), graphics));
+            Icon(graphics={Line(
+                          points={{0,20},{40,20}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{0,-20},{40,-20}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Line(
+                          points={{-20,20},{-20,-20}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Line(
+                          points={{-40,0},{-20,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,0},{-20,-20},{0,-40},{20,-20},{0,0}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid),Polygon(
+                          points={{0,40},{-20,20},{0,0},{20,20},{0,40}},
+                          lineColor={0,127,255},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}),
+            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end FluidNeutral;
 
         model Thermal
@@ -1621,37 +1515,34 @@ package Conditions "Models to specify and measure operating conditions"
 
           Connectors.ThermalDiffusive boundary
             "Connector for thermal diffusion" annotation (Placement(
-                transformation(extent={{-50,-10},{-30,10}}),
-                iconTransformation(extent={{-50,-10},{-30,10}})));
+                transformation(extent={{-50,-10},{-30,10}}), iconTransformation(
+                  extent={{-50,-10},{-30,10}})));
 
           Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b heatPort
-            "Modelica heat port" annotation (Placement(transformation(extent=
-                    {{30,-10},{50,10}}), iconTransformation(extent={{30,-10},
-                    {50,10}})));
+            "Modelica heat port" annotation (Placement(transformation(extent={{
+                    30,-10},{50,10}}), iconTransformation(extent={{30,-10},{50,
+                    10}})));
 
         equation
           boundary.T = heatPort.T*U.K "Equal temperatures";
           0 = boundary.Qdot + heatPort.Q_flow*U.W
             "Conservation of energy, without storage";
 
-          annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent
-                  ={{-100,-100},{100,100}}), graphics={
-                Line(
-                  points={{-40,0},{-10,0}},
-                  color={127,127,127},
-                  smooth=Smooth.None),
-                Line(
-                  points={{10,0},{40,0}},
-                  color={191,0,0},
-                  smooth=Smooth.None),
-                Polygon(
-                  points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
-                  lineColor={191,0,0},
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
-                  preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-                graphics));
+          annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={
+                    {-100,-100},{100,100}}), graphics={Line(
+                          points={{-40,0},{-10,0}},
+                          color={127,127,127},
+                          smooth=Smooth.None),Line(
+                          points={{10,0},{40,0}},
+                          color={191,0,0},
+                          smooth=Smooth.None),Polygon(
+                          points={{0,20},{-20,0},{0,-20},{20,0},{0,20}},
+                          lineColor={191,0,0},
+                          smooth=Smooth.None,
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}), Diagram(
+                coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics));
         end Thermal;
 
       end Domains;
@@ -1679,14 +1570,12 @@ package Conditions "Models to specify and measure operating conditions"
                   "Material properties"));
 
           Modelica.Fluid.Interfaces.FluidPort_b purePort1(redeclare final
-              package Medium = Medium1)
-            "Fluid port for the 1st pure substance" annotation (Placement(
-                transformation(extent={{30,30},{50,50}}), iconTransformation(
-                  extent={{30,30},{50,50}})));
+              package Medium = Medium1) "Fluid port for the 1st pure substance"
+            annotation (Placement(transformation(extent={{30,30},{50,50}}),
+                iconTransformation(extent={{30,30},{50,50}})));
           Modelica.Fluid.Interfaces.FluidPort_b purePort2(redeclare final
-              package Medium = Medium2)
-            "Fluid port for the 2nd pure substance" annotation (Placement(
-                transformation(extent={{30,-50},{50,-30}}),
+              package Medium = Medium2) "Fluid port for the 2nd pure substance"
+            annotation (Placement(transformation(extent={{30,-50},{50,-30}}),
                 iconTransformation(extent={{30,-50},{50,-30}})));
 
         initial equation
@@ -1703,8 +1592,7 @@ but the first pure substance is \"" + Medium1.substanceNames[1] + "\".");
 but the second pure substance is \"" + Medium2.substanceNames[1] + "\".");
 
           // Check the extra properties.
-          assert(MixtureMedium.nC == Medium1.nC and MixtureMedium.nC ==
-            Medium2.nC,
+          assert(MixtureMedium.nC == Medium1.nC and MixtureMedium.nC == Medium2.nC,
             "The media must all have the same number of extra properties.");
           for i in 1:MixtureMedium.nC loop
             assert(MixtureMedium.extraPropertiesNames[i] == Medium1.extraPropertiesNames[
@@ -1757,12 +1645,12 @@ but that of the second pure substance (Medium2) is \"" + Medium2.extraProperties
   </ol></html>"),
             Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics={Line(
-                  points={{0,-40},{40,-40}},
-                  color={0,127,255},
-                  smooth=Smooth.None), Line(
-                  points={{0,40},{40,40}},
-                  color={0,127,255},
-                  smooth=Smooth.None)}));
+                          points={{0,-40},{40,-40}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{0,40},{40,40}},
+                          color={0,127,255},
+                          smooth=Smooth.None)}));
         end Junction2;
 
         model Junction3
@@ -1791,19 +1679,16 @@ but that of the second pure substance (Medium2) is \"" + Medium2.extraProperties
                   "Material properties"));
 
           Modelica.Fluid.Interfaces.FluidPort_b purePort1(redeclare final
-              package Medium = Medium1)
-            "Fluid port for the 1st pure substance" annotation (Placement(
-                transformation(extent={{30,30},{50,50}}), iconTransformation(
-                  extent={{30,30},{50,50}})));
+              package Medium = Medium1) "Fluid port for the 1st pure substance"
+            annotation (Placement(transformation(extent={{30,30},{50,50}}),
+                iconTransformation(extent={{30,30},{50,50}})));
           Modelica.Fluid.Interfaces.FluidPort_b purePort2(redeclare final
-              package Medium = Medium2)
-            "Fluid port for the 2nd pure substance" annotation (Placement(
-                transformation(extent={{30,-10},{50,10}}), iconTransformation(
-                  extent={{30,-10},{50,10}})));
+              package Medium = Medium2) "Fluid port for the 2nd pure substance"
+            annotation (Placement(transformation(extent={{30,-10},{50,10}}),
+                iconTransformation(extent={{30,-10},{50,10}})));
           Modelica.Fluid.Interfaces.FluidPort_b purePort3(redeclare final
-              package Medium = Medium3)
-            "Fluid port for the 3rd pure substance" annotation (Placement(
-                transformation(extent={{30,-50},{50,-30}}),
+              package Medium = Medium3) "Fluid port for the 3rd pure substance"
+            annotation (Placement(transformation(extent={{30,-50},{50,-30}}),
                 iconTransformation(extent={{30,-50},{50,-30}})));
 
         initial equation
@@ -1824,8 +1709,8 @@ but the second pure substance is \"" + Medium2.substanceNames[1] + "\".");
 but the third pure substance is \"" + Medium2.substanceNames[1] + "\".");
 
           // Check the extra properties.
-          assert(MixtureMedium.nC == Medium1.nC and MixtureMedium.nC ==
-            Medium2.nC and MixtureMedium.nC == Medium3.nC,
+          assert(MixtureMedium.nC == Medium1.nC and MixtureMedium.nC == Medium2.nC
+             and MixtureMedium.nC == Medium3.nC,
             "The media must all have the same number of extra properties.");
           for i in 1:MixtureMedium.nC loop
             assert(MixtureMedium.extraPropertiesNames[i] == Medium1.extraPropertiesNames[
@@ -1885,19 +1770,16 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
   of the pressures of the pure substances.
   </li>
   </ol></html>"),
-            Icon(graphics={
-                Line(
-                  points={{0,-40},{40,-40}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,40},{40,40}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{6,0},{40,0}},
-                  color={0,127,255},
-                  smooth=Smooth.None)}));
+            Icon(graphics={Line(
+                          points={{0,-40},{40,-40}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{0,40},{40,40}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{6,0},{40,0}},
+                          color={0,127,255},
+                          smooth=Smooth.None)}));
         end Junction3;
 
       protected
@@ -1907,8 +1789,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           replaceable package MixtureMedium = Media.AnodeGas constrainedby
             Modelica.Media.Interfaces.PartialMedium
-            "Medium model for the mixture" annotation (choicesAllMatching=
-                true, Dialog(group="Material properties"));
+            "Medium model for the mixture" annotation (choicesAllMatching=true,
+              Dialog(group="Material properties"));
 
           Modelica.Fluid.Interfaces.FluidPort_a mixturePort(redeclare final
               package Medium = MixtureMedium) "Fluid port for the mixture"
@@ -1924,26 +1806,22 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             MixtureMedium.reducedX then cat(
                     1,
                     inStream(mixturePort.Xi_outflow),
-                    1 - sum(X[1:MixtureMedium.nXi])) else inStream(
-            mixturePort.Xi_outflow);
+                    1 - sum(X[1:MixtureMedium.nXi])) else inStream(mixturePort.Xi_outflow);
           X = if MixtureMedium.reducedX then cat(
                     1,
                     mixturePort.Xi_outflow,
                     1 - sum(X[1:MixtureMedium.nXi])) else mixturePort.Xi_outflow;
-          annotation (defaultComponentName="junction", Icon(graphics={
-                Line(
-                  points={{-40,0},{0,0}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Line(
-                  points={{0,-40},{0,40}},
-                  color={0,127,255},
-                  smooth=Smooth.None),
-                Ellipse(
-                  extent={{-6,6},{6,-6}},
-                  lineColor={0,127,255},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid)}));
+          annotation (defaultComponentName="junction", Icon(graphics={Line(
+                          points={{-40,0},{0,0}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Line(
+                          points={{0,-40},{0,40}},
+                          color={0,127,255},
+                          smooth=Smooth.None),Ellipse(
+                          extent={{-6,6},{6,-6}},
+                          lineColor={0,127,255},
+                          fillColor={255,255,255},
+                          fillPattern=FillPattern.Solid)}));
         end PartialJunction;
 
       end Junctions;
@@ -1955,8 +1833,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
         package AnodeGas "Gas mixture for PEMFC anode (H2 and H2O)"
           extends Modelica.Media.IdealGases.Common.MixtureGasNasa(
             mediumName="AnodeGas",
-            data={Modelica.Media.IdealGases.Common.SingleGasesData.H2,
-                Modelica.Media.IdealGases.Common.SingleGasesData.H2O},
+            data={Modelica.Media.IdealGases.Common.SingleGasesData.H2,Modelica.Media.IdealGases.Common.SingleGasesData.H2O},
+
             fluidConstants={Modelica.Media.IdealGases.Common.FluidData.H2,
                 Modelica.Media.IdealGases.Common.FluidData.H2O},
             substanceNames={"H2","H2O"},
@@ -1974,9 +1852,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
         package CathodeGas "Gas mixture for PEMFC cathode (H2O, N2, and O2)"
           extends Modelica.Media.IdealGases.Common.MixtureGasNasa(
             mediumName="CathodeGas",
-            data={Modelica.Media.IdealGases.Common.SingleGasesData.H2O,
-                Modelica.Media.IdealGases.Common.SingleGasesData.N2,Modelica.Media.IdealGases.Common.SingleGasesData.O2},
-
+            data={Modelica.Media.IdealGases.Common.SingleGasesData.H2O,Modelica.Media.IdealGases.Common.SingleGasesData.N2,
+                Modelica.Media.IdealGases.Common.SingleGasesData.O2},
             fluidConstants={Modelica.Media.IdealGases.Common.FluidData.H2O,
                 Modelica.Media.IdealGases.Common.FluidData.N2,Modelica.Media.IdealGases.Common.FluidData.O2},
 
@@ -2055,8 +1932,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 origin={0,50},
                 rotation=270)));
 
-          Connectors.RealOutputBus y "Output bus of measurements" annotation
-            (Placement(transformation(
+          Connectors.RealOutputBus y "Output bus of measurements" annotation (
+              Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=270,
                 origin={0,-50}), iconTransformation(
@@ -2257,7 +2134,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             ionomer(
               redeclare replaceable
                 Conditions.ByConnector.ThermalDiffusive.Pair.HeatRate 'SO3-',
-
               'H+'(
                 redeclare replaceable function materialSpec =
                     Boundary.Pair.Material.pressure,
@@ -2335,13 +2211,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Pair.Temperature H2 if inclH2 "H2 conditions"
-              annotation (Dialog(
+            Boundary.Pair.Temperature H2 if inclH2 "H2 conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>H<sub>2</sub> conditions</html>",
-                enable=inclH2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclH2O=false "Include H2O" annotation (
               HideResult=true,
@@ -2357,8 +2233,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclN2=false "Include H2" annotation (
               HideResult=true,
@@ -2369,13 +2245,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Pair.Temperature N2 if inclN2 "N2 conditions"
-              annotation (Dialog(
+            Boundary.Pair.Temperature N2 if inclN2 "N2 conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>N<sub>2</sub> conditions</html>",
-                enable=inclN2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclN2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclO2=false "Include O2" annotation (
               HideResult=true,
@@ -2386,13 +2262,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Pair.Temperature O2 if inclO2 "O2 conditions"
-              annotation (Dialog(
+            Boundary.Pair.Temperature O2 if inclO2 "O2 conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>O<sub>2</sub> conditions</html>",
-                enable=inclO2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclO2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // H2
@@ -2405,7 +2281,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect(H2.positive, positive.H2) annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2433,7 +2308,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect(H2O.positive, positive.H2O) annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2461,7 +2335,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect(N2.positive, positive.N2) annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2489,7 +2362,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect(O2.positive, positive.O2) annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2527,8 +2399,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>C<sup>+</sup> conditions</html>",
-                enable='inclC+'), Placement(transformation(extent={{-10,-10},
-                      {10,10}})));
+                enable='inclC+'), Placement(transformation(extent={{-10,-10},{
+                      10,10}})));
 
             parameter Boolean 'incle-'=false "Include e-" annotation (
               HideResult=true,
@@ -2544,8 +2416,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>e<sup>-</sup> conditions</html>",
-                enable='incle-'), Placement(transformation(extent={{-10,-10},
-                      {10,10}})));
+                enable='incle-'), Placement(transformation(extent={{-10,-10},{
+                      10,10}})));
 
           equation
             // C+
@@ -2557,7 +2429,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect('C+'.positive, positive.'C+') annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2644,8 +2515,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_label="<html>H<sup>+</sup> conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable='inclH+'), Placement(transformation(extent={{-10,-10},
-                      {10,10}})));
+                enable='inclH+'), Placement(transformation(extent={{-10,-10},{
+                      10,10}})));
 
             parameter Boolean inclH2O=false "Include H2O" annotation (
               HideResult=true,
@@ -2661,8 +2532,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // C19HF37O5S-
@@ -2674,7 +2545,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect('SO3-'.positive, positive.'SO3-') annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2762,8 +2632,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // H2O
@@ -2776,7 +2646,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             connect(H2O.positive, positive.H2O) annotation (Line(
                 points={{10,6.10623e-16},{10,5.55112e-16},{100,5.55112e-16}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -2819,8 +2688,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   rotation=270,
                   origin={0,50})));
 
-            Connectors.RealOutputBus y "Output bus of measurements"
-              annotation (Placement(transformation(
+            Connectors.RealOutputBus y "Output bus of measurements" annotation
+              (Placement(transformation(
                   extent={{-10,-10},{10,10}},
                   rotation=270,
                   origin={0,-50}),iconTransformation(
@@ -2871,8 +2740,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 rotation=0,
                 origin={-110,0})));
 
-          Connectors.RealOutputBus y "Output bus of measurements" annotation
-            (Placement(transformation(
+          Connectors.RealOutputBus y "Output bus of measurements" annotation (
+              Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=0,
                 origin={110,0})));
@@ -2888,7 +2757,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           connect(u.gas, gas.u) annotation (Line(
               points={{-110,5.55112e-16},{-11,5.55112e-16},{-11,6.10623e-16}},
-
               color={0,0,127},
               thickness=0.5,
               smooth=Smooth.None));
@@ -2909,7 +2777,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           connect(u.graphite, graphite.u) annotation (Line(
               points={{-110,5.55112e-16},{-11,5.55112e-16},{-11,6.10623e-16}},
-
               color={0,0,127},
               thickness=0.5,
               smooth=Smooth.None));
@@ -2930,7 +2797,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               smooth=Smooth.None));
           connect(u.ionomer, ionomer.u) annotation (Line(
               points={{-110,5.55112e-16},{-11,5.55112e-16},{-11,6.10623e-16}},
-
               color={0,0,127},
               thickness=0.5,
               smooth=Smooth.None));
@@ -2951,7 +2817,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               smooth=Smooth.None));
           connect(u.liquid, liquid.u) annotation (Line(
               points={{-110,5.55112e-16},{-11,5.55112e-16},{-11,6.10623e-16}},
-
               color={0,0,127},
               thickness=0.5,
               smooth=Smooth.None));
@@ -2987,10 +2852,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0)),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0)),
+
               H2O(
                 redeclare replaceable function materialSpec =
                     Boundary.Single.Material.pressure,
@@ -3008,10 +2873,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0)),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0)),
+
               N2(
                 redeclare replaceable function materialSpec =
                     Boundary.Single.Material.pressure,
@@ -3029,10 +2894,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0)),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0)),
+
               O2(
                 redeclare replaceable function materialSpec =
                     Boundary.Single.Material.pressure,
@@ -3050,10 +2915,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0))),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0))),
+
             graphite(redeclare replaceable ThermalDiffusive.Single.HeatRate
                 'C+', 'e-'(
                 redeclare replaceable function materialSpec =
@@ -3072,10 +2937,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0))),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0))),
+
             ionomer(
               redeclare replaceable ThermalDiffusive.Single.HeatRate 'SO3-',
               'H+'(
@@ -3095,10 +2960,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0)),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0)),
+
               H2O(
                 redeclare replaceable function materialSpec =
                     Boundary.Single.Material.pressure,
@@ -3116,10 +2981,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0))),
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0))),
+
             liquid(H2O(
                 redeclare replaceable function materialSpec =
                     Boundary.Single.Material.pressure,
@@ -3137,10 +3002,9 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                     Boundary.Single.Translational.velocity,
                 redeclare replaceable function thermalMeas =
                     Boundary.Single.Thermal.temperature,
-                redeclare Modelica.Blocks.Sources.RealExpression materialSet(
-                    y=U.atm),
-                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y
-                    =0))));
+                redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=
+                      U.atm),
+                redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0))));
 
           // Note:  In Dymola 2014, the paths must be explicitly given to prevent the
           // error "Cannot show the parameter dialog for redeclared class [...]".
@@ -3170,13 +3034,12 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source H2 if inclH2 "Include H2" annotation (
-                Dialog(
+            Boundary.Single.Source H2 if inclH2 "Include H2" annotation (Dialog(
                 group="Species",
                 __Dymola_label="<html>H<sub>2</sub> conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclH2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclH2O=false "Include H2O" annotation (
               HideResult=true,
@@ -3187,13 +3050,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source H2O if inclH2O "H2O conditions"
-              annotation (Dialog(
+            Boundary.Single.Source H2O if inclH2O "H2O conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclN2=false "Include N2" annotation (
               HideResult=true,
@@ -3209,8 +3072,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_label="<html>N<sub>2</sub>Conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclN2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclN2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
             parameter Boolean inclO2=false "Include O2" annotation (
               HideResult=true,
@@ -3226,14 +3089,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 group="Species",
                 __Dymola_descriptionLabel=true,
                 __Dymola_label="<html>O<sub>2</sub> conditions</html>",
-                enable=inclO2), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclO2), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // H2
             connect(H2.boundary, boundary.H2) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3254,7 +3116,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // H2O
             connect(H2O.boundary, boundary.H2O) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3275,7 +3136,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // N2
             connect(N2.boundary, boundary.N2) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3296,7 +3156,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // O2
             connect(O2.boundary, boundary.O2) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3352,19 +3211,18 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source 'e-' if 'incle-' "e- conditions"
-              annotation (Dialog(
+            Boundary.Single.Source 'e-' if 'incle-' "e- conditions" annotation
+              (Dialog(
                 group="Species",
                 __Dymola_label="<html>e<sup>-</sup> conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable='incle-'), Placement(transformation(extent={{-10,-10},
-                      {10,10}})));
+                enable='incle-'), Placement(transformation(extent={{-10,-10},{
+                      10,10}})));
 
           equation
             // C+
             connect('C+'.therm, boundary.'C+') annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3385,7 +3243,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // e-
             connect('e-'.boundary, boundary.'e-') annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3422,9 +3279,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            replaceable
-              Conditions.ByConnector.ThermalDiffusive.Single.HeatRate 'SO3-'
-              if 'inclSO3-' constrainedby
+            replaceable Conditions.ByConnector.ThermalDiffusive.Single.HeatRate
+              'SO3-' if 'inclSO3-' constrainedby
               Conditions.ByConnector.ThermalDiffusive.Single.Partial
               "SO3- conditions" annotation (
               __Dymola_choicesFromPackage=true,
@@ -3445,13 +3301,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source 'H+' if 'inclH+' "H+ conditions"
-              annotation (Dialog(
+            Boundary.Single.Source 'H+' if 'inclH+' "H+ conditions" annotation
+              (Dialog(
                 group="Species",
                 __Dymola_label="<html>H<sup>+</sup> conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable='inclH+'), Placement(transformation(extent={{-10,-10},
-                      {10,10}})));
+                enable='inclH+'), Placement(transformation(extent={{-10,-10},{
+                      10,10}})));
 
             parameter Boolean inclH2O=false "Include H2O" annotation (
               HideResult=true,
@@ -3462,19 +3318,18 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source H2O if inclH2O "H2O conditions"
-              annotation (Dialog(
+            Boundary.Single.Source H2O if inclH2O "H2O conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // SO3-
             connect('SO3-'.therm, boundary.'SO3-') annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3495,7 +3350,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // H+
             connect('H+'.boundary, boundary.'H+') annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3516,7 +3370,6 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // H2O
             connect(H2O.boundary, boundary.H2O) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3550,19 +3403,18 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 __Dymola_descriptionLabel=true,
                 __Dymola_joinNext=true));
 
-            Boundary.Single.Source H2O if inclH2O "H2O conditions"
-              annotation (Dialog(
+            Boundary.Single.Source H2O if inclH2O "H2O conditions" annotation (
+                Dialog(
                 group="Species",
                 __Dymola_label="<html>H<sub>2</sub>O conditions</html>",
                 __Dymola_descriptionLabel=true,
-                enable=inclH2O), Placement(transformation(extent={{-10,-10},{
-                      10,10}})));
+                enable=inclH2O), Placement(transformation(extent={{-10,-10},{10,
+                      10}})));
 
           equation
             // H2O
             connect(H2O.boundary, boundary.H2O) annotation (Line(
                 points={{6.10623e-16,-4},{1.16573e-15,-40},{5.55112e-16,-40}},
-
                 color={127,127,127},
                 pattern=LinePattern.None,
                 smooth=Smooth.None));
@@ -3599,8 +3451,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   rotation=0,
                   origin={-110,0})));
 
-            Connectors.RealOutputBus y "Output bus of measurements"
-              annotation (Placement(transformation(
+            Connectors.RealOutputBus y "Output bus of measurements" annotation
+              (Placement(transformation(
                   extent={{-10,-10},{10,10}},
                   rotation=0,
                   origin={100,0}),iconTransformation(
@@ -3643,8 +3495,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             __Dymola_choicesFromPackage=true,
             choicesAllMatching=true,
             Dialog(tab="Specification", group="Material"));
-          parameter Boolean internalMaterial=true
-            "Use internal specification" annotation (
+          parameter Boolean internalMaterial=true "Use internal specification"
+            annotation (
             HideResult=true,
             choices(__Dymola_checkBox=true),
             Dialog(tab="Specification", group="Material"));
@@ -3713,8 +3565,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           //
           // Thermal
-          replaceable function thermalSpec = Thermal.temperature
-            constrainedby Thermal.Partial "Quantity" annotation (
+          replaceable function thermalSpec = Thermal.temperature constrainedby
+            Thermal.Partial "Quantity" annotation (
             __Dymola_choicesFromPackage=true,
             Dialog(tab="Specification", group="Thermal"),
             Placement(transformation(extent={{4,-10},{24,10}})));
@@ -3740,8 +3592,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Measurement
           // -----------
           // Material
-          replaceable function materialMeas = Material.pressure
-            constrainedby Material.Partial "Material quantity" annotation (
+          replaceable function materialMeas = Material.pressure constrainedby
+            Material.Partial "Material quantity" annotation (
               __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // 1st transverse
@@ -3750,10 +3602,9 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // 2nd transverse
-          replaceable function beforeMeas = Translational.force
-            constrainedby Translational.Partial "Second transverse quantity"
-            annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                  "Measurement"));
+          replaceable function beforeMeas = Translational.force constrainedby
+            Translational.Partial "Second transverse quantity" annotation (
+              __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // Thermal
           replaceable function thermalMeas = Thermal.heatRate constrainedby
@@ -3767,11 +3618,11 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           Connectors.Boundary negative "Negative boundary" annotation (
               Placement(transformation(extent={{-110,-10},{-90,10}})));
-          Connectors.Boundary positive "Positive boundary" annotation (
-              Placement(transformation(extent={{90,-10},{110,10}})));
-          Connectors.RealInputBus u if not (internalMaterial and
-            internalAfter and internalBefore and internalThermal)
-            "Bus of specifications" annotation (Placement(transformation(
+          Connectors.Boundary positive "Positive boundary"
+            annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+          Connectors.RealInputBus u if not (internalMaterial and internalAfter
+             and internalBefore and internalThermal) "Bus of specifications"
+            annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=270,
                 origin={0,110}), iconTransformation(
@@ -3934,8 +3785,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           // Conservation (without storage)
           0 = positive.Ndot + negative.Ndot "Material";
-          {0,0} = positive.mPhidot + negative.mPhidot
-            "Translational momentum";
+          {0,0} = positive.mPhidot + negative.mPhidot "Translational momentum";
           DeltaT = positive.Qdot + negative.Qdot "Energy";
 
           // Material
@@ -4001,8 +3851,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               color={0,0,127},
               smooth=Smooth.None));
           connect(u_after, u.after) annotation (Line(
-              points={{-20,70},{-20,80},{-20,80},{-20,90},{0,90},{0,110},{0,
-                  110}},
+              points={{-20,70},{-20,80},{-20,80},{-20,90},{0,90},{0,110},{0,110}},
+
               color={0,0,127},
               smooth=Smooth.None));
 
@@ -4036,9 +3886,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             redeclare replaceable function thermalSpec = Thermal.heatRate,
             redeclare replaceable function materialMeas = Material.current,
             redeclare replaceable function afterMeas = Translational.velocity,
+            redeclare replaceable function beforeMeas = Translational.velocity,
 
-            redeclare replaceable function beforeMeas =
-                Translational.velocity,
             redeclare replaceable function thermalMeas = Thermal.temperature);
 
           // See note in Reaction.Efforts.
@@ -4069,10 +3918,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             extends Modelica.Icons.Function;
 
             // Material
-            input Q.Pressure Deltap "Difference in pressure" annotation (
-                Dialog(__Dymola_label="<html>&Delta;<i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Pressure Deltap "Difference in pressure" annotation (Dialog(
+                  __Dymola_label="<html>&Delta;<i>p</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity Deltaphi[Orient] "Difference in velocity"
@@ -4081,11 +3930,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   __Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
             // Thermal
-            input Q.Temperature DeltaT "Difference in temperature"
-              annotation (Dialog(__Dymola_label=
-                    "<html>&Delta;<i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Temperature DeltaT "Difference in temperature" annotation (
+                Dialog(__Dymola_label="<html>&Delta;<i>T</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             output Real x "Value of condition"
               annotation (Dialog(__Dymola_label="<html><i>x</i></html>"));
@@ -4122,10 +3970,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             extends Modelica.Icons.Function;
 
             // Material
-            input Q.Pressure Deltap "Difference in pressure" annotation (
-                Dialog(__Dymola_label="<html>&Delta;<i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Pressure Deltap "Difference in pressure" annotation (Dialog(
+                  __Dymola_label="<html>&Delta;<i>p</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity Deltaphi[Orient] "Difference in velocity"
@@ -4134,11 +3982,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   __Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
             // Thermal
-            input Q.Temperature DeltaT "Difference in temperature"
-              annotation (Dialog(__Dymola_label=
-                    "<html>&Delta;<i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Temperature DeltaT "Difference in temperature" annotation (
+                Dialog(__Dymola_label="<html>&Delta;<i>T</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             input Orient orient
               "Orientation of translational momentum w.r.t. the boundary";
@@ -4179,10 +4026,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             extends Modelica.Icons.Function;
 
             // Material
-            input Q.Pressure Deltap "Difference in pressure" annotation (
-                Dialog(__Dymola_label="<html>&Delta;<i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Pressure Deltap "Difference in pressure" annotation (Dialog(
+                  __Dymola_label="<html>&Delta;<i>p</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity Deltaphi[Orient] "Difference in velocity"
@@ -4191,11 +4038,10 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   __Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
             // Thermal
-            input Q.Temperature DeltaT "Difference in temperature"
-              annotation (Dialog(__Dymola_label=
-                    "<html>&Delta;<i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Temperature DeltaT "Difference in temperature" annotation (
+                Dialog(__Dymola_label="<html>&Delta;<i>T</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             output Real x "Value of condition"
               annotation (Dialog(__Dymola_label="<html><i>x</i></html>"));
@@ -4226,8 +4072,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             __Dymola_choicesFromPackage=true,
             choicesAllMatching=true,
             Dialog(tab="Specification", group="Material"));
-          parameter Boolean internalMaterial=true
-            "Use internal specification" annotation (
+          parameter Boolean internalMaterial=true "Use internal specification"
+            annotation (
             HideResult=true,
             choices(__Dymola_checkBox=true),
             Dialog(tab="Specification", group="Material"));
@@ -4296,8 +4142,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           //
           // Thermal
-          replaceable function thermalSpec = Thermal.temperature
-            constrainedby Thermal.Partial "Quantity" annotation (
+          replaceable function thermalSpec = Thermal.temperature constrainedby
+            Thermal.Partial "Quantity" annotation (
             __Dymola_choicesFromPackage=true,
             Dialog(tab="Specification", group="Thermal"),
             Placement(transformation(extent={{4,-10},{24,10}})));
@@ -4326,8 +4172,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           Q.PressureAbsolute p "Pressure";
           Q.TemperatureAbsolute T "Temperature";
           // Material
-          replaceable function materialMeas = Material.pressure
-            constrainedby Material.Partial "Material quantity" annotation (
+          replaceable function materialMeas = Material.pressure constrainedby
+            Material.Partial "Material quantity" annotation (
               __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // 1st transverse
@@ -4336,10 +4182,9 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // 2nd transverse
-          replaceable function beforeMeas = Translational.force
-            constrainedby Translational.Partial "Second transverse quantity"
-            annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                  "Measurement"));
+          replaceable function beforeMeas = Translational.force constrainedby
+            Translational.Partial "Second transverse quantity" annotation (
+              __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
           // Thermal
           replaceable function thermalMeas = Thermal.heatRate constrainedby
@@ -4350,12 +4195,11 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             "Connector to transport material, translational momentum, and thermal energy"
             annotation (Placement(transformation(extent={{-10,-110},{10,-90}}),
                 iconTransformation(extent={{-10,-50},{10,-30}})));
-          Connectors.RealInputBus u if not (internalMaterial and
-            internalAfter and internalBefore and internalThermal)
-            "Bus of specifications" annotation (Placement(transformation(
-                  extent={{-120,-10},{-100,10}})));
-          Connectors.RealOutputBus y "Bus of measurements" annotation (
-              Placement(transformation(extent={{100,-10},{120,10}})));
+          Connectors.RealInputBus u if not (internalMaterial and internalAfter
+             and internalBefore and internalThermal) "Bus of specifications"
+            annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
+          Connectors.RealOutputBus y "Bus of measurements"
+            annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
           // Inputs
 
@@ -4440,8 +4284,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                         boundary.T,
                         boundary.Qdot,
                         orient=Orient.before))
-            "Generate the 2nd transverse output" annotation (Placement(
-                transformation(extent={{40,-30},{60,-10}})));
+            "Generate the 2nd transverse output"
+            annotation (Placement(transformation(extent={{40,-30},{60,-10}})));
           Sources.RealExpression afterOut(y=afterMeas(
                         boundary.p,
                         boundary.Ndot,
@@ -4584,11 +4428,9 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             redeclare replaceable function thermalSpec = Thermal.heatRate,
             redeclare replaceable function materialMeas = Material.current,
             redeclare replaceable function afterMeas = Translational.velocity,
+            redeclare replaceable function beforeMeas = Translational.velocity,
 
-            redeclare replaceable function beforeMeas =
-                Translational.velocity,
             redeclare replaceable function thermalMeas = Thermal.temperature,
-
             redeclare Modelica.Blocks.Sources.RealExpression materialSet(y=U.atm),
 
             redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=0));
@@ -4691,8 +4533,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Material
             input Q.PressureAbsolute p "Pressure"
               annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity phi[Orient] "Velocity"
@@ -4703,8 +4545,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Thermal
             input Q.TemperatureAbsolute T "Temperature"
               annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             output Real x "Value of condition"
               annotation (Dialog(__Dymola_label="<html><i>x</i></html>"));
@@ -4720,8 +4562,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
             replaceable package Data =
                 Characteristics.BaseClasses.Characteristic constrainedby
-              Characteristics.BaseClasses.Characteristic
-              "Characteristic data" annotation (
+              Characteristics.BaseClasses.Characteristic "Characteristic data"
+              annotation (
               Dialog(group="Material properties"),
               choicesAllMatching=true,
               __Dymola_choicesFromPackage=true,
@@ -4761,8 +4603,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Material
             input Q.PressureAbsolute p "Pressure"
               annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity phi[Orient] "Velocity"
@@ -4773,8 +4615,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Thermal
             input Q.TemperatureAbsolute T "Temperature"
               annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             input Orient orient
               "Orientation of translational momentum w.r.t. the boundary";
@@ -4817,8 +4659,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Material
             input Q.PressureAbsolute p "Pressure"
               annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
-            input Q.Current Ndot "Current" annotation (Dialog(__Dymola_label=
-                    "<html><i>N&#775;</i></html>"));
+            input Q.Current Ndot "Current"
+              annotation (Dialog(__Dymola_label="<html><i>N&#775;</i></html>"));
 
             // Translational
             input Q.Velocity phi[Orient] "Velocity"
@@ -4829,8 +4671,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             // Thermal
             input Q.TemperatureAbsolute T "Temperature"
               annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
-            input Q.Power Qdot "Rate of thermal conduction" annotation (
-                Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
+            input Q.Power Qdot "Rate of thermal conduction"
+              annotation (Dialog(__Dymola_label="<html><i>Q&#775;</i></html>"));
 
             output Real x "Value of condition"
               annotation (Dialog(__Dymola_label="<html><i>x</i></html>"));
@@ -4895,26 +4737,23 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
     <p>See also the documentation in the
     <a href=\"modelica://FCSys.Connectors\">Connectors</a> package.</p></html>"),
 
-          Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
-                  {100,100}}),graphics={
-              Polygon(
-                points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},
-                    {-60,-60}},
-                lineColor={0,0,0},
-                smooth=Smooth.None,
-                pattern=LinePattern.Dash,
-                fillColor={225,225,225},
-                fillPattern=FillPattern.Solid),
-              Line(
-                points={{60,60},{20,20}},
-                color={0,0,0},
-                pattern=LinePattern.Dash,
-                smooth=Smooth.None),
-              Line(
-                points={{-60,20},{20,20},{20,-60}},
-                color={0,0,0},
-                pattern=LinePattern.Dash,
-                smooth=Smooth.None)}),
+          Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
+                  100,100}}), graphics={Polygon(
+                      points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,
+                  -60},{-60,-60}},
+                      lineColor={0,0,0},
+                      smooth=Smooth.None,
+                      pattern=LinePattern.Dash,
+                      fillColor={225,225,225},
+                      fillPattern=FillPattern.Solid),Line(
+                      points={{60,60},{20,20}},
+                      color={0,0,0},
+                      pattern=LinePattern.Dash,
+                      smooth=Smooth.None),Line(
+                      points={{-60,20},{20,20},{20,-60}},
+                      color={0,0,0},
+                      pattern=LinePattern.Dash,
+                      smooth=Smooth.None)}),
           Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
                   {100,100}}), graphics));
       end VolumeFixed;
@@ -4945,8 +4784,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               rotation=0,
               origin={-110,0})));
 
-        Connectors.RealOutput y "Measurement expression" annotation (Dialog(
-              tab="Measurement"), Placement(transformation(
+        Connectors.RealOutput y "Measurement expression" annotation (Dialog(tab
+              ="Measurement"), Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=0,
               origin={110,0}), iconTransformation(
@@ -4967,8 +4806,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
       equation
         connect(u, u_final) annotation (Line(
-            points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},{
-                -20,5.55112e-16}},
+            points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},{-20,
+                5.55112e-16}},
             color={0,0,127},
             smooth=Smooth.None));
 
@@ -5040,8 +4879,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               rotation=0,
               origin={-110,0})));
 
-        Connectors.RealOutput y "Measurement expression" annotation (Dialog(
-              tab="Measurement"), Placement(transformation(
+        Connectors.RealOutput y "Measurement expression" annotation (Dialog(tab
+              ="Measurement"), Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=0,
               origin={110,0}), iconTransformation(
@@ -5062,8 +4901,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
       equation
         connect(u, u_final) annotation (Line(
-            points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},{
-                -20,5.55112e-16}},
+            points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},{-20,
+                5.55112e-16}},
             color={0,0,127},
             smooth=Smooth.None));
 
@@ -5220,31 +5059,27 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
         // -----------
         // X-axis translational
         replaceable function transXMeas =
-            Conditions.ByConnector.Inter.Translational.velocity
-          constrainedby Translational.Partial "X-axis translational quantity"
-          annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                "Measurement"));
+            Conditions.ByConnector.Inter.Translational.velocity constrainedby
+          Translational.Partial "X-axis translational quantity" annotation (
+            __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
         //
         // Y-axis translational
         replaceable function transYMeas =
-            Conditions.ByConnector.Inter.Translational.velocity
-          constrainedby Translational.Partial "Y-axis translational quantity"
-          annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                "Measurement"));
+            Conditions.ByConnector.Inter.Translational.velocity constrainedby
+          Translational.Partial "Y-axis translational quantity" annotation (
+            __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
         //
         // Z-axis translational
         replaceable function transZMeas =
-            Conditions.ByConnector.Inter.Translational.velocity
-          constrainedby Translational.Partial "Z-axis translational quantity"
-          annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                "Measurement"));
+            Conditions.ByConnector.Inter.Translational.velocity constrainedby
+          Translational.Partial "Z-axis translational quantity" annotation (
+            __Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
         //
         // Thermal
         replaceable function thermalMeas =
             Conditions.ByConnector.Inter.ThermalDiffusive.temperature
-          constrainedby ThermalDiffusive.Partial "Thermal quantity"
-          annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                "Measurement"));
+          constrainedby ThermalDiffusive.Partial "Thermal quantity" annotation
+          (__Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
         // Included components of translational momentum
         parameter Boolean inclTransX=true "X" annotation (
@@ -5271,8 +5106,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         Connectors.Inert inter(final n_trans=n_trans)
           "Connector to exchange translational momentum and thermal energy by diffusion"
-          annotation (choicesAllMatching=true, Placement(transformation(
-                extent={{-10,-110},{10,-90}})));
+          annotation (choicesAllMatching=true, Placement(transformation(extent=
+                  {{-10,-110},{10,-90}})));
 
         // Inputs
         Connectors.RealInput u_transX if inclTransX and not internalTransX
@@ -5359,9 +5194,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               origin={110,-80})));
 
       protected
-        final inner parameter Integer n_trans=countTrue({inclTransX,
-            inclTransY,inclTransZ})
-          "Number of components of translational momentum";
+        final inner parameter Integer n_trans=countTrue({inclTransX,inclTransY,
+            inclTransZ}) "Number of components of translational momentum";
         final inner parameter Integer transCart[Axis]=enumerate({inclTransX,
             inclTransY,inclTransZ})
           "Translational-momentum-component indices of the Cartesian axes";
@@ -5467,11 +5301,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         extends FCSys.Conditions.ByConnector.Inter.Flows(
           redeclare replaceable function transXSpec = Translational.velocity,
-
           redeclare replaceable function transYSpec = Translational.velocity,
-
           redeclare replaceable function transZSpec = Translational.velocity,
-
           redeclare replaceable function thermalSpec =
               ThermalDiffusive.temperature,
           redeclare replaceable function transXMeas = Translational.force,
@@ -5479,8 +5310,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           redeclare replaceable function transZMeas = Translational.force,
           redeclare replaceable function thermalMeas =
               ThermalDiffusive.heatRate,
-          redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=
-                298.15*U.K));
+          redeclare Modelica.Blocks.Sources.RealExpression thermalSet(y=298.15*
+                U.K));
 
         // The thermalSet block is redeclared as not replaceable because y is set
         // directly and can't be undone at instantiation.
@@ -5517,8 +5348,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           // Thermal
           input Q.TemperatureAbsolute T "Temperature"
@@ -5566,8 +5397,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           // Thermal
           input Q.TemperatureAbsolute T "Temperature"
@@ -5805,9 +5636,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               iconTransformation(extent={{-10,-110},{10,-90}})));
 
       protected
-        final inner parameter Integer n_trans=countTrue({inclTransX,
-            inclTransY,inclTransZ})
-          "Number of components of translational momentum";
+        final inner parameter Integer n_trans=countTrue({inclTransX,inclTransY,
+            inclTransZ}) "Number of components of translational momentum";
         final inner parameter Integer transCart[Axis]=enumerate({inclTransX,
             inclTransY,inclTransZ})
           "Translational-momentum-component indices of the Cartesian axes";
@@ -5892,8 +5722,7 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
       end Velocity;
 
-      package Component
-        "Conditions for a component of translational momentum"
+      package Component "Conditions for a component of translational momentum"
         extends Modelica.Icons.Package;
         function velocity "Velocity "
           extends Partial;
@@ -5919,8 +5748,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           input Integer i(min=1,max=3) "Index of the translational axis"
             annotation (Dialog(__Dymola_label="<html><i>i</i></html>"));
@@ -5987,9 +5816,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 rotation=270,
                 origin={10,40})));
 
-          Connectors.RealInput u if not internal
-            "Value of specified condition" annotation (Placement(
-                transformation(
+          Connectors.RealInput u if not internal "Value of specified condition"
+            annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=270,
                 origin={0,110}), iconTransformation(
@@ -6007,8 +5835,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 origin={0,-50})));
 
           Connectors.ThermalDiffusive negative
-            "Negative connector for thermal diffusion" annotation (Placement(
-                transformation(extent={{-110,-12},{-90,8}})));
+            "Negative connector for thermal diffusion"
+            annotation (Placement(transformation(extent={{-110,-12},{-90,8}})));
 
         protected
           Connectors.RealOutputInternal u_final
@@ -6020,8 +5848,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         public
           Connectors.ThermalDiffusive positive
-            "Positive connector for thermal diffusion" annotation (Placement(
-                transformation(extent={{90,-10},{110,10}})));
+            "Positive connector for thermal diffusion"
+            annotation (Placement(transformation(extent={{90,-10},{110,10}})));
 
         equation
           // Conservation of energy
@@ -6038,8 +5866,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
           annotation (
             defaultComponentName="thermal",
-            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-                    -100},{100,100}}), graphics),
+            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                    {100,100}}), graphics),
             Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                     {100,100}}), graphics));
         end Partial;
@@ -6097,9 +5925,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                 rotation=0,
                 origin={-70,30})));
 
-          Connectors.RealInput u if not internal
-            "Value of specified condition" annotation (Placement(
-                transformation(
+          Connectors.RealInput u if not internal "Value of specified condition"
+            annotation (Placement(transformation(
                 extent={{-10,-10},{10,10}},
                 rotation=0,
                 origin={-110,0})));
@@ -6126,14 +5953,13 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         equation
           connect(u, u_final) annotation (Line(
-              points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},
-                  {-20,5.55112e-16}},
+              points={{-110,5.55112e-16},{-62,-4.87687e-22},{-62,5.55112e-16},{
+                  -20,5.55112e-16}},
               color={0,0,127},
               smooth=Smooth.None));
 
           connect(set.y, u_final) annotation (Line(
               points={{-59,30},{-40,30},{-40,5.55112e-16},{-20,5.55112e-16}},
-
               color={0,0,127},
               smooth=Smooth.None));
 
@@ -6167,8 +5993,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
       equation
         chemical.Ndot = u_final;
 
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-                extent={{-100,-100},{100,100}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent=
+                  {{-100,-100},{100,100}}), graphics));
       end Current;
 
       partial model Partial "Base model for a material condition"
@@ -6231,8 +6057,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               rotation=0,
               origin={-110,0})));
 
-        Connectors.RealOutput y "Measurement expression" annotation (Dialog(
-              tab="Measurement"), Placement(transformation(
+        Connectors.RealOutput y "Measurement expression" annotation (Dialog(tab
+              ="Measurement"), Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=0,
               origin={110,0}),iconTransformation(
@@ -6250,8 +6076,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
       protected
         final parameter Integer n_trans=countTrue({inclTransX,inclTransY,
             inclTransZ}) "Number of components of translational momentum";
-        final parameter Integer cartTrans[n_trans]=index({inclTransX,
-            inclTransY,inclTransZ})
+        final parameter Integer cartTrans[n_trans]=index({inclTransX,inclTransY,
+            inclTransZ})
           "Cartesian-axis indices of the components of translational momentum";
         Connectors.RealOutputInternal u_final
           "Final value of specified condition" annotation (Placement(
@@ -6324,8 +6150,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         //
         // X-axis translational
-        replaceable function transXSpec = Translational.velocity
-          constrainedby Translational.Partial "Quantity" annotation (
+        replaceable function transXSpec = Translational.velocity constrainedby
+          Translational.Partial "Quantity" annotation (
           __Dymola_choicesFromPackage=true,
           Dialog(
             tab="Specification",
@@ -6356,8 +6182,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         //
         // Y-axis translational
-        replaceable function transYSpec = Translational.velocity
-          constrainedby Translational.Partial "Quantity" annotation (
+        replaceable function transYSpec = Translational.velocity constrainedby
+          Translational.Partial "Quantity" annotation (
           __Dymola_choicesFromPackage=true,
           Dialog(
             tab="Specification",
@@ -6388,8 +6214,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         //
         // Z-axis translational
-        replaceable function transZSpec = Translational.velocity
-          constrainedby Translational.Partial "Quantity" annotation (
+        replaceable function transZSpec = Translational.velocity constrainedby
+          Translational.Partial "Quantity" annotation (
           __Dymola_choicesFromPackage=true,
           Dialog(
             tab="Specification",
@@ -6469,9 +6295,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 
         // Thermal
         replaceable function thermalMeas = ThermalAdvective.heatRate
-          constrainedby ThermalAdvective.Partial "Thermal quantity"
-          annotation (__Dymola_choicesFromPackage=true, Dialog(tab=
-                "Measurement"));
+          constrainedby ThermalAdvective.Partial "Thermal quantity" annotation
+          (__Dymola_choicesFromPackage=true, Dialog(tab="Measurement"));
 
         // Included components of translational momentum
         parameter Boolean inclTransX=true "X" annotation (
@@ -6533,8 +6358,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
                   reaction.phi,
                   reaction.mPhidot,
                   reaction.sT,
-                  reaction.Qdot) "Material measurement" annotation (Dialog(
-              tab="Measurement"), Placement(transformation(
+                  reaction.Qdot) "Material measurement" annotation (Dialog(tab=
+                "Measurement"), Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=0,
               origin={110,80}),iconTransformation(
@@ -6605,13 +6430,12 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
               origin={110,-80})));
 
         Connectors.Reaction reaction(final n_trans=n_trans)
-          "Stoichiometric connector for the chemical reaction" annotation (
-            Placement(transformation(extent={{-10,-110},{10,-90}})));
+          "Stoichiometric connector for the chemical reaction"
+          annotation (Placement(transformation(extent={{-10,-110},{10,-90}})));
 
       protected
-        final inner parameter Integer n_trans=countTrue({inclTransX,
-            inclTransY,inclTransZ})
-          "Number of components of translational momentum";
+        final inner parameter Integer n_trans=countTrue({inclTransX,inclTransY,
+            inclTransZ}) "Number of components of translational momentum";
         final inner parameter Integer transCart[Axis]=enumerate({inclTransX,
             inclTransY,inclTransZ})
           "Translational-momentum-component indices of the Cartesian axes";
@@ -6735,8 +6559,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
             points={{-69,-70},{-60,-70},{-60,-80},{-36,-80}},
             color={0,0,127},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-                extent={{-100,-100},{100,100}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent=
+                  {{-100,-100},{100,100}}), graphics));
       end Rate;
 
       model Offset
@@ -6801,8 +6625,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational advection
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           // Thermal advection
           input Q.PotentialAbsolute sT
@@ -6854,8 +6678,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational advection
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           // Thermal advection
           input Q.PotentialAbsolute sT
@@ -6911,8 +6735,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
           // Translational advection
           input Q.Velocity phi[:] "Velocity"
             annotation (Dialog(__Dymola_label="<html>&phi;</html>"));
-          input Q.Force mPhidot[:] "Force" annotation (Dialog(__Dymola_label=
-                  "<html><i>m</i>&Phi;dot</html>"));
+          input Q.Force mPhidot[:] "Force"
+            annotation (Dialog(__Dymola_label="<html><i>m</i>&Phi;dot</html>"));
 
           // Thermal advection
           input Q.PotentialAbsolute sT
@@ -6975,15 +6799,14 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
     parameter Q.NumberAbsolute psi_O2_dry(
       final max=1,
       displayUnit="%") = 0.20946
-      "<html>Mole fraction of O<sub>2</sub> in the dry gas</html>"
-      annotation (Dialog(__Dymola_label="<html>&psi;<sub>O2 dry</sub></html>",
-          group="Thermodynamics"));
+      "<html>Mole fraction of O<sub>2</sub> in the dry gas</html>" annotation (
+        Dialog(__Dymola_label="<html>&psi;<sub>O2 dry</sub></html>", group=
+            "Thermodynamics"));
     // Value from http://en.wikipedia.org/wiki/Oxygen, accessed 2013/10/30
     final parameter Q.PressureAbsolute p_sat=Characteristics.H2O.p_sat(T)
       "Saturation pressure of H2O vapor";
     final parameter Q.PressureAbsolute p_H2O=RH*p_sat "Pressure of H2O vapor";
-    final parameter Q.PressureAbsolute p_dry=p - p_H2O
-      "Pressure of dry gases";
+    final parameter Q.PressureAbsolute p_dry=p - p_H2O "Pressure of dry gases";
     final parameter Q.PressureAbsolute p_O2=psi_O2_dry*p_dry "Pressure of O2";
     final parameter Q.NumberAbsolute psi_H2O=p_H2O/p "Mole fraction of H2O";
     final parameter Q.NumberAbsolute psi_dry=1 - psi_H2O
@@ -7004,8 +6827,8 @@ but that of the third pure substance (Medium3) is \"" + Medium3.extraPropertiesN
 record is not defined.  For simulation, drag FCSys.Conditions.Environment into
 your model to specify global conditions and defaults.  Otherwise, the default
 settings will be used.",
-      Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-              100,100}}), graphics={
+      Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+              100}}), graphics={
           Rectangle(
             extent={{-80,60},{80,-100}},
             fillColor={255,255,255},
@@ -7024,7 +6847,6 @@ settings will be used.",
             lineColor={0,0,0}),
           Line(
             points={{-40,-20},{-30,-28},{-10,-50},{-10,-50},{16,-12},{40,0}},
-
             color={0,0,0},
             smooth=Smooth.Bezier),
           Ellipse(
@@ -7057,8 +6879,7 @@ settings will be used.",
 
   end Environment;
 
-  model Router
-    "Connect two pairs of boundaries to pass through or cross over"
+  model Router "Connect two pairs of boundaries to pass through or cross over"
     extends FCSys.Icons.Names.Top3;
     parameter Boolean crossOver=false "Cross over (otherwise, pass through)"
       annotation (choices(__Dymola_checkBox=true));
