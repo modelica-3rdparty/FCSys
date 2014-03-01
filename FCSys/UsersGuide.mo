@@ -213,7 +213,8 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end PEMFC;
 
-    class SOFC "<html><u>S</u>olid <u>o</u>xide <u>f</u>uel <u>c</u>ell</html>"
+    class SOFC
+      "<html><u>S</u>olid <u>o</u>xide <u>f</u>uel <u>c</u>ell</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end SOFC;

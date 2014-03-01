@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1116 
+personal_ws-1.1 en 1120 
 TorayTGPH
 AISI
 Joerg
@@ -79,6 +79,7 @@ inclLiq
 GDL
 Takenaka
 initialScale
+gasGraphite
 lund
 indices
 Winkler
@@ -435,6 +436,7 @@ arrayBooleanEqual
 weber
 gasLiq
 Bezier
+ConcentrationRate
 inclDL
 PotentialAbsolute
 CathodeGas
@@ -612,6 +614,7 @@ mediumName
 anFlowSet
 inclC
 incle
+exchGasGraphite
 katal
 zI
 SImmol
@@ -948,6 +951,7 @@ inclCapillary
 vOut
 nonpolar
 xide
+DiffusivityMassSpecific
 ConditionsAdaptersSpeciesFluid
 ccedil
 Piscataway

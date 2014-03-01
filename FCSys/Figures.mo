@@ -55,8 +55,8 @@ package Figures "Graphical layouts for documentation"
           Modelica.Blocks.Sources.Pulse pulse(
             period=1,
             offset=-0.5,
-            startTime=0)
-            annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+            startTime=0) annotation (Placement(transformation(extent={{-40,-10},
+                    {-20,10}})));
           Declarative_vi declarative_vi
             annotation (Placement(transformation(extent={{0,30},{20,50}})));
           Imperative_vi imperative_vi
@@ -71,16 +71,18 @@ package Figures "Graphical layouts for documentation"
               smooth=Smooth.None));
           connect(imperativeTF_vi.v, pulse.y) annotation (Line(
               points={{-1,-40},{-10,-40},{-10,6.10623e-16},{-19,6.10623e-16}},
+
               color={0,0,127},
               smooth=Smooth.None));
 
           connect(imperative_vi.v, pulse.y) annotation (Line(
-              points={{-1,6.10623e-16},{-5.5,6.10623e-16},{-5.5,6.10623e-16},{-10,
-                  6.10623e-16},{-10,6.10623e-16},{-19,6.10623e-16}},
+              points={{-1,6.10623e-16},{-5.5,6.10623e-16},{-5.5,6.10623e-16},
+                  {-10,6.10623e-16},{-10,6.10623e-16},{-19,6.10623e-16}},
               color={0,0,127},
               smooth=Smooth.None));
-          annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
-                  ={{-100,-100},{100,100}}), graphics), experiment(StopTime=2));
+          annotation (Diagram(coordinateSystem(preserveAspectRatio=true,
+                  extent={{-100,-100},{100,100}}), graphics), experiment(
+                StopTime=2));
         end Test_vi;
 
         model Test_iv
@@ -88,8 +90,8 @@ package Figures "Graphical layouts for documentation"
           Modelica.Blocks.Sources.Pulse pulse(
             period=1,
             offset=-0.5,
-            startTime=0)
-            annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+            startTime=0) annotation (Placement(transformation(extent={{-40,-10},
+                    {-20,10}})));
           Declarative_iv declarative_iv
             annotation (Placement(transformation(extent={{0,30},{20,50}})));
           FCSys.Figures.DeclarativeVsImperative.SwitchCausality.Imperative_iv
@@ -104,17 +106,19 @@ package Figures "Graphical layouts for documentation"
               color={0,0,127},
               smooth=Smooth.None));
           connect(imperative_iv.i, pulse.y) annotation (Line(
-              points={{-1,6.10623e-16},{-5.5,6.10623e-16},{-5.5,6.10623e-16},{-10,
-                  6.10623e-16},{-10,6.10623e-16},{-19,6.10623e-16}},
+              points={{-1,6.10623e-16},{-5.5,6.10623e-16},{-5.5,6.10623e-16},
+                  {-10,6.10623e-16},{-10,6.10623e-16},{-19,6.10623e-16}},
               color={0,0,127},
               smooth=Smooth.None));
           connect(imperativeTF_iv.i, pulse.y) annotation (Line(
               points={{-1,-40},{-10,-40},{-10,6.10623e-16},{-19,6.10623e-16}},
+
               color={0,0,127},
               smooth=Smooth.None));
 
-          annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
-                  ={{-100,-100},{100,100}}), graphics), experiment(StopTime=2));
+          annotation (Diagram(coordinateSystem(preserveAspectRatio=true,
+                  extent={{-100,-100},{100,100}}), graphics), experiment(
+                StopTime=2));
         end Test_iv;
 
         model Declarative
@@ -141,8 +145,8 @@ package Figures "Graphical layouts for documentation"
                 extent={{-10,-10},{10,10}},
                 rotation=270,
                 origin={30,-20})));
-          Modelica.Electrical.Analog.Basic.Ground ground
-            annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
+          Modelica.Electrical.Analog.Basic.Ground ground annotation (
+              Placement(transformation(extent={{20,-60},{40,-40}})));
 
         equation
           connect(res2.p, res1.p) annotation (Line(
@@ -150,8 +154,8 @@ package Figures "Graphical layouts for documentation"
               color={0,0,255},
               smooth=Smooth.None));
           connect(cap.p, res1.n) annotation (Line(
-              points={{30,-10},{30,-7.5},{30,-7.5},{30,-5},{30,1.22125e-15},{30,
-                  1.22125e-15}},
+              points={{30,-10},{30,-7.5},{30,-7.5},{30,-5},{30,1.22125e-15},{
+                  30,1.22125e-15}},
               color={0,0,255},
               smooth=Smooth.None));
 
@@ -167,8 +171,8 @@ package Figures "Graphical layouts for documentation"
               points={{30,-30},{30,-35},{30,-35},{30,-40}},
               color={0,0,255},
               smooth=Smooth.None));
-          annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
-                  ={{-80,-60},{80,60}}), graphics));
+          annotation (Diagram(coordinateSystem(preserveAspectRatio=true,
+                  extent={{-80,-60},{80,60}}), graphics));
         end Declarative;
 
       end Examples;
@@ -178,9 +182,9 @@ package Figures "Graphical layouts for documentation"
         "Declarative-based circuit with voltage in, current out"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput v annotation (Placement(transformation(extent={{-60,
-                  -30},{-40,-10}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
+        Connectors.RealInput v annotation (Placement(transformation(extent={{
+                  -60,-30},{-40,-10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
         Connectors.RealInput i annotation (Placement(transformation(
               extent={{10,-10},{-10,10}},
               rotation=180,
@@ -270,17 +274,17 @@ package Figures "Graphical layouts for documentation"
             color={0,0,255},
             smooth=Smooth.None));
 
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-80,-60},{80,60}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-80,-60},{80,60}}), graphics));
       end Declarative_vi;
 
       model Declarative_iv
         "Declarative-based circuit with current in, voltage out"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput i annotation (Placement(transformation(extent={{-80,
-                  -30},{-60,-10}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
+        Connectors.RealInput i annotation (Placement(transformation(extent={{
+                  -80,-30},{-60,-10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
         Connectors.RealOutput v annotation (Placement(transformation(
               extent={{10,-10},{-10,10}},
               rotation=180,
@@ -335,8 +339,8 @@ package Figures "Graphical layouts for documentation"
             color={0,0,255},
             smooth=Smooth.None));
         connect(res1.n, cap.p) annotation (Line(
-            points={{30,1.22125e-15},{30,-2.5},{30,-2.5},{30,-5},{30,-10},{30,-10}},
-
+            points={{30,1.22125e-15},{30,-2.5},{30,-2.5},{30,-5},{30,-10},{30,
+                -10}},
             color={0,0,255},
             smooth=Smooth.None));
 
@@ -368,20 +372,21 @@ package Figures "Graphical layouts for documentation"
             points={{-20,-5.55112e-16},{-20,-40},{30,-40}},
             color={0,0,255},
             smooth=Smooth.None));
-        annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-                  -100},{100,100}}), graphics), Diagram(coordinateSystem(
-                preserveAspectRatio=true, extent={{-80,-60},{80,60}}), graphics));
+        annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{
+                  -100,-100},{100,100}}), graphics), Diagram(coordinateSystem(
+                preserveAspectRatio=true, extent={{-80,-60},{80,60}}),
+              graphics));
       end Declarative_iv;
 
       model Imperative_vi "Imperative circuit with voltage in, current out"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput v annotation (Placement(transformation(extent={{-100,
-                  20},{-80,40}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput i annotation (Placement(transformation(extent={{
-                  80,20},{100,40}}), iconTransformation(extent={{100,-10},{120,
-                  10}})));
+        Connectors.RealInput v annotation (Placement(transformation(extent={{
+                  -100,20},{-80,40}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput i annotation (Placement(transformation(extent={
+                  {80,20},{100,40}}),iconTransformation(extent={{100,-10},{
+                  120,10}})));
         Modelica.Blocks.Continuous.Integrator ind(k=1/L)
           annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
         Modelica.Blocks.Math.Gain res1(k=1/R1)
@@ -416,8 +421,8 @@ package Figures "Graphical layouts for documentation"
             color={0,200,0},
             smooth=Smooth.None));
         connect(res2.u, ind.y) annotation (Line(
-            points={{18,6.66134e-16},{14,0},{10,1.27676e-15},{10,6.10623e-16},{
-                1,6.10623e-16}},
+            points={{18,6.66134e-16},{14,0},{10,1.27676e-15},{10,6.10623e-16},
+                {1,6.10623e-16}},
             color={0,200,0},
             smooth=Smooth.None));
 
@@ -442,12 +447,12 @@ package Figures "Graphical layouts for documentation"
             color={255,195,38},
             smooth=Smooth.None));
         connect(res2.y, diff2.u2) annotation (Line(
-            points={{41,6.10623e-16},{50,6.10623e-16},{50,-20},{-70,-20},{-70,-6},
-                {-62,-6}},
+            points={{41,6.10623e-16},{50,6.10623e-16},{50,-20},{-70,-20},{-70,
+                -6},{-62,-6}},
             color={255,195,38},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-100},{100,100}}), graphics={Line(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-100},{100,100}}), graphics={Line(
                       points={{62,76},{70,76}},
                       color={255,195,38},
                       smooth=Smooth.None),Rectangle(
@@ -471,12 +476,12 @@ package Figures "Graphical layouts for documentation"
         extends FCSys.Icons.Blocks.Continuous;
 
       public
-        Connectors.RealInput i annotation (Placement(transformation(extent={{-90,
-                  26},{-70,46}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput v annotation (Placement(transformation(extent={{
-                  80,20},{100,40}}), iconTransformation(extent={{100,-10},{120,
-                  10}})));
+        Connectors.RealInput i annotation (Placement(transformation(extent={{
+                  -90,26},{-70,46}}), iconTransformation(extent={{-120,-10},{
+                  -100,10}})));
+        Connectors.RealOutput v annotation (Placement(transformation(extent={
+                  {80,20},{100,40}}),iconTransformation(extent={{100,-10},{
+                  120,10}})));
         Modelica.Blocks.Math.Gain res1(k=R1)
           annotation (Placement(transformation(extent={{-10,0},{10,20}})));
         Modelica.Blocks.Math.Add sum
@@ -537,8 +542,8 @@ package Figures "Graphical layouts for documentation"
             points={{51,30},{90,30}},
             color={255,195,38},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-100},{100,100}}), graphics={Line(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-100},{100,100}}), graphics={Line(
                       points={{60,58},{68,58}},
                       color={255,195,38},
                       smooth=Smooth.None),Rectangle(
@@ -561,14 +566,14 @@ package Figures "Graphical layouts for documentation"
         "Equivalent transfer function for voltage in, current out"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput v annotation (Placement(transformation(extent={{-100,
-                  20},{-80,40}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput i annotation (Placement(transformation(extent={{
-                  80,20},{100,40}}), iconTransformation(extent={{100,-10},{120,
-                  10}})));
-        Modelica.Blocks.Continuous.TransferFunction transferFunction(a={R1*L*C,
-              R1*R2*C + L,R2}, b={-L*C,-(R1 + R2)*C,-1})
+        Connectors.RealInput v annotation (Placement(transformation(extent={{
+                  -100,20},{-80,40}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput i annotation (Placement(transformation(extent={
+                  {80,20},{100,40}}),iconTransformation(extent={{100,-10},{
+                  120,10}})));
+        Modelica.Blocks.Continuous.TransferFunction transferFunction(a={R1*L*
+              C,R1*R2*C + L,R2}, b={-L*C,-(R1 + R2)*C,-1})
           annotation (Placement(transformation(extent={{-10,20},{10,40}})));
 
       equation
@@ -580,8 +585,8 @@ package Figures "Graphical layouts for documentation"
             points={{11,30},{90,30}},
             color={0,200,0},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-100},{100,100}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-100},{100,100}}), graphics));
       end ImperativeTF_vi;
 
       model ImperativeTF_iv
@@ -590,14 +595,14 @@ package Figures "Graphical layouts for documentation"
         extends FCSys.Icons.Blocks.Continuous;
 
       public
-        Connectors.RealInput i annotation (Placement(transformation(extent={{-100,
-                  20},{-80,40}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput v annotation (Placement(transformation(extent={{
-                  80,20},{100,40}}), iconTransformation(extent={{100,-10},{120,
-                  10}})));
-        Modelica.Blocks.Continuous.TransferFunction transferFunction(b={R1*L*C,
-              R1*R2*C + L,R2}, a={-L*C,-(R1 + R2)*C,-1})
+        Connectors.RealInput i annotation (Placement(transformation(extent={{
+                  -100,20},{-80,40}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput v annotation (Placement(transformation(extent={
+                  {80,20},{100,40}}),iconTransformation(extent={{100,-10},{
+                  120,10}})));
+        Modelica.Blocks.Continuous.TransferFunction transferFunction(b={R1*L*
+              C,R1*R2*C + L,R2}, a={-L*C,-(R1 + R2)*C,-1})
           annotation (Placement(transformation(extent={{-10,20},{10,40}})));
 
       equation
@@ -609,8 +614,8 @@ package Figures "Graphical layouts for documentation"
             points={{-12,30},{-90,30}},
             color={0,200,0},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-100},{100,100}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-100},{100,100}}), graphics));
       end ImperativeTF_iv;
 
     protected
@@ -634,8 +639,8 @@ package Figures "Graphical layouts for documentation"
           Modelica.Blocks.Sources.Pulse pulse(
             period=1,
             offset=-0.5,
-            startTime=0)
-            annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+            startTime=0) annotation (Placement(transformation(extent={{-40,-10},
+                    {-20,10}})));
           DeclarativeAB declarativeAB
             annotation (Placement(transformation(extent={{0,50},{20,70}})));
           ImperativeAB imperativeAB
@@ -656,16 +661,19 @@ package Figures "Graphical layouts for documentation"
               smooth=Smooth.None));
           connect(pulse.y, imperativeABIncorrect.vIn) annotation (Line(
               points={{-19,6.10623e-16},{-10,6.10623e-16},{-10,-60},{-1,-60}},
+
               color={0,0,127},
               smooth=Smooth.None));
 
           connect(imperativeABTF.vIn, pulse.y) annotation (Line(
               points={{-1,-20},{-10,-20},{-10,6.10623e-16},{-19,6.10623e-16}},
+
               color={0,0,127},
               smooth=Smooth.None));
 
-          annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
-                  ={{-100,-100},{100,100}}), graphics), experiment(StopTime=2));
+          annotation (Diagram(coordinateSystem(preserveAspectRatio=true,
+                  extent={{-100,-100},{100,100}}), graphics), experiment(
+                StopTime=2));
         end Test;
 
       end Examples;
@@ -674,12 +682,12 @@ package Figures "Graphical layouts for documentation"
       model DeclarativeA "First circuit in declarative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -100,-10},{-80,10}}), iconTransformation(extent={{-120,-10},{
-                  -100,10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{40,-10},{60,10}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-100,-10},{-80,10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{40,-10},{60,10}}), iconTransformation(extent={{100,-10},
+                  {120,10}})));
         Modelica.Electrical.Analog.Sources.SignalVoltage voltageSource
           annotation (Placement(transformation(
               extent={{-10,10},{10,-10}},
@@ -695,8 +703,8 @@ package Figures "Graphical layouts for documentation"
               extent={{-10,-10},{10,10}},
               rotation=270,
               origin={-20,-20})));
-        Modelica.Electrical.Analog.Basic.Ground ground
-          annotation (Placement(transformation(extent={{-30,-60},{-10,-40}})));
+        Modelica.Electrical.Analog.Basic.Ground ground annotation (Placement(
+              transformation(extent={{-30,-60},{-10,-40}})));
         Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor
           annotation (Placement(transformation(
               extent={{10,-10},{-10,10}},
@@ -717,8 +725,8 @@ package Figures "Graphical layouts for documentation"
             color={0,0,255},
             smooth=Smooth.None));
         connect(vIn, voltageSource.v) annotation (Line(
-            points={{-90,5.55112e-16},{-82,5.55112e-16},{-82,0},{-70,0},{-70,-20},
-                {-57,-20}},
+            points={{-90,5.55112e-16},{-82,5.55112e-16},{-82,0},{-70,0},{-70,
+                -20},{-57,-20}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(voltageSource.n, ground.p) annotation (Line(
@@ -737,19 +745,19 @@ package Figures "Graphical layouts for documentation"
             points={{10,-10},{10,0},{-20,0},{-20,10}},
             color={0,0,255},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-60},{100,60}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-60},{100,60}}), graphics));
       end DeclarativeA;
 
       model DeclarativeB "First circuit in declarative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -60,-10},{-40,10}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{80,-10},{100,10}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-60,-10},{-40,10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{80,-10},{100,10}}), iconTransformation(extent={{100,
+                  -10},{120,10}})));
         Modelica.Electrical.Analog.Sources.SignalVoltage voltageSource
           annotation (Placement(transformation(
               extent={{-10,10},{10,-10}},
@@ -796,6 +804,7 @@ package Figures "Graphical layouts for documentation"
             smooth=Smooth.None));
         connect(vIn, voltageSource.v) annotation (Line(
             points={{-50,5.55112e-16},{-30,5.55112e-16},{-30,-20},{-17,-20}},
+
             color={0,0,127},
             smooth=Smooth.None));
 
@@ -807,20 +816,20 @@ package Figures "Graphical layouts for documentation"
             points={{50,-30},{50,-40},{20,-40}},
             color={0,0,255},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-60},{100,60}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-60},{100,60}}), graphics));
       end DeclarativeB;
 
       model DeclarativeAB
         "Cascaded first and second circuits in declarative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -100,-10},{-80,10}}), iconTransformation(extent={{-120,-10},{
-                  -100,10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{80,-10},{100,10}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-100,-10},{-80,10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{80,-10},{100,10}}), iconTransformation(extent={{100,
+                  -10},{120,10}})));
         Modelica.Electrical.Analog.Sources.SignalVoltage voltageSource
           annotation (Placement(transformation(
               extent={{-10,10},{10,-10}},
@@ -866,8 +875,8 @@ package Figures "Graphical layouts for documentation"
             color={0,0,255},
             smooth=Smooth.None));
         connect(vIn, voltageSource.v) annotation (Line(
-            points={{-90,5.55112e-16},{-82,5.55112e-16},{-82,0},{-70,0},{-70,-20},
-                {-57,-20}},
+            points={{-90,5.55112e-16},{-82,5.55112e-16},{-82,0},{-70,0},{-70,
+                -20},{-57,-20}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(res3.p, res2.n) annotation (Line(
@@ -902,21 +911,21 @@ package Figures "Graphical layouts for documentation"
             points={{50,-30},{50,-40},{4.996e-16,-40}},
             color={0,0,255},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-100,-60},{100,60}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-100,-60},{100,60}}), graphics));
       end DeclarativeAB;
 
       model ImperativeA "First circuit in imperative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -160,-10},{-140,10}}), iconTransformation(extent={{-120,-10},
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-160,-10},{-140,10}}), iconTransformation(extent={{-120,-10},
                   {-100,10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{0,-10},{20,10}}), iconTransformation(extent={{100,-10},{120,
-                  10}})));
-        Modelica.Blocks.Math.Gain res1(k=R1)
-          annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{0,-10},{20,10}}), iconTransformation(extent={{100,-10},
+                  {120,10}})));
+        Modelica.Blocks.Math.Gain res1(k=R1) annotation (Placement(
+              transformation(extent={{-120,-10},{-100,10}})));
         Modelica.Blocks.Continuous.Derivative ind(k=C)
           annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
         Modelica.Blocks.Math.Add KVL1
@@ -939,18 +948,18 @@ package Figures "Graphical layouts for documentation"
             color={0,200,0},
             smooth=Smooth.None));
         connect(res1.u, vIn) annotation (Line(
-            points={{-122,6.66134e-16},{-134,6.66134e-16},{-134,5.55112e-16},{-150,
-                5.55112e-16}},
+            points={{-122,6.66134e-16},{-134,6.66134e-16},{-134,5.55112e-16},
+                {-150,5.55112e-16}},
             color={255,195,38},
             smooth=Smooth.None));
 
         connect(KVL1.u2, vIn) annotation (Line(
-            points={{-32,-6},{-40,-6},{-40,-20},{-130,-20},{-130,5.55112e-16},{
-                -150,5.55112e-16}},
+            points={{-32,-6},{-40,-6},{-40,-20},{-130,-20},{-130,5.55112e-16},
+                {-150,5.55112e-16}},
             color={255,195,38},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-160,-40},{160,40}}), graphics={Rectangle(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-160,-40},{160,40}}), graphics={Rectangle(
                       extent={{-15,7},{15,-7}},
                       lineColor={0,0,0},
                       origin={-5,27},
@@ -976,12 +985,12 @@ package Figures "Graphical layouts for documentation"
       model ImperativeB "Second circuit in imperative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -30,-10},{-10,10}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{140,-10},{160,10}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-30,-10},{-10,10}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{140,-10},{160,10}}), iconTransformation(extent={{100,
+                  -10},{120,10}})));
 
       public
         Modelica.Blocks.Math.Gain res2(k=1/R2)
@@ -995,20 +1004,20 @@ package Figures "Graphical layouts for documentation"
 
       equation
         connect(res3.y, vOut) annotation (Line(
-            points={{121,6.10623e-16},{136,6.10623e-16},{136,5.55112e-16},{150,
-                5.55112e-16}},
+            points={{121,6.10623e-16},{136,6.10623e-16},{136,5.55112e-16},{
+                150,5.55112e-16}},
             color={255,195,38},
             smooth=Smooth.None));
 
         connect(res2.y, res3.u) annotation (Line(
-            points={{81,6.10623e-16},{86,0},{90,1.27676e-15},{90,6.66134e-16},{
-                98,6.66134e-16}},
+            points={{81,6.10623e-16},{86,0},{90,1.27676e-15},{90,6.66134e-16},
+                {98,6.66134e-16}},
             color={0,200,0},
             smooth=Smooth.None));
 
         connect(KVL2.y, res2.u) annotation (Line(
-            points={{41,6.10623e-16},{46,0},{50,1.27676e-15},{50,6.66134e-16},{
-                58,6.66134e-16}},
+            points={{41,6.10623e-16},{46,0},{50,1.27676e-15},{50,6.66134e-16},
+                {58,6.66134e-16}},
             color={255,195,38},
             smooth=Smooth.None));
 
@@ -1022,8 +1031,8 @@ package Figures "Graphical layouts for documentation"
             color={255,195,38},
             smooth=Smooth.None));
 
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-160,-40},{160,40}}), graphics={Rectangle(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-160,-40},{160,40}}), graphics={Rectangle(
                       extent={{-15,7},{15,-7}},
                       lineColor={0,0,0},
                       origin={135,27},
@@ -1050,12 +1059,12 @@ package Figures "Graphical layouts for documentation"
         "Cascaded first and second circuits in imperative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -110,30},{-90,50}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{80,30},{100,50}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-110,30},{-90,50}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{80,30},{100,50}}), iconTransformation(extent={{100,-10},
+                  {120,10}})));
         Modelica.Blocks.Continuous.Integrator cap(k=1/C)
           annotation (Placement(transformation(extent={{-40,-10},{-60,10}})));
         Modelica.Blocks.Math.Gain res1(k=1/R1)
@@ -1068,8 +1077,8 @@ package Figures "Graphical layouts for documentation"
           annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
         Modelica.Blocks.Math.Add KCL(k2=-1, k1=1)
           annotation (Placement(transformation(extent={{0,-10},{-20,10}})));
-        Modelica.Blocks.Math.Add KVL2(k2=-1)
-          annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
+        Modelica.Blocks.Math.Add KVL2(k2=-1) annotation (Placement(
+              transformation(extent={{-60,-50},{-40,-30}})));
 
       equation
         connect(res3.y, vOut) annotation (Line(
@@ -1111,16 +1120,18 @@ package Figures "Graphical layouts for documentation"
             smooth=Smooth.None));
         connect(KVL2.u1, cap.y) annotation (Line(
             points={{-62,-34},{-70,-34},{-70,6.10623e-16},{-61,6.10623e-16}},
+
             color={255,195,38},
             smooth=Smooth.None));
 
         connect(KVL2.u2, res3.y) annotation (Line(
             points={{-62,-46},{-70,-46},{-70,-60},{70,-60},{70,-40},{61,-40}},
+
             color={255,195,38},
             smooth=Smooth.None));
 
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-120,-80},{120,80}}), graphics={Rectangle(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-120,-80},{120,80}}), graphics={Rectangle(
                       extent={{-15,7},{15,-7}},
                       lineColor={0,0,0},
                       origin={95,-67},
@@ -1145,14 +1156,14 @@ package Figures "Graphical layouts for documentation"
         "Incorrectly cascaded first and second circuits in imperative formalism"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -160,-10},{-140,10}}), iconTransformation(extent={{-120,-10},
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-160,-10},{-140,10}}), iconTransformation(extent={{-120,-10},
                   {-100,10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{140,-10},{160,10}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
-        Modelica.Blocks.Math.Gain res1(k=R1)
-          annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{140,-10},{160,10}}), iconTransformation(extent={{100,
+                  -10},{120,10}})));
+        Modelica.Blocks.Math.Gain res1(k=R1) annotation (Placement(
+              transformation(extent={{-120,-10},{-100,10}})));
         Modelica.Blocks.Continuous.Derivative ind(k=C)
           annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
         Modelica.Blocks.Math.Add KVL1
@@ -1189,14 +1200,14 @@ package Figures "Graphical layouts for documentation"
             color={255,195,38},
             smooth=Smooth.None));
         connect(res2.y, res3.u) annotation (Line(
-            points={{81,6.10623e-16},{86,0},{90,1.27676e-15},{90,6.66134e-16},{
-                98,6.66134e-16}},
+            points={{81,6.10623e-16},{86,0},{90,1.27676e-15},{90,6.66134e-16},
+                {98,6.66134e-16}},
             color={0,200,0},
             smooth=Smooth.None));
 
         connect(KVL2.y, res2.u) annotation (Line(
-            points={{41,6.10623e-16},{46,0},{50,1.27676e-15},{50,6.66134e-16},{
-                58,6.66134e-16}},
+            points={{41,6.10623e-16},{46,0},{50,1.27676e-15},{50,6.66134e-16},
+                {58,6.66134e-16}},
             color={0,200,0},
             smooth=Smooth.None));
 
@@ -1211,13 +1222,13 @@ package Figures "Graphical layouts for documentation"
             color={255,195,38},
             smooth=Smooth.None));
         connect(res3.y, vOut) annotation (Line(
-            points={{121,6.10623e-16},{132.5,6.10623e-16},{132.5,5.55112e-16},{
-                150,5.55112e-16}},
+            points={{121,6.10623e-16},{132.5,6.10623e-16},{132.5,5.55112e-16},
+                {150,5.55112e-16}},
             color={255,195,38},
             smooth=Smooth.None));
 
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-160,-40},{160,40}}), graphics={Rectangle(
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-160,-40},{160,40}}), graphics={Rectangle(
                       extent={{-15,7},{15,-7}},
                       lineColor={0,0,0},
                       origin={135,27},
@@ -1242,14 +1253,14 @@ package Figures "Graphical layouts for documentation"
         "Cascaded first and second circuits as a transfer function"
         extends Parameters;
         extends FCSys.Icons.Blocks.Continuous;
-        Connectors.RealInput vIn annotation (Placement(transformation(extent={{
-                  -110,30},{-90,50}}), iconTransformation(extent={{-120,-10},{-100,
-                  10}})));
-        Connectors.RealOutput vOut annotation (Placement(transformation(extent=
-                  {{80,30},{100,50}}), iconTransformation(extent={{100,-10},{
-                  120,10}})));
-        Modelica.Blocks.Continuous.TransferFunction transferFunction(b={R3}, a=
-              {C*R1*(R2 + R3),R1 + R2 + R3})
+        Connectors.RealInput vIn annotation (Placement(transformation(extent=
+                  {{-110,30},{-90,50}}), iconTransformation(extent={{-120,-10},
+                  {-100,10}})));
+        Connectors.RealOutput vOut annotation (Placement(transformation(
+                extent={{80,30},{100,50}}), iconTransformation(extent={{100,-10},
+                  {120,10}})));
+        Modelica.Blocks.Continuous.TransferFunction transferFunction(b={R3},
+            a={C*R1*(R2 + R3),R1 + R2 + R3})
           annotation (Placement(transformation(extent={{-20,30},{0,50}})));
 
       equation
@@ -1261,8 +1272,8 @@ package Figures "Graphical layouts for documentation"
             points={{-22,40},{-100,40}},
             color={255,195,38},
             smooth=Smooth.None));
-        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={
-                  {-120,-80},{120,80}}), graphics));
+        annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent
+                ={{-120,-80},{120,80}}), graphics));
       end ImperativeABTF;
 
     protected
@@ -1538,8 +1549,8 @@ package Figures "Graphical layouts for documentation"
     Connectors.Translational Material
       annotation (Placement(transformation(extent={{78,-38},{98,-18}})));
 
-    Connectors.Boundary Boundary annotation (Placement(transformation(extent={{
-              54,-14},{74,6}}), iconTransformation(extent={{78,-14},{98,6}})));
+    Connectors.Boundary Boundary annotation (Placement(transformation(extent=
+              {{54,-14},{74,6}}), iconTransformation(extent={{78,-14},{98,6}})));
 
     Connectors.Translational Translational
       annotation (Placement(transformation(extent={{30,-38},{50,-18}})));

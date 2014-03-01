@@ -143,8 +143,9 @@ package Chemistry "Chemical reactions and related models"
       extends FCSys.Icons.Names.Top2;
 
       parameter Integer n_trans(min=1,max=3)
-        "Number of components of translational momentum" annotation (Evaluate=
-            true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
+        "Number of components of translational momentum" annotation (Evaluate
+          =true, Dialog(__Dymola_label=
+              "<html><i>n</i><sub>trans</sub></html>"));
       parameter Q.Area A=10*U.m^2 "Surface area"
         annotation (Dialog(__Dymola_label="<html><i>A</i></html>"));
       parameter Q.Length L=1e-10*U.m "Length of the gap"
@@ -209,7 +210,8 @@ package Chemistry "Chemical reactions and related models"
       Q.Velocity phi_inert[n_trans]
         "Velocity at the inert connector (or zero if removed)";
       Q.Force mPhidot_inert[n_trans] "Force into the inert connector";
-      Q.Power Qdot_inert "Rate of thermal conduction into the inert connector";
+      Q.Power Qdot_inert
+        "Rate of thermal conduction into the inert connector";
 
       outer Conditions.Environment environment "Environmental conditions";
 
@@ -238,12 +240,14 @@ package Chemistry "Chemical reactions and related models"
       // Conservation
       0 = negative.Ndot + positive.Ndot "Material (no storage)";
       zeros(n_trans) = Data.m*(actualStream(negative.phi) - actualStream(
-        positive.phi))*I + mPhidot_inert "Translational momentum (no storage)";
+        positive.phi))*I + mPhidot_inert
+        "Translational momentum (no storage)";
       der(C*w)/U.s = Data.z*I
         "Electrical energy (reversible; simplified using material conservation and divided by potential)";
       0 = Qdot_inert + (actualStream(negative.phi)*actualStream(negative.phi)
-         - actualStream(positive.phi)*actualStream(positive.phi))*I*Data.m/2 +
-        phi_inert*mPhidot_inert "Mechanical and thermal energy (no storage)";
+         - actualStream(positive.phi)*actualStream(positive.phi))*I*Data.m/2
+         + phi_inert*mPhidot_inert
+        "Mechanical and thermal energy (no storage)";
 
       annotation (
         Documentation(info="<html><p>The capacitance (<i>C</i>) is calculated from the surface area (<i>A</i>), 
@@ -258,20 +262,24 @@ package Chemistry "Chemical reactions and related models"
   </html>"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
-        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{-20,30},{-20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,30},{20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{-20,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None)}));
+        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                {100,100}}),graphics={
+            Line(
+              points={{-20,30},{-20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,30},{20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{-20,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
@@ -279,22 +287,24 @@ package Chemistry "Chemical reactions and related models"
       extends FCSys.Icons.Names.Top1;
 
       parameter Integer n_trans(min=1,max=3)
-        "Number of components of translational momentum" annotation (Evaluate=
-            true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
+        "Number of components of translational momentum" annotation (Evaluate
+          =true, Dialog(__Dymola_label=
+              "<html><i>n</i><sub>trans</sub></html>"));
 
       parameter Integer n=1 "Apparent electron transfer number" annotation (
           Dialog(group="Electrochemical parameters", __Dymola_label=
               "<html><i>n</i></html>"));
-      parameter Q.Potential E_A=0 "Activation energy" annotation (Dialog(group=
-              "Electrochemical parameters", __Dymola_label=
+      parameter Q.Potential E_A=0 "Activation energy" annotation (Dialog(
+            group="Electrochemical parameters", __Dymola_label=
               "<html><i>E</i><sub>A</sub></html>"));
       parameter Q.NumberAbsolute alpha(max=1) = 0.5
         "Charge transfer coefficient" annotation (Dialog(group=
               "Electrochemical parameters", __Dymola_label=
               "<html>&alpha;</html>"));
       Q.Current I0_300K=U.A "Exchange current @ 300 K" annotation (Dialog(
-            __Dymola_label="<html><i>I</i><sup>o</sup><sub>300 K</sub></html>",
-            group="Electrochemical parameters"));
+            __Dymola_label=
+              "<html><i>I</i><sup>o</sup><sub>300 K</sub></html>", group=
+              "Electrochemical parameters"));
       parameter Boolean fromI=true
         "<html>Invert the Butler-Volmer equation, if &alpha;=&frac12;</html>"
         annotation (Dialog(tab="Advanced", compact=true), choices(
@@ -361,26 +371,31 @@ package Chemistry "Chemical reactions and related models"
 
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
-        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{0,-20},{0,-50}},
-                  color={221,23,47},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Rectangle(
-                  extent={{-30,20},{32,-20}},
-                  lineColor={255,195,38},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,4},{20,4},{8,12}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-20,-5},{20,-5},{8,3}},
-                  color={255,195,38},
-                  smooth=Smooth.None,
-                  origin={0,-11},
-                  rotation=180)}));
+        Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                {100,100}}),graphics={
+            Line(
+              points={{0,-20},{0,-50}},
+              color={221,23,47},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Rectangle(
+              extent={{-30,20},{32,-20}},
+              lineColor={255,195,38},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,4},{20,4},{8,12}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,-5},{20,-5},{8,3}},
+              color={255,195,38},
+              smooth=Smooth.None,
+              origin={0,-11},
+              rotation=180)}));
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -414,15 +429,16 @@ package Chemistry "Chemical reactions and related models"
 
     Connectors.Chemical 'cheme-'(redeclare final constant Integer n_trans=
           n_trans) "Connector for e-" annotation (Placement(transformation(
-            extent={{20,-20},{40,0}}), iconTransformation(extent={{-10,-10},{10,
-              10}})));
+            extent={{20,-20},{40,0}}), iconTransformation(extent={{-10,-10},{
+              10,10}})));
     Connectors.Chemical 'chemH+'(redeclare final constant Integer n_trans=
           n_trans) "Connector for H+" annotation (Placement(transformation(
-            extent={{20,-40},{40,-20}}), iconTransformation(extent={{30,-10},{
-              50,10}})));
-    Connectors.Chemical chemH2(redeclare final constant Integer n_trans=n_trans)
-      "Connector for H2" annotation (Placement(transformation(extent={{-60,-30},
-              {-40,-10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
+            extent={{20,-40},{40,-20}}), iconTransformation(extent={{30,-10},
+              {50,10}})));
+    Connectors.Chemical chemH2(redeclare final constant Integer n_trans=
+          n_trans) "Connector for H2" annotation (Placement(transformation(
+            extent={{-60,-30},{-40,-10}}), iconTransformation(extent={{-50,-10},
+              {-30,10}})));
     // Note:  These redeclarations are necessary due to errors in Dymola 2014.
     // **Try again
 
@@ -432,9 +448,9 @@ package Chemistry "Chemical reactions and related models"
       Dialog(tab="Assumptions", compact=true),
       choices(__Dymola_checkBox=true));
 
-    Electrochemistry.ElectronTransfer transfer(redeclare final constant Integer
-        n_trans=n_trans, n=2) "Electron transfer" annotation (Placement(
-          transformation(
+    Electrochemistry.ElectronTransfer transfer(redeclare final constant
+        Integer n_trans=n_trans, n=2) "Electron transfer" annotation (
+        Placement(transformation(
           extent={{-10,10},{10,-10}},
           rotation=0,
           origin={10,-10})));
@@ -445,10 +461,9 @@ package Chemistry "Chemical reactions and related models"
           rotation=0,
           origin={10,26})));
     // Note:  n_trans must be constant in Dymola 2014 to prevent errors such as
-    // "Failed to expand the variable
-    // subregion.ORR.transfer.negative.phi".  The setting of n_trans=1
-    // must be manually changed at instantiation if additional transport axes
-    //  are enabled.
+    // "Failed to expand the variable subregion.ORR.transfer.negative.phi".  The
+    // setting of n_trans=1 must be manually changed at instantiation if
+    // additional transport axes are enabled.
     Connectors.Amagat amagat if inclDL "Connector for additivity of volume"
       annotation (Placement(transformation(extent={{20,20},{40,40}}),
           iconTransformation(extent={{90,-10},{110,10}})));
@@ -506,18 +521,20 @@ package Chemistry "Chemical reactions and related models"
       Documentation(info=
             "<html><table border=1><tr><td><font size=100 color=\"gray\">H<sub>2</sub> &#8652; 2e<sup>-</sup> + 2H<sup>+</sup></font></td></tr></table></html>"),
 
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{40,
-              40}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={Rectangle(
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
+
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{
+              40,40}}), graphics));
+
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -563,19 +580,20 @@ package Chemistry "Chemical reactions and related models"
 
     Connectors.Chemical 'cheme-'(redeclare final constant Integer n_trans=
           n_trans) "Connector for e-" annotation (Placement(transformation(
-            extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-70,-10},{
-              -50,10}})));
+            extent={{-60,-20},{-40,0}}), iconTransformation(extent={{-70,-10},
+              {-50,10}})));
     Connectors.Chemical 'chemH+'(redeclare final constant Integer n_trans=
           n_trans) "Connector for H+" annotation (Placement(transformation(
             extent={{-60,-40},{-40,-20}}), iconTransformation(extent={{-30,-10},
               {-10,10}})));
-    Connectors.Chemical chemO2(redeclare final constant Integer n_trans=n_trans)
-      "Connector for O2" annotation (Placement(transformation(extent={{-60,-60},
-              {-40,-40}}), iconTransformation(extent={{10,-10},{30,10}})));
+    Connectors.Chemical chemO2(redeclare final constant Integer n_trans=
+          n_trans) "Connector for O2" annotation (Placement(transformation(
+            extent={{-60,-60},{-40,-40}}), iconTransformation(extent={{10,-10},
+              {30,10}})));
     Connectors.Chemical chemH2O(redeclare final constant Integer n_trans=
           n_trans) "Connector for H2O" annotation (Placement(transformation(
-            extent={{20,-40},{40,-20}}), iconTransformation(extent={{50,-10},{
-              70,10}})));
+            extent={{20,-40},{40,-20}}), iconTransformation(extent={{50,-10},
+              {70,10}})));
     // Note:  These redeclarations are necessary due to errors in Dymola 2014.
     // **Try again
     Electrochemistry.ElectronTransfer transfer(
@@ -596,8 +614,8 @@ package Chemistry "Chemical reactions and related models"
           iconTransformation(extent={{90,-10},{110,10}})));
     Connectors.Inter inert(final n_trans=n_trans)
       "Translational and thermal interface with the substrate" annotation (
-        Placement(transformation(extent={{-60,0},{-40,20}}), iconTransformation(
-            extent={{-108,-10},{-88,10}})));
+        Placement(transformation(extent={{-60,0},{-40,20}}),
+          iconTransformation(extent={{-108,-10},{-88,10}})));
   equation
     connect('H+'.chemical, 'chemH+') annotation (Line(
         points={{-14,-30},{-50,-30}},
@@ -656,18 +674,19 @@ package Chemistry "Chemical reactions and related models"
       Documentation(info=
             "<html><table border=1><tr><td><font size=100 color=\"gray\">4e<sup>-</sup> + 4H<sup>+</sup> + O<sub>2</sub> &#8652; 2H<sub>2</sub>O</font></td></tr></table></html>"),
 
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
-              40}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={Rectangle(
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
+
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{
+              40,40}}), graphics));
   end ORR;
 
 public
@@ -715,32 +734,42 @@ public
     [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, p.&nbsp;924].  Note that the surface tension in
     [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>] is incorrect (likely unit conversion error).</p>
 
+    <p>The default contact angle (&theta; = 140&deg;) is typical of the GDL measurements listed at
+    <a href=\"http://www.chem.mtu.edu/cnlm/research/Movement_of_Water-in_Fuel_Cell_Electrodes.htm\">http://www.chem.mtu.edu/cnlm/research/Movement_of_Water-in_Fuel_Cell_Electrodes.htm</a>
+    (accessed Nov. 22, 2103).</p>
+    
     </html>"),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-40,40},{40,-40}},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Rectangle(
-              extent={{42,40},{20,-40}},
-              pattern=LinePattern.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{0,40},{40,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Line(
-              points={{-40,40},{40,40}},
-              color={0,0,0},
-              smooth=Smooth.None),Line(
-              points={{-40,-40},{40,-40}},
-              color={0,0,0},
-              smooth=Smooth.None)}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-              100,100}}), graphics));
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics={
+          Rectangle(
+            extent={{-40,40},{40,-40}},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Rectangle(
+            extent={{42,40},{20,-40}},
+            pattern=LinePattern.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{0,40},{40,-40}},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Line(
+            points={{-40,40},{40,40}},
+            color={0,0,0},
+            smooth=Smooth.None),
+          Line(
+            points={{-40,-40},{40,-40}},
+            color={0,0,0},
+            smooth=Smooth.None)}),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+              {100,100}}),graphics));
   end Capillary;
 
-  model CapillaryVolume "Volume with capillary pressure applied to the liquid"
+  model CapillaryVolume
+    "Volume with capillary pressure applied to the liquid"
     extends FCSys.Icons.Names.Top3;
 
     // Material properties
@@ -774,34 +803,35 @@ public
         __Dymola_joinNext=true,
         enable=inclLiquid));
     Capillary capillary if inclLiquid and inclCapillary "Capillary model"
-      annotation (Dialog(__Dymola_descriptionLabel=true, enable=inclLiquid and
-            inclCapillary), Placement(transformation(extent={{-40,0},{-20,20}})));
+      annotation (Dialog(__Dymola_descriptionLabel=true, enable=inclLiquid
+             and inclCapillary), Placement(transformation(extent={{-40,0},{-20,
+              20}})));
 
     // Alias variables (for common terms)
     Q.Volume V_pore "Pore volume";
 
     // Auxiliary variables (for analysis)
-    output Q.NumberAbsolute x(final stateSelect=StateSelect.never) = liquid.V/(
-      gas.V + liquid.V) if inclLiquid and inclGas and environment.analysis
+    output Q.NumberAbsolute x(final stateSelect=StateSelect.never) = liquid.V
+      /(gas.V + liquid.V) if inclLiquid and inclGas and environment.analysis
       "Liquid saturation";
 
-    Connectors.Dalton gas if inclGas "Interface to the gas phase" annotation (
-        Placement(transformation(extent={{20,0},{40,20}}),iconTransformation(
+    Connectors.Dalton gas if inclGas "Interface to the gas phase" annotation
+      (Placement(transformation(extent={{20,0},{40,20}}), iconTransformation(
             extent={{10,10},{30,30}})));
     Connectors.Amagat liquid if inclLiquid "Interface to the liquid phase"
       annotation (Placement(transformation(extent={{-60,0},{-40,20}}),
           iconTransformation(extent={{-20,-20},{0,0}})));
     Connectors.Amagat solid "Interface to the solid phase" annotation (
-        Placement(transformation(extent={{-4,-20},{16,0}}), iconTransformation(
-            extent={{50,-30},{70,-10}})));
+        Placement(transformation(extent={{-4,-20},{16,0}}),
+          iconTransformation(extent={{50,-30},{70,-10}})));
 
-    Conditions.ByConnector.Amagat.VolumeFixed volume(final V=V) if inclGas or
-      inclLiquid "Fixed volume"
+    Conditions.ByConnector.Amagat.VolumeFixed volume(final V=V) if inclGas
+       or inclLiquid "Fixed volume"
       annotation (Placement(transformation(extent={{-20,0},{0,20}})));
 
   protected
-    Conditions.Adapters.AmagatDalton amagatDalton if inclGas or (inclSolid and
-      not inclLiquid)
+    Conditions.Adapters.AmagatDalton amagatDalton if inclGas or (inclSolid
+       and not inclLiquid)
       "Adapter between additivity of volume and additivity of gas pressure"
       annotation (Placement(transformation(extent={{0,0},{20,20}})));
 
@@ -836,55 +866,42 @@ public
         points={{-26,10},{-10,10}},
         color={47,107,251},
         smooth=Smooth.None));
-    annotation (
-      Documentation(info="<html>
-    <p>The default surface tension (&gamma; = 0.0663 N/m) is for saturated water at 60 &deg;C, interpolated from
-    [<a href=\"modelica://FCSys.UsersGuide.References.Incropera2002\">Incropera2002</a>, p.&nbsp;924].  Note that the surface tension in
-    [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>] is incorrect (likely unit conversion error).</p>
-
-    <p>The default permeability (&kappa; = 6.46&times;10<sup>-5</sup> mm<sup>2</sup>) is based on
-    the air permeability of SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BA
-    [<a href=\"modelica://FCSys.UsersGuide.References.SGL2007\">SGL2007</a>].
-    Wang et al. use &kappa; = 10<sup>-5</sup> mm<sup>2</sup>
-    [<a href=\"modelica://FCSys.UsersGuide.References.Wang2001\">Wang2001</a>].</p>
-
-    <p>The default contact angle (&theta; = 140&deg;) is typical of the GDL measurements listed at
-    <a href=\"http://www.chem.mtu.edu/cnlm/research/Movement_of_Water-in_Fuel_Cell_Electrodes.htm\">http://www.chem.mtu.edu/cnlm/research/Movement_of_Water-in_Fuel_Cell_Electrodes.htm</a>
-    (accessed Nov. 22, 2103).</p>
-
-    </html>"),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Polygon(
-              points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
-              -60}},
-              lineColor={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
-              lineColor={191,191,191},
-              smooth=Smooth.Bezier,
-              visible=inclGas,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-40,8},{20,-30}},
-              lineColor={85,170,255},
-              visible=inclLiquid,
-              fillPattern=FillPattern.Sphere,
-              fillColor={255,255,255}),Ellipse(extent={{-40,8},{20,-30}},
-            lineColor={225,225,225}),Line(
-              points={{-60,20},{20,20},{20,-60}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None),Line(
-              points={{60,60},{20,20}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None)}),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-20},{40,
-              20}}), graphics));
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics={
+          Polygon(
+            points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
+                -60}},
+            lineColor={0,0,0},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
+            lineColor={191,191,191},
+            smooth=Smooth.Bezier,
+            visible=inclGas,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-40,8},{20,-30}},
+            lineColor={85,170,255},
+            visible=inclLiquid,
+            fillPattern=FillPattern.Sphere,
+            fillColor={255,255,255}),
+          Ellipse(extent={{-40,8},{20,-30}}, lineColor={225,225,225}),
+          Line(
+            points={{-60,20},{20,20},{20,-60}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None),
+          Line(
+            points={{60,60},{20,20}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None)}), Diagram(coordinateSystem(
+            preserveAspectRatio=false, extent={{-60,-20},{40,20}}), graphics));
   end CapillaryVolume;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-            {100,100}}), graphics));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}), graphics));
 end Chemistry;

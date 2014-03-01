@@ -8,14 +8,14 @@ package Units "Constants and units of physical measure"
   algorithm
     print("Establishing display units...");
 
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // Default display units
-    // ------------------------------------------------------------------------
-    // If units other than those in the displayUnit attribute of the
-    // quantities in FCSys.Quantities should be used by default, then specify
-    // them here.  Be sure that the desired unit is included in a
-    // defineUnitConversion command below.
-    // Generated from FCSys/Resources/quantities.xls, 2013-11-4
+    // -------------------------------------------------------------------------
+    // If units other than those in the displayUnit attribute of the quantities
+    // in FCSys.Quantities should be used by default, then specify them here.
+    // Be sure that the desired unit is included in a defineUnitConversion
+    // command below.
+    // Generated from FCSys/Resources/quantities.xls, 2014-2-28
     defineDefaultDisplayUnit("L2.M/(A2.T3)", "cd") "Radiant power";
     defineDefaultDisplayUnit("L.T2/M", "1/kPa") "Reciprocal of pressure";
     defineDefaultDisplayUnit("1/L", "1/m") "Reciprocal of length";
@@ -37,7 +37,8 @@ package Units "Constants and units of physical measure"
     defineDefaultDisplayUnit("L3/N", "cc/C") "Specific volume";
     defineDefaultDisplayUnit("L3/(N.s)", "cc/(C.s)")
       "for derivative of specific volume in Dymola";
-    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)") "Rate of specific volume";
+    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)")
+      "Rate of specific volume";
     defineDefaultDisplayUnit("L", "cm") "Length";
     defineDefaultDisplayUnit("L.T/N", "cm/A") "Resistivity";
     defineDefaultDisplayUnit("L/T", "cm/s") "Velocity";
@@ -45,15 +46,20 @@ package Units "Constants and units of physical measure"
       "for derivative of velocity in Dymola";
     defineDefaultDisplayUnit("L2", "cm2") "Area";
     defineDefaultDisplayUnit("L2/N", "cm2/C") "Specific area";
-    defineDefaultDisplayUnit("L2/T", "cm2/s") "Diffusivity";
+    defineDefaultDisplayUnit("L2.M/(N.T)", "cm2/s") "Diffusivity";
     defineDefaultDisplayUnit("N.T/M", "cm2/(V.s)") "Mobility";
+    defineDefaultDisplayUnit("A", "degree") "Angle";
     defineDefaultDisplayUnit("N2.T2/(L3.M)", "F/m") "Permittivity";
     defineDefaultDisplayUnit("M", "g") "Mass";
     defineDefaultDisplayUnit("M/L3", "g/cc") "Volumic mass";
     defineDefaultDisplayUnit("M/N", "g/mol") "Specific mass";
     defineDefaultDisplayUnit("M/s", "g/s") "for derivative of mass in Dymola";
+    defineDefaultDisplayUnit("L2.M/(N.T)", "g.cm2/(mol.s)")
+      "Product of diffusivity and specific mass";
     defineDefaultDisplayUnit("L.M/N2", "H/m") "Permeability";
+    defineDefaultDisplayUnit("A/T", "Hz") "Frequency";
     defineDefaultDisplayUnit("L2.M/T2", "J") "Energy";
+    defineDefaultDisplayUnit("L2/T2", "J/g") "Squared velocity";
     defineDefaultDisplayUnit("L2.M/(A.T)", "J.s/rad") "Rotational momentum";
     defineDefaultDisplayUnit("T/N", "K/W") "Thermal resistance";
     defineDefaultDisplayUnit("M/(L.T2)", "kPa") "Pressure";
@@ -66,21 +72,20 @@ package Units "Constants and units of physical measure"
     defineDefaultDisplayUnit("L2.M/N2", "uH") "Inductance";
     defineDefaultDisplayUnit("L.M/T2", "N") "Force";
     defineDefaultDisplayUnit("L.M/(N.T)", "N/A") "Continuity";
+    defineDefaultDisplayUnit("M/T2", "N/m") "Surface tension";
     defineDefaultDisplayUnit("L2.M/(N2.T)", "ohm") "Electrical resistance";
+    defineDefaultDisplayUnit("M/(L.N.T)", "Pa/A") "Fluid resistance";
     defineDefaultDisplayUnit("M/(L.T2.s)", "Pa/s")
       "for derivative of pressure in Dymola";
     defineDefaultDisplayUnit("M/(L.T3)", "Pa/s") "Rate of pressure";
     defineDefaultDisplayUnit("M/(T2.L.s)", "Pa/s")
       "for derivative of pressure in Dymola";
-    defineDefaultDisplayUnit("A", "rad") "Angle";
     defineDefaultDisplayUnit("A/L", "rad/m") "Wavenumber";
-    defineDefaultDisplayUnit("A/T", "rad/s") "Frequency";
     defineDefaultDisplayUnit("N2.T/(L2.M)", "S") "Electrical conductance";
     defineDefaultDisplayUnit("T", "s") "Time";
     defineDefaultDisplayUnit("N2.T/(L3.M)", "S/m") "Electrical conductivity";
     defineDefaultDisplayUnit("T/L", "s/m") "Lineic time";
     defineDefaultDisplayUnit("A2", "sr") "Solid angle";
-    defineDefaultDisplayUnit("L2/T2", "Sv") "Squared velocity";
     defineDefaultDisplayUnit("M/(A.N.T)", "T") "Areic magnetic flux";
     defineDefaultDisplayUnit("L2.M/(N.T2)", "V") "Potential";
     defineDefaultDisplayUnit("L.M/(N.T2)", "V/m") "Specific force";
@@ -96,9 +101,9 @@ package Units "Constants and units of physical measure"
     defineDefaultDisplayUnit("L4.M/T3", "W.m2") "Power times area";
     defineDefaultDisplayUnit("L2.M/(A.N.T)", "Wb") "Magnetic flux";
 
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // Conversions to display quantities in units
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     defineUnitConversion(
         "1",
         "%",
@@ -264,7 +269,7 @@ package Units "Constants and units of physical measure"
         "cm2/mol",
         mol/cm^2) "Specific area";
     defineUnitConversion(
-        "L2/T",
+        "L2.M/(N.T)",
         "cm2/s",
         s/cm^2) "Diffusivity";
     defineUnitConversion(
@@ -308,6 +313,18 @@ package Units "Constants and units of physical measure"
         "g/s",
         s/g) "for derivative of mass in Dymola";
     defineUnitConversion(
+        "L2.M/(N.T)",
+        "g.cm2/(mol.s)",
+        (mol*s)/(g*cm^2)) "Product of diffusivity and specific mass";
+    defineUnitConversion(
+        "L2.M/(N.T)",
+        "g.m2/(mol.s)",
+        (mol*s)/(g*m^2)) "Product of diffusivity and specific mass";
+    defineUnitConversion(
+        "L2.M/(N.T)",
+        "g.mm2/(mol.s)",
+        (mol*s)/(g*mm^2)) "Product of diffusivity and specific mass";
+    defineUnitConversion(
         "L2.M/N2",
         "H",
         1/H) "Inductance";
@@ -327,6 +344,10 @@ package Units "Constants and units of physical measure"
         "L2.M/T2",
         "J",
         1/J) "Energy";
+    defineUnitConversion(
+        "L2/T2",
+        "J/g",
+        g/J) "Squared velocity";
     defineUnitConversion(
         "N",
         "J/K",
@@ -500,7 +521,7 @@ package Units "Constants and units of physical measure"
         "m2/mol",
         mol/m^2) "Specific area";
     defineUnitConversion(
-        "L2/T",
+        "L2.M/(N.T)",
         "m2/s",
         s/m^2) "Diffusivity";
     defineUnitConversion(
@@ -511,7 +532,6 @@ package Units "Constants and units of physical measure"
         "L3/N",
         "m3/C",
         C/m^3) "Specific volume";
-
     defineUnitConversion(
         "L3/(N.s)",
         "m3/(C.s)",
@@ -573,7 +593,7 @@ package Units "Constants and units of physical measure"
         "mm/s",
         s/mm) "Velocity";
     defineUnitConversion(
-        "L2/T",
+        "L2.M/(N.T)",
         "mm2/s",
         s/mm^2) "Diffusivity";
     defineUnitConversion(
@@ -593,6 +613,10 @@ package Units "Constants and units of physical measure"
         "N/A",
         A/N) "Continuity";
     defineUnitConversion(
+        "M/T2",
+        "N/m",
+        m/N) "Surface tension";
+    defineUnitConversion(
         "L2.M/(N2.T)",
         "ohm",
         1/ohm) "Electrical resistance";
@@ -600,6 +624,10 @@ package Units "Constants and units of physical measure"
         "M/(L.T2)",
         "Pa",
         1/Pa) "Pressure";
+    defineUnitConversion(
+        "M/(L.N.T)",
+        "Pa/A",
+        A/Pa) "Fluid resistance";
     defineUnitConversion(
         "M/(L.T2.s)",
         "Pa/s",
@@ -714,9 +742,9 @@ package Units "Constants and units of physical measure"
         1/Wb) "Magnetic flux";
     // -------- end from FCSys/Resources/quantities.xls
 
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // Conversions with offsets
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     defineUnitConversion(
         "L2.M/(N.T2)",
@@ -750,12 +778,12 @@ recognized by Dymola.</p>
     model Evaluate "Evaluate the values assigned to constants and units"
       extends Modelica.Icons.Example;
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Mathematical constants
 
       final constant Q.Number pi=U.pi "pi";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Base physical constants and units
 
       final constant Q.Angle rad=U.rad "radian";
@@ -767,7 +795,7 @@ recognized by Dymola.</p>
       final constant Q.Number k_F=U.k_F "Faraday constant";
       final constant Q.Number R=U.R "gas constant";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Empirical units
 
       final constant Q.Length m=U.m "meter";
@@ -777,7 +805,7 @@ recognized by Dymola.</p>
       final constant Q.Amount mol=U.mol "mole";
       final constant Q.Potential K=U.K "kelvin";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // SI prefixes [BIPM2006, Table 5]
 
       final constant Q.Number yotta=U.yotta "yotta (Y)";
@@ -801,7 +829,7 @@ recognized by Dymola.</p>
       final constant Q.Number zepto=U.zepto "zepto (z)";
       final constant Q.Number yocto=U.yocto "yocto (y)";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // SI base units [BIPM2006, Table 1] and intermediate units
 
       final constant Q.Potential V=U.V "volt";
@@ -811,7 +839,7 @@ recognized by Dymola.</p>
       final constant Q.Velocity2 Sv=U.Sv "sievert";
       final constant Q.Mass kg=U.kg "kilogram ";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Coherent derived units in SI with special names and symbols [BIPM2006,
       // Table 3]
 
@@ -832,7 +860,7 @@ recognized by Dymola.</p>
       final constant Q.Current kat=U.kat "katal";
       final constant Q.Mass g=U.g "gram";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Non-SI units accepted for use with SI units [BIPM2006, Table 6].
 
       final constant Q.Time min=U.min "minute";
@@ -841,7 +869,7 @@ recognized by Dymola.</p>
       final constant Q.Angle degree=U.degree "degree";
       final constant Q.Volume L=U.L "liter (L or l)";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Physical constants
 
       // Electromagnetism
@@ -874,13 +902,13 @@ recognized by Dymola.</p>
       final constant Q.PowerAreicPerPotential4 sigma=U.sigma
         "Stefan-Boltzmann constant";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Selected other non-SI units from [BIPM2006, Table 8]
 
       final constant Q.Pressure bar=U.bar "bar";
       final constant Q.Length angstrom=U.angstrom "angstrom";
 
-      // ------------------------------------------------------------------------
+      // -------------------------------------------------------------------------
       // Additional units that are useful for fuel cells
 
       final constant Q.Pressure atm=U.atm "atmosphere";
@@ -895,8 +923,8 @@ recognized by Dymola.</p>
   constants and units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units.",
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units.",
             executeCall=checkModel("FCSys.Units")));
 
     end Evaluate;
@@ -929,8 +957,8 @@ recognized by Dymola.</p>
        <li>9.872e-5 atm &asymp; 1</li></ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end FC;
 
@@ -965,8 +993,8 @@ encompass other systems of units.</p>
   is not final because luminous intensity is not included in Hartree units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Hartree;
 
@@ -999,8 +1027,8 @@ encompass other systems of units.</p>
   is not final because luminous intensity is not included in Stoney units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Stoney;
 
@@ -1021,8 +1049,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAK;
 
@@ -1043,8 +1071,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAm;
 
@@ -1064,8 +1092,8 @@ encompass other systems of units.</p>
   </ul>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAs;
 
@@ -1085,8 +1113,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKmol;
 
@@ -1106,8 +1134,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKs;
 
@@ -1127,8 +1155,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImmol;
 
@@ -1148,8 +1176,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIms;
 
@@ -1169,8 +1197,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImols;
 
@@ -1193,9 +1221,8 @@ encompass other systems of units.</p>
       constant Q.MagneticFluxReciprocal k_J=1
         "<html>Josephson constant (k<sub>J</sub>)</html>";
       // The SI unit of magnetic flux (weber) is inversely proportional to this
-      // value, which should be increased for larger magnetic flux numbers.
-      // Also, the SI unit of charge (coulomb) is inversely proportional to this
-      // value.
+      // value, which should be increased for larger magnetic flux numbers.  Also,
+      // the SI unit of charge (coulomb) is inversely proportional to this value.
       constant Q.ResistanceElectrical R_K=1
         "<html>von Klitzing constant (R<sub>K</sub>)</html>";
       // The SI unit of electrical conductance (siemen) is inversely proportional
@@ -1216,13 +1243,13 @@ encompass other systems of units.</p>
       // require that it's one, which means that charge is considered to be an
       // amount.
       final constant Q.Number R=1 "gas constant";
-      // The unit of temperature (kelvin) is inversely proportional to this
-      // value.  The gas constant isn't adjustable because the equations of FCSys
-      // require that it's one, which means that temperature is considered to be
-      // a potential.
+      // The unit of temperature (kelvin) is inversely proportional to this value.
+      // The gas constant isn't adjustable because the equations of FCSys require
+      // that it's one, which means that temperature is considered to be a
+      // potential.
       annotation (Documentation(info="<html><p>Please see the notes in the Modelica code and the documentation of the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Base;
     annotation (Documentation(info="<html>
@@ -1251,8 +1278,8 @@ encompass other systems of units.</p>
   <a href=\"modelica://FCSys.Units.Bases.SImols\">SImols</a>).</p>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-          executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+        Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
   end Bases;
 
@@ -1304,20 +1331,20 @@ encompass other systems of units.</p>
     annotation (Inline=true, inverse(p=FCSys.Units.from_kPag(p_kPag)));
   end to_kPag;
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Mathematical constants
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
 
   final constant Q.Number pi=2*acos(0) "<html>pi (<i>&pi;</i>)</html>";
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Base physical constants and units
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
 
   replaceable constant Bases.LH base constrainedby Bases.SImols
     "Scalable base constants and units";
-  // Note:  The base constants and units may be replaced to suit the scale
-  // of the physical system.
+  // Note:  The base constants and units may be replaced to suit the scale of
+  // the physical system.
   // 2013/11/16:  The following systems result in a smooth temperature trend
   // in FCSys.Regions.Examples.AnGDL with a tolerance of 0.0001 in Dymola
   // 2014:
@@ -1339,9 +1366,9 @@ encompass other systems of units.</p>
     "<html>Faraday constant (<i>k</i><sub>F</sub>)</html>";
   final constant Q.Number R=base.R "gas constant";
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Empirical units
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Note:  The values are currently based on those from [NIST2010].  The
   // measured values are used instead of conventional values (where they
   // exist).
@@ -1355,9 +1382,9 @@ encompass other systems of units.</p>
   // [http://en.wikipedia.org/wiki/Rydberg_constant].
   constant Q.Time s=299792458*m/c "second";
   // SI unit of time or duration
-  // This is the "speed of light in vacuum" relation [NIST2010].  c may
-  // be determined (among other ways) by measuring the time for
-  // electromagnetic signals to travel to and from spacecraft.
+  // This is the "speed of light in vacuum" relation [NIST2010].  c may be
+  // determined (among other ways) by measuring the time for electromagnetic
+  // signals to travel to and from spacecraft.
   constant Q.MagneticFlux Wb=483597.870e9/k_J "weber";
   // SI unit of magnetic flux
   // This is the "Josephson constant" relation [NIST2010].  The Josephson
@@ -1365,10 +1392,10 @@ encompass other systems of units.</p>
   // [http://en.wikipedia.org/wiki/Josephson_effect].
   constant Q.ConductanceElectrical S=25812.8074434/R_K "siemen";
   // SI unit of electrical conductance
-  // This is the "von Klitzing constant" relation [NIST2010].  The unit
-  // radian is included on the denominator for dimensional consistency, but
-  // it's one by the current definition [BIPM2006].  The von Klitzing
-  // constant may be determined by measuring the quantum hall effect
+  // This is the "von Klitzing constant" relation [NIST2010].  The unit radian
+  // is included on the denominator for dimensional consistency, but it's one
+  // by the current definition [BIPM2006].  The von Klitzing constant may be
+  // determined by measuring the quantum hall effect
   // [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
   constant Q.Amount mol=96485.3365*Wb*S/k_F "mole";
   // SI unit of chemical amount
@@ -1387,9 +1414,9 @@ encompass other systems of units.</p>
   // electronic noise
   // [http://en.wikipedia.org/wiki/Johnson-Nyquist_noise].
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // SI base units [BIPM2006, Table 1] and intermediate units
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Note:  Only A and kg remain (s, m, S, K, mol, and cd already defined).
 
   final constant Q.Potential V=Wb*rad/s "volt";
@@ -1408,9 +1435,9 @@ encompass other systems of units.</p>
   final constant Q.Mass kg=J/Gy "kilogram";
   // SI unit of mass
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // SI prefixes [BIPM2006, Table 5]
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
 
   final constant Q.Number yotta=1e24 "yotta (Y)";
   final constant Q.Number zetta=1e21 "zetta (Z)";
@@ -1433,9 +1460,9 @@ encompass other systems of units.</p>
   final constant Q.Number zepto=1e-21 "zepto (z)";
   final constant Q.Number yocto=1e-24 "yocto (y)";
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Derived units in SI with special names and symbols [BIPM2006, Table 3]
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Note:  rad, S, C, Wb, V, J, and Gy have already been defined.  Degree
   // Celsius is only defined in setup(), to_degC(), and from_degC() since it
   // includes an offset.
@@ -1444,12 +1471,12 @@ encompass other systems of units.</p>
   // This is defined for convenience (not listed by [BIPM2006]).
   final constant Q.Frequency Hz=cyc/s "hertz";
   // SI unit of frequency
-  // Note:  Numerically, this doesn't evaluate to Hz = 1/s as stated by
-  // BIPM (that relation isn't dimensionally correct when considering angle
-  // as a dimension), but allows the conversion of frequency into as cycles
-  // per second (Hz) or radians per second (rad/s).  Since BIPM defines
-  // rad = 1 (also dimensionally incorrect) and given that cyc = 2*pi*rad,
-  // Hz evaluates numerically to 2*pi/s [BIPM2006].
+  // Note:  Numerically, this doesn't evaluate to Hz = 1/s as stated by BIPM
+  // (that relation isn't dimensionally correct when considering angle as a
+  // dimension), but allows the conversion of frequency into as cycles per
+  // second (Hz) or radians per second (rad/s).  Since BIPM defines rad = 1
+  // (also dimensionally incorrect) and given that cyc = 2*pi*rad, Hz
+  // evaluates numerically to 2*pi/s [BIPM2006].
   final constant Q.Angle2 sr=rad^2 "steradian";
   // SI unit of solid angle
   // BIPM currently defines rad = 1; therefore, this is consistent with
@@ -1466,29 +1493,28 @@ encompass other systems of units.</p>
   // SI unit of electrical resistance
   final constant Q.Inductance H=V*s/A "henry";
   // SI unit of inductance or permeance
-  // Note:  By this definition, H = Wb*rad/A, which is currently equivalent
-  // to the definition in Table 3 since BIPM currently defines rad = 1
+  // Note:  By this definition, H = Wb*rad/A, which is currently equivalent to
+  // the definition in Table 3 since BIPM currently defines rad = 1
   // [BIPM2006].
   final constant Q.MagneticFluxAreic T=Wb/m^2 "tesla";
   // SI unit of magnetic flux density
   final constant Q.Power lm='cd'*sr "lumen";
-  // Note:  Table 3 gives lm = cd, but this is only so because SI
-  // implicitly assigns sr = 1.
+  // Note:  Table 3 gives lm = cd, but this is only so because SI implicitly
+  // assigns sr = 1.
   final constant Q.PowerAreic lx=lm/m^2 "lux";
   final constant Q.Frequency Bq=Hz "becquerel";
   // SI unit of frequency
   final constant Q.Velocity2 Sv=Gy "sievert";
-  // SI unit of specific energy (imparted by radiation into biological
-  // tissue)
+  // SI unit of specific energy (imparted by radiation into biological tissue)
   final constant Q.Current kat=mol/s "katal";
   final constant Q.Mass g=kg/kilo "gram";
   // CGS unit of mass
   // The base SI unit of mass includes a prefix.  See section 3.2 of
   // [BIPM2006].
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Non-SI units accepted for use with SI units [BIPM2006, Table 6]
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
 
   final constant Q.Time min=60*s "minute";
   final constant Q.Time hr=60*min "hour";
@@ -1496,9 +1522,9 @@ encompass other systems of units.</p>
   final constant Q.Angle degree=2*pi*rad/360 "<html>degree (&deg;)</html>";
   final constant Q.Volume L=(deci*m)^3 "liter (L or l)";
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Derived physical constants
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Note:  These are established by definition, but may include
   // transcendental mathematical constants.
 
@@ -1511,15 +1537,15 @@ encompass other systems of units.</p>
   final constant Q.MomentumRotational h=2*q*Phi_0 "Planck constant";
   // The Planck constant over 2*pi (hbar) isn't included as a unique
   // variable.  The unit of angle (rad or cyc) should be factored into the
-  // variable that represents frequency as a quantity.  Then, it's
-  // not necessary to use hbar, e.g.:
+  // variable that represents frequency as a quantity.  Then, it's not
+  // necessary to use hbar, e.g.:
   //     hbar = h = 1.0545e-34*J/Hz = 6.6260e-34*J*s/cyc,
   // where Hz = rad/s.  Currently, rad = 1 (see U.Bases.Base).
   final constant Q.Number alpha=pi*1e-7*c*s*G_0/(m*S)
     "<html>fine-structure constant (&alpha;)</html>";
   // The fine-structure constant is simply the product of pi, 1e-7, the speed
-  // of light in vacuum in meters per second, and the conductance quantum
-  // in siemens.  Each of these four factors is dimensionless, so the fine-
+  // of light in vacuum in meters per second, and the conductance quantum in
+  // siemens.  Each of these four factors is dimensionless, so the fine-
   // structure constant is dimensionless too.
   final constant Q.ResistanceElectrical Z_0=2*R_K*alpha
     "<html>characteristic impedance of vacuum (<i>Z</i><sub>0</sub>)</html>";
@@ -1563,11 +1589,11 @@ encompass other systems of units.</p>
   // but here, the value is the solution to exp(x)*(5 - x) =  5.  The value
   // is from Mathematica (FCSys/Resources/math-constants.cdf).  Note that the
   // frequency displacement constant isn't directly related to the wavelength
-  // displacement constant:  "Because the spectrum resulting from Planck's
-  // law of black body radiation takes a different shape in the frequency
-  // domain from that of the wavelength domain, the frequency of the peak
-  // emission doesn't correspond to the peak wavelength using the simple
-  // relation between frequency, wavelength, and the speed of light"
+  // displacement constant:  "Because the spectrum resulting from Planck's law
+  // of black body radiation takes a different shape in the frequency domain
+  // from that of the wavelength domain, the frequency of the peak emission
+  // doesn't correspond to the peak wavelength using the simple relation
+  // between frequency, wavelength, and the speed of light"
   // [http://en.wikipedia.org/wiki/Wien's_displacement_law, accessed
   // 1/19/10].
   final constant Q.MagneticFluxReciprocal c_3_f=2.821439372122079*k_B/h
@@ -1577,37 +1603,38 @@ encompass other systems of units.</p>
   // frequency at maximum radiant intensity.  That procedure results in
   // solving the following equation: exp(x)*(3 - x) = 3, where x is h*f/k_B.
   // The value is from Mathematica (FCSys/Resources/math-constants.cdf).
-  final constant Q.PowerAreicPerPotential4 sigma=2*pi*(k_B*pi)^4/(15*(h*rad)^3*
-      c^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
-  // Total blackbody radiant intensity per 4th power of temperature
-  // See http://en.wikipedia.org/wiki/Stefan-Boltzmann_constant.  The
-  // equation can be derived from Planck's law for spectral radiance:
-  // B = 2*(h*f)^3/(h*rad*c)^2/(exp(h*f/(k_B*T)) - 1).  It can be written
-  // as:
-  // B*(h*rad*c)^2/(2*((k_B*T))^3) = (h*f/(k_B*T))^3/(exp(h*f/(k_B*T)) - 1).
+  final constant Q.PowerAreicPerPotential4 sigma=2*pi*(k_B*pi)^4/(15*(h*rad)^
+      3*c^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
+  // Total blackbody radiant intensity per 4th power of temperature equation
+  // See http://en.wikipedia.org/wiki/Stefan-Boltzmann_constant.  The equation
+  // can be derived from Planck's law for spectral radiance:
+  //   B = 2*(h*f)^3/(h*rad*c)^2/(exp(h*f/(k_B*T)) - 1).
+  // It can be written as:
+  //   B*(h*rad*c)^2/(2*((k_B*T))^3) = (h*f/(k_B*T))^3/(exp(h*f/(k_B*T)) - 1).
   // The RHS is multiplied by pi due to integration over the half sphere and
   // the LHS is multiplied by h*rad/(k_B*T) due to substitution prior to
   // integration [http://en.wikipedia.org/wiki/Stefan-Boltzmann_law].  Now,
   // the equation is:
-  // B*h*rad*(h*rad*c)^2/(2*(k_B*T)^4) = pi*(h*f/T)^3/(exp(h*f/(k_B*T)) - 1).
+  //   B*h*rad*(h*rad*c)^2/(2*(k_B*T)^4) = pi*(h*f/T)^3/(exp(h*f/(k_B*T)) - 1).
   // The integral of the RHS as a function of (h*f/(k_B*T)) over the entire
   // frequency domain (0 to infinity) is pi^4/15.  Finally, this results in:
-  // B_tot/T^4 = 2*pi^5*k_B^4/(15*(h*rad)^3*c^2), where the RHS is the
-  // Stefan-Boltzmann constant.  Here, the unit rad has been included for
-  // dimensional consistency.
+  //   B_tot/T^4 = 2*pi^5*k_B^4/(15*(h*rad)^3*c^2),
+  // where the RHS is the Stefan-Boltzmann constant.  Here, the unit rad has
+  // been included for dimensional consistency.
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Other selected non-SI units from [BIPM2006, Table 8]
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Note:  Logarithmic ratios have been excluded because they can't be
   // represented in Dymola's unit conversion GUI.
 
   final constant Q.Pressure bar=1e5*Pa "bar";
-  final constant Q.Length angstrom=0.1*nano*m "<html>angstrom (&#8491;)</html>";
+  final constant Q.Length angstrom=0.1*nano*m
+    "<html>angstrom (&#8491;)</html>";
 
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
   // Additional units that are useful for fuel cells
-  // ------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
 
   final constant Q.Pressure atm=101325*Pa "atmosphere";
   // Value from "standard atmosphere" [NIST2010]
@@ -1884,8 +1911,8 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
           fillPattern=FillPattern.Solid),
         Polygon(
           points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
-              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{68,
-              2}},
+              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{
+              68,2}},
           lineColor={64,64,64},
           smooth=Smooth.Bezier,
           fillColor={175,175,175},
