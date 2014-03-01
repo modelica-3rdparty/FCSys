@@ -27,8 +27,6 @@ package Quantities "Types to represent physical values"
       parameter Q.Area Area=1*U.m^2 "Area";
       parameter Q.AreaSpecific AreaSpecific=1*U.m^2/U.mol "Specific area";
       parameter Q.Capacitance Capacitance=1*U.F "Capacitance";
-      parameter Q.ConcentrationRate ConcentrationRate=1*U.C/(U.m^3*U.s)
-        "Rate of concentration";
       parameter Q.ConductanceElectrical ConductanceElectrical=1*U.S
         "Electrical conductance";
       parameter Q.ConductivityElectrical ConductivityElectrical=1*U.S/U.m
@@ -41,8 +39,6 @@ package Quantities "Types to represent physical values"
       parameter Q.CurrentRate CurrentRate=1*U.A/U.s "Rate of current";
       parameter Q.Density Density=1*U.C/U.m^3 "Density";
       parameter Q.Diffusivity Diffusivity=1*U.m^2/U.s "Diffusivity";
-      parameter Q.DiffusivityMassSpecific DiffusivityMassSpecific=1*U.g*U.m^2
-          /((U.mol*U.s)) "Product of diffusivity and specific mass";
       parameter Q.Energy Energy=1*U.J "Energy";
       parameter Q.Fluidity Fluidity=1/(U.Pa*U.s) "Fluidity";
       parameter Q.Force Force=1*U.N "Force";
@@ -50,8 +46,6 @@ package Quantities "Types to represent physical values"
       parameter Q.Frequency Frequency=1*U.rad/U.s "Frequency";
       parameter Q.Inductance Inductance=1*U.H "Inductance";
       parameter Q.Length Length=1*U.m "Length";
-      parameter Q.LengthReciprocal LengthReciprocal=1/U.m
-        "Reciprocal of length";
       parameter Q.LengthSpecific LengthSpecific=1*U.m/U.C "Specific length";
       parameter Q.MagneticFlux MagneticFlux=1*U.Wb "Magnetic flux";
       parameter Q.MagneticFluxAreic MagneticFluxAreic=1*U.T
@@ -80,26 +74,21 @@ package Quantities "Types to represent physical values"
       parameter Q.Power Power=1*U.W "Power";
       parameter Q.PowerArea PowerArea=1*U.W*U.m^2 "Power times area";
       parameter Q.PowerAreic PowerAreic=1*U.W/U.m^2 "Areic power";
-      parameter Q.PowerAreicPerPotential4 PowerAreicPerPotential4=1*U.W/(U.m^
-          2*U.K^4) "Areic power per 4th power of potential";
+      parameter Q.PowerAreicPerPotential4 PowerAreicPerPotential4=1*U.W/(U.m^2*
+          U.K^4) "Areic power per 4th power of potential";
       parameter Q.PowerRadiant PowerRadiant=1*U.'cd' "Radiant power";
       parameter Q.Pressure Pressure=1*U.Pa "Pressure";
-      parameter Q.PressureAbsolute PressureAbsolute=1*U.Pa
-        "Absolute pressure";
+      parameter Q.PressureAbsolute PressureAbsolute=1*U.Pa "Absolute pressure";
       parameter Q.PressureRate PressureRate=1*U.Pa/U.s "Rate of pressure";
       parameter Q.PressureReciprocal PressureReciprocal=1/U.Pa
         "Reciprocal of pressure";
       parameter Q.ResistanceElectrical ResistanceElectrical=1*U.ohm
         "Electrical resistance";
-      parameter Q.ResistanceFluid ResistanceFluid=1*U.Pa/U.A
-        "Fluid resistance";
-      parameter Q.ResistanceThermal ResistanceThermal=1*U.K/U.W
-        "Thermal resistance";
+      parameter Q.ResistanceFluid ResistanceFluid=1*U.Pa/U.A "Fluid resistance";
       parameter Q.Resistivity Resistivity=1*U.m/U.A "Resistivity";
       parameter Q.SurfaceTension SurfaceTension=1*U.N/U.m "Surface tension";
       parameter Q.Time Time=1*U.s "Time";
       parameter Q.TimeAbsolute TimeAbsolute=1*U.s "Absolute time";
-      parameter Q.TimeLineic TimeLineic=1*U.s/U.m "Lineic time";
       parameter Q.Velocity Velocity=1*U.m/U.s "Velocity";
       parameter Q.Velocity2 Velocity2=1*U.Sv "Squared velocity";
       parameter Q.VelocityAmount VelocityAmount=1*U.A*U.m "VelocityAmount";
@@ -112,8 +101,8 @@ package Quantities "Types to represent physical values"
         "Rate of specific volume";
       parameter Q.Wavenumber Wavenumber=1*U.rad/U.m "Wavenumber";
       // -------- end from FCSys/Resources/quantities.xls
-      annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent=
-                {{-100,-100},{100,100}})), Icon(coordinateSystem(
+      annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{
+                -100,-100},{100,100}})), Icon(coordinateSystem(
               preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 
     end ExampleModel;
@@ -133,8 +122,6 @@ package Quantities "Types to represent physical values"
   type Area = TypeReal (final unit="L2", min=0);
   type AreaSpecific = TypeReal (final unit="L2/N", min=0) "Specific area";
   type Capacitance = TypeReal (final unit="N2.T2/(L2.M)", min=0);
-  type ConcentrationRate = TypeReal (final unit="N/(L3.T)")
-    "Rate of concentration";
   type ConductanceElectrical = TypeReal (final unit="N2.T/(L2.M)", min=0)
     "Electrical conductance";
   type ConductivityElectrical = TypeReal (final unit="N2.T/(L3.M)", min=0)
@@ -147,8 +134,6 @@ package Quantities "Types to represent physical values"
   type CurrentRate = TypeReal (final unit="N/T2") "Rate of current";
   type Density = TypeReal (final unit="N/L3", min=0);
   type Diffusivity = TypeReal (final unit="L2.M/(N.T)", min=0);
-  type DiffusivityMassSpecific = TypeReal (final unit="L2.M/(N.T)", min=0)
-    "Product of diffusivity and specific mass";
   type Energy = TypeReal (final unit="L2.M/T2");
   type Fluidity = TypeReal (final unit="L.T/M", min=0);
   type Force = TypeReal (final unit="L.M/T2");
@@ -156,8 +141,6 @@ package Quantities "Types to represent physical values"
   type Frequency = TypeReal (final unit="A/T");
   type Inductance = TypeReal (final unit="L2.M/N2", min=0);
   type Length = TypeReal (final unit="L", min=0);
-  type LengthReciprocal = TypeReal (final unit="1/L", min=0)
-    "Reciprocal of length";
   type LengthSpecific = TypeReal (final unit="L/N", min=0) "Specific length";
   type MagneticFlux = TypeReal (final unit="L2.M/(A.N.T)") "Magnetic flux";
   type MagneticFluxAreic = TypeReal (final unit="M/(A.N.T)")
@@ -181,8 +164,7 @@ package Quantities "Types to represent physical values"
     "Absolute potential";
   type PotentialPerWavenumber = TypeReal (final unit="L3.M/(A.N.T2)")
     "Potential per wavenumber";
-  type PotentialRate = TypeReal (final unit="L2.M/(N.T3)")
-    "Rate of potential";
+  type PotentialRate = TypeReal (final unit="L2.M/(N.T3)") "Rate of potential";
   type Power = TypeReal (final unit="L2.M/T3");
   type PowerArea = TypeReal (final unit="L4.M/T3") "Power times area";
   type PowerAreic = TypeReal (final unit="M/T3") "Areic power";
@@ -199,13 +181,10 @@ package Quantities "Types to represent physical values"
     "Electrical resistance";
   type ResistanceFluid = TypeReal (final unit="M/(L.N.T)", min=0)
     "Fluid resistance";
-  type ResistanceThermal = TypeReal (final unit="T/N", min=0)
-    "Thermal resistance";
   type Resistivity = TypeReal (final unit="L.T/N", min=0);
   type SurfaceTension = TypeReal (final unit="M/T2") "Surface tension";
   type Time = TypeReal (final unit="T");
   type TimeAbsolute = TypeReal (final unit="T", min=0) "Absolute time";
-  type TimeLineic = TypeReal (final unit="T/L") "Lineic time";
   type Velocity = TypeReal (final unit="L/T");
   type Velocity2 = TypeReal (final unit="L2/T2") "Squared velocity";
   type VelocityAmount = TypeReal (final unit="L.N/T");
@@ -225,8 +204,7 @@ package Quantities "Types to represent physical values"
     "Specific thermal capacity";
   type CapacityThermalVolumic = Density (displayUnit="J/(m3.K)")
     "Volumic thermal capacity";
-  type PotentialChemical = Potential (displayUnit="J/mol")
-    "Chemical potential";
+  type PotentialChemical = Potential (displayUnit="J/mol") "Chemical potential";
   type Temperature = Potential (displayUnit="K");
   type TemperatureAbsolute = PotentialAbsolute (displayUnit="degC")
     "Absolute temperature";

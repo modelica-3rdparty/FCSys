@@ -65,8 +65,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
         // Conditions
         Conditions.ByConnector.BoundaryBus.Single.Sink anBC[cell.n_y, cell.n_z]
           (each graphite('inclC+'=true, redeclare
-              Conditions.ByConnector.ThermalDiffusive.Single.Temperature 'C+'
-              (set(y=environment.T))))
+              Conditions.ByConnector.ThermalDiffusive.Single.Temperature 'C+'(
+                set(y=environment.T))))
           "Boundary condition for the anode end plate, except electrical"
           annotation (Placement(transformation(
               extent={{10,-10},{-10,10}},
@@ -77,8 +77,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
           cell.n_z](each gas(
             inclH2=true,
             inclH2O=true,
-            H2(materialSet(y=-testConditions.Ndot_H2), thermalSet(y=
-                    environment.T)),
+            H2(materialSet(y=-testConditions.Ndot_H2), thermalSet(y=environment.T)),
+
             H2O(materialSet(y=-testConditions.Ndot_H2O_an), thermalSet(y=
                     environment.T)))) "Source for the anode reactant stream"
           annotation (Placement(transformation(
@@ -112,17 +112,16 @@ package Assemblies "Combinations of regions (e.g., cells)"
             each inclH2O=true,
             each inclN2=cell.inclN2,
             each inclO2=true,
-            each H2O(materialSet(y=-testConditions.Ndot_H2O_ca), thermalSet(y
-                  =environment.T)),
+            each H2O(materialSet(y=-testConditions.Ndot_H2O_ca), thermalSet(y=
+                    environment.T)),
             N2(
               each materialSet(y=-testConditions.Ndot_N2),
               each thermalSet(y=environment.T),
               redeclare function materialMeas =
                   Conditions.ByConnector.Boundary.Single.Material.pressure),
             each O2(materialSet(y=-testConditions.Ndot_O2),thermalSet(y=
-                    environment.T))))
-          "Source for the cathode reactant stream" annotation (Placement(
-              transformation(
+                    environment.T)))) "Source for the cathode reactant stream"
+          annotation (Placement(transformation(
               extent={{10,-10},{-10,10}},
               rotation=180,
               origin={56,-24})));
@@ -165,8 +164,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
               rotation=270,
               origin={-10,-30})));
         Conditions.Adapters.MSL.Electronic caAdapt
-          "Interface with Modelica.Electrical on the cathode side"
-          annotation (Placement(transformation(
+          "Interface with Modelica.Electrical on the cathode side" annotation (
+            Placement(transformation(
               extent={{-10,-10},{10,10}},
               rotation=270,
               origin={10,-30})));
@@ -184,9 +183,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
               rotation=0,
               origin={48,0})));
 
-        TestConditions testConditions(I_ca=2*zI, I_an=1.5*zI)
-          "Test conditions" annotation (Dialog, Placement(transformation(
-                extent={{10,30},{30,50}})));
+        TestConditions testConditions(I_ca=2*zI, I_an=1.5*zI) "Test conditions"
+          annotation (Dialog, Placement(transformation(extent={{10,30},{30,50}})));
 
       protected
         Q.ResistanceFluid r_an
@@ -212,8 +210,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
           "Cathode";
 
         // Nitrogen pressures (since N2 is conditionally included)
-        connect(p_N2_in, caSource.gas.N2.materialOut.y)
-          "Not shown in diagram";
+        connect(p_N2_in, caSource.gas.N2.materialOut.y) "Not shown in diagram";
         connect(p_N2_out, caSink.gas.N2.materialOut.y) "Not shown in diagram";
         if not cell.inclN2 then
           p_N2_in = zeros(cell.caFP.n_x, cell.n_y);
@@ -359,9 +356,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
           height=120*U.A,
           duration=120,
           offset=0.1*U.mA,
-          startTime=60)
-          "Specify the equivalent current of the anode supplies" annotation (
-            Placement(transformation(extent={{-60,-60},{-40,-40}})));
+          startTime=60) "Specify the equivalent current of the anode supplies"
+          annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
         Modelica.Blocks.Sources.Ramp caFlowSet(
           height=160*U.A,
           duration=120,
@@ -399,8 +395,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         extends TestStand(
           environment(analysis=false),
-          cell(anCL(subregions(graphite(each inclDL=true, transfer(each fromI
-                      =false)))), caCL(subregions(graphite(each inclDL=true,
+          cell(anCL(subregions(graphite(each inclDL=true, transfer(each fromI=
+                        false)))),caCL(subregions(graphite(each inclDL=true,
                     transfer(each fromI=false))))),
           redeclare Modelica.Electrical.Analog.Sources.SignalCurrent load(i(
               start=50,
@@ -410,8 +406,7 @@ package Assemblies "Combinations of regions (e.g., cells)"
         output Modelica.SIunits.Voltage w_V=load.v "Potential in volts";
 
       equation
-        der(load.i) = 0
-          "Current is a dummy state -- only for linear analysis.";
+        der(load.i) = 0 "Current is a dummy state -- only for linear analysis.";
 
       end TestStandLinearize;
 
@@ -445,15 +440,15 @@ package Assemblies "Combinations of regions (e.g., cells)"
         extends TestStand(
           redeclare SimpleCell cell(inclN2=environment.psi_O2_dry < 1 -
                 Modelica.Constants.eps),
-          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, max(caSource[
-              1, 1].gas.O2.boundary.p, small)) - cell.caCGDL.subregions[1, 1,
-              1].gas.O2.g)/4,
-          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, max(
-              caSource[1, 1].gas.H2O.boundary.p, small)) - cell.caCGDL.subregions[
-              1, 1, 1].gas.H2O.g)/2,
-          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, max(anSource[
-              1, 1].gas.H2.boundary.p, small)) - cell.anCGDL.subregions[1, 1,
-              1].gas.H2.g)/2,
+          Deltaw_O2=(DataO2.g(caSource[1, 1].gas.O2.boundary.T, max(caSource[1,
+              1].gas.O2.boundary.p, small)) - cell.caCGDL.subregions[1, 1, 1].gas.O2.g)
+              /4,
+          Deltaw_H2O=(DataH2O.g(caSource[1, 1].gas.H2O.boundary.T, max(caSource[
+              1, 1].gas.H2O.boundary.p, small)) - cell.caCGDL.subregions[1, 1,
+              1].gas.H2O.g)/2,
+          Deltaw_H2=(DataH2.g(anSource[1, 1].gas.H2.boundary.T, max(anSource[1,
+              1].gas.H2.boundary.p, small)) - cell.anCGDL.subregions[1, 1, 1].gas.H2.g)
+              /2,
           'Deltaw_e-'=cell.caFP.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
               1, Side.p] - cell.caCGDL.subregions[1, 1, 1].graphite.'e-'.g +
               cell.anCGDL.subregions[1, 1, 1].graphite.'e-'.g - cell.anFP.subregions[
@@ -475,15 +470,15 @@ package Assemblies "Combinations of regions (e.g., cells)"
         // Note:  This isn't a record because it contains time-varying variables.
         import FCSys.Characteristics.H2O.p_sat;
 
-        final parameter Q.NumberAbsolute psi_sat=environment.p_sat/
-            environment.p "Mole fraction of H2O at saturation";
+        final parameter Q.NumberAbsolute psi_sat=environment.p_sat/environment.p
+          "Mole fraction of H2O at saturation";
 
         // Anode
         Connectors.RealInputInternal I_an(unit="N/T") = U.A
-          "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label
-              ="<html><i>I</i><sub>an</sub></html>"), Placement(
-              transformation(extent={{-70,30},{-50,50}}), iconTransformation(
-                extent={{0,0},{0,0}})));
+          "Equivalent current" annotation (Dialog(tab="Anode", __Dymola_label=
+                "<html><i>I</i><sub>an</sub></html>"),Placement(transformation(
+                extent={{-70,30},{-50,50}}), iconTransformation(extent={{0,0},{
+                  0,0}})));
         parameter Q.NumberAbsolute anRH(
           displayUnit="%",
           max=1) = 0.8 "Relative humidity (at inlet)"
@@ -495,10 +490,10 @@ package Assemblies "Combinations of regions (e.g., cells)"
 
         // Cathode
         Connectors.RealInputInternal I_ca(unit="N/T") = U.A
-          "Equivalent current" annotation (Dialog(tab="Cathode",
-              __Dymola_label="<html><i>I</i><sub>ca</sub></html>"), Placement(
-              transformation(extent={{-70,-50},{-50,-30}}),
-              iconTransformation(extent={{0,0},{0,0}})));
+          "Equivalent current" annotation (Dialog(tab="Cathode", __Dymola_label
+              ="<html><i>I</i><sub>ca</sub></html>"), Placement(transformation(
+                extent={{-70,-50},{-50,-30}}), iconTransformation(extent={{0,0},
+                  {0,0}})));
         parameter Q.NumberAbsolute caRH(
           displayUnit="%",
           max=1) = 0.5 "Relative humidity (at inlet)"
@@ -507,15 +502,15 @@ package Assemblies "Combinations of regions (e.g., cells)"
           "Mole fraction of H2O at the cathode inlet";
         final parameter Q.NumberAbsolute psi_O2=environment.psi_O2_dry*(1 -
             psi_H2O_ca) "Mole fraction of O2 at the cathode inlet";
-        final parameter Q.NumberAbsolute psi_N2=(1 - environment.psi_O2_dry)*
-            (1 - psi_H2O_ca) "Mole fraction of N2 at the cathode inlet";
+        final parameter Q.NumberAbsolute psi_N2=(1 - environment.psi_O2_dry)*(1
+             - psi_H2O_ca) "Mole fraction of N2 at the cathode inlet";
 
         Modelica.Blocks.Math.Gain stoichH2(k=1/2)
           annotation (Placement(transformation(extent={{-42,30},{-22,50}})));
         Modelica.Blocks.Math.Gain anStoichH2O(k=psi_H2O_an/psi_H2)
           annotation (Placement(transformation(extent={{18,30},{38,50}})));
-        Modelica.Blocks.Math.Gain stoichO2(k=1/4) annotation (Placement(
-              transformation(extent={{-42,-50},{-22,-30}})));
+        Modelica.Blocks.Math.Gain stoichO2(k=1/4)
+          annotation (Placement(transformation(extent={{-42,-50},{-22,-30}})));
         Modelica.Blocks.Math.Gain caStoichH2O(k=psi_H2O_ca/psi_O2)
           annotation (Placement(transformation(extent={{18,-30},{38,-10}})));
         Modelica.Blocks.Math.Gain stoichN2(k=psi_N2/psi_O2)
@@ -526,18 +521,18 @@ package Assemblies "Combinations of regions (e.g., cells)"
               transformation(extent={{44,30},{64,50}}), iconTransformation(
                 extent={{0,0},{0,0}})));
         Connectors.RealOutputInternal Ndot_O2(unit="N/T")
-          "Rate of supply of O2" annotation (Placement(transformation(extent=
-                  {{-18,-50},{2,-30}}), iconTransformation(extent={{0,0},{0,0}})));
+          "Rate of supply of O2" annotation (Placement(transformation(extent={{
+                  -18,-50},{2,-30}}), iconTransformation(extent={{0,0},{0,0}})));
         Connectors.RealOutputInternal Ndot_H2O_ca(unit="N/T")
           "Rate of supply of H2O into the cathode" annotation (Placement(
               transformation(extent={{42,-30},{62,-10}}),iconTransformation(
                 extent={{0,0},{0,0}})));
         Connectors.RealOutputInternal Ndot_N2(unit="N/T")
-          "Rate of supply of N2" annotation (Placement(transformation(extent=
-                  {{42,-70},{62,-50}}), iconTransformation(extent={{0,0},{0,0}})));
+          "Rate of supply of N2" annotation (Placement(transformation(extent={{
+                  42,-70},{62,-50}}), iconTransformation(extent={{0,0},{0,0}})));
         Connectors.RealOutputInternal Ndot_H2(unit="N/T")
-          "Rate of supply of H2" annotation (Placement(transformation(extent=
-                  {{-18,30},{2,50}}), iconTransformation(extent={{0,0},{0,0}})));
+          "Rate of supply of H2" annotation (Placement(transformation(extent={{
+                  -18,30},{2,50}}), iconTransformation(extent={{0,0},{0,0}})));
 
       protected
         outer Conditions.Environment environment "Environmental conditions";
@@ -636,10 +631,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
         annotation (Dialog(tab="Assumptions", compact=true), choices(
             __Dymola_checkBox=true));
 
-      Connectors.BoundaryBus an[n_y, n_z]
-        "Interface with the anode end plate" annotation (Placement(
-            transformation(extent={{-100,-20},{-80,0}}, rotation=0),
-            iconTransformation(extent={{-110,-10},{-90,10}})));
+      Connectors.BoundaryBus an[n_y, n_z] "Interface with the anode end plate"
+        annotation (Placement(transformation(extent={{-100,-20},{-80,0}},
+              rotation=0), iconTransformation(extent={{-110,-10},{-90,10}})));
       Connectors.BoundaryBus ca[n_y, n_z]
         "Interface with the cathode end plate" annotation (Placement(
             transformation(extent={{60,-20},{80,0}}, rotation=0),
@@ -803,42 +797,48 @@ package Assemblies "Combinations of regions (e.g., cells)"
     <html><p>This is a model of a single-cell proton exchange membrane fuel cell (PEMFC).  An overview
     of a PEMFC is given in the <a href=\"modelica://FCSys\">top-level documentation of FCSys</a>.</p>
     </html>"),
-        Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-40},
-                {80,20}}),graphics),
+        Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-40},{
+                80,20}}), graphics),
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Line(
-                  points={{-40,-58},{-40,-100}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{28,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,-92},
-                  rotation=90),Line(
-                  points={{-40,100},{-40,60}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-66,0},{-100,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{44,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,56},
-                  rotation=90),Line(
-                  points={{100,0},{56,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5)}),
+            initialScale=0.1), graphics={
+            Line(
+              points={{-40,-58},{-40,-100}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{28,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,-92},
+              rotation=90),
+            Line(
+              points={{-40,100},{-40,60}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-66,0},{-100,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{44,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,56},
+              rotation=90),
+            Line(
+              points={{100,0},{56,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5)}),
         experiment(StopTime=120, Tolerance=1e-06));
     end Cell;
 
@@ -866,10 +866,9 @@ package Assemblies "Combinations of regions (e.g., cells)"
         annotation (Dialog(tab="Assumptions", compact=true), choices(
             __Dymola_checkBox=true));
 
-      Connectors.BoundaryBus an[n_y, n_z]
-        "Interface with the anode end plate" annotation (Placement(
-            transformation(extent={{-80,-20},{-60,0}}, rotation=0),
-            iconTransformation(extent={{-110,-10},{-90,10}})));
+      Connectors.BoundaryBus an[n_y, n_z] "Interface with the anode end plate"
+        annotation (Placement(transformation(extent={{-80,-20},{-60,0}},
+              rotation=0), iconTransformation(extent={{-110,-10},{-90,10}})));
       Connectors.BoundaryBus ca[n_y, n_z]
         "Interface with the cathode end plate" annotation (Placement(
             transformation(extent={{40,-20},{60,0}}, rotation=0),
@@ -924,8 +923,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
       FCSys.Regions.AnCLs.AnCGDL anCGDL(
         final L_y=L_y,
         final L_z=L_z,
-        subregions(liquid(each inclH2O=inclLiq,H2O(each initEnergy=Init.none,
-                T(each stateSelect=StateSelect.default)))))
+        subregions(liquid(each inclH2O=inclLiq,H2O(each initEnergy=Init.none, T(
+                  each stateSelect=StateSelect.default)))))
         "Anode catalyst and gas diffusion layer" annotation (Dialog(group=
               "Layers"), Placement(transformation(extent={{-40,-20},{-20,0}})));
 
@@ -937,8 +936,8 @@ package Assemblies "Combinations of regions (e.g., cells)"
       FCSys.Regions.CaCLs.CaCGDL caCGDL(
         final L_y=L_y,
         final L_z=L_z,
-        subregions(liquid(each inclH2O=inclLiq,H2O(each initEnergy=Init.none,
-                T(each stateSelect=StateSelect.default)))))
+        subregions(liquid(each inclH2O=inclLiq,H2O(each initEnergy=Init.none, T(
+                  each stateSelect=StateSelect.default)))))
         "Cathode catalyst and gas diffusion layer" annotation (Dialog(group=
               "Layers"), Placement(transformation(extent={{0,-20},{20,0}})));
 
@@ -1030,42 +1029,48 @@ package Assemblies "Combinations of regions (e.g., cells)"
     An overview
     of a PEMFC is given in the <a href=\"modelica://FCSys\">top-level documentation of FCSys</a>.</p>
     </html>"),
-        Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-40},
-                {60,20}}),graphics),
+        Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-80,-40},{
+                60,20}}), graphics),
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Line(
-                  points={{-40,100},{-40,60}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{44,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,56},
-                  rotation=90),Line(
-                  points={{100,0},{56,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5),Line(
-                  points={{-8,-1},{28,-1}},
-                  color={0,0,240},
-                  visible=inclX,
-                  thickness=0.5,
-                  origin={39,-92},
-                  rotation=90),Line(
-                  points={{-40,-58},{-40,-100}},
-                  color={240,0,0},
-                  visible=inclY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-66,0},{-100,0}},
-                  color={127,127,127},
-                  visible=inclX,
-                  thickness=0.5)}));
+            initialScale=0.1), graphics={
+            Line(
+              points={{-40,100},{-40,60}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{44,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,56},
+              rotation=90),
+            Line(
+              points={{100,0},{56,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5),
+            Line(
+              points={{-8,-1},{28,-1}},
+              color={0,0,240},
+              visible=inclX,
+              thickness=0.5,
+              origin={39,-92},
+              rotation=90),
+            Line(
+              points={{-40,-58},{-40,-100}},
+              color={240,0,0},
+              visible=inclY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-66,0},{-100,0}},
+              color={127,127,127},
+              visible=inclX,
+              thickness=0.5)}));
     end SimpleCell;
 
   end Cells;
