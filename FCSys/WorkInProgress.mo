@@ -2,6 +2,10 @@ within FCSys;
 package WorkInProgress "Incomplete classes under development"
   extends Modelica.Icons.Package;
 
+  // Maximum line width before a new word is wrapped in the code listing in
+  // the LaTeX document (76 characters, including leading spaces and // )
+  // -------------------------------------------------------------------------
+
   model CellMSL
     "<html>Single-cell PEMFC with interfaces from the <a href=\"modelica://Modelica\">Modelica Standard Library</a></html>"
     extends FCSys.Icons.Cell;
@@ -10,16 +14,15 @@ package WorkInProgress "Incomplete classes under development"
           FCSys.Subregions.Subregion subregions(
           each final inclX=true,
           each inclY=true,
-          each graphite('incle-'=true, 'e-'(perfectMaterialDiff={{{{true,
-                  false}}}})),
+          each graphite('incle-'=true, 'e-'(perfectMaterialDiff={{{{true,false}}}})),
+
           each gas(inclH2=true, inclH2O=true))))
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
     inner FCSys.Conditions.Environment environment(analysis=false)
       annotation (Placement(transformation(extent={{40,60},{60,80}})));
     Conditions.Adapters.Phases.Graphite caModelicaAdapt(A=cell.L_y[1]*cell.L_z[
-          1])
-      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+          1]) annotation (Placement(transformation(extent={{20,-10},{40,10}})));
     Conditions.Adapters.Phases.Graphite anModelicaAdapt(A=cell.L_y[1]*cell.L_z[
           1])
       annotation (Placement(transformation(extent={{-20,-10},{-40,10}})));
@@ -71,13 +74,13 @@ package WorkInProgress "Incomplete classes under development"
     "<html>Example to calibrate the coupling between H<sup>+</sup> and H<sub>2</sub>O in the PEM</html>"
 
     extends Regions.Examples.CLtoCL(anCL(redeclare model Subregion =
-            Subregions.Subregion (ionomer(redeclare
-                FCSys.Species.H2O.Gas.Fixed H2O(
+            Subregions.Subregion (ionomer(redeclare FCSys.Species.H2O.Gas.Fixed
+                H2O(
                 redeclare package Data = FCSys.Characteristics.'H+'.Ionomer,
                 p_IC=65536*U.kPa,
-                consMaterial=ConsThermo.IC)))), caCL(redeclare model
-          Subregion = Subregions.Subregion (ionomer(redeclare
-                FCSys.Species.H2O.Gas.Fixed H2O(
+                consMaterial=ConsThermo.IC)))), caCL(redeclare model Subregion
+          = Subregions.Subregion (ionomer(redeclare FCSys.Species.H2O.Gas.Fixed
+                H2O(
                 redeclare package Data = FCSys.Characteristics.'H+'.Ionomer,
                 p_IC=65536*U.kPa,
                 consMaterial=ConsThermo.IC)))));
@@ -88,9 +91,9 @@ package WorkInProgress "Incomplete classes under development"
     "Test one catalyst layer to the other, with prescribed voltage"
 
     extends Modelica.Icons.Example;
-    output Q.Potential w=anCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
-        1, Side.n] - caCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1,
-        Side.p] if environment.analysis "Electrical potential";
+    output Q.Potential w=anCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1,
+        Side.n] - caCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1, Side.p]
+      if environment.analysis "Electrical potential";
     output Q.Current zI=-sum(anCL.subregions[1, :, :].graphite.'e-'.boundaries[
         1, Side.n].Ndot) if environment.analysis "Electrical current";
     output Q.Number J_Apercm2=zI*U.cm^2/(anCL.A[Axis.x]*U.A)
@@ -112,8 +115,8 @@ package WorkInProgress "Incomplete classes under development"
     Regions.CaCLs.CaCL caCL(
       final L_y=L_y,
       final L_z=L_z,
-      subregions(graphite(each inclDL=true, transfer(each fromI=false)),
-          each ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
+      subregions(graphite(each inclDL=true, transfer(each fromI=false)), each
+          ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
       annotation (Placement(transformation(extent={{10,30},{30,50}})));
 
     // Conditions
@@ -149,8 +152,8 @@ package WorkInProgress "Incomplete classes under development"
           rotation=270,
           origin={-44,40})));
 
-    Conditions.ByConnector.BoundaryBus.Single.Source caBC[caCL.n_y, caCL.n_z]
-      (each gas(
+    Conditions.ByConnector.BoundaryBus.Single.Source caBC[caCL.n_y, caCL.n_z](
+        each gas(
         inclH2O=true,
         inclO2=true,
         H2O(
@@ -172,7 +175,6 @@ package WorkInProgress "Incomplete classes under development"
           redeclare each function materialSpec =
               Conditions.ByConnector.Boundary.Single.Material.potential (
                 redeclare package Data = FCSys.Characteristics.'e-'.Graphite),
-
           materialSet(y=anBC.graphite.'e-'.materialOut.y + fill(
                   -voltageSet.y,
                   caCL.n_y,
@@ -224,8 +226,8 @@ package WorkInProgress "Incomplete classes under development"
         StopTime=600,
         Tolerance=1e-007,
         __Dymola_Algorithm="Dassl"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}),graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics));
   end RegionsExamplesCLtoCLVoltage;
 
   model SubregionsExamplesCapillaryAction
@@ -245,10 +247,10 @@ package WorkInProgress "Incomplete classes under development"
       file="../../units.mos"
         "Establish the constants and units in the workspace (first translate a model besides Units.Evaluate).",
 
-      file="test/check.mos"
-        "Check all of FCSys using Dymola's check function.",
-      file="../../../LaTeX/Dissertation/Results/Cell/Simulation/sim.mos"),
-      Icon(graphics={Polygon(
+      file="test/check.mos" "Check all of FCSys using Dymola's check function.",
+
+      file="../../../LaTeX/Dissertation/Results/Cell/Simulation/sim.mos"), Icon(
+        graphics={Polygon(
           points={{-80,-72},{0,68},{80,-72},{-80,-72}},
           lineColor={255,0,0},
           lineThickness=0.5)}));

@@ -423,7 +423,7 @@ and &theta; = <code>U.m*U.K/(183e-3*U.W)</code>) are based on data of H<sub>2</s
 
           final tauprime,
           final N0,
-          n_chem=1,
+          n_chem=2,
           p_IC=environment.p_H2O);
 
         // See the documentation for tables of values.
@@ -610,9 +610,8 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
       model Fixed "Fixed properties"
 
         // Initialization
-        parameter Q.Number epsilon_IC=Modelica.Constants.small
-          "Initial volumetric fill fraction" annotation (Dialog(tab=
-                "Initialization", __Dymola_label=
+        parameter Q.Number epsilon_IC=0.01 "Initial volumetric fill fraction"
+          annotation (Dialog(tab="Initialization", __Dymola_label=
                 "<html>&epsilon;<sub>IC</sub></html>"));
 
         extends Fluid(
@@ -628,8 +627,9 @@ and &theta; = <code>U.m*U.K/(19.6e-3*U.W)</code>) are of H<sub>2</sub>O gas at s
           final g_IC,
           final rho_IC,
           final p_IC,
-          always=false,
-          n_chem=1,
+          redeclare parameter Q.TimeAbsolute tauprime[:]={0,1e8,2e11}*
+              Data.tauprime(),
+          n_chem=3,
           final V_IC=epsilon_IC*product(L),
           initMaterial=Init.volume);
 
@@ -1100,7 +1100,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
           StateSelect.never) = boundaries.Ndot ./ rho_boundaries if environment.analysis
       "Volume flow rates into the boundaries";
     output Q.PressureAbsolute q[n_trans](each stateSelect=StateSelect.never) =
-      (Data.m/2)*phi .^ 2/v if environment.analysis "Dynamic pressure";
+      (Data.m/2)*phi .* I ./ Aprime if environment.analysis "Dynamic pressure";
     output Q.Velocity phi_chemical[n_chem, n_trans](each stateSelect=
           StateSelect.never) = actualStream(chemical.phi) if environment.analysis
        and n_chem > 0 "Velocity of the chemical streams";
@@ -1138,13 +1138,13 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       "Time constants for material transport";
     output Q.TimeAbsolute tau_PhiT[n_trans](
       each stateSelect=StateSelect.never,
-      each start=U.s) = (Data.m*eta/(2*v))*kL .* L[cartTrans] ./ Nu_Phi[
-      cartTrans] if environment.analysis
+      each start=U.s) = M*eta*kL ./ (2*Nu_Phi[cartTrans] .* Aprime) if
+      environment.analysis
       "Time constants for transverse translational transport";
     output Q.TimeAbsolute tau_QT[n_trans](
       each stateSelect=StateSelect.never,
-      each start=U.s) = (c_v*theta/(2*v*Nu_Q))*kL .* L[cartTrans] if
-      environment.analysis "Time constants for thermal transport";
+      each start=U.s) = (N*c_v*theta/(2*Nu_Q))*kL ./ Aprime if environment.analysis
+      "Time constants for thermal transport";
     //
     // Peclet numbers
     output Q.Number Pe_N[n_trans](each stateSelect=StateSelect.never) = tau_NT
@@ -1152,7 +1152,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
     output Q.Number Pe_Phi[n_trans](each stateSelect=StateSelect.never) =
       tau_PhiT .* I/N if environment.analysis "Translational Peclet numbers";
     output Q.Number Pe_Q[n_trans](each stateSelect=StateSelect.never) = tau_QT
-       .* phi ./ L[cartTrans] if environment.analysis "Thermal Peclet numbers";
+       .* I/N if environment.analysis "Thermal Peclet numbers";
     // Note:  These Peclet numbers are calculated at the center of the subregion
     // (for simplicity), but the Peclet numbers used in the transport equations
     // are at each boundary.
@@ -1224,15 +1224,7 @@ and &theta; = <code>U.m*U.K/(613e-3*U.W)</code>) are of H<sub>2</sub>O liquid at
       "Connector for reactions and phase change" annotation (Placement(
           transformation(extent={{-10,10},{10,30}}), iconTransformation(extent=
               {{-30,80},{-50,100}})));
-    Connectors.Activity activity(final n_trans=n_trans, sT(start=h_IC - g_IC,
-          final fixed=false))
-      annotation (Placement(transformation(extent={{10,10},{30,30}})));
-    //**g(start=g_IC, final fixed=false),
 
-    parameter Q.Potential g_ref=-3.21*U.V "**";
-    constant Real r=0*U.m^2/U.A/1e14 "**";
-    parameter Q.Area A=U.m^2 "**";
-    parameter Boolean always=true;
     // Geometric parameters
 
   protected
@@ -1381,17 +1373,12 @@ Choose any condition besides none.");
         g = g_IC;
       elseif initEnergy == Init.GibbsSS then
         der(g) = 0;
-        // Else, there's no initial equation since initEnergy == Init.none or
+        // Else, there's no initial equation since
+        // initEnergy == Init.none or
         // consEnergy == ConsThermo.steady.
       end if;
     end if;
 
-  public
-    Boolean on(start=true,fixed=true);
-    Real a=if Data.phase == Phase.gas then p/Data.p0 else
-        Characteristics.H2O.p_sat(T)/U.bar;
-    //exp((Data.g(T, Data.p0) - Characteristics.H2O.Gas.g(T, Characteristics.H2O.Gas.p0))/T);
-    Real Deltaa;
   equation
     // Aliases (only to clarify and simplify other equations)
     v*I = Aprime .* phi "Current vs. velocity";
@@ -1407,19 +1394,6 @@ Choose any condition besides none.");
 
     // Assumptions
     2*I = -Delta(boundaries.Ndot) "Linear current profile (assumption #1)";
-
-    Deltaa = activity.a - a;
-    on = always or N > 0 or Deltaa > 0;
-    // **Note:  The order of the terms on the RHS (N > 0 or x > 0 instead of
-    // x > 0 or N > 0) is important to prevent chattering in Dymola 2014.
-
-    if always then
-      Deltaa = 0;
-    else
-      0 = if on then Deltaa else N;
-    end if;
-    activity.phi = phi;
-    activity.sT = h - g;
 
     // Properties upon outflow due to reaction and phase change
     chemical.phi = fill(phi, n_chem);
@@ -1531,8 +1505,7 @@ Choose any condition besides none.");
       end if;
     else
       (if consMaterial == ConsThermo.dynamic then der(N)/U.s else 0) = sum(
-        chemical.Ndot) + activity.Ndot + sum(boundaries.Ndot)
-        "Material conservation";
+        chemical.Ndot) + sum(boundaries.Ndot) "Material conservation";
     end if;
 
     // Conservation of translational momentum
@@ -2133,16 +2106,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-            extent={{-100,100},{100,-100}},
-            lineColor={127,127,127},
-            pattern=LinePattern.Dash,
-            fillColor={225,225,225},
-            fillPattern=FillPattern.Solid), Text(
-            extent={{-100,-20},{100,20}},
-            textString="%name",
-            lineColor={0,0,0},
-            origin={-40,40},
-            rotation=45)}));
+              extent={{-100,100},{100,-100}},
+              lineColor={127,127,127},
+              pattern=LinePattern.Dash,
+              fillColor={225,225,225},
+              fillPattern=FillPattern.Solid),Text(
+              extent={{-100,-20},{100,20}},
+              textString="%name",
+              lineColor={0,0,0},
+              origin={-40,40},
+              rotation=45)}));
   end Species;
 
 public
@@ -2195,8 +2168,6 @@ public
 
   end Enumerations;
 
-  model PhaseEquil "**temp"
-  end PhaseEquil;
   annotation (Documentation(info="
 <html><p>This package contains models of species&mdash;chemical substances that may be mixed to form phases.   
 <a href=\"#Fig1\">Figure 1</a> shows the position of a species in the model hierarchy.</p>

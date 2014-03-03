@@ -15,7 +15,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclH2=false,
           'inclC+'=true,
           subregion(
-            gasLiq(k_Q=0),
+            gasGraphite(k_Q=0),
             liquid(inclH2O=inclH2O, H2O(initEnergy=Init.none,epsilon_IC=1e-5)),
 
             gas(H2O(
@@ -24,6 +24,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
                 N(stateSelect=StateSelect.default),
                 consEnergy=ConsThermo.IC))),
           environment(analysis=true));
+        extends Modelica.Icons.UnderConstruction;
 
         annotation (
           Documentation(info="<html><p>Initially, the water vapor is below saturation and a small amount of liquid water is present (10 ppm of the total volume).
@@ -65,6 +66,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
               'SO3-'(consEnergy=ConsThermo.IC,epsilon=0.3),
               H2O(lambda_IC=8,initEnergy=Init.none))),
           environment(T=333.15*U.K, RH=1));
+        extends Modelica.Icons.UnderConstruction;
 
         annotation (
           Documentation(info="<html><p>The water vapor is held at saturation pressure at the environmental temperature
@@ -108,6 +110,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclH2=true,
           subregion(L={0.287*U.mm,10*U.cm,10*U.cm}),
           environment(T=333.15*U.K, RH=0.8));
+        extends Modelica.Icons.UnderConstruction;
 
         Conditions.ByConnector.BoundaryBus.Single.Sink anBC(graphite(
             'incle-'=true,
@@ -182,6 +185,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           subregion(L={0.287*U.mm,10*U.cm,10*U.cm}, gas(O2(initEnergy=Init.none))),
 
           environment(T=333.15*U.K, RH=0.6));
+        extends Modelica.Icons.UnderConstruction;
 
         Conditions.ByConnector.BoundaryBus.Single.Source anBC(ionomer('inclH+'=
                 true, 'H+'(
@@ -221,7 +225,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
           height=-200*U.A,
           startTime=5)
           annotation (Placement(transformation(extent={{-10,-60},{10,-40}})));
-        // **offset=-U.mA,
 
       equation
         connect(subregion.xPositive, caBC.boundary) annotation (Line(
@@ -378,6 +381,8 @@ package Subregions "Control volumes with multi-species transfer and storage"
                       StateSelect.always))))),
         environment(RH=0.6));
 
+      extends Modelica.Icons.UnderConstruction;
+
       Conditions.ByConnector.BoundaryBus.Single.Source source(gas(
           inclH2=true,
           inclH2O=true,
@@ -491,6 +496,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
         inclH2=false,
         subregion(L={U.cm,U.mm,U.mm}, graphite('C+'(epsilon=1),'e-'(sigma=1e2*U.S
                   /U.m))));
+      extends Modelica.Icons.UnderConstruction;
 
       Conditions.ByConnector.BoundaryBus.Single.Source BC1(graphite(
           'incle-'='incle-',
@@ -589,6 +595,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
           inclTransY=true,
           inclTransZ=true,
           liquid(inclH2O=true, H2O(initMaterial=Init.none))));
+      extends Modelica.Icons.UnderConstruction;
 
       Conditions.ByConnector.BoundaryBus.Single.Source BC1(liquid(inclH2O=true,
             H2O(
@@ -694,6 +701,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
             "Subregions.Examples.InternalFlow.mos"),
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics));
+
     end InternalFlow;
 
     model Subregion
@@ -903,11 +911,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
         subregion1(graphite('C+'(T_IC=environment.T + 30*U.K, epsilon=1))),
         subregions(each graphite('C+'(epsilon=1))),
         subregion2(graphite('C+'(epsilon=1))));
-
+      extends Modelica.Icons.UnderConstruction;
       annotation (Commands(file=
               "Resources/Scripts/Dymola/Subregions.Examples.ThermalConduction.mos"
             "Subregions.Examples.ThermalConduction.mos"), experiment(StopTime=
-              500,__Dymola_Algorithm="Dassl"));
+              500, __Dymola_Algorithm="Dassl"));
 
     end ThermalConduction;
 
@@ -949,19 +957,19 @@ package Subregions "Control volumes with multi-species transfer and storage"
     FCSys.Phases.Gas gas(
       n_inter=2,
       final n_trans=n_trans,
-      final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"),Placement(transformation(extent={{-30,-22},
-              {-10,-2}})));
+      final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
+
+      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Gas" annotation (Dialog(
+          group="Phases (click to edit)"), Placement(transformation(extent={{-30,
+              -22},{-10,-2}})));
 
     FCSys.Phases.Graphite graphite(
       n_inter=2,
       final n_trans=n_trans,
-      final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
-
-      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Graphite" annotation (
-        Dialog(group="Phases (click to edit)"), Placement(transformation(extent
-            ={{10,-22},{30,-2}})));
+      final k_inter_Phi={common.k_Phi[cartTrans]},
+      final k_inter_Q={common.k_Q}) "Graphite" annotation (Dialog(group=
+            "Phases (click to edit)"), Placement(transformation(extent={{10,-22},
+              {30,-2}})));
 
     FCSys.Phases.Ionomer ionomer(
       n_inter=1,
@@ -974,10 +982,11 @@ package Subregions "Control volumes with multi-species transfer and storage"
     FCSys.Phases.Liquid liquid(
       n_inter=1,
       final n_trans=n_trans,
-      final k_inter_Phi={common.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q}) "Liquid" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-70,-22},
-              {-50,-2}})));
+      final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
+
+      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Liquid" annotation (Dialog(
+          group="Phases (click to edit)"), Placement(transformation(extent={{-70,
+              -22},{-50,-2}})));
 
     Chemistry.HOR HOR(final n_trans=n_trans) if inclHOR
       "Hydrogen oxidation reaction"
@@ -1042,9 +1051,6 @@ package Subregions "Control volumes with multi-species transfer and storage"
           true, Placement(transformation(extent={{76,44},{96,64}}),
           iconTransformation(extent={{100,18},{120,38}})));
 
-    Connectors.Activity activity(final n_trans=n_trans) if gas.inclH2O or
-      ionomer.inclH2O or liquid.inclH2O
-      annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
   equation
     // Boundaries
     // ----------
@@ -1249,7 +1255,14 @@ package Subregions "Control volumes with multi-species transfer and storage"
     connect(gas.chemH2[1], HOR.chemH2);
     connect(gas.chemO2[1], ORR.chemO2);
     connect(liquid.chemH2O[1], ORR.chemH2O);
-    if gas.inclH2O and not liquid.inclH2O then
+    if liquid.inclH2O then
+      if gas.inclH2O then
+        connect(liquid.chemH2O[2], gas.chemH2O[2]);
+      end if;
+      if ionomer.inclH2O then
+        connect(liquid.chemH2O[3], ionomer.chemH2O[1]);
+      end if;
+    elseif gas.inclH2O then
       connect(gas.chemH2O[1], ORR.chemH2O);
     end if;
     connect(graphite.'cheme-'[1], HOR.'cheme-');
@@ -1272,18 +1285,7 @@ package Subregions "Control volumes with multi-species transfer and storage"
         points={{88.2,-36},{14,-36},{14,-6.5},{15,-6.5}},
         color={221,23,47},
         smooth=Smooth.None));
-    connect(gas.activity, activity) annotation (Line(
-        points={{-19.8,-5.6},{-39.3,-5.6},{-39.3,20},{-90,20}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect(ionomer.activity, activity) annotation (Line(
-        points={{62,-7.2},{-39.3,-7.2},{-39.3,20},{-90,20}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect(liquid.activity, activity) annotation (Line(
-        points={{-58.6,-9},{-39.3,-9},{-39.3,20},{-90,20}},
-        color={255,195,38},
-        smooth=Smooth.None));
+
     annotation (Documentation(info="<html><p>Assumptions:</p><ol>
 <li>The oxygen reduction reaction generates liquid water if it is included; otherwise,
 it generates H<sub>2</sub>O vapor.  Since phase change is a dynamic, nonequilibrium
@@ -1407,34 +1409,34 @@ in diagram)")}));
     FCSys.Phases.Gas gas(
       n_inter=2,
       final n_trans=n_trans,
-      final k_inter_Phi={common.k_Phi[cartTrans],gasLiq.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q,gasLiq.k_Q}) "Gas" annotation (Dialog(group=
-            "Phases (click to edit)"),Placement(transformation(extent={{-10,-22},
-              {10,-2}})));
+      final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
+
+      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Gas" annotation (Dialog(
+          group="Phases (click to edit)"), Placement(transformation(extent={{-10,
+              -22},{10,-2}})));
 
     FCSys.Phases.Graphite graphite(
+      n_inter=1,
+      final n_trans=n_trans,
+      final k_inter_Phi={common.k_Phi[cartTrans]},
+      final k_inter_Q={common.k_Q}) "Graphite" annotation (Dialog(group=
+            "Phases (click to edit)"), Placement(transformation(extent={{30,-22},
+              {50,-2}})));
+
+    FCSys.Phases.Liquid liquid(
       n_inter=2,
       final n_trans=n_trans,
       final k_inter_Phi={common.k_Phi[cartTrans],gasGraphite.k_Phi[cartTrans]},
 
-      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Graphite" annotation (
-        Dialog(group="Phases (click to edit)"), Placement(transformation(extent
-            ={{30,-22},{50,-2}})));
-
-    FCSys.Phases.Liquid liquid(
-      n_inter=1,
-      final n_trans=n_trans,
-      final k_inter_Phi={common.k_Phi[cartTrans]},
-      final k_inter_Q={common.k_Q}) "Liquid" annotation (Dialog(group=
-            "Phases (click to edit)"), Placement(transformation(extent={{-50,-22},
-              {-30,-2}})));
+      final k_inter_Q={common.k_Q,gasGraphite.k_Q}) "Liquid" annotation (Dialog(
+          group="Phases (click to edit)"), Placement(transformation(extent={{-50,
+              -22},{-30,-2}})));
 
     // Independence factors
     Phases.ExchangeParams common(k_Phi={0.45,0.45,0.45}) "Among all phases"
       annotation (Dialog(group="Independence factors"));
-    Phases.ExchangeParams gasGraphite(k_Phi={inf,inf,inf},k_Q=inf)
-      "Between gas and graphite"
-      annotation (Dialog(group="Independence factors"));
+    Phases.ExchangeParams gasGraphite(k_Phi={inf,inf,inf})
+      "Between gas and liquid" annotation (Dialog(group="Independence factors"));
 
     Connectors.BoundaryBus xNegative if inclTransX
       "Negative boundary along the x axis" annotation (Placement(transformation(
@@ -1616,11 +1618,11 @@ in diagram)")}));
         color={221,23,47},
         smooth=Smooth.None));
     connect(graphite.inter[1], exchCommon.node) annotation (Line(
-        points={{35,-6.5},{35,42},{66,42}},
+        points={{35,-7},{35,42},{66,42}},
         color={221,23,47},
         smooth=Smooth.None));
     connect(liquid.inter[1], exchCommon.node) annotation (Line(
-        points={{-45,-7},{-45,42},{66,42}},
+        points={{-45,-6.5},{-45,42},{66,42}},
         color={221,23,47},
         smooth=Smooth.None));
     // Gas-graphite
@@ -1629,14 +1631,14 @@ in diagram)")}));
         color={221,23,47},
         smooth=Smooth.None));
     connect(graphite.inter[2], exchGasGraphite.node) annotation (Line(
-        points={{35,-7.5},{35,54},{66,54}},
+        points={{35,-7},{35,54},{66,54}},
         color={221,23,47},
         smooth=Smooth.None));
 
     // Phase change (not shown in diagram)
     // -----------------------------------
     if gas.inclH2O and liquid.inclH2O then
-      connect(gas.activity, liquid.activity);
+      connect(gas.chemH2O[2], liquid.chemH2O[2]);
     end if;
 
     annotation (

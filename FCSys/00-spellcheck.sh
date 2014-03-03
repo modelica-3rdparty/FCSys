@@ -1,4 +1,4 @@
-/#!/bin/bash
+#!/bin/bash
 # Spellcheck all of the Modelica files.
 #
 # Kevin L. Davies, 10/6/2012

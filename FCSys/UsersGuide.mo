@@ -213,8 +213,7 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end PEMFC;
 
-    class SOFC
-      "<html><u>S</u>olid <u>o</u>xide <u>f</u>uel <u>c</u>ell</html>"
+    class SOFC "<html><u>S</u>olid <u>o</u>xide <u>f</u>uel <u>c</u>ell</html>"
 
       annotation (preferredView="info", DocumentationClass=false);
     end SOFC;
@@ -543,6 +542,12 @@ increases in net current must be supported by the upstream segments, and this pu
 
       annotation (preferredView="info", DocumentationClass=false);
     end Kandlikar2009;
+
+    class Lampinen1993
+      "<html>M. J. Lampinen and M. Fomino, \"Analysis of Free Energy and Entropy Changes for Half-Cell Reactions,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;140, no.&nbsp;12, pp.&nbsp;3537&ndash;3546, 1993.</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Lampinen1993;
 
     class Larminie2003
       "<html>J. Larminie and A. Dicks, <i>Fuel Cell Systems Explained</i>, John Wiley &amp; Sons, 2003.</html>"

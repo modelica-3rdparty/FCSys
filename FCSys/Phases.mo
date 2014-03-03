@@ -217,9 +217,6 @@ package Phases "Mixtures of species"
     Connectors.InertNode exchN2_O2 "Connector for exchange between N2 and O2"
       annotation (Placement(transformation(extent={{76,-78},{96,-58}})));
 
-  public
-    Connectors.Activity activity(final n_trans=n_trans) if inclH2O
-      annotation (Placement(transformation(extent={{-8,54},{12,74}})));
   equation
     // Chemical exchange
     connect(O2.chemical, chemO2) annotation (Line(
@@ -232,10 +229,6 @@ package Phases "Mixtures of species"
         smooth=Smooth.None));
     connect(H2O.chemical, chemH2O) annotation (Line(
         points={{-24,29},{-24,68}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect(activity, H2O.activity) annotation (Line(
-        points={{2,64},{-8,64},{-8,22},{-18,22}},
         color={255,195,38},
         smooth=Smooth.None));
 
@@ -904,9 +897,6 @@ package Phases "Mixtures of species"
           transformation(extent={{56,-76},{76,-56}}), iconTransformation(extent
             ={{48,-76},{68,-56}})));
 
-  public
-    Connectors.Activity activity(final n_trans=n_trans) if inclH2O
-      annotation (Placement(transformation(extent={{10,38},{30,58}})));
   equation
     // Chemical exchange
     connect(H2O.chemical, chemH2O) annotation (Line(
@@ -1088,10 +1078,6 @@ package Phases "Mixtures of species"
         color={127,127,127},
         smooth=Smooth.None));
 
-    connect(activity, H2O.activity) annotation (Line(
-        points={{20,48},{2,48},{2,2}},
-        color={255,195,38},
-        smooth=Smooth.None));
     annotation (
       Documentation(info="<html><p>Assumptions:<ol>
     <li>The water in the ionomer does not directly participate in the reaction (only the water vapor does).</li>
@@ -1183,17 +1169,10 @@ package Phases "Mixtures of species"
       "Adapter between additivity of volume and additivity of pressure"
       annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
 
-  public
-    Connectors.Activity activity(final n_trans=n_trans) if inclH2O
-      annotation (Placement(transformation(extent={{4,20},{24,40}})));
   equation
     // Chemical exchange
     connect(H2O.chemical, chemH2O) annotation (Line(
         points={{-14,-1},{-14,20},{-30,20},{-30,30}},
-        color={255,195,38},
-        smooth=Smooth.None));
-    connect(activity, H2O.activity) annotation (Line(
-        points={{14,30},{4,30},{4,-8},{-8,-8}},
         color={255,195,38},
         smooth=Smooth.None));
 

@@ -999,7 +999,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 1.03643e-5</li>
   <li>K &asymp; 8.31446</li>
@@ -1021,7 +1021,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 1.03643e-5</li>
   <li>m &asymp; 0.346803</li>
@@ -1042,7 +1042,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>A &asymp; 3.59436e-6</li>
   <li>s &asymp; 2.88348</li>
@@ -1063,7 +1063,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>K &asymp; 8.61733e-5</li>
   <li>mol &asymp; 96485.3</li>
@@ -1084,7 +1084,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>K &asymp; 7.74028e10</li>
   <li>s &asymp; 1.03643e-5</li>
@@ -1105,7 +1105,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>m &asymp; 107.724</li>
   <li>mol &asymp; 96485.3</li>
@@ -1126,7 +1126,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>m &asymp; 3.59436e-6</li>
   <li>s &asymp; 1.03643e-5</li>
@@ -1147,7 +1147,7 @@ encompass other systems of units.</p>
         final k_J=483597.870e9*sqrt(S*s)/m,
         final 'cd'=1);
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
-  <a href=\"modelica://FCSys/Resources/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
+  <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
   <li>mol &asymp; 4261.73</li>
   <li>s &asymp; 0.0441697</li>
@@ -1544,7 +1544,7 @@ encompass other systems of units.</p>
     "<html>Wien wavelength displacement law constant (<i>c</i><sub>3 &lambda;</sub>)</html>";
   // See the notes for c_3_nu.  The derivation is similar to that of c_3_nu,
   // but here, the value is the solution to exp(x)*(5 - x) =  5.  The value
-  // is from Mathematica (FCSys/Resources/math-constants.cdf).  Note that the
+  // is from Mathematica (FCSys/Resources/Documentation/Units/math-constants.cdf).  Note that the
   // frequency displacement constant isn't directly related to the wavelength
   // displacement constant:  "Because the spectrum resulting from Planck's law
   // of black body radiation takes a different shape in the frequency domain
@@ -1559,7 +1559,7 @@ encompass other systems of units.</p>
   // of Planck's law to zero and solving for h*f/(k_B*T) in order to find the
   // frequency at maximum radiant intensity.  That procedure results in
   // solving the following equation: exp(x)*(3 - x) = 3, where x is h*f/k_B.
-  // The value is from Mathematica (FCSys/Resources/math-constants.cdf).
+  // The value is from Mathematica (FCSys/Resources/Documentation/Units/math-constants.cdf).
   final constant Q.PowerAreicPerPotential4 sigma=2*pi*(k_B*pi)^4/(15*(h*rad)^3*
       c^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
   // Total blackbody radiant intensity per 4th power of temperature equation

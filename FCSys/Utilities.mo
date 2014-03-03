@@ -4,8 +4,7 @@ package Utilities "General supporting functions"
 
   package Chemistry "Functions to support chemistry"
     extends Modelica.Icons.Package;
-    function charge
-      "Return the charge of a species given its chemical formula"
+    function charge "Return the charge of a species given its chemical formula"
       extends Modelica.Icons.Function;
       input String formula "Chemical formula";
       output Integer z "Charge number"
@@ -173,8 +172,8 @@ package Utilities "General supporting functions"
     algorithm
       // Generate a list of all the symbols.
       for i in 1:n_species loop
-        (symbols[i, 1:n_elements[i]],coeffs[i, 1:n_elements[i]]) :=
-          readSpecies(formulas[i]);
+        (symbols[i, 1:n_elements[i]],coeffs[i, 1:n_elements[i]]) := readSpecies(
+          formulas[i]);
         allSymbols[j:j + n_elements[i] - 1] := symbols[i, 1:n_elements[i]];
         j := j + n_elements[i];
       end for;
@@ -210,9 +209,8 @@ package Utilities "General supporting functions"
 
       // Perform singular value decomposition (SVD).
       assert(n_species == n_tot + 1, "The reaction is ill-posed.
-" + (if n_species > n_tot + 1 then
-        "A species may be included more than once." else
-        "A species may be missing or the wrong one has been entered."));
+" + (if n_species > n_tot + 1 then "A species may be included more than once."
+         else "A species may be missing or the wrong one has been entered."));
       (d,u,v) := singularValues(cat(
             2,
             elementCoeffs[:, 1:n_tot],
@@ -328,8 +326,7 @@ An unrelated species may be included.");
     algorithm
       F := f(
             x,
-            a .* {if n + i == 0 then log(x) else 1/(n + i) for i in 1:size(a,
-          1)},
+            a .* {if n + i == 0 then log(x) else 1/(n + i) for i in 1:size(a, 1)},
             n + 1);
       annotation (
         Inline=true,
@@ -354,8 +351,7 @@ An unrelated species may be included.");
         annotation (Dialog(__Dymola_label="<html><i>n</i></html>"));
       input Real dx "Derivative of argument"
         annotation (Dialog(__Dymola_label="<html>d<i>x</i></html>"));
-      input Real da[size(a, 1)]=zeros(size(a, 1))
-        "Derivatives of coefficients"
+      input Real da[size(a, 1)]=zeros(size(a, 1)) "Derivatives of coefficients"
         annotation (Dialog(__Dymola_label="<html>d<i>a</i></html>"));
       output Real dF "Derivative"
         annotation (Dialog(__Dymola_label="<html>d<i>F</i></html>"));
@@ -396,10 +392,10 @@ An unrelated species may be included.");
            + (if size(a, 1) > 2 then x*(a[3] + (if size(a, 1) > 3 then x*(a[4]
            + (if size(a, 1) > 4 then x*(a[5] + (if size(a, 1) > 5 then x*(a[6]
            + (if size(a, 1) > 6 then x*(a[7] + (if size(a, 1) > 7 then x*(a[8]
-           + (if size(a, 1) > 8 then x*(a[9] + (if size(a, 1) > 9 then x*(a[
-          10] + (if size(a, 1) > 10 then positivePoly(x, a[11:end]) else 0))
-           else 0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0))
-           else 0)) else 0)) else 0 annotation (Inline=true);
+           + (if size(a, 1) > 8 then x*(a[9] + (if size(a, 1) > 9 then x*(a[10]
+           + (if size(a, 1) > 10 then positivePoly(x, a[11:end]) else 0)) else
+          0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0)) else 0))
+           else 0)) else 0 annotation (Inline=true);
 
         // Note:  Dymola 2014 doesn't seem to inline the recursive calls beyond
         // depth 1; therefore, this function is "unrolled" up to the 10th order.
@@ -409,11 +405,11 @@ An unrelated species may be included.");
       end positivePoly;
 
     algorithm
-      f := (if n < 0 then (if n + size(a, 1) < 0 then x^(n + size(a, 1))
-         else 1)*positivePoly(1/x, a[min(size(a, 1), -n):-1:1]) else 0) + (
-        if -size(a, 1) < n and n <= 0 then a[1 - n] else 0) + (if n + size(a,
-        1) > 1 then (if n > 1 then x^(n - 1) else 1)*positivePoly(x, a[max(1,
-        2 - n):size(a, 1)]) else 0);
+      f := (if n < 0 then (if n + size(a, 1) < 0 then x^(n + size(a, 1)) else 1)
+        *positivePoly(1/x, a[min(size(a, 1), -n):-1:1]) else 0) + (if -size(a,
+        1) < n and n <= 0 then a[1 - n] else 0) + (if n + size(a, 1) > 1 then (
+        if n > 1 then x^(n - 1) else 1)*positivePoly(x, a[max(1, 2 - n):size(a,
+        1)]) else 0);
       // Note:  Dymola 2014 won't allow indexing via a[max(1, 2 - n):end], so
       // a[max(1, 2 - n):size(a, 1)] is necessary.
       annotation (
@@ -442,8 +438,7 @@ An unrelated species may be included.");
         annotation (Dialog(__Dymola_label="<html><i>n</i></html>"));
       input Real dx "Derivative of argument"
         annotation (Dialog(__Dymola_label="<html>d<i>x</i></html>"));
-      input Real da[size(a, 1)]=zeros(size(a, 1))
-        "Derivatives of coefficients"
+      input Real da[size(a, 1)]=zeros(size(a, 1)) "Derivatives of coefficients"
         annotation (Dialog(__Dymola_label="<html>d<i>a</i></html>"));
       output Real df "Derivative"
         annotation (Dialog(__Dymola_label="<html>d<i>f</i></html>"));
@@ -476,22 +471,21 @@ An unrelated species may be included.");
         annotation (Dialog(__Dymola_label="<html><i>n</i></html>"));
       input Real dx "Derivative of argument"
         annotation (Dialog(__Dymola_label="<html>d<i>x</i></html>"));
-      input Real da[size(a, 1)]=zeros(size(a, 1))
-        "Derivatives of coefficients"
+      input Real da[size(a, 1)]=zeros(size(a, 1)) "Derivatives of coefficients"
         annotation (Dialog(__Dymola_label="<html>d<i>a</i></html>"));
       input Real d2x "Second derivative of argument" annotation (Dialog(
             __Dymola_label="<html>d<sup>2</sup><i>x</i></html>"));
       input Real d2a[size(a, 1)]=zeros(size(a, 1))
-        "Second derivatives of coefficients" annotation (Dialog(
-            __Dymola_label="<html>d<sup>2</sup><i>a</i></html>"));
+        "Second derivatives of coefficients" annotation (Dialog(__Dymola_label=
+              "<html>d<sup>2</sup><i>a</i></html>"));
       output Real d2f "Second derivative" annotation (Dialog(__Dymola_label=
               "<html>d<sup>2</sup><i>f</i></html>"));
 
     algorithm
       d2f := sum(f(
             x,
-            {a[i]*(n + i - 1)*(n + i - 2)*dx^2,(n + i - 1)*(2*da[i]*dx + a[i]
-          *d2x),d2a[i]},
+            {a[i]*(n + i - 1)*(n + i - 2)*dx^2,(n + i - 1)*(2*da[i]*dx + a[i]*
+          d2x),d2a[i]},
             n + i - 3) for i in 1:size(a, 1));
       annotation (Inline=true);
     end d2f;
@@ -661,8 +655,7 @@ An unrelated species may be included.");
   </html>"));
   end arrayStringEqual;
 
-  function assertEval
-    "Assert function that forces Dymola to parse the message"
+  function assertEval "Assert function that forces Dymola to parse the message"
     extends Modelica.Icons.Function;
     input Boolean condition;
     input String message;
