@@ -10,34 +10,31 @@ package Characteristics "Data and functions to correlate physical properties"
       "Evaluate the material properties over varying temperature and pressure"
       extends Modelica.Icons.Example;
 
-      parameter Q.TemperatureAbsolute T_start=303.15*U.K
-        "Initial temperature" annotation (Dialog(__Dymola_label=
+      parameter Q.TemperatureAbsolute T_start=303.15*U.K "Initial temperature"
+        annotation (Dialog(__Dymola_label=
               "<html><i>T</i><sub>start</sub></html>"));
       parameter Q.TemperatureAbsolute T_stop=303.15*U.K "Final temperature"
         annotation (Dialog(__Dymola_label=
               "<html><i>T</i><sub>stop</sub></html>"));
-      parameter Q.PressureAbsolute p_start=U.bar "Initial pressure"
-        annotation (Dialog(__Dymola_label=
-              "<html><i>p</i><sub>start</sub></html>"));
+      parameter Q.PressureAbsolute p_start=U.bar "Initial pressure" annotation
+        (Dialog(__Dymola_label="<html><i>p</i><sub>start</sub></html>"));
       parameter Q.PressureAbsolute p_stop=U.bar "Final pressure" annotation (
           Dialog(__Dymola_label="<html><i>p</i><sub>stop</sub></html>"));
 
       // Property models
-      PropertiesRT 'C+'(redeclare package Data =
-            Characteristics.'C+'.Graphite)
+      PropertiesRT 'C+'(redeclare package Data = Characteristics.'C+'.Graphite)
         annotation (Placement(transformation(extent={{30,38},{50,58}})));
       PropertiesRT 'SO3-'(redeclare package Data =
             Characteristics.'SO3-'.Ionomer)
         annotation (Placement(transformation(extent={{30,26},{50,46}})));
-      PropertiesRT 'e-'(redeclare package Data =
-            Characteristics.'e-'.Graphite)
+      PropertiesRT 'e-'(redeclare package Data = Characteristics.'e-'.Graphite)
         annotation (Placement(transformation(extent={{30,14},{50,34}})));
       PropertiesRT 'H+'(redeclare package Data = Characteristics.'H+'.Ionomer)
         annotation (Placement(transformation(extent={{30,2},{50,22}})));
       PropertiesRT H2(redeclare package Data = FCSys.Characteristics.H2.Gas)
         annotation (Placement(transformation(extent={{30,-10},{50,10}})));
-      PropertiesRT H2IG(redeclare package Data = FCSys.Characteristics.H2.Gas
-            (b_v=[1], n_v={-1,0})) "H2 as ideal gas"
+      PropertiesRT H2IG(redeclare package Data = FCSys.Characteristics.H2.Gas (
+              b_v=[1],n_v={-1,0})) "H2 as ideal gas"
         annotation (Placement(transformation(extent={{30,-22},{50,-2}})));
       PropertiesRT H2O(redeclare package Data = FCSys.Characteristics.H2O.Gas)
         annotation (Placement(transformation(extent={{30,-34},{50,-14}})));
@@ -56,10 +53,10 @@ package Characteristics "Data and functions to correlate physical properties"
 
     protected
       Connectors.RealOutputInternal T(unit="L2.M/(N.T2)",displayUnit="K")
-        "Temperature" annotation (Placement(transformation(extent={{-10,10},{
-                10,30}}), iconTransformation(extent={{-10,16},{10,36}})));
-      Connectors.RealOutputInternal p(unit="M/(L.T2)") "Pressure" annotation
-        (Placement(transformation(extent={{-10,-30},{10,-10}}),
+        "Temperature" annotation (Placement(transformation(extent={{-10,10},{10,
+                30}}), iconTransformation(extent={{-10,16},{10,36}})));
+      Connectors.RealOutputInternal p(unit="M/(L.T2)") "Pressure" annotation (
+          Placement(transformation(extent={{-10,-30},{10,-10}}),
             iconTransformation(extent={{-10,-36},{10,-16}})));
 
     protected
@@ -201,8 +198,8 @@ package Characteristics "Data and functions to correlate physical properties"
 
       Connectors.RealInput T(unit="L2.M/(N.T2)") "Temperature"
         annotation (Placement(transformation(extent={{-120,10},{-100,30}})));
-      Connectors.RealInput p(unit="M/(L.T2)") "Pressure" annotation (
-          Placement(transformation(extent={{-120,-30},{-100,-10}})));
+      Connectors.RealInput p(unit="M/(L.T2)") "Pressure"
+        annotation (Placement(transformation(extent={{-120,-30},{-100,-10}})));
 
       Q.MassSpecific m "Specific mass";
       Q.LengthSpecific d "Specific diameter";
@@ -337,8 +334,8 @@ package Characteristics "Data and functions to correlate physical properties"
       output Q.Potential w_gas=0.5*H2.g(T, environment.p_dry) + 0.25*O2.g(T,
           environment.p_O2) - 0.5*H2O.g(T, environment.p_H2O)
         "Cell potential with H2O as gas";
-      output Q.Potential w_IG=0.5*H2IG.g(T, environment.p_dry) + 0.25*O2IG.g(
-          T, environment.p_O2) - 0.5*H2OIG.g(T, environment.p_H2O)
+      output Q.Potential w_IG=0.5*H2IG.g(T, environment.p_dry) + 0.25*O2IG.g(T,
+          environment.p_O2) - 0.5*H2OIG.g(T, environment.p_H2O)
         "Cell potential with ideal gases";
       output Q.Potential w_liq=0.5*H2.g(T, environment.p_dry) + 0.25*O2.g(T,
           environment.p_O2) - 0.5*H2OLiquid.g(T, environment.p)
@@ -430,9 +427,9 @@ package Characteristics "Data and functions to correlate physical properties"
       Q.TemperatureAbsolute T "Temperature";
       Q.TemperatureAbsolute T_sat(start=373.15*U.K) "Saturation temperature";
       output Q.Number T_degC=U.to_degC(T) "Temperature in degree Celsius";
-      output Q.Potential h_gl(displayUnit="J/mol") = Gas.h(T, p_sat) -
-        Liquid.h(T, p) "Specific enthalpy of vaporization";
-      output Q.SurfaceTension gamma=(h_gl - T_sat)/(2*U.pi*Liquid.d^2*U.q)
+      output Q.Potential h_gl(displayUnit="J/mol") = Gas.h(T, p_sat) - Liquid.h(
+        T, p) "Specific enthalpy of vaporization";
+      output Q.SurfaceTension gamma=2*(h_gl - T_sat)/(U.sph*Liquid.d^2*U.q)
         "Surface tension";
 
       Modelica.Blocks.Sources.Ramp temperatureSet(
@@ -474,14 +471,14 @@ package Characteristics "Data and functions to correlate physical properties"
         Deltah0=1053.500*U.J/U.mol,
         T_lim_c={200.000,600.000,2000.000,6000.000}*U.K,
         b_c=[1.132856760e5, -1.980421677e3, 1.365384188e1, -4.636096440e-2,
-            1.021333011e-4, -1.082893179e-7, 4.472258860e-11; 3.356004410e5,
-            -2.596528368e3, 6.948841910, -3.484836090e-3, 1.844192445e-6, -5.055205960e-10,
+            1.021333011e-4, -1.082893179e-7, 4.472258860e-11; 3.356004410e5, -2.596528368e3,
+            6.948841910, -3.484836090e-3, 1.844192445e-6, -5.055205960e-10,
             5.750639010e-14; 2.023105106e5, -1.138235908e3, 3.700279500, -1.833807727e-4,
-            6.343683250e-8, -7.068589480e-12, 3.335435980e-16] .* fill({U.K^(
-            3 - i) for i in 1:7}, size(T_lim_c, 1) - 1),
+            6.343683250e-8, -7.068589480e-12, 3.335435980e-16] .* fill({U.K^(3
+             - i) for i in 1:7}, size(T_lim_c, 1) - 1),
         B_c=[8.943859760e3*U.K, -7.295824740e1; 1.398412456e4*U.K, -4.477183040e1;
             5.848134850e3, -2.350925275e1] - b_c[:, 2:3]*log(U.K),
-        d=340*U.pico*U.m/U.q);
+        r=170*U.pico*U.m/(U.rad*U.q));
       annotation (Documentation(info="<html>
 
      <p>Assumptions:</p>
@@ -529,7 +526,7 @@ package Characteristics "Data and functions to correlate physical properties"
         T_lim_c={0,Modelica.Constants.inf},
         b_c=[4188*U.J*m/(U.kg*U.K)],
         B_c=[Deltah0_f - 298.15*U.K*b_c[1, 1], 10 - b_c[1, 1]*log(300*U.K)],
-        d=(294 + 2259.8)*U.pico*U.m/U.q);
+        r=(294 + 2259.8)*U.pico*U.m/(2*U.rad*U.q));
 
       annotation (Documentation(info="<html>
        <p>Assumptions:</p>
@@ -596,7 +593,7 @@ package Characteristics "Data and functions to correlate physical properties"
             size(T_lim_c, 1) - 1),
         B_c={Data.blow} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*
             log(U.K),
-        d=U.alpha^3/(2*U.pi*U.R_inf*U.q));
+        d=U.alpha^3/(U.cyc*U.R_inf*U.q));
 
       annotation (Documentation(info="<html>
      <p>Notes:</p>
@@ -661,7 +658,7 @@ package Characteristics "Data and functions to correlate physical properties"
             size(T_lim_c, 1) - 1),
         B_c={Data.blow} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*
             log(U.K),
-        d=240*U.pico*U.m/U.q);
+        d=240*U.pico*U.m/(U.rad*U.q));
 
       annotation (Documentation(info="<html>
          <p>Assumptions:</p>
@@ -731,18 +728,18 @@ package Characteristics "Data and functions to correlate physical properties"
         b_c={Data.alow,Data.ahigh,{4.966884120e8,-3.147547149e5,79.84121880,-8.414789210e-3,
             4.753248350e-7,-1.371873492e-11,1.605461756e-16}} .* fill({U.K^(3
              - i) for i in 1:size(Data.alow, 1)}, size(T_lim_c, 1) - 1),
-        B_c={Data.blow,Data.bhigh,{2.488433516e6,-669.5728110}} .* fill({U.K,
-            1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
-        d=(240 + 100.3)*U.pico*U.m/U.q,
+        B_c={Data.blow,Data.bhigh,{2.488433516e6,-669.5728110}} .* fill({U.K,1},
+            size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
+        d2=(240 + 100.3)*U.pico*U.m/U.q,
         T_lim_eta_theta={200.0,1000.0,5000.0,15000.0}*U.K,
-        b_eta={fromNASAViscosity({0.74553182,43.555109,-3.2579340e3,
-            0.13556243}),fromNASAViscosity({0.96730605,679.31897,-2.1025179e5,
-            -1.8251697}),fromNASAViscosity({1.0126129,1.4973739e3,-1.4428484e6,
-            -2.3254928})},
+        b_eta={fromNASAViscosity({0.74553182,43.555109,-3.2579340e3,0.13556243}),
+            fromNASAViscosity({0.96730605,679.31897,-2.1025179e5,-1.8251697}),
+            fromNASAViscosity({1.0126129,1.4973739e3,-1.4428484e6,-2.3254928})},
+
         b_theta={fromNASAThermalConductivity({1.0059461,279.51262,-2.9792018e4,
             1.1996252}),fromNASAThermalConductivity({1.0582450,248.75372,
-            1.1736907e4,0.82758695}),fromNASAThermalConductivity({-0.22364420,
-            -6.9650442e3,-7.7771313e4,13.189369})});
+            1.1736907e4,0.82758695}),fromNASAThermalConductivity({-0.22364420,-6.9650442e3,
+            -7.7771313e4,13.189369})});
 
       annotation (Documentation(info="<html>
             <p>Notes:</p>
@@ -772,25 +769,25 @@ package Characteristics "Data and functions to correlate physical properties"
         final phase=Phase.gas,
         final m=Data.MM*U.kg/U.mol,
         n_v={-1,-3},
-        b_v={{0,0,0,1},{-5.6932e10*U.K^3,1.8189e8*U.K^2,-3.0107e5*U.K,158.83}
-            *U.cm^3/U.mol},
+        b_v={{0,0,0,1},{-5.6932e10*U.K^3,1.8189e8*U.K^2,-3.0107e5*U.K,158.83}*U.cm
+            ^3/U.mol},
         Deltah0_f=Data.MM*Data.Hf*U.J/U.mol,
         Deltah0=Data.MM*Data.H0*U.J/U.mol,
         T_lim_c={200.000,Data.Tlimit,6000.000}*U.K,
         b_c={Data.alow,Data.ahigh} .* fill({U.K^(3 - i) for i in 1:size(Data.alow,
             1)}, size(T_lim_c, 1) - 1),
-        B_c={Data.blow,Data.bhigh} .* fill({U.K,1}, size(T_lim_c, 1) - 1) -
-            b_c[:, 2:3]*log(U.K),
-        d=282*U.pico*U.m/U.q,
+        B_c={Data.blow,Data.bhigh} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[
+            :, 2:3]*log(U.K),
+        d2=282*U.pico*U.m/U.q,
         T_lim_eta_theta={373.2,1073.2,5000.0,15000.0}*U.K,
         b_eta={fromNASAViscosity({0.50019557,-697.12796,8.8163892e4,3.0836508}),
             fromNASAViscosity({0.58988538,-537.69814,5.4263513e4,2.3386375}),
             fromNASAViscosity({0.64330087,-95.668913,-3.7742283e5,1.8125190})},
 
-        b_theta={fromNASAThermalConductivity({1.0966389,-555.13429,
-            1.0623408e5,-0.24664550}),fromNASAThermalConductivity({0.39367933,
-            -2.2524226e3,6.1217458e5,5.8011317}),fromNASAThermalConductivity(
-            {-0.41858737,-1.4096649e4,1.9179190e7,14.345613})});
+        b_theta={fromNASAThermalConductivity({1.0966389,-555.13429,1.0623408e5,
+            -0.24664550}),fromNASAThermalConductivity({0.39367933,-2.2524226e3,
+            6.1217458e5,5.8011317}),fromNASAThermalConductivity({-0.41858737,-1.4096649e4,
+            1.9179190e7,14.345613})});
 
       annotation (Documentation(info="<html>
         <p>Notes:</p>
@@ -815,9 +812,8 @@ package Characteristics "Data and functions to correlate physical properties"
         n_v={-1,0},
         b_c=Gas.b_c + fill({0,0,1,-2*0.2580123533308264/U.K,6*
             4.841882910380711e-4/U.K^2,-12*3.328156493413594e-7/U.K^3,0}, 2),
-
-        B_c=Gas.B_c + fill({0,47.15136731353458 - log('SO3-'.Ionomer.b_v[1, 1]
-            *U.atm/14)}, 2));
+        B_c=Gas.B_c + fill({0,47.15136731353458 - log('SO3-'.Ionomer.b_v[1, 1]*
+            U.atm/14)}, 2));
 
       // These coefficients are based on the saturation pressure correlation
       // (Eq. 15) from Springer1991.  The factor of 1/14 in the 2nd column of B_c
@@ -851,11 +847,11 @@ package Characteristics "Data and functions to correlate physical properties"
         b_c=[1.326371304e9, -2.448295388e7, 1.879428776e5, -7.678995050e2,
             1.761556813, -2.151167128e-3, 1.092570813e-6; 1.263631001e9, -1.680380249e7,
             9.278234790e4, -2.722373950e2, 4.479243760e-1, -3.919397430e-4,
-            1.425743266e-7] .* fill({U.K^(3 - i) for i in 1:7}, size(T_lim_c,
-            1) - 1),
+            1.425743266e-7] .* fill({U.K^(3 - i) for i in 1:7}, size(T_lim_c, 1)
+             - 1),
         B_c=[1.101760476e8*U.K, -9.779700970e5; 8.113176880e7*U.K, -5.134418080e5]
              - b_c[:, 2:3]*log(U.K),
-        d=282*U.pico*U.m/U.q);
+        d2=282*U.pico*U.m/U.q);
       annotation (Documentation(info="<html>     <p>Assumptions:</p>
      <ol>
      <li>Constant specific volume (i.e., incompressible and without
@@ -879,8 +875,8 @@ package Characteristics "Data and functions to correlate physical properties"
 
       input Q.TemperatureAbsolute T "Temperature"
         annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
-      output Q.PressureAbsolute p_sat "Saturation pressure" annotation (
-          Dialog(__Dymola_label="<html><i>p</i><sub>sat</sub></html>"));
+      output Q.PressureAbsolute p_sat "Saturation pressure" annotation (Dialog(
+            __Dymola_label="<html><i>p</i><sub>sat</sub></html>"));
 
     algorithm
       p_sat := Modelica.Media.Air.MoistAir.saturationPressureLiquid(T/U.K)*U.Pa;
@@ -894,8 +890,7 @@ package Characteristics "Data and functions to correlate physical properties"
       input Q.NumberAbsolute RH "Relative humidity";
       output Real lambda
         "<html>Mole ratio of H<sub>2</sub>O to SO<sub>3</sub><sup>-</sup></html>"
-        annotation (Dialog(__Dymola_label=
-              "<html>&lambda;<sub>eq</sub></html>"));
+        annotation (Dialog(__Dymola_label="<html>&lambda;<sub>eq</sub></html>"));
 
     algorithm
       lambda := 0.043 + 17.81*RH - 39.85*RH^2 + 36*RH^3;
@@ -922,18 +917,17 @@ package Characteristics "Data and functions to correlate physical properties"
         Deltah0_f=Data.MM*Data.Hf*U.J/U.mol,
         Deltah0=Data.MM*Data.H0*U.J/U.mol,
         T_lim_c={200.000,Data.Tlimit,6000.000,20000.000}*U.K,
-        b_c={Data.alow,Data.ahigh,{8.310139160e8,-6.420733540e5,2.020264635e2,
-            -3.065092046e-2,2.486903333e-6,-9.705954110e-11,1.437538881e-15}}
-             .* fill({U.K^(3 - i) for i in 1:size(Data.alow, 1)}, size(
-            T_lim_c, 1) - 1),
+        b_c={Data.alow,Data.ahigh,{8.310139160e8,-6.420733540e5,2.020264635e2,-3.065092046e-2,
+            2.486903333e-6,-9.705954110e-11,1.437538881e-15}} .* fill({U.K^(3
+             - i) for i in 1:size(Data.alow, 1)}, size(T_lim_c, 1) - 1),
         B_c={Data.blow,Data.bhigh,{4.938707040e6,-1.672099740e3}} .* fill({U.K,
             1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
-        d=(310 + 145.2)*U.pico*U.m/U.q,
+        d2=(310 + 145.2)*U.pico*U.m/U.q,
         T_lim_eta_theta={200.0,1000.0,5000.0,15000.0}*U.K,
-        b_eta={fromNASAViscosity({0.62526577,-31.779652,-1.6407983e3,
-            1.7454992}),fromNASAViscosity({0.87395209,561.52222,-1.7394809e5,
-            -0.39335958}),fromNASAViscosity({0.88503551,909.02171,-7.3129061e5,
-            -0.53503838})},
+        b_eta={fromNASAViscosity({0.62526577,-31.779652,-1.6407983e3,1.7454992}),
+            fromNASAViscosity({0.87395209,561.52222,-1.7394809e5,-0.39335958}),
+            fromNASAViscosity({0.88503551,909.02171,-7.3129061e5,-0.53503838})},
+
         b_theta={fromNASAThermalConductivity({0.85439436,105.73224,-1.2347848e4,
             0.47793128}),fromNASAThermalConductivity({0.88407146,133.57293,-1.1429640e4,
             0.24417019}),fromNASAThermalConductivity({2.4176185,8.0477749e3,
@@ -973,13 +967,12 @@ package Characteristics "Data and functions to correlate physical properties"
         Deltah0_f=Data.MM*Data.Hf*U.J/U.mol,
         Deltah0=Data.MM*Data.H0*U.J/U.mol,
         T_lim_c={200.000,Data.Tlimit,6000.000,20000.000}*U.K,
-        b_c={Data.alow,Data.ahigh,{4.975294300e8,-2.866106874e5,6.690352250e1,
-            -6.169959020e-3,3.016396027e-7,-7.421416600e-12,7.278175770e-17}}
-             .* fill({U.K^(3 - i) for i in 1:size(Data.alow, 1)}, size(
-            T_lim_c, 1) - 1),
+        b_c={Data.alow,Data.ahigh,{4.975294300e8,-2.866106874e5,6.690352250e1,-6.169959020e-3,
+            3.016396027e-7,-7.421416600e-12,7.278175770e-17}} .* fill({U.K^(3
+             - i) for i in 1:size(Data.alow, 1)}, size(T_lim_c, 1) - 1),
         B_c={Data.blow,Data.bhigh,{2.293554027e6,-5.530621610e2}} .* fill({U.K,
             1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*log(U.K),
-        d=(304 + 128.2)*U.pico*U.m/U.q,
+        d2=(304 + 128.2)*U.pico*U.m/U.q,
         T_lim_eta_theta={200.0,1000.0,5000.0,15000.0}*U.K,
         b_eta={fromNASAViscosity({0.60916180,-52.244847,-599.74009,2.0410801}),
             fromNASAViscosity({0.72216486,175.50839,-5.7974816e4,1.0901044}),
@@ -1037,8 +1030,8 @@ package Characteristics "Data and functions to correlate physical properties"
               __Dymola_label="<html><i>b</i><sub>&eta;<sub></html>"));
 
       algorithm
-        b_eta := {-b[1],-b[2]*U.K,-b[3]*U.K^2,-b[4] + b[1]*log(U.K) + log(1e4
-          *U.m*U.s/U.g)};
+        b_eta := {-b[1],-b[2]*U.K,-b[3]*U.K^2,-b[4] + b[1]*log(U.K) + log(1e4*U.m
+          *U.s/U.g)};
         annotation (Inline=true);
       end fromNASAViscosity;
 
@@ -1048,13 +1041,12 @@ package Characteristics "Data and functions to correlate physical properties"
 
         input Real b[4] "NASA CEA constants for thermal conductivity"
           annotation (Dialog(__Dymola_label="<html><i>b</i></html>"));
-        output Real b_theta[4] "Constants for thermal resistivity"
-          annotation (Dialog(__Dymola_label=
-                "<html><i>b</i><sub>&theta;<sub></html>"));
+        output Real b_theta[4] "Constants for thermal resistivity" annotation (
+            Dialog(__Dymola_label="<html><i>b</i><sub>&theta;<sub></html>"));
 
       algorithm
-        b_theta := {-b[1],-b[2]*U.K,-b[3]*U.K^2,-b[4] + b[1]*log(U.K) + log(
-          1e4*U.m*U.K/U.W)};
+        b_theta := {-b[1],-b[2]*U.K,-b[3]*U.K^2,-b[4] + b[1]*log(U.K) + log(1e4
+          *U.m*U.K/U.W)};
         annotation (Inline=true);
       end fromNASAThermalConductivity;
 
@@ -1078,10 +1070,10 @@ package Characteristics "Data and functions to correlate physical properties"
     /U.K) + "] K).");
   */
         // Note:  This is commented out so that the function can be inlined.
-        eta := smooth(0, exp(sum(if (T_lim_eta_theta[i] <= T or i == 1) and (
-          T < T_lim_eta_theta[i + 1] or i == size(T_lim_eta_theta, 1) - 1)
-           then b_eta[i, 1]*log(T) + (b_eta[i, 2] + b_eta[i, 3]/T)/T + b_eta[
-          i, 4] else 0 for i in 1:size(T_lim_eta_theta, 1) - 1)));
+        eta := smooth(0, exp(sum(if (T_lim_eta_theta[i] <= T or i == 1) and (T
+           < T_lim_eta_theta[i + 1] or i == size(T_lim_eta_theta, 1) - 1) then
+          b_eta[i, 1]*log(T) + (b_eta[i, 2] + b_eta[i, 3]/T)/T + b_eta[i, 4]
+           else 0 for i in 1:size(T_lim_eta_theta, 1) - 1)));
         annotation (
           InlineNoEvent=true,
           Inline=true,
@@ -1113,10 +1105,10 @@ package Characteristics "Data and functions to correlate physical properties"
     /U.K) + "] K).");
   */
         // Note:  This is commented out so that the function can be inlined.
-        theta := smooth(0, exp(sum(if (T_lim_eta_theta[i] <= T or i == 1)
-           and (T < T_lim_eta_theta[i + 1] or i == size(T_lim_eta_theta, 1)
-           - 1) then b_theta[i, 1]*log(T) + (b_theta[i, 2] + b_theta[i, 3]/T)
-          /T + b_theta[i, 4] else 0 for i in 1:size(T_lim_eta_theta, 1) - 1)));
+        theta := smooth(0, exp(sum(if (T_lim_eta_theta[i] <= T or i == 1) and (
+          T < T_lim_eta_theta[i + 1] or i == size(T_lim_eta_theta, 1) - 1)
+           then b_theta[i, 1]*log(T) + (b_theta[i, 2] + b_theta[i, 3]/T)/T +
+          b_theta[i, 4] else 0 for i in 1:size(T_lim_eta_theta, 1) - 1)));
         annotation (
           InlineNoEvent=true,
           Inline=true,
@@ -1135,15 +1127,15 @@ package Characteristics "Data and functions to correlate physical properties"
 
     end CharacteristicNASA;
 
-    package Characteristic
-      "Package of thermodynamic and diffusive properties"
+    package Characteristic "Package of thermodynamic and diffusive properties"
       import FCSys.Utilities.Chemistry.charge;
       extends CharacteristicEOS;
 
       constant String formula "Chemical formula";
       constant Phase phase "Material phase";
       constant Q.MassSpecific m "Specific mass";
-      constant Q.LengthSpecific d "Specific diameter" annotation (Dialog);
+      constant Q.LengthSpecificPerAngle d "Specific diameter"
+        annotation (Dialog);
       constant Integer z=charge(formula) "Charge number";
       constant ReferenceEnthalpy referenceEnthalpy=ReferenceEnthalpy.enthalpyOfFormationAt25degC
         "Choice of enthalpy reference";
@@ -1163,10 +1155,10 @@ package Characteristics "Data and functions to correlate physical properties"
         "<html>Integration constants for specific enthalpy and entropy (<i>B</i><sub><i>c</i></sub>)</html>";
 
     protected
-      constant Q.AreaSpecific alpha=1.5*U.pi^1.5*d^2*U.q
+      constant Q.AreaSpecific alpha=1.5*sqrt(U.pi)*U.q*d^2*U.sph/4
         "Scaled specific intercept area";
-      // The intercept area is U.pi*d^2*U.q, and the additional factor is
-      // 3*sqrt(U.pi)/2.
+      // The intercept area is U.q*d^2*U.sph/4, and the additional factor is
+      // 1.5*sqrt(U.pi).
 
       function omega
         "<html>Root mean square of thermal velocity in one dimension as a function of temperature (&omega; = &radic;<span style=\"text-decoration:overline;\">&nbsp;<i>T</i>/<i>m</i>&nbsp;</span>)</html>"
@@ -1203,9 +1195,8 @@ package Characteristics "Data and functions to correlate physical properties"
           annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
         input Q.PressureAbsolute p=p0 "Pressure"
           annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
-        output Q.CapacityThermalSpecific c_p
-          "Isobaric specific heat capacity" annotation (Dialog(__Dymola_label
-              ="<html><i>c<sub>p</sub></i></html>"));
+        output Q.CapacityThermalSpecific c_p "Isobaric specific heat capacity"
+          annotation (Dialog(__Dymola_label="<html><i>c<sub>p</sub></i></html>"));
 
       protected
         function c0_p
@@ -1222,8 +1213,8 @@ package Characteristics "Data and functions to correlate physical properties"
     T_lim_c, 1)]/U.K) + "] K).");
   */
           // Note:  This is commented out so that the function can be inlined.
-          c0_p := smooth(0, sum(if (T_lim_c[i] <= T or i == 1) and (T <
-            T_lim_c[i + 1] or i == size(T_lim_c, 1) - 1) then Polynomial.f(
+          c0_p := smooth(0, sum(if (T_lim_c[i] <= T or i == 1) and (T < T_lim_c[
+            i + 1] or i == size(T_lim_c, 1) - 1) then Polynomial.f(
                     T,
                     b_c[i, :],
                     n_c) else 0 for i in 1:size(T_lim_c, 1) - 1));
@@ -1282,9 +1273,8 @@ package Characteristics "Data and functions to correlate physical properties"
           annotation (Dialog(__Dymola_label="<html><i>T</i></html>"));
         input Q.PressureAbsolute p=p0 "Pressure"
           annotation (Dialog(__Dymola_label="<html><i>p</i></html>"));
-        output Q.CapacityThermalSpecific c_v
-          "Isochoric specific heat capacity" annotation (Dialog(
-              __Dymola_label="<html><i>c<sub>v</sub></i></html>"));
+        output Q.CapacityThermalSpecific c_v "Isochoric specific heat capacity"
+          annotation (Dialog(__Dymola_label="<html><i>c<sub>v</sub></i></html>"));
 
       algorithm
         c_v := c_p(T, p) - T*dp_Tv(
@@ -1354,8 +1344,7 @@ package Characteristics "Data and functions to correlate physical properties"
   </html>"));
       end g;
 
-      function h
-        "Specific enthalpy as a function of temperature and pressure"
+      function h "Specific enthalpy as a function of temperature and pressure"
         import FCSys.Utilities.Polynomial;
         extends Modelica.Icons.Function;
         input Q.TemperatureAbsolute T=298.15*U.K "Temperature"
@@ -1400,11 +1389,10 @@ package Characteristics "Data and functions to correlate physical properties"
                     p,
                     {Polynomial.f(
                       T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j + 1 for j in 1:
-                size(b_v, 2)},
-                      n_v[2] - n_v[1] - i + 1) for i in rowLimits[1]:
-              rowLimits[2]},
-                    n_v[1] + rowLimits[1] - 1) annotation (Inline=true);
+                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j + 1 for j in 1:size(
+                b_v, 2)},
+                      n_v[2] - n_v[1] - i + 1) for i in rowLimits[1]:rowLimits[
+              2]},  n_v[1] + rowLimits[1] - 1) annotation (Inline=true);
           // Note:  The partial derivative (delh/delp)_T is equal to
           // v + T*(dels/delp)_T by definition of enthalpy change (dh = T*ds + v*dp)
           // and then to v - T*(delv/delT)_p by applying the appropriate Maxwell
@@ -1420,10 +1408,10 @@ package Characteristics "Data and functions to correlate physical properties"
     /U.K) + ", " + String(T_lim_c[size(T_lim_c, 1)]/U.K) + "] K).");
   */
         // Note:  This is commented out so that the function can be inlined.
-        h := smooth(1, sum(if (T_lim_c[i] <= T or i == 1) and (T < T_lim_c[i
-           + 1] or i == size(b_c, 1)) then h0_i(T, i) else 0 for i in 1:size(
-          b_c, 1))) + (if referenceEnthalpy == ReferenceEnthalpy.zeroAt0K
-           then Deltah0 else 0) - (if referenceEnthalpy == ReferenceEnthalpy.enthalpyOfFormationAt25degC
+        h := smooth(1, sum(if (T_lim_c[i] <= T or i == 1) and (T < T_lim_c[i +
+          1] or i == size(b_c, 1)) then h0_i(T, i) else 0 for i in 1:size(b_c,
+          1))) + (if referenceEnthalpy == ReferenceEnthalpy.zeroAt0K then
+          Deltah0 else 0) - (if referenceEnthalpy == ReferenceEnthalpy.enthalpyOfFormationAt25degC
            then 0 else Deltah0_f) + h_offset + h_resid(T, p) - (if phase <>
           Phase.gas then h_resid(T, p0) else h_resid(
                 T,
@@ -1489,9 +1477,8 @@ package Characteristics "Data and functions to correlate physical properties"
                     p,
                     {Polynomial.f(
                       T,
-                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j for j in 1:size(
-                b_v, 2)},
-                      n_v[2] - n_v[1] - i) for i in rowLimits[1]:rowLimits[2]},
+                      b_v[i, :] .* {n_v[1] - n_v[2] + i - j for j in 1:size(b_v,
+                2)},  n_v[2] - n_v[1] - i) for i in rowLimits[1]:rowLimits[2]},
                     n_v[1] + rowLimits[1] - 1);
           // Note:  According to the Maxwell relations,
           // (dels/delp)_T = -(delv/delT)_p.
@@ -1506,10 +1493,10 @@ package Characteristics "Data and functions to correlate physical properties"
     /U.K) + ", " + String(T_lim_c[size(T_lim_c, 1)]/U.K) + "] K).");
   */
         // Note:  This is commented out so that the function can be inlined.
-        s := smooth(1, sum(if (T_lim_c[i] <= T or i == 1) and (T < T_lim_c[i
-           + 1] or i == size(b_c, 1)) then s0_i(T, i) else 0 for i in 1:size(
-          b_c, 1))) + s_resid(T, p) - (if phase <> Phase.gas then s_resid(T,
-          p0) else s_resid(
+        s := smooth(1, sum(if (T_lim_c[i] <= T or i == 1) and (T < T_lim_c[i +
+          1] or i == size(b_c, 1)) then s0_i(T, i) else 0 for i in 1:size(b_c,
+          1))) + s_resid(T, p) - (if phase <> Phase.gas then s_resid(T, p0)
+           else s_resid(
                 T,
                 p0,
                 {1,-n_v[1]}));
@@ -1798,25 +1785,25 @@ temperature difference.</p>
       // Note:  p/T is the argument instead of p so that b_p will have the same
       // size as b_v for the typical definitions of the second virial coefficients
       // in [Dymond2002].
-      final constant Boolean isCompressible=anyTrue({anyTrue({abs(b_v[i, j])
-           > Modelica.Constants.small and n_v[1] + i - 1 <> 0 for i in 1:size(
-          b_v, 1)}) for j in 1:size(b_v, 2)})
+      final constant Boolean isCompressible=anyTrue({anyTrue({abs(b_v[i, j]) >
+          Modelica.Constants.small and n_v[1] + i - 1 <> 0 for i in 1:size(b_v,
+          1)}) for j in 1:size(b_v, 2)})
         "<html><code>true</code>, if density depends on pressure</html>";
-      final constant Boolean hasThermalExpansion=anyTrue({anyTrue({abs(b_v[i,
-          j]) > Modelica.Constants.small and n_v[2] + j - n_v[1] - i <> 0
-          for i in 1:size(b_v, 1)}) for j in 1:size(b_v, 2)})
+      final constant Boolean hasThermalExpansion=anyTrue({anyTrue({abs(b_v[i, j])
+           > Modelica.Constants.small and n_v[2] + j - n_v[1] - i <> 0 for i
+           in 1:size(b_v, 1)}) for j in 1:size(b_v, 2)})
         "<html><code>true</code>, if density depends on temperature</html>";
 
     protected
       final constant Integer n_p[2]={n_v[1] - size(b_v, 1) + 1,n_v[2] + 1}
         "<html>Powers of <i>v</i> and <i>T</i> for 1<sup>st</sup> row and column of <i>b<sub>p</sub></i></html>";
-      final constant Real b_p[size(b_v, 1), size(b_v, 2)]=if size(b_v, 1) ==
-          1 then b_v .^ (-n_p[1]) else {(if n_v[1] + i == 0 or n_v[1] + i ==
-          1 or size(b_v, 1) == 1 then b_v[i, :] else (if n_v[1] + i == 2 and
-          n_v[1] <= 0 then b_v[i, :] + b_v[i - 1, :] .^ 2 else (if n_v[1] + i
-           == 3 and n_v[1] <= 0 then b_v[i, :] + b_v[i - 2, :] .* (b_v[i - 2,
-          :] .^ 2 + 3*b_v[i - 1, :]) else zeros(size(b_v, 2))))) for i in
-          size(b_v, 1):-1:1}
+      final constant Real b_p[size(b_v, 1), size(b_v, 2)]=if size(b_v, 1) == 1
+           then b_v .^ (-n_p[1]) else {(if n_v[1] + i == 0 or n_v[1] + i == 1
+           or size(b_v, 1) == 1 then b_v[i, :] else (if n_v[1] + i == 2 and n_v[
+          1] <= 0 then b_v[i, :] + b_v[i - 1, :] .^ 2 else (if n_v[1] + i == 3
+           and n_v[1] <= 0 then b_v[i, :] + b_v[i - 2, :] .* (b_v[i - 2, :] .^
+          2 + 3*b_v[i - 1, :]) else zeros(size(b_v, 2))))) for i in size(b_v, 1)
+          :-1:1}
         "<html>Coefficients of <i>p</i> as a polynomial in <i>v</i> and <i>T</i></html>";
       // Note:  This is from [Dymond2002, p.&nbsp;2].  If necessary, additional
       // terms can be computed using FCSys/Resources/virial-relations.cdf.
@@ -1878,8 +1865,8 @@ temperature difference.</p>
                 p,
                 {Polynomial.f(
                   T,
-                  b_v[i, :] .* {(n_v[1] + i - 1)*T*dp + (n_v[2] - n_v[1] + j
-               - i)*p*dT for j in 1:size(b_v, 2)},
+                  b_v[i, :] .* {(n_v[1] + i - 1)*T*dp + (n_v[2] - n_v[1] + j -
+              i)*p*dT for j in 1:size(b_v, 2)},
                   n_v[2] - n_v[1] - i) for i in 1:size(b_v, 1)},
                 n_v[1] - 1);
 
@@ -2093,12 +2080,10 @@ temperature difference.</p>
             Dialog(__Dymola_label="<html><i>p</i><sub>B</sub></html>"));
         input Q.VolumeSpecific v_A=298.15*U.K/A.p0
           "<html>Specific volume of the 1<sup>st</sup> species</html>"
-          annotation (Dialog(__Dymola_label=
-                "<html><i>v</i><sub>A</sub></html>"));
+          annotation (Dialog(__Dymola_label="<html><i>v</i><sub>A</sub></html>"));
         input Q.VolumeSpecific v_B=298.15*U.K/B.p0
           "<html>Specific volume of the 2<sup>nd</sup> species</html>"
-          annotation (Dialog(__Dymola_label=
-                "<html><i>v</i><sub>B</sub></html>"));
+          annotation (Dialog(__Dymola_label="<html><i>v</i><sub>B</sub></html>"));
         replaceable function pDstar =
             MobilityFactors.BaseClasses.pDstar_nonpolar
           "Reduced pressure-diffusivity product";
@@ -2117,8 +2102,8 @@ temperature difference.</p>
             Dialog(__Dymola_label="<html><i>k</i><sub>&Phi;</sub></html>"));
 
       algorithm
-        k_Phi := pDstar(T/T_crit)*p_crit^(2/3)*(T_crit*U.mol/U.K)^(5/6)*(U.atm
-          /U.q)^(1/3)*U.cm^2/U.s/sqrt(harmonicMean({A.m,B.m})*U.g)/(p_A*B.D(T,
+        k_Phi := pDstar(T/T_crit)*p_crit^(2/3)*(T_crit*U.mol/U.K)^(5/6)*(U.atm/
+          U.q)^(1/3)*U.cm^2/U.s/sqrt(harmonicMean({A.m,B.m})*U.g)/(p_A*B.D(T,
           v_A) + p_B*A.D(T, v_B))
           "Based on [Slattery1958, eq. 5] and the exchange equations in FCSys.Species.Species";
 
@@ -2191,8 +2176,8 @@ FCSys.UsersGuide.License</a> or visit <a href=\"http://www.modelica.org/licenses
 http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
 </html>"), Icon(graphics={
         Line(
-          points={{-76,-80},{-62,-30},{-32,40},{4,66},{48,66},{73,45},{62,-8},
-              {48,-50},{38,-80}},
+          points={{-76,-80},{-62,-30},{-32,40},{4,66},{48,66},{73,45},{62,-8},{
+              48,-50},{38,-80}},
           color={64,64,64},
           smooth=Smooth.Bezier),
         Line(

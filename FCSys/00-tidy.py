@@ -101,6 +101,7 @@ rpls = [# Remove tabs.
         ('(// .*)is not', r"\1isn't"),
         ('(// .*)will not', r"\1won't"),
         ('(// .*)cannot', r"\1can't"),
+        ('(// .*)that is', r"\1that's"),
         ('(// .*)there is', r"\1there's"),
         (r"(// .*\s)it is ", r"\1it's "), # Trailing space prevents mixup with "isn't"
         # Indent the HTML for paragraphs by 2 spaces past the annotation. **doesn't work yet

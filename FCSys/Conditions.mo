@@ -6825,54 +6825,45 @@ record is not defined.  For simulation, drag FCSys.Conditions.Environment into
 your model to specify global conditions and defaults.  Otherwise, the default
 settings will be used.",
       Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-              100}}), graphics={
-          Rectangle(
-            extent={{-80,60},{80,-100}},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid,
-            pattern=LinePattern.None),
-          Rectangle(
-            extent={{-70,50},{70,-98}},
-            lineColor={255,255,255},
-            fillPattern=FillPattern.HorizontalCylinder,
-            fillColor={170,213,255}),
-          Rectangle(
-            extent={{-72,-60},{72,-100}},
-            fillPattern=FillPattern.Solid,
-            fillColor={255,255,255},
-            pattern=LinePattern.None,
-            lineColor={0,0,0}),
-          Line(
-            points={{-40,-20},{-30,-28},{-10,-50},{-10,-50},{16,-12},{40,0}},
-            color={0,0,0},
-            smooth=Smooth.Bezier),
-          Ellipse(
-            extent={{32,8},{48,-8}},
-            pattern=LinePattern.None,
-            lineColor={170,213,255},
-            fillColor={50,50,50},
-            fillPattern=FillPattern.Sphere),
-          Rectangle(
-            extent={{70,50},{76,-60}},
-            fillPattern=FillPattern.Solid,
-            fillColor={255,255,255},
-            pattern=LinePattern.None,
-            lineColor={0,0,0}),
-          Rectangle(
-            extent={{-76,50},{-70,-60}},
-            fillPattern=FillPattern.Solid,
-            fillColor={255,255,255},
-            pattern=LinePattern.None,
-            lineColor={0,0,0}),
-          Rectangle(
-            extent={{-80,60},{80,-100}},
-            lineColor={0,0,0},
-            pattern=LinePattern.Dash),
-          Line(points={{-70,-60},{70,-60}}, color={0,0,0}),
-          Line(points={{-66,-90},{-36,-60}}, color={0,0,0}),
-          Line(points={{2,-90},{32,-60}}, color={0,0,0}),
-          Line(points={{36,-90},{66,-60}}, color={0,0,0}),
-          Line(points={{-32,-90},{-2,-60}}, color={0,0,0})}));
+              100}}), graphics={Rectangle(
+              extent={{-80,60},{80,-100}},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),Rectangle(
+              extent={{-70,50},{70,-98}},
+              lineColor={255,255,255},
+              fillPattern=FillPattern.HorizontalCylinder,
+              fillColor={170,213,255}),Rectangle(
+              extent={{-72,-60},{72,-100}},
+              fillPattern=FillPattern.Solid,
+              fillColor={255,255,255},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),Line(
+              points={{-40,-20},{-30,-28},{-10,-50},{-10,-50},{16,-12},{40,0}},
+              color={0,0,0},
+              smooth=Smooth.Bezier),Ellipse(
+              extent={{32,8},{48,-8}},
+              pattern=LinePattern.None,
+              lineColor={170,213,255},
+              fillColor={50,50,50},
+              fillPattern=FillPattern.Sphere),Rectangle(
+              extent={{70,50},{76,-60}},
+              fillPattern=FillPattern.Solid,
+              fillColor={255,255,255},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),Rectangle(
+              extent={{-76,50},{-70,-60}},
+              fillPattern=FillPattern.Solid,
+              fillColor={255,255,255},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),Rectangle(
+              extent={{-80,60},{80,-100}},
+              lineColor={0,0,0},
+              pattern=LinePattern.Dash),Line(points={{-70,-60},{70,-60}}, color
+            ={0,0,0}),Line(points={{-66,-90},{-36,-60}}, color={0,0,0}),Line(
+            points={{2,-90},{32,-60}}, color={0,0,0}),Line(points={{36,-90},{66,
+            -60}}, color={0,0,0}),Line(points={{-32,-90},{-2,-60}}, color={0,0,
+            0})}));
 
   end Environment;
 
