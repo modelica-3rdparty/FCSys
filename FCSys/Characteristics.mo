@@ -478,7 +478,7 @@ package Characteristics "Data and functions to correlate physical properties"
              - i) for i in 1:7}, size(T_lim_c, 1) - 1),
         B_c=[8.943859760e3*U.K, -7.295824740e1; 1.398412456e4*U.K, -4.477183040e1;
             5.848134850e3, -2.350925275e1] - b_c[:, 2:3]*log(U.K),
-        r=170*U.pico*U.m/(U.rad*U.q));
+        sigma=170*U.pico*U.m/(U.rad*U.q));
       annotation (Documentation(info="<html>
 
      <p>Assumptions:</p>
@@ -526,7 +526,7 @@ package Characteristics "Data and functions to correlate physical properties"
         T_lim_c={0,Modelica.Constants.inf},
         b_c=[4188*U.J*m/(U.kg*U.K)],
         B_c=[Deltah0_f - 298.15*U.K*b_c[1, 1], 10 - b_c[1, 1]*log(300*U.K)],
-        r=(294 + 2259.8)*U.pico*U.m/(2*U.rad*U.q));
+        sigma=(294 + 2259.8)*U.pico*U.m/(2*U.rad*U.q));
 
       annotation (Documentation(info="<html>
        <p>Assumptions:</p>
@@ -593,18 +593,20 @@ package Characteristics "Data and functions to correlate physical properties"
             size(T_lim_c, 1) - 1),
         B_c={Data.blow} .* fill({U.K,1}, size(T_lim_c, 1) - 1) - b_c[:, 2:3]*
             log(U.K),
-        d=U.alpha^3/(U.cyc*U.R_inf*U.q));
+        sigma=U.alpha^3/(2*U.cyc*U.R_inf*U.q));
 
       annotation (Documentation(info="<html>
      <p>Notes:</p>
      <ul>
      <li>The specific mass (<i>m</i>) is also
 
-     2<i>k</i><sub>A</sub>/<i>d</i>, where <i>k</i><sub>A</sub> (in the <a href=\"modelica://FCSys.Units\">Units</a> package) is the magnetic force constant and
+**update<i>k</i><sub>A</sub>/(&sigma;&nbsp;rad), where <i>k</i><sub>A</sub> and &alpha; 
+(in the <a href=\"modelica://FCSys.Units\">Units</a> package) are the magnetic force 
+and fine structure constants, repectively.
 
-     <i>d</i> (in this package) is the specific classical diameter of an electron,
+The variable &sigma; (in this package) is the specific electron size,
 
-     &alpha;<sup>3</sup>/(2&pi;&nbsp;<i>R</i><sub>&infin;</sub>&nbsp;<i>q</i>).</li>
+     &alpha;<sup>3</sup>/(2&nbsp;cyc&nbsp;<i>R</i><sub>&infin;</sub>&nbsp;<i>q</i>).</li>
   <li>McBride and Gordon [<a href=\"modelica://FCSys.UsersGuide.References.McBride1996\">McBride1996</a>] provide correlations for the transport
   properties of e<sup>-</sup> gas.  However, they are not entered here, since they
   contain only one temperature range (2000 to 5000&nbsp;K) which is beyond the expected operating range of the model.</li>
@@ -1134,7 +1136,7 @@ package Characteristics "Data and functions to correlate physical properties"
       constant String formula "Chemical formula";
       constant Phase phase "Material phase";
       constant Q.MassSpecific m "Specific mass";
-      constant Q.LengthSpecificPerAngle d "Specific diameter"
+      constant Q.LengthSpecificPerAngle sigma "Specific size"
         annotation (Dialog);
       constant Integer z=charge(formula) "Charge number";
       constant ReferenceEnthalpy referenceEnthalpy=ReferenceEnthalpy.enthalpyOfFormationAt25degC
@@ -1155,9 +1157,9 @@ package Characteristics "Data and functions to correlate physical properties"
         "<html>Integration constants for specific enthalpy and entropy (<i>B</i><sub><i>c</i></sub>)</html>";
 
     protected
-      constant Q.AreaSpecific alpha=1.5*sqrt(U.pi)*U.q*d^2*U.sph/4
+      constant Q.AreaSpecific alpha=1.5*sqrt(U.pi)*U.q*sigma^2*U.sp
         "Scaled specific intercept area";
-      // The intercept area is U.q*d^2*U.sph/4, and the additional factor is
+      // The intercept area is U.q*sigma^2*U.sp, and the additional factor is
       // 1.5*sqrt(U.pi).
 
       function omega

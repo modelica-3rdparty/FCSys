@@ -65,9 +65,9 @@ package Units
     test(ohm/(V/A), name="10 in set 3");
     test(S/(A/V), name="11 in set 3");
     test(Wb*Hz/V, name="12 in set 3");
-    // See note below the definition of Wb in FCSys.Units.
+    // See note below the definition of V in FCSys.Units re: Hz instead of 1/s.
     test(T/(Wb/m^2), name="13 in set 3");
-    test(H/(Wb/A), name="14 in set 3");
+    test(H/(V*s/A), name="14 in set 3");
     test(lm/(cd*sr), name="15 in set 3");
     test(lx/(lm/m^2), name="16 in set 3");
     test(Bq/Hz, name="17 in set 3");
