@@ -6,8 +6,7 @@ package Units
     import Modelica.Utilities.Streams.print;
     extends Modelica.Icons.Function;
 
-    input String logFile="FCSysTestLog.txt"
-      "Filename where the log is stored";
+    input String logFile="FCSysTestLog.txt" "Filename where the log is stored";
     output Boolean ok "true, if all tests passed";
 
   algorithm
@@ -25,8 +24,7 @@ package Units
     import FCSys.Units.*;
     extends Modelica.Icons.Function;
 
-    input String logFile="FCSysTestLog.txt"
-      "Filename where the log is stored";
+    input String logFile="FCSysTestLog.txt" "Filename where the log is stored";
     output Boolean ok "true, if all tests passed";
 
   protected
@@ -85,8 +83,7 @@ package Units
     test(cyc/m*h*c/(4.556335252755e-8*E_h), name=
       "inverse meter-hartree relationship");
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
-    test(cyc/m*h*c/(1.986445684e-25*J), name=
-      "inverse meter-joule relationship");
+    test(cyc/m*h*c/(1.986445684e-25*J), name="inverse meter-joule relationship");
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
     test(cyc/m*h*c/k_B/(1.4387770e-2*K), name=
       "inverse meter-kelvin relationship");
@@ -160,8 +157,7 @@ package Units
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
     test(J/(6.24150934e18*eV), name="joule-electron volt relationship");
     test(J/(2.29371248e17*E_h), name="joule-hartree relationship");
-    test(J/(h*c)/(5.03411701e24*cyc/m), name=
-      "joule-inverse meter relationship");
+    test(J/(h*c)/(5.03411701e24*cyc/m), name="joule-inverse meter relationship");
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
     test(J/c^2/(1.112650056e-17*kg), name="joule-kilogram relationship");
     test(J/h/(1.509190311e33*Hz), name="joule-hertz relationship");
@@ -173,8 +169,7 @@ package Units
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
     test(k_B/h/(2.0836618e10*Hz/K), name="Boltzmann constant in Hz/K");
     test(k_F/(96485.3365*C/mol), name="Faraday constant");
-    test(k_J/(483597.9e9*Hz/V), name=
-      "conventional value of Josephson constant");
+    test(k_J/(483597.9e9*Hz/V), name="conventional value of Josephson constant");
     test(k_J/(483597.870e9*Hz/V), name="Josephson constant");
     test(K*k_B/(8.6173324e-5*eV), name="kelvin-electron volt relationship");
     test(K*k_B/(3.1668114e-6*E_h), name="kelvin-hartree relationship");
@@ -184,8 +179,7 @@ package Units
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
     test(K*k_B/c^2/(1.5361790e-40*kg), name="kelvin-kilogram relationship");
     test(K*k_B/h/(2.0836618e10*Hz), name="kelvin-hertz relationship");
-    test(kg*c^2/(5.60958885e35*eV), name=
-      "kilogram-electron volt relationship");
+    test(kg*c^2/(5.60958885e35*eV), name="kilogram-electron volt relationship");
     test(kg*c^2/(2.061485968e34*E_h), name="kilogram-hartree relationship");
     test(kg*c^2/(8.987551787e16*J), name="kilogram-joule relationship");
     test(kg*c^2/h/(1.356392608e50*Hz), name="kilogram-hertz relationship");
@@ -209,8 +203,7 @@ package Units
     test(R/(8.3144621*J/(mol*K)), name="molar gas constant");
     test(R_inf/(10973731.568539*cyc/m), name="Rydberg constant");
     // See note below the definition of m in FCSys.Units re: inclusion of cyc.
-    test(R_inf*c/(3.289841960364e15*Hz), name=
-      "Rydberg constant times c in Hz");
+    test(R_inf*c/(3.289841960364e15*Hz), name="Rydberg constant times c in Hz");
     test(R_inf*h*c/(13.60569253*eV), name="Rydberg constant times hc in eV");
     test(R_inf*h*c/(2.179872171e-18*J), name="Rydberg constant times hc in J");
     test(R_K/(25812.807*ohm), name=
@@ -236,8 +229,7 @@ package Units
     import FCSys.Units.*;
     extends Modelica.Icons.Function;
 
-    input String logFile="FCSysTestLog.txt"
-      "Filename where the log is stored";
+    input String logFile="FCSysTestLog.txt" "Filename where the log is stored";
     output Boolean ok "true, if all tests passed";
 
   algorithm

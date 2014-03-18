@@ -774,6 +774,7 @@ recognized by Dymola.</p>
       final constant Q.Velocity2 Gy=U.Gy "gray";
       final constant Q.Mass kg=U.kg "kilogram ";
       final constant Q.Power W=U.W "watt";
+      final constant Q.Power lm=U.lm "lumen";
       final constant Q.Angle2 sr=U.sr "steradian";
       final constant Q.PowerRadiant cd=U.cd "candela";
 
@@ -806,12 +807,11 @@ recognized by Dymola.</p>
 
       final constant Q.Force N=U.N "newton";
       final constant Q.Pressure Pa=U.Pa "pascal";
+      final constant Q.MagneticFluxAreic T=U.T "tesla";
+      final constant Q.PowerAreic lx=U.lx "lux";
       final constant Q.Capacitance F=U.F "farad";
       final constant Q.ResistanceElectrical ohm=U.ohm "ohm (Omega)";
       final constant Q.Inductance H=U.H "henry";
-      final constant Q.MagneticFluxAreic T=U.T "tesla";
-      final constant Q.Power lm=U.lm "lumen";
-      final constant Q.PowerAreic lx=U.lx "lux";
       final constant Q.Frequency Bq=U.Bq "becquerel";
       final constant Q.Velocity2 Sv=U.Sv "sievert";
       final constant Q.Current kat=U.kat "katal";
@@ -870,16 +870,19 @@ recognized by Dymola.</p>
       // -------------------------------------------------------------------------
       // Additional units that are useful for fuel cells
 
+      final constant Q.Angle2 sp=U.sp "spat";
       final constant Q.Pressure atm=U.atm "atmosphere";
       final constant Q.Pressure kPa=U.kPa "kilopascal";
       final constant Q.Energy kJ=U.kJ "kilojoule";
+      final constant Q.Time ms=U.ms "millisecond";
+      final constant Q.Current mA=U.mA "milliampere";
       final constant Q.Length cm=U.cm "centimeter";
       final constant Q.Length mm=U.mm "millimeter";
       final constant Q.Length um=U.um "micrometer";
       final constant Q.Length nm=U.nm "nanometer";
+      final constant Q.Volume cc=U.cc "cubic centimeter";
       final constant Q.Number '%'=U.'%' "percent";
       final constant Q.Density M=U.M "molar";
-      final constant Q.Volume cc=U.cc "cubic centimeter";
       annotation (Documentation(info="<html><p>This model may be used to calculate the values of the
   constants and units.</p>
 
@@ -925,12 +928,12 @@ recognized by Dymola.</p>
     record Gaussian
       "<html>Base constants and units for Gaussian units (<i>k</i><sub>A</sub> = <i>k</i><sub>e</sub> = 1)</html>"
       extends Base(final c=1,final R_K=25812.8074434/(299792458*1e-7));
-      annotation (Documentation(info="<html><p>Gaussian systems of units impose:</p>
-  <ul>
-  <li><i>k</i><sub>A</sub> = 1 &rArr; <i>R</i><sub>K</sub>/<i>c</i> = 2&pi;/&alpha;</li>
-  <li><i>k</i><sub>e</sub> = 1 &rArr; <i>R</i><sub>K</sub>*<i>c</i> = 2&pi;/&alpha;</li>
-  </ul>
-  <p>Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 2&pi;/&alpha;</p>
+      annotation (Documentation(info="<html><p>Gaussian systems of units impose that:</p>
+  <ol>
+  <li>the magnetic force constant is one (<i>k</i><sub>A</sub> = 1) (&rArr; <i>R</i><sub>K</sub>/<i>c</i> = 2&pi;/&alpha;) and</li>
+  <li>the electric force constant is one (<i>k</i><sub>e</sub> = 1) (&rArr; <i>R</i><sub>K</sub> <i>c</i> = 2&pi;/&alpha;).</li>
+  </ol>
+  <p>This implies that <i>c</i> = 1 and <i>R</i><sub>K</sub> = 2&pi;/&alpha;.</p>
 
 <p>The Gaussian conditions are not sufficient
 to fully establish the values of the base constants and units of the
@@ -942,15 +945,23 @@ encompass other systems of units.</p>
 
     end Gaussian;
 
-    record Hartree "Base constants and units for Hartree units"
+    record Hartree "Base constants and units for Hartree atomic units"
 
       extends Base(
-        final R_inf=pi*(299792458*1e-7/25812.8074434)^2,
-        final c=25812.8074434/(2*pi*299792458*1e-7),
+        final R_inf=1e-7*299792458/(2*cyc^2*25812.8074434),
+        final c=25812.8074434/(2*pi*299792458*1e-7*cyc),
         final k_J=1/pi,
-        final R_K=2*pi);
-      annotation (Documentation(info="<html>
+        final R_K=2*cyc*pi);
 
+      annotation (Documentation(info="<html>
+<p>Stoney units impose that:
+  <ol> 
+  <li>the elementary charge is one (<i>q</i> = 1),</li>
+  <li>Planck's constant is two pi (<i>h</i> = 2&pi;),</li>
+  <li>the electric force constant is one (<i>k</i><sub>e</sub> = 1), and</li>
+  <li>the mass of an electron is one (4&pi;&nbsp;&nbsp;<i>k</i><sub>A</sub>&nbsp;<i>R</i><sub>&infin;</sub>&nbsp;<i>q</i><sup>2</sup> = &alpha;<sup>3</sup>).
+  </ol></p>
+  
 <p>Please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
           Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
@@ -960,12 +971,12 @@ encompass other systems of units.</p>
     record LH
       "<html>Base constants and units for Lorentz-Heaviside units (&mu;<sub>0</sub> = &epsilon;<sub>0</sub> = 1)</html>"
       extends Base(final c=1,final R_K=25812.8074434/(4*pi*299792458*1e-7));
-      annotation (Documentation(info="<html><p>Lorentz-Heaviside systems of units impose:</p>
-  <ul>
-  <li>&mu;<sub>0</sub> = 1 &rArr; <i>R</i><sub>K</sub>/<i>c</i> = 1/(2&alpha;)</li>
-  <li>&epsilon;<sub>0</sub> = 1 &rArr; <i>R</i><sub>K</sub>&nbsp;<i>c</i> = 1/(2&alpha;)</li>
-  </ul>
-  <p>Together, <i>c</i> = 1 and <i>R</i><sub>K</sub> = 1/(2&alpha;)</p>
+      annotation (Documentation(info="<html><p>Lorentz-Heaviside systems of units impose that:</p>
+  <ol>
+  <li>the magnetic constant is one (&mu;<sub>0</sub> = 1) (&rArr; <i>R</i><sub>K</sub>/<i>c</i> = 1/(2&alpha;)) and</li>
+  <li>the electric constant is one (&epsilon;<sub>0</sub> = 1) (&rArr; <i>R</i><sub>K</sub>&nbsp;<i>c</i> = 1/(2&alpha;)).</li>
+  </ol>
+  <p>This implies that <i>c</i> = 1 and <i>R</i><sub>K</sub> = 1/(2&alpha;).</p>
 
 <p>The Lorentz-Heaviside conditions are not sufficient
 to fully establish the values of the base constants and units of the
@@ -979,10 +990,14 @@ encompass other systems of units.</p>
 
     record Stoney "Base constants and units for Stoney units"
 
-      extends Gaussian(final k_J=2e-7*299792458/25812.8074434);
-      annotation (Documentation(info="<html><p>The Rydberg constant (<i>R</i><sub>&infin;</sub>)
-  is not final because the <a href=\"modelica://FCSys.Units\">Units</a> package does not
-  include the gravitational constant.</p>
+      extends Gaussian(final k_J=cyc*2e-7*299792458/25812.8074434);
+      annotation (Documentation(info="<html><p>Stoney units are 
+  <a href=\"modelica://FCSys.Units.Bases.Gaussian\">Gaussian</a> units 
+  (<i>k</i><sub>A</sub> = <i>k</i><sub>e</sub> = 1) which also impose that:
+  <ol> 
+  <li>the elementary charge is one (<i>q</i> = 1) and</li>
+  <li>the gravitational constant is one (although not included in the <a href=\"modelica://FCSys.Units\">Units</a> package).
+  </ol></p>
 
 <p>For more information, please see the documentation for the
   <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
@@ -1201,28 +1216,26 @@ encompass other systems of units.</p>
 
     end Base;
     annotation (Documentation(info="<html>
-  <p><a href=\"modelica://FCSys\">FCSys</a> requires that the Faraday and gas constants are
-  normalized to one.  The structure of the <a href=\"modelica://FCSys.Units\">Units</a> package allows
-  those constants to be relaxed, but the models in <a href=\"modelica://FCSys\">FCSys</a>
-  generally do not.</p>
-
-  <p>Some natural systems of units
+  <p>Some systems of units
   are not compatible with <a href=\"modelica://FCSys\">FCSys</a>.
-  Since the Faraday and gas constants
-  are both normalized, it follows that <i>k</i><sub>B</sub> = <i>q</i>.  This is not
+  Although the structure of the <a href=\"modelica://FCSys.Units\">Units</a> package 
+  is general, the models in <a href=\"modelica://FCSys\">FCSys</a>
+  require that the Faraday and gas constants are
+  normalized to one.  It follows that <i>k</i><sub>B</sub> = <i>q</i>.  
+  This is not
   the case for the Planck, Rydberg, and Natural systems of units
   [<a href=\"http://en.wikipedia.org/wiki/Natural_units\">http://en.wikipedia.org/wiki/Natural_units</a>].</p>
 
   <p>The quasi-SI
-  sets in this package are named by listing (in alphabetical order) the two units that are
-  <i>not</i> normalized for the sake of setting the Faraday and gas constants equal to one. 
-  There are eight possible sets of this type (<a href=\"modelica://FCSys.Units.Bases.SIAK\">SIAK</a>,
+  sets in this package are named by listing (in alphabetical order) the two units (out of A, cd, K, kg, m, mol, and s) that are
+  <i>not</i> normalized for the sake of normalizing the Faraday and gas constants. 
+  There are eight possible systems of this type (<a href=\"modelica://FCSys.Units.Bases.SIAK\">SIAK</a>,
   <a href=\"modelica://FCSys.Units.Bases.SIAm\">SIAm</a>,
   <a href=\"modelica://FCSys.Units.Bases.SIAs\">SIAs</a>,
   <a href=\"modelica://FCSys.Units.Bases.SIKmol\">SIKmol</a>,
   <a href=\"modelica://FCSys.Units.Bases.SIKs\">SIKs</a>,
-  <a href=\"modelica://FCSys.Units.Bases.SImmol\">SImmol</a>
-  <a href=\"modelica://FCSys.Units.Bases.SIms\">SIms</a>,
+  <a href=\"modelica://FCSys.Units.Bases.SImmol\">SImmol</a>,
+  <a href=\"modelica://FCSys.Units.Bases.SIms\">SIms</a>, and
   <a href=\"modelica://FCSys.Units.Bases.SImols\">SImols</a>).</p>
 
   <p>For more information, please see the documentation for the
@@ -1289,7 +1302,7 @@ encompass other systems of units.</p>
   // Independent base constants and units
   // -------------------------------------------------------------------------
 
-  replaceable constant Bases.LH base constrainedby Bases.SImols
+  replaceable constant Bases.LH base constrainedby Bases.Base
     "Scalable base constants and units";
   // 2013/11/16:  The following systems result in a smooth temperature trend
   // in FCSys.Regions.Examples.AnGDL with a tolerance of 0.0001 in Dymola
@@ -1298,7 +1311,7 @@ encompass other systems of units.</p>
   // 2013/12/2:  LH is the only unit system that has steady, zero velocity
   // when FCSys.Subregions.Examples.Subregions is initialized with uniform
   // pressure.
-  final constant Q.Angle cyc=10*base.cyc "cycle**temp 10";
+  final constant Q.Angle cyc=base.cyc "cycle";
   final constant Q.Wavenumber R_inf=base.R_inf
     "<html>Rydberg constant (<i>R</i><sub>&infin;</sub>)</html>";
   final constant Q.Velocity c=base.c
@@ -1314,7 +1327,7 @@ encompass other systems of units.</p>
   // -------------------------------------------------------------------------
   // SI units that depend on transcendental and arbitrated empirical numbers
   // -------------------------------------------------------------------------
-  // **check all dimensions
+  // **check all dimensions, update doc
   final constant Q.Angle rad=cyc/(2*pi) "radian";
   // SI unit of plane angle
   // Note:  [BIPM2006] defines rad = 1, but this trigonometric relation is
@@ -1336,6 +1349,7 @@ encompass other systems of units.</p>
   // This is the "Josephson constant" relation [NIST2010].  The Josephson
   // constant can be determined by measuring supercurrent across a Josephson
   // junction [http://en.wikipedia.org/wiki/Josephson_effect].
+  // **compare all equataions to NIST & VIPM, note differences
   constant Q.ConductanceElectrical S=25812.8074434/R_K "siemen";
   // SI unit of electrical conductance
   // This is the "von Klitzing constant" relation [NIST2010].  The von
@@ -1362,7 +1376,7 @@ encompass other systems of units.</p>
   // -------------------------------------------------------------------------
   // SI base units [BIPM2006, Table 1] and intermediate units
   // -------------------------------------------------------------------------
-  // Note:  Only A, kg, and cd remain (cd, m, s, S, K, and mol defined above).
+  // Note:  Only A, kg, and cd remain (cd, m, s, K, and mol defined above).
 
   final constant Q.Frequency Hz=cyc/s "hertz";
   // SI unit of frequency
@@ -1387,12 +1401,14 @@ encompass other systems of units.</p>
   // SI unit of mass
   final constant Q.Power W=J/s "watt";
   // SI unit of power
+  final constant Q.Power lm=W/683 "lumen";
+  // SI unit of luminous flux
   final constant Q.Angle2 sr=rad^2 "steradian";
   // SI unit of solid angle
   // Note: [BIPM2006] defines sr = 1, but that conflicts with the common
   // definition of the steradian as the square of the radian
   // [https://en.wikipedia.org/wiki/Steradian].
-  final constant Q.PowerRadiant cd=W/(683*sr) "candela";
+  final constant Q.PowerRadiant cd=lm/sr "candela";
   // SI unit of luminous intensity
 
   // -------------------------------------------------------------------------
@@ -1423,27 +1439,24 @@ encompass other systems of units.</p>
   // -------------------------------------------------------------------------
   // SI derived units with special names and symbols [BIPM2006, Table 3]
   // -------------------------------------------------------------------------
-  // Note:  rad, Hz, Wb, S, V, C, J, and Gy have already been defined.  Degree
-  // celsius is only defined in setup(), to_degC(), and from_degC() since it
-  // includes an offset.
+  // Note:  rad, sr, Hz, Wb, S, V, C, J, lm, and Gy have already been defined.
+  // Degree celsius is only defined in setup(), to_degC(), and from_degC()
+  // since it includes an offset.
 
   final constant Q.Force N=J/m "newton";
   // SI unit of force
   final constant Q.Pressure Pa=N/m^2 "pascal";
   // SI unit of pressure
-  final constant Q.Capacitance F=C/V "farad";
+  final constant Q.MagneticFluxAreic T=Wb/m^2 "tesla";
+  // SI unit of magnetic flux density
+  final constant Q.PowerAreic lx=lm/m^2 "lux";
+  // SI unit of illuminance
+  final constant Q.Capacitance F=s*S "farad";
   // SI unit of capacitance
   final constant Q.ResistanceElectrical ohm=1/S "<html>ohm (&Omega;)</html>";
   // SI unit of electrical resistance
-  final constant Q.Inductance H=V*s/A "henry";
-  // SI unit of inductance or permeance
-  final constant Q.MagneticFluxAreic T=Wb/m^2 "tesla";
-  // SI unit of magnetic flux density
-  // **dimension: A in denom?
-  final constant Q.Power lm=cd*sr "lumen";
-  // SI unit of luminous flux
-  final constant Q.PowerAreic lx=lm/m^2 "lux";
-  // SI unit of illuminance
+  final constant Q.Inductance H=s/S "henry";
+  // SI unit of inductance
   final constant Q.Frequency Bq=Hz "becquerel";
   // SI unit of frequency
   final constant Q.Velocity2 Sv=Gy "sievert";
@@ -1485,27 +1498,28 @@ encompass other systems of units.</p>
   // See  http://en.wikipedia.org/wiki/Characteristic_impedance_of_vacuum.
   final constant Q.Permeability mu_0=Z_0/c
     "<html>magnetic constant (&mu;<sub>0</sub>)</html>";
-  // This is also called the vacuum permeability or permeability of free
-  // space.
+  // This is also called the vacuum permeability, the permeability of free
+  // space, or the magnetic constant.
   final constant Q.Permittivity epsilon_0=1/(Z_0*c)
     "<html>electric constant (&epsilon;<sub>0</sub>)</html>";
-  // This is also called the vacuum permittivity or permittivity of free
+  // This is also called the vacuum permittivity or the permittivity of free
   // space.
   final constant Q.Permeability k_A=mu_0/(4*pi)
     "<html>magnetic force constant (<i>k</i><sub>A</sub>)</html>";
-  // The factor of 4*pi is the result of the line integral used to derive
-  // Ampere's force law
+  // This is also called the Ampere constant.  The factor of 4*pi is the
+  // result of the line integral used to derive Ampere's force law
   // [http://en.wikipedia.org/wiki/Ampere's_force_law].
   final constant Q.PermittivityReciprocal k_e=k_A*c^2
     "<html>Coulomb constant (<i>k</i><sub>e</sub>)</html>";
-  // This is the coefficient in Coulomb's law; see
+  // This is also called the Coulomb constant, the electric force constant, or
+  // the electrostatic constant.  It is the coefficient in Coulomb's law; see
   // http://en.wikipedia.org/wiki/Coulomb's_law.
 
   // Electromagnetism -- magnetic flux
   final constant Q.MagneticFlux Phi_0=1/k_J
     "<html>magnetic flux quantum (&Phi;<sub>0</sub>)</html>";
   final constant Q.Amount q=G_0*Phi_0*cyc "elementary charge";
-  // **Note:  The factor of cyc is included to be explicit in angle.
+  // Note:  The factor of cyc is included to be explicit in angle.
   final constant Q.Energy eV=q*V "electron volt";
   final constant Q.MomentumRotational h=2*q*Phi_0 "Planck constant";
   final constant Q.Energy E_h=2*R_inf*h*c
@@ -1579,15 +1593,15 @@ encompass other systems of units.</p>
   // Value from "standard atmosphere" [NIST2010]
   final constant Q.Pressure kPa=kilo*Pa "kilopascal";
   final constant Q.Energy kJ=kilo*J "kilojoule";
+  final constant Q.Time ms=milli*s "millisecond";
+  final constant Q.Current mA=milli*A "milliampere";
   final constant Q.Length cm=centi*m "centimeter";
   final constant Q.Length mm=milli*m "millimeter";
   final constant Q.Length um=micro*m "micrometer";
   final constant Q.Length nm=nano*m "nanometer";
-  final constant Q.Current mA=milli*A "milliampere";
-  final constant Q.Time ms=milli*s "millisecond";
+  final constant Q.Volume cc=cm^3 "cubic centimeter";
   final constant Q.Number '%'=centi "percent (%)";
   final constant Q.Density M=mol/L "molar";
-  final constant Q.Volume cc=cm^3 "cubic centimeter";
   annotation (
     Documentation(info="<html>  
 <p>The information below has been updated and adapted from 
