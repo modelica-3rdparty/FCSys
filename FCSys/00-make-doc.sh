@@ -54,6 +54,7 @@ rm ../images/FCSys.Figures*.png
 
 # Copy and process the HTML files.
 rm ../*.html
+git checkout HEAD ../google*.html
 cp -f help/*.html ../
 mv -f ../FCSys.html ../index.html
 lasttag=`git describe --abbrev=0 --tags master`
