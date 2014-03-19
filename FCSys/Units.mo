@@ -363,10 +363,6 @@ package Units "Constants and units of physical measure"
         "J/g",
         g/J) "Squared velocity";
     defineUnitConversion(
-        "L2/T2",
-        "Sv",
-        1/Sv) "Squared velocity";
-    defineUnitConversion(
         "L3",
         "cc",
         1/cc) "Volume";
@@ -742,13 +738,37 @@ recognized by Dymola.</p>
       final constant Q.Number pi=U.pi "pi";
 
       // -------------------------------------------------------------------------
+      // SI prefixes [BIPM2006, Table 5]
+
+      final constant Q.Number yotta=U.yotta "yotta (Y)";
+      final constant Q.Number zetta=U.zetta "zetta (Z)";
+      final constant Q.Number exa=U.exa "exa (E)";
+      final constant Q.Number peta=U.peta "peta (P)";
+      final constant Q.Number tera=U.tera "tera (T)";
+      final constant Q.Number giga=U.giga "giga (G)";
+      final constant Q.Number mega=U.mega "mega (M)";
+      final constant Q.Number kilo=U.kilo "kilo (k)";
+      final constant Q.Number hecto=U.hecto "hecto (h)";
+      final constant Q.Number deca=U.deca "deca (da)";
+      final constant Q.Number deci=U.deci "deci (d)";
+      final constant Q.Number centi=U.centi "centi (c)";
+      final constant Q.Number milli=U.milli "milli (m)";
+      final constant Q.Number micro=U.micro "micro (u)";
+      final constant Q.Number nano=U.nano "nano (n)";
+      final constant Q.Number pico=U.pico "pico (p)";
+      final constant Q.Number femto=U.femto "femto (f)";
+      final constant Q.Number atto=U.atto "atto (a)";
+      final constant Q.Number zepto=U.zepto "zepto (z)";
+      final constant Q.Number yocto=U.yocto "yocto (y)";
+
+      // -------------------------------------------------------------------------
       // Independent base physical constants and units
 
       final constant Q.Angle cyc=U.cyc "cycle";
       final constant Q.Wavenumber R_inf=U.R_inf "Rydberg constant";
       final constant Q.Velocity c=U.c "speed of light in vacuum";
-      final constant Q.MagneticFluxReciprocal k_J=U.k_J "Josephson constant";
-      final constant Q.ResistanceElectrical R_K=U.R_K "von Klitzing constant";
+      final constant Q.ConductanceElectrical G_0=U.G_0 "conductance quantum";
+      final constant Q.MagneticFlux Phi_0=U.Phi_0 "magnetic flux quantum";
       final constant Q.Number k_F=U.k_F "Faraday constant";
       final constant Q.Number R=U.R "gas constant";
 
@@ -779,30 +799,6 @@ recognized by Dymola.</p>
       final constant Q.PowerRadiant cd=U.cd "candela";
 
       // -------------------------------------------------------------------------
-      // SI prefixes [BIPM2006, Table 5]
-
-      final constant Q.Number yotta=U.yotta "yotta (Y)";
-      final constant Q.Number zetta=U.zetta "zetta (Z)";
-      final constant Q.Number exa=U.exa "exa (E)";
-      final constant Q.Number peta=U.peta "peta (P)";
-      final constant Q.Number tera=U.tera "tera (T)";
-      final constant Q.Number giga=U.giga "giga (G)";
-      final constant Q.Number mega=U.mega "mega (M)";
-      final constant Q.Number kilo=U.kilo "kilo (k)";
-      final constant Q.Number hecto=U.hecto "hecto (h)";
-      final constant Q.Number deca=U.deca "deca (da)";
-      final constant Q.Number deci=U.deci "deci (d)";
-      final constant Q.Number centi=U.centi "centi (c)";
-      final constant Q.Number milli=U.milli "milli (m)";
-      final constant Q.Number micro=U.micro "micro (u)";
-      final constant Q.Number nano=U.nano "nano (n)";
-      final constant Q.Number pico=U.pico "pico (p)";
-      final constant Q.Number femto=U.femto "femto (f)";
-      final constant Q.Number atto=U.atto "atto (a)";
-      final constant Q.Number zepto=U.zepto "zepto (z)";
-      final constant Q.Number yocto=U.yocto "yocto (y)";
-
-      // -------------------------------------------------------------------------
       // SI derived units with special names and symbols [BIPM2006, Table 3]
 
       final constant Q.Force N=U.N "newton";
@@ -812,8 +808,6 @@ recognized by Dymola.</p>
       final constant Q.Capacitance F=U.F "farad";
       final constant Q.ResistanceElectrical ohm=U.ohm "ohm (Omega)";
       final constant Q.Inductance H=U.H "henry";
-      final constant Q.Frequency Bq=U.Bq "becquerel";
-      final constant Q.Velocity2 Sv=U.Sv "sievert";
       final constant Q.Current kat=U.kat "katal";
       final constant Q.Mass g=U.g "gram";
 
@@ -829,18 +823,14 @@ recognized by Dymola.</p>
       // -------------------------------------------------------------------------
       // Derived physical constants and units
 
-      // Electromagnetism -- current
-      final constant Q.ConductanceElectrical G_0=U.G_0 "conductance quantum";
+      // Electrical -- involving conductance
       final constant Q.Number alpha=U.alpha "fine-structure constant";
       final constant Q.ResistanceElectrical Z_0=U.Z_0
         "characteristic impedance of vacuum";
       final constant Q.Permeability mu_0=U.mu_0 "magnetic constant";
       final constant Q.Permittivity epsilon_0=U.epsilon_0 "electric constant";
-      final constant Q.Permeability k_A=U.k_A "magnetic force constant";
-      final constant Q.PermittivityReciprocal k_e=U.k_e "Coulomb constant";
 
-      // Electromagnetism -- magnetic flux
-      final constant Q.MagneticFlux Phi_0=U.Phi_0 "magnetic flux quantum";
+      // Electromagnetism -- involving conductance and magnetic flux
       final constant Q.Amount q=U.q "elementary charge";
       final constant Q.Energy eV=U.eV "electron volt";
       final constant Q.MomentumRotational h=U.h "Planck constant";
@@ -897,37 +887,10 @@ recognized by Dymola.</p>
 
   package Bases "Sets of base constants and units"
     extends Modelica.Icons.Package;
-    record FC
-      "Base constants and units that are well-scaled for fuel cell simulation and analysis"
-      extends Base(
-        final R_inf=1e-1*10973731.568539,
-        final c=1e-1*299792458,
-        final R_K=1e10*25812.8074434,
-        final k_J=483597.870e9*sqrt(S*s/1e4)/m);
-      // Note:  k_J = 483597.870e9*sqrt(S*s/x)/m sets kg = x.
-      annotation (Documentation(info="<html><p>The values of this record result in the following values for the base SI units:</p>
-       <ul>
-       <li>A &asymp; 1e-5 (&rArr; 1e3 C &asymp; 1)
-       <li>K &asymp; 8.617</li>
-       <li>kg = 1e4 (&rArr; 0.1 g = 1)</li>
-       <li>m = 10 (&rArr; 10 cm = 1)</li>
-       <li>mol &asymp; 96.485 (&rArr; 0.01036 mol &asymp;1)</li>
-       <li>s = 100 (&rArr; 10 ms = 1)</li></ul>
-   which are well-scaled for the states and efforts of a single-cell
-   PEMFC.  Also, with these settings:
-       <ul>
-       <li>10 m/s &asymp; 1</li>
-       <li>9.872e-5 atm &asymp; 1</li></ul>
-
-<p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
-
-    end FC;
 
     record Gaussian
       "<html>Base constants and units for Gaussian units (<i>k</i><sub>A</sub> = <i>k</i><sub>e</sub> = 1)</html>"
-      extends Base(final c=1,final R_K=25812.8074434/(299792458*1e-7));
+      extends Base(final c=1,final G_0=299792458*2e-7/25812.8074434);
       annotation (Documentation(info="<html><p>Gaussian systems of units impose that:</p>
   <ol>
   <li>the magnetic force constant is one (<i>k</i><sub>A</sub> = 1) (&rArr; <i>R</i><sub>K</sub>/<i>c</i> = 2&pi;/&alpha;) and</li>
@@ -950,8 +913,8 @@ encompass other systems of units.</p>
       extends Base(
         final R_inf=1e-7*299792458/(2*cyc^2*25812.8074434),
         final c=25812.8074434/(2*pi*299792458*1e-7*cyc),
-        final k_J=1/pi,
-        final R_K=2*cyc*pi);
+        final G_0=1/(cyc*pi),
+        final Phi_0=pi);
 
       annotation (Documentation(info="<html>
 <p>Stoney units impose that:
@@ -970,7 +933,7 @@ encompass other systems of units.</p>
 
     record LH
       "<html>Base constants and units for Lorentz-Heaviside units (&mu;<sub>0</sub> = &epsilon;<sub>0</sub> = 1)</html>"
-      extends Base(final c=1,final R_K=25812.8074434/(4*pi*299792458*1e-7));
+      extends Base(final c=1,final G_0=4*pi*2e-7*299792458/25812.8074434);
       annotation (Documentation(info="<html><p>Lorentz-Heaviside systems of units impose that:</p>
   <ol>
   <li>the magnetic constant is one (&mu;<sub>0</sub> = 1) (&rArr; <i>R</i><sub>K</sub>/<i>c</i> = 1/(2&alpha;)) and</li>
@@ -990,7 +953,7 @@ encompass other systems of units.</p>
 
     record Stoney "Base constants and units for Stoney units"
 
-      extends Gaussian(final k_J=cyc*2e-7*299792458/25812.8074434);
+      extends Gaussian(final Phi_0=25812.8074434/(cyc*2e-7*299792458));
       annotation (Documentation(info="<html><p>Stoney units are 
   <a href=\"modelica://FCSys.Units.Bases.Gaussian\">Gaussian</a> units 
   (<i>k</i><sub>A</sub> = <i>k</i><sub>e</sub> = 1) which also impose that:
@@ -1012,8 +975,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=10973731.568539,
         final c=299792458,
-        final R_K=96485.3365^2*25812.8074434,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2/(96485.3365^2*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1034,8 +997,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=sqrt(8.3144621)*10973731.568539,
         final c=299792458/sqrt(8.3144621),
-        final R_K=(96485.3365^2*25812.8074434)/8.3144621,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2*8.3144621/(96485.3365^2*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1055,8 +1018,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=10973731.568539,
         final c=299792458/sqrt(8.3144621),
-        final R_K=(96485.3365^2*25812.8074434)/sqrt(8.3144621),
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2*sqrt(8.3144621)/(96485.3365^2*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1076,8 +1039,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=10973731.568539,
         final c=299792458,
-        final R_K=25812.8074434,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2/25812.8074434,
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1097,8 +1060,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=10973731.568539,
         final c=96485.3365*299792458,
-        final R_K=96485.3365^3*25812.8074434,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2/(96485.3365^3*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1118,8 +1081,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=sqrt(8.3144621/96485.3365)*10973731.568539,
         final c=sqrt(96485.3365/8.3144621)*299792458,
-        final R_K=(96485.3365*25812.8074434)/8.3144621,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2*8.3144621/(96485.3365*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1139,8 +1102,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=96485.3365*sqrt(8.3144621)*10973731.568539,
         final c=299792458/sqrt(8.3144621),
-        final R_K=(96485.3365*25812.8074434)/8.3144621,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2*8.3144621/(96485.3365*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
   <ul>
@@ -1160,8 +1123,8 @@ encompass other systems of units.</p>
         final cyc=c/299792458*(4*pi^2*R_inf/(10973731.568539*683))^(1/3),
         final R_inf=10973731.568539,
         final c=(96485.3365/8.3144621)^(1/3)*299792458,
-        final R_K=(96485.3365*25812.8074434)/8.3144621,
-        final k_J=483597.870e9*sqrt(S*s)/m);
+        final G_0=2*8.3144621/(96485.3365*25812.8074434),
+        final Phi_0=m/(483597.870e9*sqrt(S*s)));
 
       annotation (Documentation(info="<html><p>The values of the un-normalized SI base units are (see
   <a href=\"modelica://FCSys/Resources/Documentation/Units/Bases/unit-systems.cdf\">Resources/unit-systems.cdf</a>):</p>
@@ -1188,17 +1151,16 @@ encompass other systems of units.</p>
       constant Q.Velocity c=1 "<html>speed of light in vacuum (c)</html>";
       // The SI unit time (second) is inversely proportional to this value (and
       // R_inf), which should be increased for larger characteristic times.
-      constant Q.MagneticFluxReciprocal k_J=1
-        "<html>Josephson constant (k<sub>J</sub>)</html>";
-      // The SI unit of magnetic flux (weber) is inversely proportional to this
-      // value, which should be increased for larger magnetic flux numbers.  Also,
-      // the SI unit of charge (coulomb) is inversely proportional to this value.
-      constant Q.ResistanceElectrical R_K=1
-        "<html>von Klitzing constant (R<sub>K</sub>)</html>";
-      // The SI unit of electrical conductance (siemen) is inversely proportional
-      // to this value, which should be increased for larger characteristic
-      // conductances.  Also, the SI unit of charge (coulomb) is inversely
-      // proportional to this value.
+      constant Q.ConductanceElectrical G_0=1
+        "<html>conductance quantum (<i>G</i><sub>0</sub>)</html>";
+      // The SI unit of electrical conductance (siemen) is proportional to this
+      // value, which should be decreased for larger characteristic conductances.
+      // Also, the SI unit of charge (coulomb) is proportional to this value.
+      constant Q.MagneticFlux Phi_0=1
+        "<html>magnetic flux quantum (&Phi;<sub>0</sub>)</html>";
+      // The SI unit of magnetic flux (weber) is proportional to this value, which
+      // should be decreased for larger magnetic flux numbers.  Also, the SI unit
+      // of charge (coulomb) is proportional to this value.
       final constant Q.Number k_F=1
         "<html>Faraday constant (k<sub>F</sub>)</html>";
       // The unit of substance (mole) is inversely proportional to this value.
@@ -1299,6 +1261,31 @@ encompass other systems of units.</p>
   final constant Q.Number pi=2*acos(0) "<html>pi (<i>&pi;</i>)</html>";
 
   // -------------------------------------------------------------------------
+  // SI prefixes [BIPM2006, Table 5]
+  // -------------------------------------------------------------------------
+
+  final constant Q.Number yotta=1e24 "yotta (Y)";
+  final constant Q.Number zetta=1e21 "zetta (Z)";
+  final constant Q.Number exa=1e18 "exa (E)";
+  final constant Q.Number peta=1e15 "peta (P)";
+  final constant Q.Number tera=1e12 "tera (T)";
+  final constant Q.Number giga=1e9 "giga (G)";
+  final constant Q.Number mega=1e6 "mega (M)";
+  final constant Q.Number kilo=1e3 "kilo (k)";
+  final constant Q.Number hecto=1e2 "hecto (h)";
+  final constant Q.Number deca=1e1 "deca (da)";
+  final constant Q.Number deci=1e-1 "deci (d)";
+  final constant Q.Number centi=1e-2 "centi (c)";
+  final constant Q.Number milli=1e-3 "milli (m)";
+  final constant Q.Number micro=1e-6 "micro (u)";
+  final constant Q.Number nano=1e-9 "nano (n)";
+  final constant Q.Number pico=1e-12 "pico (p)";
+  final constant Q.Number femto=1e-15 "femto (f)";
+  final constant Q.Number atto=1e-18 "atto (a)";
+  final constant Q.Number zepto=1e-21 "zepto (z)";
+  final constant Q.Number yocto=1e-24 "yocto (y)";
+
+  // -------------------------------------------------------------------------
   // Independent base constants and units
   // -------------------------------------------------------------------------
 
@@ -1316,10 +1303,10 @@ encompass other systems of units.</p>
     "<html>Rydberg constant (<i>R</i><sub>&infin;</sub>)</html>";
   final constant Q.Velocity c=base.c
     "<html>speed of light in vacuum (<i>c</i>)</html>";
-  final constant Q.MagneticFluxReciprocal k_J=base.k_J
-    "<html>Josephson constant (<i>k</i><sub>J</sub>)</html>";
-  final constant Q.ResistanceElectrical R_K=base.R_K
-    "<html>von Klitzing constant (<i>R</i><sub>K</sub>)</html>";
+  final constant Q.ConductanceElectrical G_0=base.G_0
+    "<html>conductance quantum (<i>G</i><sub>0</sub>)</html>";
+  final constant Q.MagneticFlux Phi_0=base.Phi_0
+    "<html>magnetic flux quantum (&Phi;<sub>0</sub>)</html>";
   final constant Q.Number k_F=base.k_F
     "<html>Faraday constant (<i>k</i><sub>F</sub>)</html>";
   final constant Q.Number R=base.R "gas constant";
@@ -1344,17 +1331,20 @@ encompass other systems of units.</p>
   // the speed of light can be determined is by measuring the time for
   // electromagnetic waves to travel to and from spacecraft
   // [https://en.wikipedia.org/wiki/Speed_of_light#Astronomical_measurements].
-  constant Q.MagneticFlux Wb=483597.870e9/k_J "weber";
+  constant Q.MagneticFlux Wb=483597.870e9*Phi_0 "weber";
   // SI unit of magnetic flux
-  // This is the "Josephson constant" relation [NIST2010].  The Josephson
-  // constant can be determined by measuring supercurrent across a Josephson
-  // junction [http://en.wikipedia.org/wiki/Josephson_effect].
+  // This is the based on the "Josephson constant" relation [NIST2010], given
+  // that the Josephson constant is the reciprocal of the magnetic flux
+  // quantum.  The Josephson constant can be determined by measuring
+  // supercurrent across a Josephson junction
+  // [http://en.wikipedia.org/wiki/Josephson_effect].
   // **compare all equataions to NIST & VIPM, note differences
-  constant Q.ConductanceElectrical S=25812.8074434/R_K "siemen";
+  constant Q.ConductanceElectrical S=25812.8074434*G_0/2 "siemen";
   // SI unit of electrical conductance
-  // This is the "von Klitzing constant" relation [NIST2010].  The von
-  // Klitzing constant can be determined by measuring the quantum hall effect
-  // [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
+  // This is based on the "von Klitzing constant" relation [NIST2010], given
+  // that the von Klitzing constant is twice the reciprocal of the conductance
+  // quantum.  The von Klitzing constant can be determined by measuring the
+  // quantum hall effect [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
   constant Q.Amount mol=96485.3365*Wb*cyc*S/k_F "mole";
   // SI unit of chemical amount
   // This is the "Faraday constant" relation [NIST2010].  The factor of
@@ -1412,36 +1402,13 @@ encompass other systems of units.</p>
   // SI unit of luminous intensity
 
   // -------------------------------------------------------------------------
-  // SI prefixes [BIPM2006, Table 5]
-  // -------------------------------------------------------------------------
-
-  final constant Q.Number yotta=1e24 "yotta (Y)";
-  final constant Q.Number zetta=1e21 "zetta (Z)";
-  final constant Q.Number exa=1e18 "exa (E)";
-  final constant Q.Number peta=1e15 "peta (P)";
-  final constant Q.Number tera=1e12 "tera (T)";
-  final constant Q.Number giga=1e9 "giga (G)";
-  final constant Q.Number mega=1e6 "mega (M)";
-  final constant Q.Number kilo=1e3 "kilo (k)";
-  final constant Q.Number hecto=1e2 "hecto (h)";
-  final constant Q.Number deca=1e1 "deca (da)";
-  final constant Q.Number deci=1e-1 "deci (d)";
-  final constant Q.Number centi=1e-2 "centi (c)";
-  final constant Q.Number milli=1e-3 "milli (m)";
-  final constant Q.Number micro=1e-6 "micro (u)";
-  final constant Q.Number nano=1e-9 "nano (n)";
-  final constant Q.Number pico=1e-12 "pico (p)";
-  final constant Q.Number femto=1e-15 "femto (f)";
-  final constant Q.Number atto=1e-18 "atto (a)";
-  final constant Q.Number zepto=1e-21 "zepto (z)";
-  final constant Q.Number yocto=1e-24 "yocto (y)";
-
-  // -------------------------------------------------------------------------
   // SI derived units with special names and symbols [BIPM2006, Table 3]
   // -------------------------------------------------------------------------
   // Note:  rad, sr, Hz, Wb, S, V, C, J, lm, and Gy have already been defined.
   // Degree celsius is only defined in setup(), to_degC(), and from_degC()
-  // since it includes an offset.
+  // since it includes an offset.  Becquerel (Bq) and sievert (Sv) are
+  // excluded since they have the same value as hertz (Hz) and gray (Gy),
+  // respectively.
 
   final constant Q.Force N=J/m "newton";
   // SI unit of force
@@ -1457,10 +1424,6 @@ encompass other systems of units.</p>
   // SI unit of electrical resistance
   final constant Q.Inductance H=s/S "henry";
   // SI unit of inductance
-  final constant Q.Frequency Bq=Hz "becquerel";
-  // SI unit of frequency
-  final constant Q.Velocity2 Sv=Gy "sievert";
-  // SI unit of specific energy (imparted by radiation into biological tissue)
   final constant Q.Current kat=mol/s "katal";
   // SI unit of catalytic activity
   final constant Q.Mass g=kg/kilo "gram";
@@ -1484,40 +1447,44 @@ encompass other systems of units.</p>
   // Note:  These are established by definition, but may include
   // transcendental mathematical factors.
 
-  // Electromagnetism -- current
-  final constant Q.ConductanceElectrical G_0=2/R_K
-    "<html>conductance quantum (<i>G</i><sub>0</sub>)</html>";
+  // Electrical -- involving conductance
   final constant Q.Number alpha=1e-7*pi*c*s*G_0/(m*S)
     "<html>fine-structure constant (&alpha;)</html>";
   // The fine-structure constant is simply the product of 1e-7, pi, the speed
   // of light in meters per second, and the conductance quantum in siemens.
   // Each of these four factors is dimensionless, so the fine-structure
   // constant is dimensionless too.
-  final constant Q.ResistanceElectrical Z_0=2*alpha*R_K
+  final constant Q.ResistanceElectrical Z_0=4*alpha/G_0
     "<html>characteristic impedance of vacuum (<i>Z</i><sub>0</sub>)</html>";
   // See  http://en.wikipedia.org/wiki/Characteristic_impedance_of_vacuum.
-  final constant Q.Permeability mu_0=Z_0/c
+  final constant Q.Permeability mu_0=Z_0/(c*cyc)
     "<html>magnetic constant (&mu;<sub>0</sub>)</html>";
   // This is also called the vacuum permeability, the permeability of free
   // space, or the magnetic constant.
+  // **Note units Wb/(A*m), not H/m
   final constant Q.Permittivity epsilon_0=1/(Z_0*c)
     "<html>electric constant (&epsilon;<sub>0</sub>)</html>";
   // This is also called the vacuum permittivity or the permittivity of free
   // space.
-  final constant Q.Permeability k_A=mu_0/(4*pi)
-    "<html>magnetic force constant (<i>k</i><sub>A</sub>)</html>";
-  // This is also called the Ampere constant.  The factor of 4*pi is the
-  // result of the line integral used to derive Ampere's force law
-  // [http://en.wikipedia.org/wiki/Ampere's_force_law].
-  final constant Q.PermittivityReciprocal k_e=k_A*c^2
-    "<html>Coulomb constant (<i>k</i><sub>e</sub>)</html>";
-  // This is also called the Coulomb constant, the electric force constant, or
-  // the electrostatic constant.  It is the coefficient in Coulomb's law; see
-  // http://en.wikipedia.org/wiki/Coulomb's_law.
+  // **note that Ampere's constant and Coulomb's constant aren't included; given equations for Ampere's force law and Coulomb's force law
+  // **give equation for inductance of solenoid and capacitance of simple capacitor
+  // **Note that mu_0 is in Wb/(A*m), not H/m
 
-  // Electromagnetism -- magnetic flux
-  final constant Q.MagneticFlux Phi_0=1/k_J
-    "<html>magnetic flux quantum (&Phi;<sub>0</sub>)</html>";
+  // **
+  // mu_0' = mu_0/cyc
+  // mu_0' = Z_0/(c*cyc)
+
+  // k_e' = k_e/sr
+  // k_e' = 1/(epsilon_0*sp)
+  // k_e' = Z_0*c/sp
+  // epsilon_0 remains as is
+
+  // mu_0' = Z_0/(c*cyc) [Wb/(A.m)] (H/(m.cyc), not H/m)
+  // k_e' = Z_0*c/sp [F/(sr.m)] = [N.m2/(C2.sr)] (not F/m)
+  // k_A' = mu_0'/2
+  // epsilon_0 = 1/(k_e'*sp) [F/m]
+
+  // Electromagnetism -- involving conductance and magnetic flux
   final constant Q.Amount q=G_0*Phi_0*cyc "elementary charge";
   // Note:  The factor of cyc is included to be explicit in angle.
   final constant Q.Energy eV=q*V "electron volt";
@@ -1795,15 +1762,15 @@ units kilogram, meter, and second (K &asymp;
 
 <p>There are seven independent units and constants in the 
 <a href=\"modelica://FCSys.Units\">Units</a> package (cyc, 
-<i>R</i><sub>inf</sub>, <i>c</i>, <i>k</i><sub>J</sub>, <i>R</i><sub>K</sub>, 
+<i>R</i><sub>&infin;</sub>, <i>c</i>, <i>G</i><sub>0</sub>, &Phi;<sub>0</sub>,  
 <i>k</i><sub>F</sub>, and <i>R</i>; see 
 <a href=\"modelica://FCSys.Units.Bases\">Units.Bases</a>), which are related 
 to the seven SI base units (m, kg, s, A, K, mol, and cd). The primary 
 relations are between 
-<i>R</i><sub>inf</sub> and m,
+<i>R</i><sub>&infin;</sub> and m,
 <i>c</i> and s,
-<i>k</i><sub>J</sub> and V,
-<i>R</i><sub>K</sub> and A, 
+<i>G</i><sub>0</sub> and A, 
+&Phi;<sub>0</sub> and V,
 <i>k</i><sub>F</sub> and mol, and
 <i>R</i> and K.
 The cycle (cyc) is defined independently, but the candela (cd) is considered a 
