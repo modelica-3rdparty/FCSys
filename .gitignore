@@ -6,7 +6,7 @@
 .~lock*
 .fuse_hidden*
 
-# Simulation files (in case they're generated inside the library)
+# Simulation files (in case they're generated inside the repo)
 *.exe
 *.mat
 buildlog.txt
@@ -20,24 +20,9 @@ dymosim
 request
 status
 
-# Sample results of the User's Guide
-FCSys*/Resources/Documentation/UsersGuide/SampleResults/Basic/*.png
-FCSys*/Resources/Documentation/UsersGuide/SampleResults/Basic/*.svg
-FCSys*/Resources/Documentation/UsersGuide/SampleResults/CellLevel/*.png
-FCSys*/Resources/Documentation/UsersGuide/SampleResults/CellLevel/*.svg
-
-# Excel spreadsheets
-*.xls
-
-# Compressed files
-*.tar.gz
-*.zip
-
 # Generated files
-FCSys*/help
-FCSys*/Resources/Documentation/UsersGuide/References/*(dissertation).pdf
-FCSys*/Resources/Source/Python/doc/fcres.pdf
-FCSys*/Resources/Source/Python/examples/*.mos
+FCSys/help
+FCSys/Resources/Source/Python/doc/fcres.pdf
 build/
 
 # Python-generated and compiled files
@@ -45,12 +30,12 @@ build/
 MANIFEST
 
 # Internal link to demos
-FCSys*/Resources/Source/Python/fcres/examples
+#FCSys*/Resources/Source/Python/fcres/examples
 
 # Georgia Tech files
 # TODO:  Ask Chris Paredis if they can be shared, and include them.
-FCSys*/Test/Morris
+FCSys/Resources/Test/Morris
 
 # Work in progress
-FCSys*/Resources/Documentation/Systems/
-old/
+#FCSys*/Resources/Documentation/Systems/
+#old/
