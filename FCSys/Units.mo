@@ -59,8 +59,7 @@ package Units "Constants and units of physical measure"
       "Reciprocal of permittivity";
     defineDefaultDisplayUnit("L3/(N.s)", "cc/(C.s)")
       "for derivative of specific volume in Dymola";
-    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)")
-      "Rate of specific volume";
+    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)") "Rate of specific volume";
     defineDefaultDisplayUnit("L3/N", "cc/C") "Specific volume";
     defineDefaultDisplayUnit("L3/T", "L/min") "Rate of volume";
     defineDefaultDisplayUnit("L4.M/T3", "W.m2") "Power times area";
@@ -877,8 +876,8 @@ recognized by Dymola.</p>
   constants and units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units.",
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units.",
             executeCall=checkModel("FCSys.Units")));
 
     end Evaluate;
@@ -926,8 +925,8 @@ encompass other systems of units.</p>
   </ol></p>
   
 <p>Please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Hartree;
 
@@ -963,8 +962,8 @@ encompass other systems of units.</p>
   </ol></p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Stoney;
 
@@ -985,8 +984,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAK;
 
@@ -1007,8 +1006,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAm;
 
@@ -1028,8 +1027,8 @@ encompass other systems of units.</p>
   </ul>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAs;
 
@@ -1049,8 +1048,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKmol;
 
@@ -1070,8 +1069,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKs;
 
@@ -1091,8 +1090,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImmol;
 
@@ -1112,8 +1111,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIms;
 
@@ -1134,8 +1133,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImols;
 
@@ -1173,8 +1172,8 @@ encompass other systems of units.</p>
       // that it's one, which means that temperature is considered to be a
       // potential.
       annotation (Documentation(info="<html><p>Please see the notes in the Modelica code and the documentation of the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Base;
     annotation (Documentation(info="<html>
@@ -1201,8 +1200,8 @@ encompass other systems of units.</p>
   <a href=\"modelica://FCSys.Units.Bases.SImols\">SImols</a>).</p>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-        Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+          executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
   end Bases;
 
@@ -1499,8 +1498,8 @@ encompass other systems of units.</p>
   // Thermal physics
   final constant Q.Amount k_B=R/N_A
     "<html>Boltzmann constant (<i>k</i><sub>B</sub>)</html>";
-  final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3*c
-      ^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
+  final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3*c^2)
+    "<html>Stefan-Boltzmann constant (&sigma;)</html>";
   // See http://en.wikipedia.org/wiki/Stefan-Boltzmann_constant.  This
   // equation can be derived from Planck's law for spectral radiance:
   //   B = 2*(h*f)^3/(h*cyc*c)^2/(exp(h*f/(k_B*T)) - 1).
@@ -1547,8 +1546,7 @@ encompass other systems of units.</p>
   // represented in Dymola's unit conversion GUI.
 
   final constant Q.Pressure bar=1e5*Pa "bar";
-  final constant Q.Length angstrom=0.1*nano*m
-    "<html>angstrom (&#8491;)</html>";
+  final constant Q.Length angstrom=0.1*nano*m "<html>angstrom (&#8491;)</html>";
 
   // -------------------------------------------------------------------------
   // Additional units that are useful for this library
@@ -1932,8 +1930,8 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
           fillPattern=FillPattern.Solid),
         Polygon(
           points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
-              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{
-              68,2}},
+              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{68,
+              2}},
           lineColor={64,64,64},
           smooth=Smooth.Bezier,
           fillColor={175,175,175},

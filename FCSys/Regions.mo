@@ -2041,7 +2041,7 @@ The default pore radius (31.8&nbsp;&micro;m) is for Sigracet<sup>&reg;</sup>&nbs
         annotation (Dialog(group="Geometry", __Dymola_label=
               "<html>&epsilon;</html>"));
 
-      parameter Q.CurrentAreicAbsolute J0_300K(min=0) = U.A/U.cm^2
+      parameter Q.CurrentAreicAbsolute J0_300K(min=0) = 41*U.A/U.cm^2
         "Exchange current density @ 300 K" annotation (Dialog(__Dymola_label=
               "<html><i>J</i><sup>o</sup><sub>300 K</sub></html>"));
 
@@ -2062,7 +2062,19 @@ The default thermal conductivity of the carbon (&theta; = <code>U.m*U.K/(1.18*U.
   [<a href=\"modelica://FCSys.UsersGuide.References.Nitta2008\">Nitta2008</a>].  The default
   electronic conductivity (&sigma; = <code>40*U.S/(12*U.cm)</code>)
   is for SGL Carbon Group Sigracet<sup>&reg;</sup> 10 BA (see <a href=\"modelica://FCSys.Regions.AnGDLs.Sigracet10BA\">AnGDLs.Sigracet10BA</a>).</p>
-
+  
+  <p>The default exchange current density at 300&nbsp;K (41&nbsp;A/cm<sup>2</sup>)
+  is the product of the following factors:<ul>
+  <li>418&nbsp;mA/cm<sup>2</sup><sub>Pt</sub>, the exchange current density on a basis of catalyst area at 80&deg;C (middle of the reported range of 235&ndash;600&nbsp;mA/cm<sup>2</sup><sub>Pt</sub>) 
+  [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2007</a>]</li>
+  <li>0.4054 to account for the change in the Arrhenius factor from the reported
+  temperature of 80&deg;C to the reference temperature of 300&nbsp;K, given the activation
+  energy of 15&nbsp;kJ/mol [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2007</a>]</li>
+  <li>60&nbsp;m<sup>2</sup><sub>Pt</sub>/g<sub>Pt</sub>, the surface area of catalyst per mass of catalyst [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2006\">Neyerlin2006</a>]
+  <li>0.4&nbsp;mg<sub>Pt</sub>/cm<sup>2</sup>, the catalyst loading on the basis of cell area [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2007</a>]</li>
+</ul>
+</p>  
+    
 <p>Default assumptions (may be adjusted):</p>
 <ol>
 <li>All of the species have the same temperature, even in different phases.</li>
@@ -2075,93 +2087,112 @@ The default thermal conductivity of the carbon (&theta; = <code>U.m*U.K/(1.18*U.
         Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Rectangle(
-                  extent={{-98,62},{98,98}},
-                  fillColor={255,255,255},
-                  visible=not inclTransY,
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-22.6085,-62.7355},{-56.551,-79.7156}},
-                  lineColor={64,64,64},
-                  rotation=45,
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={-34.3741,132.347}),Rectangle(
-                  extent={{-105.39,79.1846},{-139.33,70.6991}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  rotation=45,
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={148.513,82.5291}),Polygon(
-                  points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-6,40},{6,-60}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-38,40},{-14,-60}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-14,40},{-6,-60}},
-                  fillPattern=FillPattern.Solid,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},
-                {-42,80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,
-                -80},{-42,-80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(points={{0,60},{20,60},{0,
-              40},{-20,40},{0,60}}, lineColor={0,0,0}),Rectangle(
-                  extent={{-20,40},{0,-60}},
-                  pattern=LinePattern.None,
-                  lineColor={0,0,0}),Polygon(
-                  points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,0},{-100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{10,0},{100,0}},
-                  color={240,0,0},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{0,-60},{0,-100}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{0,100},{0,50}},
-                  color={253,52,56},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-50,-50},{-10,-10}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{20,20},{50,50}},
-                  color={253,52,56},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Text(
-                  extent={{-100,60},{100,100}},
-                  textString="%name",
-                  visible=not inclTransY,
-                  lineColor={0,0,0})}));
+            initialScale=0.1), graphics={
+            Rectangle(
+              extent={{-98,62},{98,98}},
+              fillColor={255,255,255},
+              visible=not inclTransY,
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-22.6085,-62.7355},{-56.551,-79.7156}},
+              lineColor={64,64,64},
+              rotation=45,
+              fillColor={127,127,127},
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={-34.3741,132.347}),
+            Rectangle(
+              extent={{-105.39,79.1846},{-139.33,70.6991}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              rotation=45,
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={148.513,82.5291}),
+            Polygon(
+              points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-6,40},{6,-60}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-38,40},{-14,-60}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-14,40},{-6,-60}},
+              fillPattern=FillPattern.Solid,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},{-42,
+                  80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,-80},
+                  {-42,-80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(points={{0,60},{20,60},{0,40},{-20,40},{0,60}}, lineColor={
+                  0,0,0}),
+            Rectangle(
+              extent={{-20,40},{0,-60}},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),
+            Polygon(
+              points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,0},{-100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{10,0},{100,0}},
+              color={240,0,0},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{0,-60},{0,-100}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{0,100},{0,50}},
+              color={253,52,56},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-50,-50},{-10,-10}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{20,20},{50,50}},
+              color={253,52,56},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Text(
+              extent={{-100,60},{100,100}},
+              textString="%name",
+              visible=not inclTransY,
+              lineColor={0,0,0})}));
 
     end AnCL;
 
@@ -2516,8 +2547,9 @@ although in reality there is inductance.</p>
         annotation (Dialog(group="Geometry", __Dymola_label=
               "<html>&epsilon;</html>"));
 
-      parameter Q.CurrentAreicAbsolute J0_300K(min=0) = 3e-11*U.mA/U.cm^2
-        "Exchange current density @ 300 K" annotation (Dialog(__Dymola_label=
+      parameter Q.CurrentAreicAbsolute J0_300K(min=0) = 1.06e-7*U.A/U.cm^2
+        "<html>Exchange current density @ 300 K and 1 bar O<sub>2</sub></html>"
+        annotation (Dialog(__Dymola_label=
               "<html><i>J</i><sup>o</sup><sub>300 K</sub></html>"));
 
     protected
@@ -2527,98 +2559,135 @@ although in reality there is inductance.</p>
 
       annotation (Documentation(info="<html>
 <p>This model represents the cathode catalyst layer of a PEMFC. It is identical to
-the anode catalyst layer except for the included species, the exchange current density (<i>J</i><sup>o</sup>), and the activation energy ().
-For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.AnCL\">AnCL</a> model.</p>
+the anode catalyst layer except for the included species and the exchange current density (<i>J</i><sup>o</sup>).
+The default exchange current density at 300&nbsp;K and reference O<sub>2</sub> pressure (106&nbsp;nA/cm<sup>2</sup>)
+  is the product of the following factors:<ul>
+  <li>25&nbsp;nA/cm<sup>2</sup><sub>Pt</sub>, the exchange current density on a basis of catalyst area at 80&deg;C 
+  [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2006\">Neyerlin2006</a>]</li>
+  <li>0.0177 to account for the change in the Arrhenius factor from the reported
+  temperature of 80&deg;C to the reference temperature of 300&nbsp;K, given the activation
+  energy of 67&nbsp;kJ/mol [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2006\">Neyerlin2006</a>]</li>
+  <li>60&nbsp;m<sup>2</sup><sub>Pt</sub>/g<sub>Pt</sub>, the surface area of catalyst per mass of catalyst [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2006\">Neyerlin2006</a>]
+  <li>0.4&nbsp;mg<sub>Pt</sub>/cm<sup>2</sup>, the catalyst loading on the basis of cell area [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2007</a>]</li>
+  </ul>
+  The ORR is assumed to be first order with respect to oxygen **reference; therefore, this exchange current density at
+  300&nbsp;K and reference O<sub>2</sub> pressure is multiplied by the ratio of the oxygen partial pressure to the 
+  reference pressure (1&nbsp;bar) to arrive at the exchange current density at
+  300&nbsp;K and actual O<sub>2</sub> pressure.
+</p> 
+
+
+<p>For more information, please see the <a href=\"modelica://FCSys.Regions.AnCLs.AnCL\">AnCL</a> model.</p>
 </html>"), Icon(coordinateSystem(
             preserveAspectRatio=true,
             extent={{-100,-100},{100,100}},
-            initialScale=0.1), graphics={Rectangle(
-                  extent={{-98,62},{98,98}},
-                  fillColor={255,255,255},
-                  visible=not inclTransY,
-                  fillPattern=FillPattern.Solid,
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-21.6329,-68.4511},{-58.4038,-85.4311}},
-                  lineColor={64,64,64},
-                  rotation=45,
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={-15.1055,127.699}),Rectangle(
-                  extent={{-105.385,79.1805},{-139.323,70.6948}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  rotation=45,
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  origin={130.507,84.5292}),Polygon(
-                  points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Rectangle(
-                  extent={{-26,40},{-14,-60}},
-                  lineColor={0,0,0},
-                  fillColor={200,200,200},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-6,40},{18,-60}},
-                  lineColor={64,64,64},
-                  fillColor={127,127,127},
-                  fillPattern=FillPattern.VerticalCylinder),Rectangle(
-                  extent={{-14,40},{-6,-60}},
-                  fillPattern=FillPattern.Solid,
-                  fillColor={0,0,0},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},
-                {-42,80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(
-                  points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,
-                -80},{-42,-80},{-42,0},{-20,0}},
-                  fillPattern=FillPattern.HorizontalCylinder,
-                  smooth=Smooth.None,
-                  fillColor={255,255,255},
-                  pattern=LinePattern.None),Polygon(points={{0,60},{20,60},{0,
-              40},{-20,40},{0,60}}, lineColor={0,0,0}),Rectangle(
-                  extent={{-20,40},{0,-60}},
-                  pattern=LinePattern.None,
-                  lineColor={0,0,0}),Polygon(
-                  points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
-                  lineColor={0,0,0},
-                  fillColor={120,120,120},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,0},{-100,0}},
-                  color={0,0,240},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{10,0},{100,0}},
-                  color={0,0,240},
-                  visible=inclTransX,
-                  thickness=0.5),Line(
-                  points={{0,-60},{0,-98}},
-                  color={0,0,240},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{0,100},{0,50}},
-                  color={0,0,240},
-                  visible=inclTransY,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{-50,-50},{-10,-10}},
-                  color={0,0,240},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Line(
-                  points={{20,20},{50,50}},
-                  color={0,0,240},
-                  visible=inclTransZ,
-                  smooth=Smooth.None,
-                  thickness=0.5),Text(
-                  extent={{-100,60},{100,100}},
-                  textString="%name",
-                  visible=not inclTransY,
-                  lineColor={0,0,0})}));
+            initialScale=0.1), graphics={
+            Rectangle(
+              extent={{-98,62},{98,98}},
+              fillColor={255,255,255},
+              visible=not inclTransY,
+              fillPattern=FillPattern.Solid,
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-21.6329,-68.4511},{-58.4038,-85.4311}},
+              lineColor={64,64,64},
+              rotation=45,
+              fillColor={127,127,127},
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={-15.1055,127.699}),
+            Rectangle(
+              extent={{-105.385,79.1805},{-139.323,70.6948}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              rotation=45,
+              fillPattern=FillPattern.HorizontalCylinder,
+              origin={130.507,84.5292}),
+            Polygon(
+              points={{-14,40},{6,60},{14,60},{-6,40},{-14,40}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Rectangle(
+              extent={{-26,40},{-14,-60}},
+              lineColor={0,0,0},
+              fillColor={200,200,200},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-6,40},{18,-60}},
+              lineColor={64,64,64},
+              fillColor={127,127,127},
+              fillPattern=FillPattern.VerticalCylinder),
+            Rectangle(
+              extent={{-14,40},{-6,-60}},
+              fillPattern=FillPattern.Solid,
+              fillColor={0,0,0},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,40},{0,60},{20,60},{20,0},{42,0},{42,80},{-42,
+                  80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(
+              points={{-20,0},{-20,-60},{0,-60},{20,-40},{20,0},{42,0},{42,-80},
+                  {-42,-80},{-42,0},{-20,0}},
+              fillPattern=FillPattern.HorizontalCylinder,
+              smooth=Smooth.None,
+              fillColor={255,255,255},
+              pattern=LinePattern.None),
+            Polygon(points={{0,60},{20,60},{0,40},{-20,40},{0,60}}, lineColor={
+                  0,0,0}),
+            Rectangle(
+              extent={{-20,40},{0,-60}},
+              pattern=LinePattern.None,
+              lineColor={0,0,0}),
+            Polygon(
+              points={{20,60},{0,40},{0,-60},{20,-40},{20,60}},
+              lineColor={0,0,0},
+              fillColor={120,120,120},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,0},{-100,0}},
+              color={0,0,240},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{10,0},{100,0}},
+              color={0,0,240},
+              visible=inclTransX,
+              thickness=0.5),
+            Line(
+              points={{0,-60},{0,-98}},
+              color={0,0,240},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{0,100},{0,50}},
+              color={0,0,240},
+              visible=inclTransY,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{-50,-50},{-10,-10}},
+              color={0,0,240},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Line(
+              points={{20,20},{50,50}},
+              color={0,0,240},
+              visible=inclTransZ,
+              smooth=Smooth.None,
+              thickness=0.5),
+            Text(
+              extent={{-100,60},{100,100}},
+              textString="%name",
+              visible=not inclTransY,
+              lineColor={0,0,0})}));
+
     end CaCL;
 
     model CaCGDL "Integrated cathode catalyst/gas diffusion layer"
@@ -3325,14 +3394,14 @@ For more information, please see the
               40}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Text(
-              extent={{-100,120},{100,160}},
-              textString="%name",
-              visible=inclTransY,
-              lineColor={0,0,0}),Text(
-              extent={{-100,56},{100,96}},
-              textString="%name",
-              visible=not inclTransY,
-              lineColor={0,0,0})}));
+            extent={{-100,120},{100,160}},
+            textString="%name",
+            visible=inclTransY,
+            lineColor={0,0,0}), Text(
+            extent={{-100,56},{100,96}},
+            textString="%name",
+            visible=not inclTransY,
+            lineColor={0,0,0})}));
   end Region;
   annotation (Documentation(info="
 <html>

@@ -14,16 +14,15 @@ package WorkInProgress "Incomplete classes under development"
           FCSys.Subregions.Subregion subregions(
           each final inclX=true,
           each inclY=true,
-          each graphite('incle-'=true, 'e-'(perfectMaterialDiff={{{{true,
-                  false}}}})),
+          each graphite('incle-'=true, 'e-'(perfectMaterialDiff={{{{true,false}}}})),
+
           each gas(inclH2=true, inclH2O=true))))
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
     inner FCSys.Conditions.Environment environment(analysis=false)
       annotation (Placement(transformation(extent={{40,60},{60,80}})));
     Conditions.Adapters.Phases.Graphite caModelicaAdapt(A=cell.L_y[1]*cell.L_z[
-          1])
-      annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+          1]) annotation (Placement(transformation(extent={{20,-10},{40,10}})));
     Conditions.Adapters.Phases.Graphite anModelicaAdapt(A=cell.L_y[1]*cell.L_z[
           1])
       annotation (Placement(transformation(extent={{-20,-10},{-40,10}})));
@@ -75,13 +74,13 @@ package WorkInProgress "Incomplete classes under development"
     "<html>Example to calibrate the coupling between H<sup>+</sup> and H<sub>2</sub>O in the PEM</html>"
 
     extends Regions.Examples.CLtoCL(anCL(redeclare model Subregion =
-            Subregions.Subregion (ionomer(redeclare
-                FCSys.Species.H2O.Gas.Fixed H2O(
+            Subregions.Subregion (ionomer(redeclare FCSys.Species.H2O.Gas.Fixed
+                H2O(
                 redeclare package Data = FCSys.Characteristics.'H+'.Ionomer,
                 p_IC=65536*U.kPa,
-                consMaterial=ConsThermo.IC)))), caCL(redeclare model
-          Subregion = Subregions.Subregion (ionomer(redeclare
-                FCSys.Species.H2O.Gas.Fixed H2O(
+                consMaterial=ConsThermo.IC)))), caCL(redeclare model Subregion
+          = Subregions.Subregion (ionomer(redeclare FCSys.Species.H2O.Gas.Fixed
+                H2O(
                 redeclare package Data = FCSys.Characteristics.'H+'.Ionomer,
                 p_IC=65536*U.kPa,
                 consMaterial=ConsThermo.IC)))));
@@ -92,9 +91,9 @@ package WorkInProgress "Incomplete classes under development"
     "Test one catalyst layer to the other, with prescribed voltage"
 
     extends Modelica.Icons.Example;
-    output Q.Potential w=anCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[
-        1, Side.n] - caCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1,
-        Side.p] if environment.analysis "Electrical potential";
+    output Q.Potential w=anCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1,
+        Side.n] - caCL.subregions[1, 1, 1].graphite.'e-'.g_boundaries[1, Side.p]
+      if environment.analysis "Electrical potential";
     output Q.Current zI=-sum(anCL.subregions[1, :, :].graphite.'e-'.boundaries[
         1, Side.n].Ndot) if environment.analysis "Electrical current";
     output Q.Number J_Apercm2=zI*U.cm^2/(anCL.A[Axis.x]*U.A)
@@ -116,8 +115,8 @@ package WorkInProgress "Incomplete classes under development"
     Regions.CaCLs.CaCL caCL(
       final L_y=L_y,
       final L_z=L_z,
-      subregions(graphite(each inclDL=true, transfer(each fromI=false)),
-          each ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
+      subregions(graphite(each inclDL=true, transfer(each fromI=false)), each
+          ORR('e-'(reaction(Ndot(stateSelect=StateSelect.always))))))
       annotation (Placement(transformation(extent={{10,30},{30,50}})));
 
     // Conditions
@@ -153,8 +152,8 @@ package WorkInProgress "Incomplete classes under development"
           rotation=270,
           origin={-44,40})));
 
-    Conditions.ByConnector.BoundaryBus.Single.Source caBC[caCL.n_y, caCL.n_z]
-      (each gas(
+    Conditions.ByConnector.BoundaryBus.Single.Source caBC[caCL.n_y, caCL.n_z](
+        each gas(
         inclH2O=true,
         inclO2=true,
         H2O(
@@ -176,7 +175,6 @@ package WorkInProgress "Incomplete classes under development"
           redeclare each function materialSpec =
               Conditions.ByConnector.Boundary.Single.Material.potential (
                 redeclare package Data = FCSys.Characteristics.'e-'.Graphite),
-
           materialSet(y=anBC.graphite.'e-'.materialOut.y + fill(
                   -voltageSet.y,
                   caCL.n_y,
@@ -228,8 +226,8 @@ package WorkInProgress "Incomplete classes under development"
         StopTime=600,
         Tolerance=1e-007,
         __Dymola_Algorithm="Dassl"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}),graphics));
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+              100,100}}), graphics));
   end RegionsExamplesCLtoCLVoltage;
 
   model SubregionsExamplesCapillaryAction
@@ -251,7 +249,6 @@ package WorkInProgress "Incomplete classes under development"
 
     package Examples "Examples"
       extends Modelica.Icons.ExamplesPackage;
-
 
       model Evaluate "Evaluate the values assigned to constants and units"
         extends Modelica.Icons.Example;
@@ -291,8 +288,7 @@ package WorkInProgress "Incomplete classes under development"
         final constant Q.Angle cyc=U.cyc "cycle";
         final constant Q.Wavenumber R_inf=U.R_inf "Rydberg constant";
         final constant Q.Velocity c=U.c "speed of light in vacuum";
-        final constant Q.ConductanceElectrical G_0=U.G_0
-          "conductance quantum";
+        final constant Q.ConductanceElectrical G_0=U.G_0 "conductance quantum";
         final constant Q.MagneticFlux Phi_0=U.Phi_0 "magnetic flux quantum";
         final constant Q.Number k_F=U.k_F "Faraday constant";
         final constant Q.Number R=U.R "gas constant";
@@ -353,8 +349,7 @@ package WorkInProgress "Incomplete classes under development"
         final constant Q.ResistanceElectrical Z_0=U.Z_0
           "characteristic impedance of vacuum";
         final constant Q.Permeability mu_0=U.mu_0 "magnetic constant";
-        final constant Q.Permittivity epsilon_0=U.epsilon_0
-          "electric constant";
+        final constant Q.Permittivity epsilon_0=U.epsilon_0 "electric constant";
 
         // Electromagnetism -- involving conductance and magnetic flux
         final constant Q.Amount q=U.q "elementary charge";
@@ -403,10 +398,9 @@ package WorkInProgress "Incomplete classes under development"
   constants and units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units.", executeCall=checkModel(
-                "FCSys.Units")));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units.",
+              executeCall=checkModel("FCSys.Units")));
 
       end Evaluate;
     end Examples;
@@ -457,9 +451,8 @@ encompass other systems of units.</p>
   </ol></p>
   
 <p>Please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end Hartree;
 
@@ -497,9 +490,8 @@ encompass other systems of units.</p>
   </ol></p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end Stoney;
 
@@ -508,8 +500,8 @@ encompass other systems of units.</p>
         import FCSys;
 
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=10973731.568539,
           final c=299792458,
           final G_0=2/(96485.3365^2*25812.8074434),
@@ -522,9 +514,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIAK;
 
@@ -533,8 +524,8 @@ encompass other systems of units.</p>
         import FCSys;
 
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=sqrt(8.3144621)*10973731.568539,
           final c=299792458/sqrt(8.3144621),
           final G_0=2*8.3144621/(96485.3365^2*25812.8074434),
@@ -547,9 +538,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIAm;
 
@@ -557,8 +547,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of A and s</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=10973731.568539,
           final c=299792458/sqrt(8.3144621),
           final G_0=2*sqrt(8.3144621)/(96485.3365^2*25812.8074434),
@@ -571,9 +561,8 @@ encompass other systems of units.</p>
   </ul>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIAs;
 
@@ -581,8 +570,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of K and mol</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=10973731.568539,
           final c=299792458,
           final G_0=2/25812.8074434,
@@ -595,9 +584,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIKmol;
 
@@ -605,8 +593,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of K and s</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=10973731.568539,
           final c=96485.3365*299792458,
           final G_0=2/(96485.3365^3*25812.8074434),
@@ -619,9 +607,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIKs;
 
@@ -629,8 +616,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of m and mol</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=sqrt(8.3144621/96485.3365)*10973731.568539,
           final c=sqrt(96485.3365/8.3144621)*299792458,
           final G_0=2*8.3144621/(96485.3365*25812.8074434),
@@ -643,9 +630,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SImmol;
 
@@ -653,8 +639,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of m and s</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=96485.3365*sqrt(8.3144621)*10973731.568539,
           final c=299792458/sqrt(8.3144621),
           final G_0=2*8.3144621/(96485.3365*25812.8074434),
@@ -667,9 +653,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SIms;
 
@@ -677,8 +662,8 @@ encompass other systems of units.</p>
         "<html>Base constants and units for SI with <i>k</i><sub>F</sub> and <i>R</i> normalized instead of mol and s</html>"
         import FCSys;
         extends Base(
-          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*
-              683))^(1/3),
+          final cyc=c/299792458*(4*FCSys.Units.pi^2*R_inf/(10973731.568539*683))
+              ^(1/3),
           final R_inf=10973731.568539,
           final c=(96485.3365/8.3144621)^(1/3)*299792458,
           final G_0=2*8.3144621/(96485.3365*25812.8074434),
@@ -692,9 +677,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end SImols;
 
@@ -732,9 +716,8 @@ encompass other systems of units.</p>
         // that it's one, which means that temperature is considered to be a
         // potential.
         annotation (Documentation(info="<html><p>Please see the notes in the Modelica code and the documentation of the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-            Commands(executeCall=FCSys.Units.setup()
-              "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+              executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
       end Base;
       annotation (Documentation(info="<html>
@@ -761,8 +744,8 @@ encompass other systems of units.</p>
   <a href=\"modelica://FCSys.Units.Bases.SImols\">SImols</a>).</p>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
-          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
+            executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Bases;
     final constant Q.Number pi=2*acos(0) "<html>pi (<i>&pi;</i>)</html>";
@@ -856,8 +839,7 @@ encompass other systems of units.</p>
     final constant Q.MagneticFluxAreic T=Wb/m^2 "tesla";
     final constant Q.PowerAreic lx=lm/m^2 "lux";
     final constant Q.Capacitance F=s*S "farad";
-    final constant Q.ResistanceElectrical ohm=1/S
-      "<html>ohm (&Omega;)</html>";
+    final constant Q.ResistanceElectrical ohm=1/S "<html>ohm (&Omega;)</html>";
     final constant Q.Inductance H=s/S "henry";
     final constant Q.Frequency Bq=Hz "becquerel";
     final constant Q.Velocity2 Sv=Gy "sievert";
@@ -908,8 +890,8 @@ encompass other systems of units.</p>
     // Thermal physics
     final constant Q.Amount k_B=R/N_A
       "<html>Boltzmann constant (<i>k</i><sub>B</sub>)</html>";
-    final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3
-        *c^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
+    final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3*c
+        ^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
     final constant Q.PowerArea c_1=2*pi*h*cyc*c^2
       "<html>first radiation constant (<i>c</i><sub>1</sub>)</html>";
     final constant Q.PotentialPerWavenumber c_2=h*c/k_B
@@ -944,56 +926,49 @@ encompass other systems of units.</p>
     final constant Q.Volume cc=cm^3 "cubic centimeter";
     final constant Q.Number '%'=centi "percent (%)";
     final constant Q.Density M=mol/L "molar";
-    annotation (Icon(graphics={
-          Line(
-            points={{-66,78},{-66,-40}},
-            color={64,64,64},
-            smooth=Smooth.None),
-          Ellipse(
-            extent={{12,36},{68,-38}},
-            lineColor={64,64,64},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Rectangle(
-            extent={{-74,78},{-66,-40}},
-            lineColor={64,64,64},
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-66,-4},{-66,6},{-16,56},{-16,46},{-66,-4}},
-            lineColor={64,64,64},
-            smooth=Smooth.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{-46,16},{-40,22},{-2,-40},{-10,-40},{-46,16}},
-            lineColor={64,64,64},
-            smooth=Smooth.None,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid),
-          Ellipse(
-            extent={{22,26},{58,-28}},
-            lineColor={64,64,64},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Polygon(
-            points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
-                {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},
-                {68,2}},
-            lineColor={64,64,64},
-            smooth=Smooth.Bezier,
-            fillColor={175,175,175},
-            fillPattern=FillPattern.Solid)}));
+    annotation (Icon(graphics={Line(
+              points={{-66,78},{-66,-40}},
+              color={64,64,64},
+              smooth=Smooth.None),Ellipse(
+              extent={{12,36},{68,-38}},
+              lineColor={64,64,64},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Rectangle(
+              extent={{-74,78},{-66,-40}},
+              lineColor={64,64,64},
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-66,-4},{-66,6},{-16,56},{-16,46},{-66,-4}},
+              lineColor={64,64,64},
+              smooth=Smooth.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{-46,16},{-40,22},{-2,-40},{-10,-40},{-46,16}},
+              lineColor={64,64,64},
+              smooth=Smooth.None,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid),Ellipse(
+              extent={{22,26},{58,-28}},
+              lineColor={64,64,64},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),Polygon(
+              points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
+              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{68,
+              2}},
+              lineColor={64,64,64},
+              smooth=Smooth.Bezier,
+              fillColor={175,175,175},
+              fillPattern=FillPattern.Solid)}));
 
   end Units;
   annotation (Commands(
       file="../../units.mos"
         "Establish the constants and units in the workspace (first translate a model besides Units.Evaluate).",
 
-      file="test/check.mos"
-        "Check all of FCSys using Dymola's check function.",
-      file="../../../LaTeX/Dissertation/Results/Cell/Simulation/sim.mos"),
-      Icon(graphics={Polygon(
+      file="test/check.mos" "Check all of FCSys using Dymola's check function.",
+
+      file="../../../LaTeX/Dissertation/Results/Cell/Simulation/sim.mos"), Icon(
+        graphics={Polygon(
           points={{-80,-72},{0,68},{80,-72},{-80,-72}},
           lineColor={255,0,0},
           lineThickness=0.5)}));

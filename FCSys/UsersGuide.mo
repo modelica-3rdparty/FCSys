@@ -613,6 +613,18 @@ increases in net current must be supported by the upstream segments, and this pu
       annotation (preferredView="info", DocumentationClass=false);
     end Moran2004;
 
+    class Neyerlin2006
+      "<html>K. C. Neyerlin, W. Gu, J. Jorne, and H.A. Gasteiger, \"Determination of Catalyst Unique Parameters for the Oxygen Reduction Reaction in a PEMFC,\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;153, no.&nbsp;10, pp.&nbsp;A1955&ndash;A1963, 2006.</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Neyerlin2006;
+
+    class Neyerlin2007
+      "<html>K. C. Neyerlin, W. Gu, J. Jorne, and H.A. Gasteiger, \"Study of the Exchange Current Density for the Hydrogen Oxidation and Evolution Reactions\" <i>J. Electrochem. Soc.</i>, vol.&nbsp;154, no.&nbsp;7, pp.&nbsp;B631&ndash;B635, 2007.</html>"
+
+      annotation (preferredView="info", DocumentationClass=false);
+    end Neyerlin2007;
+
     class NIST2010
       "<html>National Institute of Standards and Technology (NIST), \"Fundamental Physical Constants: Complete Listing,\" <a href=\"http://physics.nist.gov/cuu/Constants/Table/allascii.txt\">http://physics.nist.gov/cuu/Constants/Table/allascii.txt</a>, 2010.</html>"
 

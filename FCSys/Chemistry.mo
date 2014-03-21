@@ -259,19 +259,23 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{-20,30},{-20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,30},{20,-30}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{-20,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{20,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None)}));
+                100,100}}), graphics={
+            Line(
+              points={{-20,30},{-20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,30},{20,-30}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{-20,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{20,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None)}));
     end DoubleLayer;
 
     model ElectronTransfer "Electron transfer"
@@ -281,7 +285,6 @@ package Chemistry "Chemical reactions and related models"
       parameter Integer n_trans(min=1,max=3)
         "Number of components of translational momentum" annotation (Evaluate=
             true,Dialog(__Dymola_label="<html><i>n</i><sub>trans</sub></html>"));
-
       parameter Integer n=1 "Apparent electron transfer number" annotation (
           Dialog(group="Electrochemical parameters", __Dymola_label=
               "<html><i>n</i></html>"));
@@ -325,8 +328,10 @@ package Chemistry "Chemical reactions and related models"
       I = positive.Ndot;
       Deltag = positive.g - negative.g;
       T = inert.T;
-      I0 = n*I0_300K*exp(E_A*(1/(300*U.K) - 1/T)) "From Arrhenius equation";
+      I0 = n*I0_300K*exp(E_A*(1/(300*U.K) - 1/T)) "Arrhenius equation";
       // **note that I0_300K is for single electron transfer
+      // **note that exchange current density is adjusted from the reference at
+      // 300 K (I0_300K) using the Arrhenius equation
 
       // Streams
       negative.phi = inStream(positive.phi);
@@ -362,25 +367,31 @@ package Chemistry "Chemical reactions and related models"
         Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
                 {100,100}}), graphics),
         Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-                100,100}}), graphics={Line(
-                  points={{0,-20},{0,-50}},
-                  color={221,23,47},
-                  smooth=Smooth.None),Line(
-                  points={{-50,0},{50,0}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Rectangle(
-                  extent={{-30,20},{32,-20}},
-                  lineColor={255,195,38},
-                  fillColor={255,255,255},
-                  fillPattern=FillPattern.Solid),Line(
-                  points={{-20,4},{20,4},{8,12}},
-                  color={255,195,38},
-                  smooth=Smooth.None),Line(
-                  points={{-20,-5},{20,-5},{8,3}},
-                  color={255,195,38},
-                  smooth=Smooth.None,
-                  origin={0,-11},
-                  rotation=180)}));
+                100,100}}), graphics={
+            Line(
+              points={{0,-20},{0,-50}},
+              color={221,23,47},
+              smooth=Smooth.None),
+            Line(
+              points={{-50,0},{50,0}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Rectangle(
+              extent={{-30,20},{32,-20}},
+              lineColor={255,195,38},
+              fillColor={255,255,255},
+              fillPattern=FillPattern.Solid),
+            Line(
+              points={{-20,4},{20,4},{8,12}},
+              color={255,195,38},
+              smooth=Smooth.None),
+            Line(
+              points={{-20,-5},{20,-5},{8,3}},
+              color={255,195,38},
+              smooth=Smooth.None,
+              origin={0,-11},
+              rotation=180)}));
+
     end ElectronTransfer;
 
   end Electrochemistry;
@@ -432,8 +443,10 @@ package Chemistry "Chemical reactions and related models"
       Dialog(tab="Assumptions", compact=true),
       choices(__Dymola_checkBox=true));
 
-    Electrochemistry.ElectronTransfer transfer(redeclare final constant Integer
-        n_trans=n_trans, n=2) "Electron transfer" annotation (Placement(
+    Electrochemistry.ElectronTransfer transfer(
+      redeclare final constant Integer n_trans=n_trans,
+      n=2,
+      E_A=15*U.kJ/U.mol) "Electron transfer" annotation (Placement(
           transformation(
           extent={{-10,10},{10,-10}},
           rotation=0,
@@ -502,21 +515,28 @@ package Chemistry "Chemical reactions and related models"
         smooth=Smooth.None));
     annotation (
       defaultComponentName="HOR",
-      Documentation(info=
-            "<html><table border=1><tr><td><font size=100 color=\"gray\">H<sub>2</sub> &#8652; 2e<sup>-</sup> + 2H<sup>+</sup></font></td></tr></table></html>"),
-
+      Documentation(info="<html>
+    
+    <table border=1><tr><td><font size=100 color=\"gray\">H<sub>2</sub> &#8652; 2e<sup>-</sup> + 2H<sup>+</sup></font></td></tr></table>
+    
+    <p>The activation energy of 15&nbsp;kJ/mol is the middle of the range (10&ndash;20&nbsp;kJ/mol) given by
+    [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2007</a>, p.&nbsp;B635].    
+    </p>
+    </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/HOR.png")}),
+
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{40,
               40}}), graphics));
+
   end HOR;
 
   model ORR "Oxygen reduction reaction"
@@ -580,7 +600,8 @@ package Chemistry "Chemical reactions and related models"
     Electrochemistry.ElectronTransfer transfer(
       redeclare final constant Integer n_trans=n_trans,
       n=4,
-      E_A=0.75*U.V) "Electron transfer" annotation (Placement(transformation(
+      E_A=67*U.kJ/U.mol) "Electron transfer" annotation (Placement(
+          transformation(
           extent={{10,10},{-10,-10}},
           rotation=0,
           origin={-30,-10})));
@@ -652,21 +673,25 @@ package Chemistry "Chemical reactions and related models"
         smooth=Smooth.None));
     annotation (
       defaultComponentName="ORR",
-      Documentation(info=
-            "<html><table border=1><tr><td><font size=100 color=\"gray\">4e<sup>-</sup> + 4H<sup>+</sup> + O<sub>2</sub> &#8652; 2H<sub>2</sub>O</font></td></tr></table></html>"),
-
+      Documentation(info="<html><table border=1><tr><td><font size=100 color=\"gray\">4e<sup>-</sup> + 4H<sup>+</sup> + O<sub>2</sub> &#8652; 2H<sub>2</sub>O</font></td></tr></table> 
+        
+    <p>The activation energy is 67&nbsp;kJ/mol [<a href=\"modelica://FCSys.UsersGuide.References.Neyerlin2007\">Neyerlin2006</a>, p.&nbsp;A1955].
+    </p>
+    </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
-              extent={{-100,40},{100,-50}},
-              pattern=LinePattern.Dash,
-              lineColor={127,127,127},
-              radius=15,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Bitmap(extent={{-100,-20},{100,-40}},
-            fileName=
-            "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
+            extent={{-100,40},{100,-50}},
+            pattern=LinePattern.Dash,
+            lineColor={127,127,127},
+            radius=15,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid), Bitmap(extent={{-100,-20},{100,-40}},
+              fileName=
+                "modelica://FCSys/Resources/Documentation/Reactions/ORR.png")}),
+
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{40,
               40}}), graphics));
+
   end ORR;
 
 public
@@ -720,25 +745,30 @@ public
     
     </html>"),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
-              extent={{-40,40},{40,-40}},
-              fillColor={170,213,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Rectangle(
-              extent={{42,40},{20,-40}},
-              pattern=LinePattern.None,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{0,40},{40,-40}},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid,
-              pattern=LinePattern.None),Line(
-              points={{-40,40},{40,40}},
-              color={0,0,0},
-              smooth=Smooth.None),Line(
-              points={{-40,-40},{40,-40}},
-              color={0,0,0},
-              smooth=Smooth.None)}),
+              100}}), graphics={
+          Rectangle(
+            extent={{-40,40},{40,-40}},
+            fillColor={170,213,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Rectangle(
+            extent={{42,40},{20,-40}},
+            pattern=LinePattern.None,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{0,40},{40,-40}},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+          Line(
+            points={{-40,40},{40,40}},
+            color={0,0,0},
+            smooth=Smooth.None),
+          Line(
+            points={{-40,-40},{40,-40}},
+            color={0,0,0},
+            smooth=Smooth.None)}),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
               100,100}}), graphics));
   end Capillary;
@@ -840,35 +870,40 @@ public
         color={47,107,251},
         smooth=Smooth.None));
     annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics={Polygon(
-              points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
-              -60}},
-              lineColor={0,0,0},
-              smooth=Smooth.None,
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
-              lineColor={191,191,191},
-              smooth=Smooth.Bezier,
-              visible=inclGas,
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{-40,8},{20,-30}},
-              lineColor={85,170,255},
-              visible=inclLiquid,
-              fillPattern=FillPattern.Sphere,
-              fillColor={255,255,255}),Ellipse(extent={{-40,8},{20,-30}},
-            lineColor={225,225,225}),Line(
-              points={{-60,20},{20,20},{20,-60}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None),Line(
-              points={{60,60},{20,20}},
-              color={0,0,0},
-              pattern=LinePattern.Dash,
-              smooth=Smooth.None)}), Diagram(coordinateSystem(
-            preserveAspectRatio=false, extent={{-60,-20},{40,20}}), graphics));
+              -100},{100,100}}), graphics={
+          Polygon(
+            points={{-60,-60},{-60,20},{-20,60},{60,60},{60,-20},{20,-60},{-60,
+                -60}},
+            lineColor={0,0,0},
+            smooth=Smooth.None,
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{-62,10},{48,54},{30,-36},{-38,-46},{-62,10}},
+            lineColor={191,191,191},
+            smooth=Smooth.Bezier,
+            visible=inclGas,
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{-40,8},{20,-30}},
+            lineColor={85,170,255},
+            visible=inclLiquid,
+            fillPattern=FillPattern.Sphere,
+            fillColor={255,255,255}),
+          Ellipse(extent={{-40,8},{20,-30}}, lineColor={225,225,225}),
+          Line(
+            points={{-60,20},{20,20},{20,-60}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None),
+          Line(
+            points={{60,60},{20,20}},
+            color={0,0,0},
+            pattern=LinePattern.Dash,
+            smooth=Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio
+            =false, extent={{-60,-20},{40,20}}), graphics));
   end CapillaryVolume;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}), graphics));
