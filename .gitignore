@@ -29,13 +29,7 @@ build/
 *.pyc
 MANIFEST
 
-# Internal link to demos
-#FCSys*/Resources/Source/Python/fcres/examples
-
 # Georgia Tech files
 # TODO:  Ask Chris Paredis if they can be shared, and include them.
 FCSys/Resources/Test/Morris
 
-# Work in progress
-#FCSys*/Resources/Documentation/Systems/
-#old/
