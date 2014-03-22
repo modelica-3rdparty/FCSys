@@ -4,7 +4,7 @@
 # This does the following:
 # 1. Pushes the web documentation (gh-pages) to origin.
 # 2. Merges the branch into master, tags it, and pushes master to origin.
-# 3. Merges the branch into development after removing the version information.
+# 3. Merges the branch into develop after removing the version information.
 #
 # Assumptions:
 # 1. The repository has the same name as the Modelica package.
@@ -40,7 +40,7 @@ git tag -a $version
 git push --tags origin master
 
 
-## Handle the development branch (action #3).
+## Handle the develop branch (action #3).
 git checkout $branch
 git checkout -b $branch-temp # Temporary branch to reset the version info.
 
@@ -57,6 +57,6 @@ sed -i s/version='"'[0-9A-Za-z.]*'"',/version='""',/ $package*/Resources/Source/
 
 ## Finish.
 git commit "Reset version info after merging $version"
-git checkout development
+git checkout develop
 git merge --no-ff $branch-temp
-echo "Released $version.  Now on the development branch."
+echo "Released $version.  Now on the develop branch."

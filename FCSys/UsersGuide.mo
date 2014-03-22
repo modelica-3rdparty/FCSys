@@ -812,13 +812,13 @@ The name of the folder that contains the Modelica source files has
 the form of \"FCSys Major.Minor.Patch\" (e.g., \"FCSys 1.0.0\").
 </p>
   
-<h4><a href=\"https://github.com/kdavies4/FCSys/tree/development\">development</a></h4>
+<h4><a href=\"https://github.com/kdavies4/FCSys/tree/develop\">develop</a></h4>
 
 <p>
 All development work is done on this branch or its sub-branches.  This branch and its
 sub-branches are typically only accessed by library developers, not by library users. 
 Once finished, all sub-branches are merged 
-back into the main development branch (with option <code>--no-ff</code>) and eventually deleted.
+back into the main develop branch (with option <code>--no-ff</code>) and eventually deleted.
 </p>
 
 <p>
@@ -849,7 +849,7 @@ distribution files.
 <p>
 After version 1.0.0, the changes in each release of this library (FCSys) will be
 summarized in subsections below.  Until then, please see the 
-<a href=\"https://github.com/kdavies4/FCSys/commits/development\">commit log on the development branch</a>.
+<a href=\"https://github.com/kdavies4/FCSys/commits/develop\">commit log of the develop branch</a>.
 The 
 <a href=\"modelica://FCSys.UsersGuide.ReleaseNotes.VersionManagement\">version management subsection</a>
 describes how the library is developed and maintained using the 
