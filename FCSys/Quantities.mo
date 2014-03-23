@@ -168,7 +168,7 @@ package Quantities "Types to represent physical values"
   type Power = TypeReal (final unit="L2.M/T3");
   type PowerArea = TypeReal (final unit="L4.M/T3") "Power times area";
   type PowerAreic = TypeReal (final unit="M/T3") "Areic power";
-  type PowerAreicPerPotential4 = TypeReal (final unit="M.T5/L8")
+  type PowerAreicPerPotential4 = TypeReal (final unit="N4.T5/(L8.M3)")
     "Areic power per 4th power of potential";
   type PowerRadiant = TypeReal (final unit="L2.M/(A2.T3)") "Radiant power";
   type Pressure = TypeReal (final unit="M/(L.T2)");
