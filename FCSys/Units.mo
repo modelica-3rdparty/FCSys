@@ -1,4 +1,4 @@
-within FCSys;
+﻿within FCSys;
 package Units "Constants and units of physical measure"
   extends Modelica.Icons.Package;
   function setup "Establish conversions to display quantities in units"
@@ -59,7 +59,8 @@ package Units "Constants and units of physical measure"
       "Reciprocal of permittivity";
     defineDefaultDisplayUnit("L3/(N.s)", "cc/(C.s)")
       "for derivative of specific volume in Dymola";
-    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)") "Rate of specific volume";
+    defineDefaultDisplayUnit("L3/(N.T)", "cc/(C.s)")
+      "Rate of specific volume";
     defineDefaultDisplayUnit("L3/N", "cc/C") "Specific volume";
     defineDefaultDisplayUnit("L3/T", "L/min") "Rate of volume";
     defineDefaultDisplayUnit("L4.M/T3", "W.m2") "Power times area";
@@ -876,8 +877,8 @@ recognized by Dymola.</p>
   constants and units.</p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units.",
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units.",
             executeCall=checkModel("FCSys.Units")));
 
     end Evaluate;
@@ -925,8 +926,8 @@ encompass other systems of units.</p>
   </ol></p>
   
 <p>Please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Hartree;
 
@@ -962,8 +963,8 @@ encompass other systems of units.</p>
   </ol></p>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Stoney;
 
@@ -984,8 +985,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAK;
 
@@ -1006,8 +1007,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAm;
 
@@ -1027,8 +1028,8 @@ encompass other systems of units.</p>
   </ul>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIAs;
 
@@ -1048,8 +1049,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKmol;
 
@@ -1069,8 +1070,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIKs;
 
@@ -1090,8 +1091,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImmol;
 
@@ -1111,8 +1112,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SIms;
 
@@ -1133,8 +1134,8 @@ encompass other systems of units.</p>
   </ul>
 
 <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end SImols;
 
@@ -1143,6 +1144,7 @@ encompass other systems of units.</p>
 
       constant Q.Angle cyc=1 "cycle";
       // Unit of rotation or planar angle
+      // This is also known as a revolution or turn.
       constant Q.Wavenumber R_inf=1
         "<html>Rydberg constant (R<sub>&infin;</sub>)</html>";
       // The SI unit length (meter) is inversely proportional to this value,
@@ -1172,8 +1174,8 @@ encompass other systems of units.</p>
       // that it's one, which means that temperature is considered to be a
       // potential.
       annotation (Documentation(info="<html><p>Please see the notes in the Modelica code and the documentation of the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-            executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+          Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
     end Base;
     annotation (Documentation(info="<html>
@@ -1200,8 +1202,8 @@ encompass other systems of units.</p>
   <a href=\"modelica://FCSys.Units.Bases.SImols\">SImols</a>).</p>
 
   <p>For more information, please see the documentation for the
-  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"), Commands(
-          executeCall=FCSys.Units.setup() "Re-initialize the units."));
+  <a href=\"modelica://FCSys.Units\">Units</a> package.</p></html>"),
+        Commands(executeCall=FCSys.Units.setup() "Re-initialize the units."));
 
   end Bases;
 
@@ -1313,15 +1315,14 @@ encompass other systems of units.</p>
   // -------------------------------------------------------------------------
   // SI units that depend on transcendental and arbitrated empirical numbers
   // -------------------------------------------------------------------------
-  // **check all dimensions, update doc
   final constant Q.Angle rad=cyc/(2*pi) "radian";
   // SI unit of plane angle
   // Note:  [BIPM2006] defines rad = 1, but this trigonometric relation is
-  // used instead to allow the cycle (cyc) to be an independent base unit.
+  // used instead, where the cycle (cyc) is an independent base unit.
   constant Q.Length m=10973731.568539*cyc/R_inf "meter";
   // SI unit of length
-  // This is the "Rydberg constant" relation [NIST2010].  Here, the unit cycle
-  // is explicitly included in the wavenumber.  The Rydberg constant can be
+  // This is the "Rydberg constant" relation [NIST2010] with the unit cycle
+  // explicitly included in the wavenumber.  The Rydberg constant can be
   // determined by measuring the spectra of hydrogen, deuterium, and
   // antiprotonic helium [http://en.wikipedia.org/wiki/Rydberg_constant].
   constant Q.Time s=299792458*m/c "second";
@@ -1337,13 +1338,13 @@ encompass other systems of units.</p>
   // quantum.  The Josephson constant can be determined by measuring
   // supercurrent across a Josephson junction
   // [http://en.wikipedia.org/wiki/Josephson_effect].
-  // **compare all equataions to NIST & VIPM, note differences
   constant Q.ConductanceElectrical S=25812.8074434*G_0/2 "siemen";
   // SI unit of electrical conductance
   // This is based on the "von Klitzing constant" relation [NIST2010], given
   // that the von Klitzing constant is twice the reciprocal of the conductance
-  // quantum.  The von Klitzing constant can be determined by measuring the
-  // quantum hall effect [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
+  // quantum and the siemen is the reciprocal of the ohm.  The von Klitzing
+  // constant can be determined by measuring the quantum hall effect
+  // [http://en.wikipedia.org/wiki/Quantum_Hall_effect].
   constant Q.Amount mol=96485.3365*Wb*cyc*S/k_F "mole";
   // SI unit of chemical amount
   // This is the "Faraday constant" relation [NIST2010].  The factor of
@@ -1372,8 +1373,8 @@ encompass other systems of units.</p>
   // Note:  [BIPM2006] defines Hz = 1/s, but that conflicts with the common
   // definition of the hertz as "one cycle per second"
   // [https://en.wikipedia.org/wiki/Hertz].  Since BIPM defines rad = 1 and
-  // trigonometry defines cyc = 2*pi*rad (see above), BIPM implies that
-  // Hz = cyc/(2*pi*s).
+  // trigonometry requires cyc = 2*pi*rad (see above), BIPM implies that
+  // Hz = cyc/(2*pi*s) -- an inconsistency.
   final constant Q.Potential V=Wb*Hz "volt";
   // SI unit of EMF
   // Note:  [BIPM2006] defines Wb = V*s, but Wb = V/Hz is used here (which is
@@ -1392,11 +1393,14 @@ encompass other systems of units.</p>
   // SI unit of power
   final constant Q.Power lm=W/683 "lumen";
   // SI unit of luminous flux
+  // Note:  This results in the candela (cd, below) being a dependent unit,
+  // but [BIPM2006] defines cd independently (see doc).
   final constant Q.Angle2 sr=rad^2 "steradian";
   // SI unit of solid angle
-  // Note: [BIPM2006] defines sr = 1, but that conflicts with the common
-  // definition of the steradian as the square of the radian
-  // [https://en.wikipedia.org/wiki/Steradian].
+  // Note: [BIPM2006] defines sr = 1, which is consistent with the common
+  // definition of the steradian as the square of the radian (rad)
+  // [https://en.wikipedia.org/wiki/Steradian] only because [BIPM2006] defines
+  // rad = 1.  Here, the common definition is applied directly.
   final constant Q.PowerRadiant cd=lm/sr "candela";
   // SI unit of luminous intensity
 
@@ -1423,6 +1427,9 @@ encompass other systems of units.</p>
   // SI unit of electrical resistance
   final constant Q.Inductance H=s/S "henry";
   // SI unit of inductance
+  // Note:  The definition in [BIPM2006], H = Wb/A, is not valid here because
+  // angle is included explicitly in magnetic flux (i.e., Wb = V/Hz = V*s/cyc,
+  // not Wb = V*s).
   final constant Q.Current kat=mol/s "katal";
   // SI unit of catalytic activity
   final constant Q.Mass g=kg/kilo "gram";
@@ -1455,33 +1462,14 @@ encompass other systems of units.</p>
   // constant is dimensionless too.
   final constant Q.ResistanceElectrical Z_0=4*alpha/G_0
     "<html>characteristic impedance of vacuum (<i>Z</i><sub>0</sub>)</html>";
-  // See  http://en.wikipedia.org/wiki/Characteristic_impedance_of_vacuum.
   final constant Q.Permeability mu_0=Z_0/(c*cyc)
     "<html>magnetic constant (&mu;<sub>0</sub>)</html>";
-  // This is also called the vacuum permeability, the permeability of free
+  // This is also known as the vacuum permeability, the permeability of free
   // space, or the magnetic constant.
-  // **Note units Wb/(A*m), not H/m
   final constant Q.Permittivity epsilon_0=1/(Z_0*c)
     "<html>electric constant (&epsilon;<sub>0</sub>)</html>";
-  // This is also called the vacuum permittivity or the permittivity of free
+  // This is also known as the vacuum permittivity or the permittivity of free
   // space.
-  // **note that Ampere's constant and Coulomb's constant aren't included; given equations for Ampere's force law and Coulomb's force law
-  // **give equation for inductance of solenoid and capacitance of simple capacitor
-  // **Note that mu_0 is in Wb/(A*m), not H/m
-
-  // **
-  // mu_0' = mu_0/cyc
-  // mu_0' = Z_0/(c*cyc)
-
-  // k_e' = k_e/sr
-  // k_e' = 1/(epsilon_0*sp)
-  // k_e' = Z_0*c/sp
-  // epsilon_0 remains as is
-
-  // mu_0' = Z_0/(c*cyc) [Wb/(A.m)] (H/(m.cyc), not H/m)
-  // k_e' = Z_0*c/sp [F/(sr.m)] = [N.m2/(C2.sr)] (not F/m)
-  // k_A' = mu_0'/2
-  // epsilon_0 = 1/(k_e'*sp) [F/m]
 
   // Electromagnetism -- involving conductance and magnetic flux
   final constant Q.Amount q=G_0*Phi_0*cyc "elementary charge";
@@ -1498,13 +1486,13 @@ encompass other systems of units.</p>
   // Thermal physics
   final constant Q.Amount k_B=R/N_A
     "<html>Boltzmann constant (<i>k</i><sub>B</sub>)</html>";
-  final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3*c^2)
-    "<html>Stefan-Boltzmann constant (&sigma;)</html>";
+  final constant Q.PowerAreicPerPotential4 sigma=2*pi^5*k_B^4/(15*(h*cyc)^3*c
+      ^2) "<html>Stefan-Boltzmann constant (&sigma;)</html>";
   // See http://en.wikipedia.org/wiki/Stefan-Boltzmann_constant.  This
   // equation can be derived from Planck's law for spectral radiance:
   //   B = 2*(h*f)^3/(h*cyc*c)^2/(exp(h*f/(k_B*T)) - 1).
-  // Note that the factor of cyc is included to be explicit in angle.
-  // The previous equation can be written as:
+  // where the factor of cyc has been included to be explicit in angle.  The
+  // previous equation can be written as:
   //   B*(h*cyc*c)^2/(2*((k_B*T))^3) = (h*f/(k_B*T))^3/(exp(h*f/(k_B*T)) - 1).
   // The RHS is multiplied by pi due to integration over the half sphere and
   // the LHS is multiplied by h/(k_B*T) due to substitution prior to
@@ -1546,7 +1534,8 @@ encompass other systems of units.</p>
   // represented in Dymola's unit conversion GUI.
 
   final constant Q.Pressure bar=1e5*Pa "bar";
-  final constant Q.Length angstrom=0.1*nano*m "<html>angstrom (&#8491;)</html>";
+  final constant Q.Length angstrom=0.1*nano*m
+    "<html>angstrom (&#8491;)</html>";
 
   // -------------------------------------------------------------------------
   // Additional units that are useful for this library
@@ -1594,8 +1583,8 @@ quantity is represented by a variable which is an instance of the
 <code>Real</code> type.  Its <code>value</code> attribute is a number 
 associated with the value of the quantity (not the value of the quantity 
 itself, as will be shown).  Usually the <code>value</code> attribute is 
-not referenced explicitly because it is automatically returned when a 
-variable is referenced. The <code>unit</code> attribute is a string that 
+not referenced explicitly because it is automatically returned when the 
+variable itself is referenced. The <code>unit</code> attribute is a string that 
 describes the unit by which the value of the quantity has been divided to 
 arrive at the number.  The <code>displayUnit</code> attribute (also a 
 string) describes the unit by which the value of the quantity should be 
@@ -1620,7 +1609,7 @@ meant that \"the value of velocity is one meter per second.\"  Again, the
 <code>value</code> attribute represents the number, or the value of the 
 quantity divided by the unit, not the value of the quantity itself.</p>
 
-<p>This apparent conflict is solved in <a href=\"modelica://FCSys\">FCSys</a> 
+<p>This conflict is solved in <a href=\"modelica://FCSys\">FCSys</a> 
 by establishing units as mathematical entities and writing 
 <i>v</i> = 1&nbsp;m/s (in code, <code>v = 1*U.m/U.s</code> or simply 
 <code>v = U.m/U.s</code>, where <code>U</code> is an abbreviation for this 
@@ -1637,44 +1626,6 @@ established by the appropriate relation (ft &asymp; 0.3048&nbsp;m) and
 (&sim;3.2894).  Some units such as &deg;C, Pag, and dB involve offsets or 
 nonlinear transformations between the value of the quantity and the 
 number; these are described by functions besides simple division.</p>
-
-<p>As mentioned in the <a href=\"modelica://FCSys.Quantities\">Quantities</a> 
-package, angle is a dimension.  This is different from 
-SI, where angle is considered dimensionless (rad = 1) 
-[<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>].<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>
-Units of angle such as cycle (cyc), 
-radian (rad), and degree must be explicitly included in the expression of 
-quantities.  The radian is defined as the cycle divided by two pi (rad = 
-cyc/2&pi;), which is not necessarily one because the cycle is an 
-independent base unit (see below).  Solid angle has the dimensionality of 
-squared angle; the streradian (sr) is defined as the squared radian 
-(rad<sup>2</sup>), not one. Wavenumber has a dimensionality of angle per 
-length (e.g., cyc/cm) and frequency has a dimensionality of angle per 
-time.  The hertz (Hz) is defined as cyc/s (not 1/s) and the weber (Wb) is 
-defined as V/Hz (not V&nbsp;s).  Planck's constant (<i>h</i>) can be 
-expressed in J/Hz or J&nbsp;s/rad (not J&nbsp;s).</p>
-
-<p>This approach to angle has two advantanges.  The first is that it 
-avoids a conflict in the definition of SI units.  BIPM defines the hertz 
-as the reciprocal second (Hz = s<sup>-1</sup>), but states that \"[t]he SI 
-unit of frequency is given as the hertz, implying the unit cycles per 
-second\" [<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>]. 
-Due to trigonometry (cyc = 2&pi;&nbsp;rad), BIPM's 
-definition of the radian as one (rad = 1) implies that the cycle is two pi 
-(cyc = 2&pi;) and the hertz is not cycles per second but rather cycles per 
-second divided by two pi (Hz = cyc/(2&pi;&nbsp;s)).
-
-The second advantage is that the explicit inclusion of angle avoids the 
-need to use different variables depending on the chosen unit of angle.  If 
-a variable represents a quantity (e.g., angle) directly, then its value 
-does not depend on the chosen unit (e.g., of angle).  A single variable 
-can be used regardless of which unit the angle is ultimately expressed in. 
-For example, frequency is sometimes represented by a variable in hertz 
-(e.g., &nu;) and other times by a variable in radians per second (e.g., 
-&omega;).  If angle is explcit, one variable will suffice (<i>f</i> = 
-&nu;&nbsp;cyc/s = &omega;&nbsp;rad/s).  Likewise, there is no need to 
-define the reduced Planck constant (i.e., <i>h</i> &asymp; 
-6.6260e-34&nbsp;J/Hz &asymp; 1.0545e-34&nbsp;J&nbsp;s/rad).</p>
 
 <p><b>Method:</b></p>
 
@@ -1864,11 +1815,119 @@ causal languages (e.g.,   <a href=\"http://www.python.org\">Python</a>
 and C).  In fact, this has been done in the included 
 <a href=\"modelica://FCSys/Resources/Source/Python/doc/index.html\">FCRes</a> 
 module for plotting and analysis.</p>
-  
-  
+
+
+<p><b>Some Notes on Angle:</b></p>
+
+<p>As mentioned in the <a href=\"modelica://FCSys.Quantities\">Quantities</a> 
+package, angle is a dimension.  This is different from 
+SI, where angle is considered dimensionless (rad = 1) 
+[<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>].<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>
+Units of angle such as cycle (cyc), 
+radian (rad), and degree must be explicitly included in the expression of 
+quantities.  The radian is defined as the cycle divided by two pi (rad = 
+cyc/2&pi;), which is not necessarily one because the cycle is an 
+independent base unit (as mentioned above).  Solid angle has the dimensionality of 
+squared angle; the streradian (sr) is defined as the squared radian 
+(rad<sup>2</sup>), not one. Wavenumber has a dimensionality of angle per 
+length (e.g., can be expressed in cyc/cm) and frequency has a dimensionality of angle per 
+time.  The hertz (Hz) is defined as cyc/s (not 1/s).  The weber (Wb) is 
+defined as V/Hz (not V&nbsp;s) and the henry (H) is defined as V&nbsp;s/A
+(not Wb/A).  Planck's constant (<i>h</i>) can be expressed in J/Hz or 
+J&nbsp;s/rad (not J&nbsp;s).  The magnetic constant and Amp&egrave;re's force 
+constant can be expressed in Wb/(A&nbsp;m), not H/m (see below).</p>
+
+<p>The explicit inclusion of angle has four advantanges.  The first is that it 
+avoids a conflict in the definition of SI units.  BIPM defines the hertz 
+as the reciprocal second (Hz = s<sup>-1</sup>), but states that \"[t]he SI 
+unit of frequency is given as the hertz, implying the unit cycles per 
+second\" [<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>]. 
+Due to trigonometry (cyc = 2&pi;&nbsp;rad), BIPM's 
+definition of the radian as one (rad = 1) implies that the cycle is two pi 
+(cyc = 2&pi;) and the hertz is not cycles per second but rather cycles per 
+second divided by two pi (Hz = cyc/(2&pi;&nbsp;s)).</p>
+
+<p>The second advantage is that the explicit inclusion of angle avoids the 
+need to use different variables depending on the chosen unit of angle.  If 
+a variable represents a quantity (e.g., angle) directly, then its value 
+does not depend on the chosen unit (e.g., of angle).  A single variable 
+can be used regardless of which unit the angle is ultimately expressed in. 
+For example, frequency is sometimes represented by a variable in hertz 
+(e.g., &nu;) and other times by a variable in radians per second (e.g., 
+&omega;).  If angle is explcit, one variable will suffice (<i>f</i> = 
+&nu;&nbsp;cyc/s = &omega;&nbsp;rad/s).  Likewise, there is no need for the 
+reduced Planck constant (i.e., <i>h</i> &asymp; 
+6.6260e-34&nbsp;J/Hz &asymp; 1.0545e-34&nbsp;J&nbsp;s/rad).</p>
+
+<p>The third advantage appears when the size of a circle (variable <i>S</i>) is 
+described in terms of length per angle&mdash;radius per radian (<i>r</i>/rad) 
+or, equivalently, circumference per cycle.  This simplifies the 
+representation of some common equations.  The circumference of one circle is 
+<i>S</i>&nbsp;cyc, which is preferred over 2&pi;<i>r</i>.  The surface area of 
+one sphere is <i>S</i><sup>2</sup>&nbsp;sp, where sp = 4&pi;&nbsp;sr is the 
+spat, a unit of solid angle.<sup><a href=\"#fn2\" id=\"ref2\">2</a></sup>
+
+<!--Coulomb's force law can be expressed using the electric constant (&epsilon;<sub>0</sub>) without 
+a explicit factor of 1/4&pi;:  
+<blockquote>
+ <i>F</i> = (1/&epsilon;<sub>0</sub>)&nbsp;<i>q</i><sub>1</sub><i>q</i><sub>2</sub>/(<i>S</i><sup>2</sup>&nbsp;sp)
+</blockquote>
+where <i>S</i><sup>2</sup>&nbsp;sp is the surface area of the sphere centered between and touching the charges 
+(<i>q</i><sub>1</sub> and <i>q</i><sub>2</sub>).
+Since <i>S</i> = <i>r</i>/rad, sp = 4&pi;&nbsp;sr, and sr = rad<sup>2</sup>,
+this is
+<blockquote>
+ <i>F</i> = <i>k</i><sub>e</sub>&nbsp;<i>q</i><sub>1</sub><i>q</i><sub>2</sub>/<i>r</i><sup>2</sup>
+ </blockquote>
+where <i>k</i><sub>e</sub> is the electric constant, which is 
+1/(4*&pi;&epsilon;<sub>0</sub>) as expected.
+Thus, there is no real 
+need to maintain the electric force constant as a separate variable from 
+the electric constant.-->
+
+Amp&egrave;re's force law can be expressed using the magnetic constant (&mu;<sub>0</sub>) without 
+an explicit factor of 1/2&pi;:  
+<blockquote>
+ <i>F</i> = &mu;<sub>0</sub>&nbsp;<i>I</i><sub>1</sub><i>I</i><sub>2</sub>&nbsp;<i>L</i>/<i>S</i>
+</blockquote>
+where <i>I</i><sub>1</sub> and <i>I</i><sub>2</sub> are the currents, 
+<i>L</i> is the length of each wire, and <i>F</i> is the force.  
+Since <i>S</i> = <i>r</i>/rad, rad = cyc/2&pi;, and 
+&mu;<sub>0</sub> = 4&pi;&times;10<sup>−7</sup>&nbsp;Wb/(A&nbsp;m), where 
+Wb = V/Hz = V&nbsp;s/cyc, this is
+<blockquote>
+ <i>F</i> = 2<i>k</i><sub>A</sub>&nbsp;<i>I</i><sub>1</sub><i>I</i><sub>2</sub>&nbsp;<i>L</i>/<i>r</i>
+</blockquote>
+where <i>k</i><sub>A</sub> is the magnetic force constant 
+(10<sup>−7</sup>&nbsp;N/A<sup>2</sup>) as expected.  Thus, there is no real 
+need to maintain the magnetic force constant as a separate variable from 
+the magnetic constant.  
+
+The inductance of a solenoid can be expressed as 
+&mu;<i>N</i><i>A</i>/<i>L</i>&prime;, where &mu; is the permeability 
+(product of relative permeability and &mu;<sub>0</sub>, with the same
+dimensionality as &mu;<sub>0</sub>) and <i>A</i> is the projected cross-sectional 
+area of the solenoid.  The variable <i>N</i> represents the
+number of turns, which is dimensionless.<sup><a href=\"#fn3\" id=\"ref3\">3</a></sup>
+<i>L</i>&prime; is the pitch&mdash;the length of the solenoid divided by the
+wrapped angle.  Its dimensionality is length per angle.  Therefore, the angle 
+in the denominators of &mu; and <i>L</i>&prime; cancel; angle does not
+appear in the dimensionality of inductance.
+</p>
+
+
+<p>Finally, the potential confusion with energy and torque in SI 
+[<a href=\"modelica://FCSys.UsersGuide.References.BIPM2006\">BIPM2006</a>] can
+be eliminated using explicit angles and the concept of the size of a circle.  If torque is 
+expressed as the product of force and the size of the circular path (not 
+radius), then it has the dimensionality of energy per angle, which is clearly
+distinct from energy.  The angle cancels in the expression of rotational
+power as the product of torque and rotational velocity (angle per time).</p>
+
+
 <hr>
 
-<p id=\"fn1\"><small>1. The common argument   that angle is 
+<p id=\"fn1\"><small>1. The common argument that angle is 
 dimensionless (\"angle is a ratio of lengths\") is flawed.    It is not 
 correct to say that \"angle is the ratio of arclength to radius.\"    
 Rather, angle in radians is the ratio of arclength to radius   
@@ -1880,6 +1939,16 @@ that the radian (rad) is a unit of angle,   just as the meter (m) is a
 unit of length.  The dimensionality of the radian  is angle, just as 
 the dimensionality of the meter is length.<a href=\"#ref1\" title=\"Jump 
 back to footnote 1 in the text.\">&#8629;</a></small></p>
+
+<p id=\"fn2\"><small>2. The spat (sp) is the solid angle of one sphere, just 
+as the cycle (cyc) is the angle of one circle.  For mnemonic purposes, sp can be 
+considered as the abbreviation for sphere as well as spat.<a href=\"#ref2\" title=\"Jump 
+back to footnote 2 in the text.\">&#8629;</a></small></p>
+
+<p id=\"fn3\"><small>3. The number of turns (<i>N</i>) is the wrapped angle 
+(&Theta;) expressed in cycles (i.e., turns): <i>N</i> = &Theta;/cyc.  Thus, it
+is a dimensionless ratio.<a href=\"#ref3\" title=\"Jump 
+back to footnote 3 in the text.\">&#8629;</a></small></p>
 
 <p><b>Licensed by the Hawaii Natural Energy Institute under the Modelica 
 License 2</b><br> Copyright &copy; 2007&ndash;2014, <a href=\"
@@ -1930,8 +1999,8 @@ http://www.modelica.org/licenses/ModelicaLicense2</a>.</i></p>
           fillPattern=FillPattern.Solid),
         Polygon(
           points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
-              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{68,
-              2}},
+              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{
+              68,2}},
           lineColor={64,64,64},
           smooth=Smooth.Bezier,
           fillColor={175,175,175},
