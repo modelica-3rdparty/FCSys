@@ -926,41 +926,87 @@ encompass other systems of units.</p>
     final constant Q.Volume cc=cm^3 "cubic centimeter";
     final constant Q.Number '%'=centi "percent (%)";
     final constant Q.Density M=mol/L "molar";
-    annotation (Icon(graphics={Line(
-              points={{-66,78},{-66,-40}},
-              color={64,64,64},
-              smooth=Smooth.None),Ellipse(
-              extent={{12,36},{68,-38}},
-              lineColor={64,64,64},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Rectangle(
-              extent={{-74,78},{-66,-40}},
-              lineColor={64,64,64},
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{-66,-4},{-66,6},{-16,56},{-16,46},{-66,-4}},
-              lineColor={64,64,64},
-              smooth=Smooth.None,
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{-46,16},{-40,22},{-2,-40},{-10,-40},{-46,16}},
-              lineColor={64,64,64},
-              smooth=Smooth.None,
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid),Ellipse(
-              extent={{22,26},{58,-28}},
-              lineColor={64,64,64},
-              fillColor={255,255,255},
-              fillPattern=FillPattern.Solid),Polygon(
-              points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
-              {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{68,
-              2}},
-              lineColor={64,64,64},
-              smooth=Smooth.Bezier,
-              fillColor={175,175,175},
-              fillPattern=FillPattern.Solid)}));
+    annotation (Icon(graphics={
+          Line(
+            points={{-66,78},{-66,-40}},
+            color={64,64,64},
+            smooth=Smooth.None),
+          Ellipse(
+            extent={{12,36},{68,-38}},
+            lineColor={64,64,64},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Rectangle(
+            extent={{-74,78},{-66,-40}},
+            lineColor={64,64,64},
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{-66,-4},{-66,6},{-16,56},{-16,46},{-66,-4}},
+            lineColor={64,64,64},
+            smooth=Smooth.None,
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{-46,16},{-40,22},{-2,-40},{-10,-40},{-46,16}},
+            lineColor={64,64,64},
+            smooth=Smooth.None,
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid),
+          Ellipse(
+            extent={{22,26},{58,-28}},
+            lineColor={64,64,64},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Polygon(
+            points={{68,2},{68,-46},{64,-60},{58,-68},{48,-72},{18,-72},{18,-64},
+                {46,-64},{54,-60},{58,-54},{60,-46},{60,-26},{64,-20},{68,-6},{
+                68,2}},
+            lineColor={64,64,64},
+            smooth=Smooth.Bezier,
+            fillColor={175,175,175},
+            fillPattern=FillPattern.Solid)}));
 
   end Units;
+
+  model CharacteristicsExamplesSurfaceTension
+    "<html>Evaluate the surface tension of H<sub>2</sub>O using the model of Garai2009**add reference</html>"
+    // **very bad correlation for H2O (off by factor of ~4); paper shows only elements, so maybe the model isn't good for compound molecules
+    import FCSys.Characteristics.H2O.Liquid;
+    import FCSys.Characteristics.H2O.Gas;
+
+    extends Modelica.Icons.Example;
+
+    parameter Q.PressureAbsolute p(displayUnit="atm") = U.atm
+      "Pressure of the liquid (and total pressure of the gas)";
+    Q.PressureAbsolute p_sat(displayUnit="atm") "Saturation pressure";
+    Q.TemperatureAbsolute T "Temperature";
+    Q.TemperatureAbsolute T_sat(start=373.15*U.K) "Saturation temperature";
+    output Q.Number T_degC=U.to_degC(T) "Temperature in degree Celsius";
+    output Q.Potential h_gl(displayUnit="J/mol") = Gas.h(T, p_sat) - Liquid.h(T,
+      p) "Specific enthalpy of vaporization";
+    output Q.SurfaceTension gamma=(h_gl - T_sat)/(2*Liquid.sigma^2*U.sp*U.q)
+      "Surface tension";
+
+    Modelica.Blocks.Sources.Ramp temperatureSet(
+      height=99*U.K,
+      duration=10,
+      offset=274.15*U.K)
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+
+  equation
+    T = temperatureSet.y;
+    Gas.g(T_sat, p) = Liquid.g(T_sat, p);
+    Gas.g(T, p_sat) = Liquid.g(T, p);
+
+    annotation (
+      Documentation(info=
+            "<html><p>See also <a href=\"modelica://FCSys.Subregions.Examples.PhaseChange.Condensation\">Subregions.Examples.PhaseChange.Condensation</a>.</p></html>"),
+
+      experiment(StopTime=10),
+      Commands);
+
+  end CharacteristicsExamplesSurfaceTension;
   annotation (Commands(
       file="../../units.mos"
         "Establish the constants and units in the workspace (first translate a model besides Units.Evaluate).",
