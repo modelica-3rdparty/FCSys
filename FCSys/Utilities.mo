@@ -737,7 +737,7 @@ An unrelated species may be included.");
 
   algorithm
     createPlot(
-        id=1,
+        id=4,
         position={0,0,440,650},
         y=y1,
         erase=false,
@@ -747,8 +747,9 @@ An unrelated species may be included.");
         legendHorizontal=false,
         leftTitleType=1,
         bottomTitleType=1);
+    // Note:  id < 4 doesn't work in Dymola 2014 FD01.
     createPlot(
-        id=1,
+        id=4,
         position={0,0,440,325},
         y=y2,
         erase=false,
@@ -760,7 +761,7 @@ An unrelated species may be included.");
         leftTitleType=1,
         bottomTitleType=1);
     createPlot(
-        id=2,
+        id=5,
         position={450,0,440,650},
         y=y3,
         erase=false,
@@ -771,7 +772,7 @@ An unrelated species may be included.");
         leftTitleType=1,
         bottomTitleType=1);
     createPlot(
-        id=2,
+        id=5,
         position={450,0,440,325},
         y=y4,
         erase=false,
@@ -783,7 +784,7 @@ An unrelated species may be included.");
         leftTitleType=1,
         bottomTitleType=1);
     createPlot(
-        id=3,
+        id=6,
         position={900,0,440,650},
         y=y5,
         erase=false,
@@ -794,7 +795,7 @@ An unrelated species may be included.");
         leftTitleType=1,
         bottomTitleType=1);
     createPlot(
-        id=3,
+        id=6,
         position={900,0,440,325},
         y=y6,
         erase=false,

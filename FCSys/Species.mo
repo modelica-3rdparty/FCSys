@@ -1417,6 +1417,7 @@ Choose any condition besides none.");
            + inSign(side)*Data.m*phi_boundaries[i, side]*boundaries[i, side].Ndot
            - minusDeltaf[i])*(if upstream[i] then 1 + exp(-zeta*Data.beta(T, p)
           *boundaries[i, side].Ndot/(2*Aprime[i])) else 2) + inSign(side)*f[i];
+        // **reconsider continuity (on bulk rather than per-dimension basis?)
 
         // Translational momentum
         kL[i]*eta*mPhidot_boundaries[i, side, Orient.after] = Aprime[i]*Nu_Phi[
@@ -2106,16 +2107,16 @@ Check that the volumes of the other phases are set properly.");
           initialScale=0.1), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Ellipse(
-              extent={{-100,100},{100,-100}},
-              lineColor={127,127,127},
-              pattern=LinePattern.Dash,
-              fillColor={225,225,225},
-              fillPattern=FillPattern.Solid),Text(
-              extent={{-100,-20},{100,20}},
-              textString="%name",
-              lineColor={0,0,0},
-              origin={-40,40},
-              rotation=45)}));
+            extent={{-100,100},{100,-100}},
+            lineColor={127,127,127},
+            pattern=LinePattern.Dash,
+            fillColor={225,225,225},
+            fillPattern=FillPattern.Solid), Text(
+            extent={{-100,-20},{100,20}},
+            textString="%name",
+            lineColor={0,0,0},
+            origin={-40,40},
+            rotation=45)}));
   end Species;
 
 public

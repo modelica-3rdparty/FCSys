@@ -1584,7 +1584,8 @@ The variable &sigma; (in this package&mdash;not the Stefan-Boltzmann constant) i
 
       algorithm
         tauprime := v/(alpha*omega(T));
-        // ** remove alpha
+        // ** remove alpha => reciprocal of exch curr den
+        // **use reciprocal (exch curr den)?
         annotation (Inline=true,Documentation(info="<html>
   <p>This function is based on the kinetic theory of gases under the following assumptions
   [<a href=\"modelica://FCSys.UsersGuide.References.Present1958\">Present1958</a>]:</p>
